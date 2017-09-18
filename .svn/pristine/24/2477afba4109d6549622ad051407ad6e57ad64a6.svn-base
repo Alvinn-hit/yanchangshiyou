@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			/*弹层*/
+			.zhifu-box {
+				position: relative;
+				overflow: hidden;
+				background: #fff;
+			}
+			.zhifu-box h1 {
+				font-size: 0.875rem;
+				text-align: center;
+				margin: 15px 0px 15px 0px;
+			}
+			.closeBox {
+				position: absolute;
+				right: 5px;
+				top: 15px;
+			}
+			.closeBox img {
+				width: 24px;
+			}
+			.add-zhifu {
+				margin: 15px 0px 15px 0px;
+				text-align: center;
+				font-size: 0.875rem;
+			}
+			.add-zhifu img {
+				vertical-align: middle;
+				width: 21px;
+			}
+			.checkInput {
+				position: absolute;
+				right: 10px;
+				top: 20px;
+			}
+			
+			/*弹出层*/
+			.layui-m-layerchild h3{
+			  height: 40px!important;
+			  line-height: 40px!important;
+			  font-size: 12px!important;
+			}
+			.layui-m-layercont{
+			   padding: 0px!important;
+			}
+			.btn-box{
+			  width: 90%;
+			  margin: auto;
+			}
+			.aui-list:after{
+			  height:0px;
+			}
+			.aui-btn-block{
+			  padding: 0.4rem 0 0.4rem 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-18">
+									订单金额
+								</div>
+								<div class="aui-list-item-right aui-font-size-18 red" id="price">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner" onclick="aliPayGas();">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu1.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									支付宝
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								推荐支付宝用户使用
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li onclick="balancePay()" class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu2a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									延长e加油支付
+								</div>
+							</div>
+							<div class="aui-list-item-text" id="balance">
+								
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu3a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									银联wap
+								</div>
+							</div>
+							<div class="aui-list-item-text aui-p">
+								支持储蓄卡
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/aliPay.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script>
+		var accountBalance = "" , payPwdFlag = false, memberPhone = "" , balanceStr = "0";
+		var oilInfo = new Object(), resourceMgpriceViewVo = new Object(), mgpriceBatch;
+		//全局定时器
+		var inter = null;
+		var second = 120;
+		apiready = function() {
+			oilInfo = api.pageParam.oilInfo;
+			var price = toFixed(api.pageParam.oilInfo.payPrice);
+			$("#price").html('￥' + price);
+			queryMyAccountViewVo();
+		}
+		
+
+		//查询账户余额
+		function queryMyAccountViewVo() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayAccountAjax!queryAccountViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.accountType = "2";
+			//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				//可用金额
+				accountBalance = ret.accountViewVo.accountSmoney;
+				balanceStr = toFixed(accountBalance) + "元";
+				$("#balance").text(balanceStr);
+				queryMyUserInfo();
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		// 获取我的信息,判断是否设置了交易密码
+		function queryMyUserInfo(){
+			var ajaxObject = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.url = "/appMemberAjax!queryMyUserInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.onSuccessFunction = function(data) {
+				var operatorViewVo = data.operatorViewVo;
+				if(operatorViewVo.operatorPayPassword && operatorViewVo.operatorPayPassword != null && operatorViewVo.operatorPayPassword != ""){
+					payPwdFlag = true;
+				}else{
+					// 检测到未设置支付密码时,获取到会员手机号
+					memberPhone = data.memberViewVo.memberPhone;
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//余额支付
+		function balancePay(){
+		    layer.open({
+		    title: [
+		      '设置支付密码',
+		      'background-color: #E6212A; color:#fff;'
+		    ]
+		    ,content: '<div class="aui-content">'+
+		    '<ul class="aui-list">'+
+		     ' <li  class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+		            '<div class="aui-list-item-inner">'+
+		            '<div class="aui-list-item-input">'+
+		            ' <input type="password" placeholder="设置支付密码" id="oldPwd"/>'+
+		           ' </div> '+
+		           '</div>  ' +                                
+		       ' </li>'+          
+		        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+		            '<div class="aui-list-item-inner ">'+
+		           '<div class="aui-list-item-input">'+
+		             '<input type="password" placeholder="再次输入密码" id="againPwd"/>'+
+		           ' </div> '+
+		            ' </div>  '+             
+		       ' </li>'+
+		        
+		        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+		            '<div class="aui-list-item-inner ">'+
+		           '<div class="aui-list-item-input">'+
+		             '<div class="aui-col-xs-8"><input type="number" placeholder="请填写手机验证码" id="messageCode"/></div>'+
+		             '<div class="aui-col-xs-4"><button style="width: 100%; height: 2rem; line-height: 1.5rem;" class="aui-btn aui-btn-danger" id="send" onclick="send()">发送验证码</button></div>'+
+		            '</div> '+
+		            ' </div>  ' +            
+		        '</li>'+
+		        
+		        '<div class="btn-box aui-margin-t-15 aui-margin-b-15">'+
+					'<div class="aui-btn aui-btn-block aui-btn-danger" onclick="updatePwd()">'+
+						'确认'+
+					'</div>'+
+				'</div>'+
+		   ' </ul> ' +
+		'</div>'
+		  });
+
+		
+			if(!payPwdFlag){
+				// 未设置支付密码
+				layerPayPwd();
+				return ;
+			}
+		
+			if(parseFloat(accountBalance) < parseFloat(api.pageParam.oilInfo.payPrice)){
+				api.toast({msg : '余额不足，请充值',duration : 2000,location : 'center'});
+				return;
+			}
+			api.openWin({
+				name : 'youzhan-zhifu-password',
+				url : 'youzhan-zhifu-password.html',
+				reload : true,
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : api.pageParam.oilInfo,
+					"payType" : "2",
+				},
+			});
+		}
+		
+		function aliPayGas(){
+			setValue('7');
+			saveGasStoreOrder('7');
+		}
+		
+		//设置参数对象的属性值
+		function setValue(payType) {
+			resourceMgpriceViewVo.memberBcode = api.pageParam.memberCode;//加油站编号
+			resourceMgpriceViewVo.pricesetPrice = oilInfo.payPrice;//实付金额
+			resourceMgpriceViewVo.dataCallurl = oilInfo.favPrice;//优惠金额
+			resourceMgpriceViewVo.dataParam = oilInfo.price;//应付金额
+			resourceMgpriceViewVo.payType = payType;//支付方式
+			resourceMgpriceViewVo.ginfoBillno = "";//支付关联业务号(团购预购和油卡的业务号)
+			resourceMgpriceViewVo.mgpriceDescription = oilInfo.oilNo;//油号
+			resourceMgpriceViewVo.mgpriceTechnicalDeviation = oilInfo.oilGun;//油枪号
+			resourceMgpriceViewVo.mgpriceBusinessDeviation = oilInfo.oilNum;//加油数量
+			resourceMgpriceViewVo.dataCalltype = oilInfo.oilPrice;//油价
+			resourceMgpriceViewVo.mgpriceContactname = oilInfo.carNo;//车牌号码
+			resourceMgpriceViewVo.dataStr1 = oilInfo.favorType;//优惠方式
+			resourceMgpriceViewVo.dataStr2 = oilInfo.accountCode;//优惠业务号
+			resourceMgpriceViewVo.dataStr3 = oilInfo.isInvoice;//是否开票
+			resourceMgpriceViewVo.dataStr4 = oilInfo.invoiceName;//开票抬头
+		}
+		//生成加油订单
+		function saveGasStoreOrder(payType) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGasStoreOrderAjax!saveGasStoreOrder.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params['resourceMgpriceViewVo.memberBcode'] = api.pageParam.memberCode;//加油站编号
+			ajaxObject.params['resourceMgpriceViewVo.pricesetPrice'] = oilInfo.payPrice;//实付金额
+			ajaxObject.params['resourceMgpriceViewVo.dataCallurl'] = oilInfo.favPrice;//优惠金额
+			ajaxObject.params['resourceMgpriceViewVo.dataParam'] = oilInfo.price;//应付金额
+			ajaxObject.params['resourceMgpriceViewVo.payType'] = payType;//支付方式
+			ajaxObject.params['resourceMgpriceViewVo.ginfoBillno'] = oilInfo.ginfoBillno;//支付关联业务号(团购预购和油卡的业务号)
+			ajaxObject.params['resourceMgpriceViewVo.mgpriceDescription'] = oilInfo.oilNo;//油号
+			ajaxObject.params['resourceMgpriceViewVo.mgpriceTechnicalDeviation'] = oilInfo.oilGun;//油枪号
+			ajaxObject.params['resourceMgpriceViewVo.mgpriceBusinessDeviation'] = oilInfo.oilNum;//加油数量
+			ajaxObject.params['resourceMgpriceViewVo.dataCalltype'] = oilInfo.oilPrice;//油价
+			ajaxObject.params['resourceMgpriceViewVo.mgpriceContactname'] = oilInfo.carNo;//车牌号码
+			ajaxObject.params['resourceMgpriceViewVo.dataStr1'] = oilInfo.favorType;//优惠方式
+			ajaxObject.params['resourceMgpriceViewVo.dataStr2'] = oilInfo.accountCode;//优惠业务号
+			ajaxObject.params['resourceMgpriceViewVo.dataStr3'] = oilInfo.isInvoice;//是否开票
+			ajaxObject.params['resourceMgpriceViewVo.dataStr4'] = oilInfo.invoiceName;//开票抬头
+			ajaxObject.onSuccessFunction = function(data) {
+				mgpriceBatch = data.mgpriceBatch;
+				resourceMgpriceViewVo.mgpriceBatch = mgpriceBatch;
+				resourceMgpriceViewVo.payFunction = success;
+				resourceMgpriceViewVo.failFunction = fail;
+				resourceMgpriceViewVo.flag = "1";
+				//支付宝
+				aliPay(resourceMgpriceViewVo);
+			}
+			baseAjax(ajaxObject);
+		}
+		function success() {
+			api.openWin({
+				name : 'youzhan-zhifu-success',
+				url : 'youzhan-zhifu-success.html',
+				reload : true,
+				pageParam : {
+					'mgpriceBatch' : mgpriceBatch,
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : api.pageParam.oilInfo,
+				},
+			});
+		}
+		
+		function fail(){
+			api.toast({
+			    msg: '支付未完成',
+			    duration: 2000,
+			    location: 'bottom'
+			});
+		}
+		
+		// 未设置支付密码时弹出设置框
+	   function layerPayPwd(){
+		    layer.open({
+		    title: [
+		      '请先设置支付密码',
+		      'background-color: #E6212A; color:#fff;'
+		    ]
+		    ,content: '<div id="boxPwd" class="aui-content">'+
+			    '<ul class="aui-list">'+
+			     ' <li  class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner">'+
+			            '<div class="aui-list-item-input">'+
+			            ' <input type="password" placeholder="设置支付密码" id="payPwd"/>'+
+			           ' </div> '+
+			           '</div>  ' +                                
+			       ' </li>'+          
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<input type="password" placeholder="再次输入密码" id="rePayPwd"/>'+
+			           ' </div> '+
+			            ' </div>  '+             
+			       ' </li>'+
+			        
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<div class="aui-col-xs-8"><input type="number" placeholder="请填写手机验证码" id="messageCode"/></div>'+
+			             '<div class="aui-col-xs-4"><button style="width: 80%; height: 2rem; line-height: 1.5rem;" class="aui-btn aui-btn-danger" id="send" onclick="send()">发送验证码</button></div>'+
+			            '</div> '+
+			            ' </div>  ' +            
+			        '</li>'+
+			        
+			        '<div class="btn-box aui-margin-t-15 aui-margin-b-15">'+
+						'<div class="aui-btn aui-btn-block aui-btn-danger" onclick="setPayPwd()">'+
+							'确认'+
+						'</div>'+
+					'</div>'+
+			   ' </ul> ' +
+			'</div>'
+		  });   
+	   
+	   }
+	   
+		//时间刷新
+		function autoRefresh() {
+			if (second != 0) {
+				second = second - 1;
+			}
+			$api.text($api.dom('#send'), "重新发送(" + second + ")");
+			if (second == 0) {
+				clearInterval(inter);
+				second = 120;
+				$api.removeAttr($api.dom('#send'), 'disabled');
+				$api.dom("#send").style.backgroundColor = "#5bc0de";
+				$api.val($api.dom('#send'), '点击发送验证码');
+			}
+		}
+
+		//发送短信验证码
+		function send() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = memberPhone;
+			ajaxObject.params.cmodelCode = "DX000007";
+			ajaxObject.params.validateCodeRequired = "0";
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					api.toast({
+						msg : '验证码已经发送至您的手机，请注意查收',
+						duration : 2000,
+						location : 'center'
+					});
+					$api.attr($api.dom('#send'), 'disabled', 'disabled');
+					$api.dom("#send").style.backgroundColor = "#CCC";
+					inter = setInterval("autoRefresh()", 1000);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		function setPayPwd() {
+			var payPwd = $api.val($api.dom("#payPwd"));
+			var rePayPwd = $api.val($api.dom("#rePayPwd"));
+			var messageCode = $api.val($api.dom("#messageCode"));
+			if (payPwd.length != 6) {
+				api.toast({
+					msg : '支付密码为6位',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd.match("^[0-9]+$") == null) {
+				api.toast({
+					msg : '支付密码由数字组成',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd != rePayPwd) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (!messageCode || messageCode == "") {
+				api.toast({
+					msg : '验证码为空或格式不正确',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!savePayPassword.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.newPayPassword = hex_md5(payPwd).toUpperCase();
+			ajaxObject.params.rendCodeRequired = "1";
+			ajaxObject.params.rendCode = messageCode;
+			ajaxObject.params.loginNo = memberPhone;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					 api.toast({msg:'设置交易密码成功'});
+				     payPwdFlag = true;
+				   	 layer.closeAll();
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}		   		
+	</script>
+</html>

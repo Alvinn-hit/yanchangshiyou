@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			.aui-list:before {
+				height: 0px;
+			}
+			.btn-box {
+				width: 100%;
+				background: #fff;
+				height: 50px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			.btn-box .aui-btn {
+				width: 95%;
+				padding: 5px;
+				font-size: 1rem;
+			}
+			.fix-box {
+				position: fixed;
+				bottom: 0px;
+				z-index: 99
+			}
+			/*详情*/
+			.content-all {
+				overflow: hidden;
+				padding-bottom: 50px;
+			}
+			.content-top-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px;
+				background: #fff;
+			}
+			.content-top-1 {
+				width: 120px;
+			}
+			.content-top-1 img {
+				width: 120px;
+				padding-top: 10px;
+			}
+			.content-top-2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-left: 5px;
+			}
+			.title-h1 {
+				font-size: 0.875rem;
+			}
+			.span-img {
+				border: 1px solid #BF6CF0;
+				color: #BF6CF0;
+				border-radius: 5px;
+				padding: 2px;
+			}
+			.span-img img {
+				width: 15px;
+				vertical-align: middle;
+			}
+			.money-box {
+				background: #fff;
+				margin-top: 15px;
+			}
+			.money-box-top {
+				position: relative;
+				display: table-cell;
+				width: 1%;
+				padding-bottom: 10px;
+			}
+			.money-box-top span {
+				width: 48%;
+				font-size: 0.875rem;
+			}
+			.money-box-top span b {
+				color: #FF0000;
+			}
+			.money-box-bottom {
+				overflow: hidden;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.money-box-list {
+				float: left;
+				width: 22%;
+				margin: 0px 5px 0px 5px;
+				border: 1px solid #ddd;
+				text-align: center;
+				border-radius: 5px;
+				padding: 5px;
+			}
+			.money-box-list.active-money {
+				border: 1px solid #FF0000;
+				color: #FF0000;
+				background: url("../../image/zhifu1.png") bottom right no-repeat;
+				background-size: 25px 25px;
+			}
+			.money-input {
+				text-align: right;
+				color: #ff0000 !important;
+			}
+			.tel-img {
+				width: 35px;
+			}
+			.word-box {
+				background: #fff;
+				margin-top: 10px;
+				padding: 10px;
+			}
+			.word-box h1 {
+				font-size: 0.875rem;
+				padding-bottom: 5px;
+				margin-bottom: 5px;
+			}
+			.word-box p {
+				line-height: 18px;
+			}
+			.color-1ba49e {
+				color: #1ba49e
+			}
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 8px;
+				right: 4px;
+			}
+			.amount-add {
+				position: absolute;
+				z-index: 99;
+				bottom: 16px;
+				right: 10px;
+			}
+			.amount img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount-add img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount li {
+				float: left;
+				margin-left: 7px;
+				margin-right: 7px;
+				font-size: 1rem;
+				line-height: 21px;
+				height: 21px;
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.6rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+			.under-line {
+				text-decoration: line-through;
+			}
+		</style>
+	</head>
+	<body>
+		<div style="display: none;" id="all">
+			<div class="content-all" >
+				<div class="content-top-box" id="groupData" style="display: none;">
+					<div class="content-top-1">
+						<img src="{baseURL}/{cardImgPath}" />
+					</div>
+					<div class="content-top-2">
+						<h1 class="title-h1">{bonusRule7}{bonusRule5Str}&nbsp;{bonusRule2}&nbsp;<span id="bonusRule2"></span> {cardName}<span class="red">劲省{bonusRule14Str}元</span></h1>
+						<p>
+							<span>已售{memberName}张</span>
+							<br>
+							<span class="aui-margin-t-5"><em class="red aui-font-size-14">预约价:{accountBmoney}元/张</em><em class="red aui-margin-l-10 under-line aui-font-size-14">原价:{bonusRule15Str}元/张</em></span>
+						</p>
+						<p>
+							最高可购<span class="red">{bonusRule11}张</span>
+						</p>
+						<p class="color-1ba49e">
+							预购成功，不可退，未使用可转赠
+						</p>
+						<p>
+							活动截止日期：{endDateStr}
+						</p>
+					</div>
+				</div>
+				<div class="money-box money-type-box">
+					<div class="money-box-top aui-border-t aui-padded-l-10 aui-padded-r-10 aui-padded-t-15">
+						<span>数量（张）</span>
+						<input type="hidden" id="buyNumber" value="1">
+						<span class="aui-text-right"> <em class="red" >1</em></span>
+					</div>
+				</div>
+				<div class="money-box money-type-box">
+					<div class="money-box-top aui-border-t aui-padded-l-10 aui-padded-r-10 aui-padded-t-15">
+						<span>支付金额（元）</span>
+						<span class="aui-text-right"> <em class="red" id="price1">0</em></span>
+					</div>
+				</div>
+				<ul class="aui-list aui-margin-t-15">
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title ">
+								适用油站 （离我最近）
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10" id="gasDetail">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								{tginfoName}     {tginfoStatUser}km
+								<br>
+								<span style="color: #888">{tginfoEtmurl}</span>
+							</div>
+							<div class="aui-list-item-right"onclick="call('{memberContactPhone}');">
+								<img class="tel-img" src="../../image/tel-ico1.jpg">
+							</div>
+						</div>
+					</li>
+					<li onclick="useYouzhan()" class="aui-list-item aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								全部门店信息
+							</div>
+							<div class="aui-list-item-right aui-font-size-16">
+								共<span id="count">0</span>站
+							</div>
+						</div>
+					</li>
+				</ul>
+			<div class="word-box">
+				<h1 class="aui-border-b">预购细则</h1>
+					<p id="manual"></p>
+			</div>
+			</div>
+			<div id="payBtn" class="btn-box fix-box" onclick="payBtn();" id="imPay">
+				<div class="aui-btn aui-btn-danger" >
+					立即支付 <span id="price2">0</span>元
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script>
+		var bonusAccountViewVo;
+		var map, lat, lon, aMapNavigation, tempLon, tempLat;
+		apiready = function() {
+			if(api.pageParam.dataBillstate == 12){
+				$("#payBtn").css("display", "none");
+			}
+			map = api.require('aMap');
+			openMap();
+		}
+	
+		function openMap(){
+			map.open({
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : api.frameHeight
+				},
+				zoomLevel : 17,
+				showUserLocation : true,
+				fixedOn : 'frame1',
+				fixed : true
+			}, function(ret) {
+				if (ret) {
+					//获取位置坐标
+					findGroupVoucherDetail();
+				}
+			});
+		}
+	
+		function findGroupVoucherDetail() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPreVoucherAjax!queryPreVoucherViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isHideProgress = '1';
+			ajaxObject.params.accountCode = api.pageParam.accountCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				bonusAccountViewVo = data.bonusAccountViewVo;
+				//已售
+				bonusAccountViewVo.memberName = bonusAccountViewVo.accountMoney - bonusAccountViewVo.accountSmoney;
+				//劲省
+				if (bonusAccountViewVo.bonusRule5 == "2") {//升
+					bonusAccountViewVo.bonusRule14Str = bonusAccountViewVo.bonusRule7 * bonusAccountViewVo.bonusRule9 - bonusAccountViewVo.accountBmoney;
+					bonusAccountViewVo.bonusRule15Str = bonusAccountViewVo.bonusRule7 * bonusAccountViewVo.bonusRule9;
+				} else if (bonusAccountViewVo.bonusRule5 == "1") {//元
+					bonusAccountViewVo.bonusRule14Str = bonusAccountViewVo.bonusRule7 - bonusAccountViewVo.accountBmoney;
+					bonusAccountViewVo.bonusRule15Str = bonusAccountViewVo.bonusRule7;
+				}
+				if(bonusAccountViewVo.accountRemark){
+					bonusAccountViewVo.accountRemark =  bonusAccountViewVo.accountRemark.replace(new RegExp("\r","gim"), "<br/>");
+				}
+				$("#manual").html(bonusAccountViewVo.accountRemark);
+				getWorkBookHtmlByList(bonusAccountViewVo, "groupData");
+				if(bonusAccountViewVo.dataBillstate != '2'){
+					$("#imPay").removeAttr("onclick");
+					$("#imPay").css("background","gray");
+				}
+				//计算价格
+				var buyNumber = 0;
+				if(document.getElementById("buyNumber").value){
+					buyNumber = parseInt(document.getElementById("buyNumber").value);
+				}
+				var price = buyNumber * parseFloat(bonusAccountViewVo.accountBmoney);
+				$("#price1").html(toFixed(price));
+				$("#price2").html(toFixed(price));
+				queryPortalShopsViewVo();
+			}
+			baseAjax(ajaxObject);
+		}
+		//加载详情
+		function queryPortalShopsViewVo() {
+			map.getLocation({
+				accuracy : '10m',
+				autoStop : true,
+				filter : 1
+			}, function(ret, err) {
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var ajaxObject = new Object();
+					ajaxObject.isShowProgress = '1';
+					ajaxObject.url = "/appPortalShopsAjax!queryCompanyPortalShopsByPage.htm";
+					ajaxObject.params = new Object();
+					ajaxObject.params.memberCcode = bonusAccountViewVo.memberCcode;
+					ajaxObject.params.memberCode = bonusAccountViewVo.bonusRule8;
+					ajaxObject.params.pageFlag = "1";
+					//不隐藏加载
+					ajaxObject.onSuccessFunction = function(ret) {
+						var portalTginfoViewVo, temp = 0;
+						var count = ret.portalTginfoViewVoList.length;
+						var results = ret.portalTginfoViewVoList;
+						for (var i = 0; i < count; i++) {
+							//计算各油站的距离
+							var tempLon = results[i].tginfoStatUser;
+							//经度
+							var tempLat = results[i].tginfoStatPswd;
+							//纬度
+							if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+								var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+								distance = distance / 1000;
+								results[i].tginfoStatUser = distance.toFixed(2);
+								if(temp == 0 || temp > distance){
+									temp = distance;
+									portalTginfoViewVo = results[i];
+								}
+							}
+						}
+						$("#count").html(count);
+						getWorkBookHtmlByList(portalTginfoViewVo, 'gasDetail');
+						
+						$("#all").show();
+					}
+					baseAjax(ajaxObject);
+				}else{
+					$("#gasDetail").html("暂无信息");
+					$("#all").show();
+				}
+			});
+		}
+		
+		//可用油站
+		function useYouzhan(){
+		  api.openWin({
+	          name: 'use-youzhan-list-head',
+	          url: '../grouporder/use-youzhan-list-head.html',
+	          reload : true,
+	          pageParam : {
+		          memberCcode : bonusAccountViewVo.memberCcode,
+				  memberCode : bonusAccountViewVo.bonusRule8,
+	          }
+          });
+		}
+		
+		//支付
+		function payBtn() {
+			var buyNumber = parseInt(document.getElementById("buyNumber").value);
+			var price = $api.trimAll($api.text($api.byId("price2")));;
+			if (checkValue() == true) {
+				api.openWin({
+					name : 'preorder-pay-head',
+					url : 'preorder-pay-head.html',
+					reload : true,
+					pageParam : {
+						'bonusAccountViewVo' : bonusAccountViewVo,
+						'buyNumber' : buyNumber,
+						'price' : price,
+					}
+				});
+			}
+		}
+		function checkValue (){
+			var buyNumber = parseInt(document.getElementById("buyNumber").value);
+			if (!buyNumber || buyNumber == "" || buyNumber == 0) {
+				api.toast({
+					msg : '请输入购买量',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (buyNumber > parseFloat(1)) {
+				var msg = '单次最大购买量为:' + 1 + '张';
+				api.toast({
+					msg : msg,
+					duration : 2000,
+					location : 'center'
+				});
+				var price = parseFloat(bonusAccountViewVo.bonusRule11) * parseFloat(bonusAccountViewVo.accountBmoney);
+				$("#price1").html(price);
+				$("#price2").html(price);
+				return false;
+			} else if(buyNumber > Number(bonusAccountViewVo.accountSmoney)){
+				//购买数量大于剩余数量时
+				api.toast({
+					msg : '购买数量不能大于剩余数量',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
+</html>

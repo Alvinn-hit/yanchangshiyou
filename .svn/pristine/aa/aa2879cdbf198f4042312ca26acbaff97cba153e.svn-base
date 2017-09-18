@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<style>
+			body,html {
+				background: rgba(255,255,255,0);
+				padding: 0;
+				margin: 0;
+			}
+			img {
+				border: none;
+				display: table;
+			}
+			div{
+				background: rgba(0,0,0,0.1);
+			}
+		</style>
+	</head>
+	<body>
+		<img src="../../image/location.png" style="width:34px;height: 34px;" />
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript">
+		var key = '0';
+		apiready = function() {
+			//监听关闭地图事件
+			api.addEventListener({
+				name : 'closeMap'
+			}, function(ret, err) {
+				api.closeFrame();
+			});
+		
+			//切换3次点击事件
+			$('img').toggle(function() {
+				if(key == '-1'){
+					key = '1';
+				}
+				getSelflocation();
+			}, function() {
+				if(key != '-1'){
+					key = '2';
+				}
+				getSelflocation();
+			});
+
+//			$('img').toggle(function() {
+//				api.execScript({
+//	                frameName:'bmap_frm',
+//	                script:'showUser()'
+//	            })
+//			}, function() {
+//				api.execScript({
+//	                frameName:'bmap_frm',
+//	                script:'setOverlookAndShowUser()'
+//	            })
+//			});
+			
+			api.addEventListener({
+				name : 'viewChangeEvent'
+			}, function(ret, err) {
+				key = ret.value.key;
+			});
+			
+		};
+		//点击定位按钮事件
+		function getSelflocation() {
+			if(key == '-1'){
+				key = '1';
+			}
+			api.sendEvent({
+				name : 'locationEvent',
+				extra : {
+					key1 : key,
+				}
+			});
+		}
+	</script>
+</html>

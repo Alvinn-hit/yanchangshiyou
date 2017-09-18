@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="layer/need/layer.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list {
+				font-size: 0.875rem;
+			}
+			.aui-list-item-label img {
+				width: 16px;
+				height: 22px;
+			}
+			.aui-list .aui-list-item-label {
+				width: 15%;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3.2rem;
+			}
+			.yzm-btn {
+				position: absolute;
+				right: 10px;
+				top: 4px;
+				background: #e6212a ;
+				color: #fff;
+				border-radius: 5px;
+				font-size: 0.875rem;
+			}
+			.yzm-input {
+				border: none !important;
+			}
+			.xieyi-p {
+				padding: 0px 15px 10px 15px;
+				line-height: 24px;
+				font-size: 0.875rem;
+			}
+			.xieyi-p .aui-checkbox {
+				margin-right: 10px;
+				margin-top: 4px;
+			}
+			.aui-checkbox:checked {
+				background: #F13D3E;
+				border: 1px solid #F13D3E;
+			}
+			.xieyi-btn {
+				color: #F13D3E;
+			}
+			 /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="login-form">
+			<div class="aui-content aui-margin-b-15">
+				<ul class="aui-list aui-form-list">
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<img src="image/tel.jpg">
+							</div>
+							<div class="aui-list-item-input">
+								<input type="number" id="phone" placeholder="请输入手机号码">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<img src="image/key.jpg">
+							</div>
+							<div class="aui-list-item-input">
+								<div class="aui-col-xs-8">
+									<input class="yzm-input" type="number" id="rendCode" placeholder="请填写验证码">
+								</div>
+								<div class="aui-col-xs-4">
+									<button class="yzm-btn" onclick="checkMemberPhone()">
+										发送验证码
+									</button>
+								</div>
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<img src="image/lock.jpg">
+							</div>
+							<div class="aui-list-item-input">
+								<input type="password" id="password" placeholder="请输入密码">
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-label">
+								<img src="image/lock.jpg">
+							</div>
+							<div class="aui-list-item-input">
+								<input type="password" id="password_confirm" placeholder="输入密码确认">
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<p class="xieyi-p">
+			<input class="aui-checkbox" id="xieyi" type="checkbox" name="checkbox" >
+			我已阅读并同意<a class="xieyi-btn" onclick="xieyi()">《用户协议》</a>
+		</p>
+		<div class="btn-box aui-margin-t-15">
+			<div onclick="loginPage()" class="aui-btn aui-btn-block aui-btn-danger">
+				注册
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="script/api.js"></script>
+	<script type="text/javascript" src="script/my_ajax.js"></script>
+	<script type="text/javascript" src="script/common.js"></script>
+	<script type="text/javascript" src="script/jquery.min.js"></script>
+	<script type="text/javascript" src="script/system.js"></script>
+	<script type="text/javascript" src="script/md5.js"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+		};
+		//打开协议
+		function xieyi() {
+			api.openWin({
+				name : 'xieyi-head',
+				url : 'xieyi-head.html'
+			});
+		}
+
+		/**验证手机合法性*/
+		function checkMemberPhone() {//检验用户
+			//		var member_name = $(label).attr("id");
+			var phone = $api.val($api.byId("phone"));
+			if (phone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)) {
+				api.toast({
+					msg : '请输入正确的 手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!uniqueCheckRegInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.checkValue = phone;
+			ajaxObject.params.checkType = 1;
+			ajaxObject.onSuccessFunction = function(ret) {
+				// 发送成功，调用倒计时  120秒
+				if (ret.state == "3") {
+					if (ret.isUnique == "0") {
+						api.toast({
+							title : "提示",
+							msg : "该用户已注册!"
+						});
+					} else {
+						sendMobileCode();
+					}
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject, 1);
+		}
+
+		// 发送注册短信验证码
+		function sendMobileCode() {
+			var phone = $api.val($api.byId("phone"));
+			if (phone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)) {
+				api.toast({
+					msg : '请输入正确的 手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = phone;
+			ajaxObject.params.cmodelCode = "DX000001";
+			ajaxObject.params.validateCodeRequired = 0;
+			ajaxObject.onSuccessFunction = function(ret) {
+				// 发送成功，调用倒计时  120秒
+				if (ret.state == "3") {
+					api.toast({
+					msg : '验证码已经发送至您的手机，请注意查收',
+					duration : 2000,
+					location : 'center'
+					});
+					sendCode(120);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject, 1);
+		}
+
+		// 注册
+		function loginPage() {
+			var phone = document.getElementById("phone").value;
+			var rendCode = document.getElementById("rendCode").value;
+			var password = document.getElementById("password").value;
+			var passwordConfirm = document.getElementById("password_confirm").value;
+			if (phone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)) {
+				api.toast({
+					msg : '请输入正确的手机号码',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (rendCode == '') {
+				api.toast({
+					msg : '请输入手机短信验证码',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (password == '' || password.length < 6 || password.length > 18) {
+				api.toast({
+					msg : '请设置大于6位且小于18位字符的登录密码',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (password.match("^[0-9a-zA-Z]+$") == null) {
+				api.toast({
+					msg : '密码设置为英文字母加数字格式',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (passwordConfirm != password) {
+				api.toast({
+					msg : '两次密码输入不相同',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var hytyp2 = $("input[name='checkbox']:checked").val();
+			var xieyi = $("#xieyi").is(":checked");
+			if (!xieyi) {
+				api.toast({
+					msg : '请先阅读注册协议',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			};
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!register.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.loginNo = phone;
+			ajaxObject.params.password = hex_md5(password).toUpperCase();
+			ajaxObject.params.rendCodeRequired = 1;
+			//1验证码必填
+			ajaxObject.params.memberRegApprovetype = 2;
+			//2手机注册
+			ajaxObject.params.memberContactPhone = phone;
+			ajaxObject.params.rendCodeRequired = 1;
+			ajaxObject.params.rendCode = rendCode;
+			//验证码
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == "3") {
+					layer.open({
+				    content: "注册成功，请登录",
+				    btn: '我知道了',
+				    yes: function(index){
+				    	sendMsgRegSuccess();
+				    	$api.rmStorage("curWinName");
+				      	api.openWin({
+							slidBackEnabled : false,
+							name : 'login',
+							url : 'login.html',
+							reload : true,
+						});
+				    }
+				  });
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject, 1);
+		}
+
+		//注册成功发送短信
+		function sendMsgRegSuccess() {
+			var phone = document.getElementById("phone").value;
+			if (phone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)) {
+				api.toast({
+					msg : '请输入正确的手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = phone;
+			ajaxObject.params.cmodelCode = "DX000004";
+			ajaxObject.params.validateCodeRequired = 0;
+			ajaxObject.onSuccessFunction = function(ret) {
+				// 注册成功后发送短信，是否成功，这里都不作处理
+			}
+			baseAjax(ajaxObject, 1);
+		}
+
+		// 发送验证码倒计时
+		function sendCode(wait) {
+			if (wait == 0) {
+				$("#phone").removeAttr("readonly");
+				$(".yzm-btn").attr("backgroundColor", "#007EC0");
+				$(".yzm-btn").html("发送验证码");
+				$("#phone").removeAttr("disabled");
+				$(".yzm-btn").attr("disabled", false);
+			} else {
+				$(".yzm-btn").html("重新发送(" + wait + ")");
+				$(".yzm-btn").attr("disabled", true);
+				$("#phone").attr("readonly", true);
+				wait--;
+				setTimeout("sendCode(" + wait + ")", 1000);
+			}
+		}
+	</script>
+</html>

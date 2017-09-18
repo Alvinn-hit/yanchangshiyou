@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>title</title>
+    <link rel="stylesheet" type="text/css" href="../css/api.css"/>
+    <style>
+    	body{
+    		
+    	}
+    </style>
+</head>
+<body>
+	
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		var showGuide = $api.getStorage('showGuide');
+	    //打开引导页
+	    if(!showGuide){
+		    openGuide();
+	        $api.setStorage('showGuide',1);
+	    }else{
+	    	openIndex();
+	    }
+	};
+	//打开引导页
+	function openGuide(){
+	    api.openFrame({
+	        name: 'opening',
+	        url: 'opening.html',
+	        bounces: false,
+	        rect: {
+	            x: 0,
+	            y: 0,
+	            w: 'auto',
+	            h: 'auto'
+	        }
+	    });
+	}
+	//打开index
+	function openIndex(){
+	    api.openWin({
+	        name: 'index',
+	        url: 'index.html',
+	        reload: true,
+	        slidBackEnabled : false
+	    });
+	}
+</script>
+</html>

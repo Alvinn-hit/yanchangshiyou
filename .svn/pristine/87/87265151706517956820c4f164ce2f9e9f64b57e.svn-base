@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>云API</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.swiper-slide img {
+				display: block;
+				max-width: 100%;
+				height: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<div id="banner" class="flex-td2">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="../../image/banner.jpg" />
+						</div>
+						<div class="swiper-slide">
+							<img src="../../image/banner1.jpg" />
+						</div>
+						<div class="swiper-slide">
+							<img src="../../image/banner2.jpg" />
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+					<!-- Add Arrows -->
+				</div>
+			</div>
+			<div class="flex-td2a">
+				<div class="menu-all">
+					<div class="aui-col-xs-2 aui-text-center">
+						<div class="menu-box ">
+							<a onclick="cvStore()" class="mt-10"> <span class="menu-span1 "></span> <i>便利店</i> </a>
+							<a onclick="preOrder()" class="mt-10"> <span class="menu-span2 "></span> <i>预购</i> </a>
+						</div>
+					</div>
+					<div onclick="yzList()" class="aui-col-xs-8 aui-text-center">
+						<img class="menu-btn" src="../../image/index-menu.png">
+					</div>
+					<div class="aui-col-xs-2 aui-text-center">
+						<div class="menu-box">
+							<a class="mt-10" onclick="www();"> <span class="menu-span3 "></span> <i>优惠活动</i> </a>
+							<a onclick="groupOrder()" class="mt-10" > <span class="menu-span4 "></span> <i>团购</i> </a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/swiper.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script>
+		apiready = function() {
+		}
+		
+		var bannerWidth = $("#banner").width()
+		var bannerHeight = $("#banner").height()
+		$("#banner img").css("width",bannerWidth)
+		$("#banner img").css("height",bannerHeight)
+		//图片滚动
+		var swiper = new Swiper('.swiper-container', {
+			pagination : '.swiper-pagination',
+			paginationClickable : true,
+			centeredSlides : true,
+			autoplay : 2500,
+			autoplayDisableOnInteraction : false
+		});
+		//便利店
+		function cvStore() {
+			api.openWin({
+				name : 'cvstore-list-head',
+				url : '../cvstore/cvstore-list-head.html'
+			});
+		}
+		//预购
+		function preOrder() {
+			api.openWin({
+				reload : true,
+				name : 'preorder-list-head',
+				url : '../preorder/preorder-list-head.html'
+			});
+		}
+		//油站列表
+		function yzList() {
+			api.openWin({
+				reload : true,
+				name : 'youzhan-head',
+				url : '../addoil/youzhan-head.html'
+			});
+		}
+		//团购
+		function groupOrder() {
+			api.openWin({
+				reload : true,
+				name : 'grouporder-list-head',
+				url : '../grouporder/grouporder-list-head.html'
+			});
+		}
+		function www(){
+			api.openWin({
+				name : 'discount-list-head',
+				url : '../find/discount-list-head.html'
+			});
+		}
+	</script>
+</html>

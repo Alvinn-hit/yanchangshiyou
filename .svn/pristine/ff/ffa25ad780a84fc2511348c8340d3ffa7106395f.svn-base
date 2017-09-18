@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+       .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }
+	   .aui-list-item-arrow:before{
+	     -webkit-transform:rotate(-45deg)
+	   }
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+	   .change-box{
+	     border-top:2px solid #ddd;
+	     overflow: hidden;
+	     height: 40px;
+	     line-height: 38px;
+	     padding: 0px 10px 0px 10px;
+	   }
+	   .change-box .radio-box{
+	    top:10px;
+	     }
+	   .btn-group img{
+	     width: 18px;
+	     vertical-align: middle;
+	     margin: 0px 2px 0px 2px;
+	   }
+	   .carList{
+	     position: relative;
+	   }
+	   .carList:after{
+	     content:"";
+	     width: 100%;
+	     height: 1px;
+	     background: #ddd;
+	     position: absolute;
+	     bottom:0px;
+	   }
+	   .displayNone .content-car{
+	    display: none;
+	   }
+	   .displayBlock .content-car{
+	    display: block;
+	   }
+    </style>
+</head>
+<body>
+
+  <div class="aui-content">
+    <ul class="aui-list" id="myBillList" style="display:none;">
+     <div class="carList">
+      <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">车辆：{carName}</div> 
+            </div>                                   
+      </li>
+        <div class="content-car">
+               <ul class="aui-list">
+               	<li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆名称：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carName}</div> 
+                 </li>
+                 <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆号牌：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carNo}</div> 
+                 </li>
+                  <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆类型：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carModel}</div> 
+                 </li>
+                  <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆品牌：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carBrand}</div> 
+                 </li>
+                  <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆颜色：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carColor}</div> 
+                 </li>
+                 <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">油号：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carOilno}</div> 
+                 </li>
+                 <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">驾龄：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carStr1}</div> 
+                 </li>
+                 <li class="aui-list-item aui-list-item-middle">
+                   <div class="aui-list-item-title">车辆属性：</div> 
+                   <div class="aui-list-item-right aui-padded-r-10">{carStr2}</div> 
+                 </li>
+                 <div class="change-box">
+                   <div class="aui-pull-left">
+                   <input class="aui-radio radio-box" type="radio" name="demo" id='AC_{carCode}' onclick="makeCarDefault({carCode})">
+                                                        设为默认</div>
+                   <div class="aui-pull-right btn-group">
+                     <span><img src="../../../../image/car1.jpg" onclick="editCar('{carCode}','{carName}','{carNo}','{carStr1}','{carStr2}')">编辑</span>
+                     <span><img src="../../../../image/car2.jpg" onclick="deleteCar({carCode})">删除</span>
+                   </div>
+                 </div>
+               </ul>
+            </div>    
+        </div> 
+    </ul>
+  </div>
+    
+    
+</body>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../script/uiselect.js"></script>
+<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../../../script/page.js"></script>
+<script type="text/javascript" src="../../../../script/common.js"></script>
+<script>
+apiready = function() {
+		var headbar = $api.byId('headbar');
+		$api.fixIos7Bar(headbar);
+		api.addEventListener({
+			name : 'scrolltobottom',
+			extra : {
+				threshold : 0 //设置距离底部多少距离时触发，默认值为0，数字类型
+			}
+		}, function(ret, err) {
+			nextPage(0);
+			queryCarList();
+		});
+		api.setRefreshHeaderInfo({
+			visible : true,
+			bgColor : '#FFFFFF',
+			textColor : '#ccc',
+			textDown : '下拉刷新',
+			textUp : '松开刷新',
+			textLoading : '加载中',
+			showTime : true
+		}, function(ret, err) {
+			prevPage();
+			queryCarList();
+		});
+		queryCarList();
+	};
+	
+	//获取爱车列表
+	function queryCarList() {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appBasicCarAjax!queryBasicCarByPage.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.invoiceType = "3";
+		ajaxObject.onSuccessFunction = function(ret) {
+			api.refreshHeaderLoadDone();
+			if (ret.basicCarViewVoList.length > 0) {
+			getWorkBookHtmlByList(ret.basicCarViewVoList, "myBillList");
+				for (var i = 0; i < ret.basicCarViewVoList.length; i++) {
+					var basicCarViewVo = ret.basicCarViewVoList[i];
+					if (basicCarViewVo.carIsdefault == 1) {
+						// 当为默认爱车
+						$("#AC_" + basicCarViewVo.carCode).attr("checked", true);
+					}
+				}
+			}
+		//点击展开车辆信息
+		 $(".carList").addClass("displayNone")
+		 $(".carList>li").click(function(){
+		 	$(this).parent().toggleClass("displayBlock").toggleClass("displayNone")
+		 })
+		}
+		baseAjax(ajaxObject);
+	}
+
+	//设置为默认显示
+	function makeCarDefault(carCode) {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appBasicCarAjax!makeBasicCarDefault.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params["basicCarViewVo.carCode"] = carCode;
+		ajaxObject.onSuccessFunction = function(ret) {
+			api.sendEvent({
+				name : "flushMyFrameEvent"
+			});
+			api.toast({
+				msg : '设置默认信息成功',
+				duration : 2000,
+				location : 'center'
+			});
+		}
+		baseAjax(ajaxObject);
+	}
+
+	// 删除爱车
+	function deleteCar(carCode) {
+		if (confirm("确定删除？")) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicCarAjax!deleteBasicCar.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params["basicCarViewVo.carCode"] = carCode;
+			ajaxObject.onSuccessFunction = function(ret) {
+				api.sendEvent({
+					name : "flushMyFrameEvent"
+				});
+				api.toast({
+					msg : '删除成功',
+					duration : 2000,
+					location : 'center'
+				});
+				execScriptFrame("my-car-head", "my-car-page");
+			}
+			baseAjax(ajaxObject);
+		}
+	}
+
+	//编辑爱车
+	function editCar(carCode,carName,carNo,carStr1,carStr2){
+		api.openWin({
+		   name: 'my-car-add-head',
+		   url: 'my-car-add-head.html',
+		   pageParam : {
+		   		'carCode' : carCode,
+		   		'carName' : carName,
+		   		'carNo' : carNo,
+		   		'carStr1' : carStr1,
+		   		'carStr2' : carStr2
+		   }
+  		});
+	}
+ 
+</script>
+</html>

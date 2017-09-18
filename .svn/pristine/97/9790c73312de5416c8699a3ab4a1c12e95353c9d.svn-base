@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: rgba(0,0,0,.1);
+			}
+			ul, li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.select-area {
+				height: 120px;
+				background-color: #f2f2f2;
+			}
+			.select-area li {
+				height: 40px;
+				line-height: 39px;
+				text-align: center;
+				border-bottom: 1px solid #ddd;
+			}
+			.select-area li:active {
+				background-color: #f7f7f7;
+			}
+			.active-word {
+				color: #e6212a;
+			}
+			/*分享弹窗*/
+			.close-div {
+				position: absolute;
+				top: 5px;
+				right: 10px;
+				height: 20px;
+				width: 20px;
+				font-size: 12px;
+			}
+			.share-top-box {
+				border-bottom: 1px solid #efefef;
+				padding: 5px 10px;
+				position: relative;
+			}
+			.share-top-box h1 {
+				font-size: 0.875rem;
+			}
+			.share-list {
+				text-align: center;
+				margin-top: 12px;
+			}
+			.share-list img {
+				width: 30px;
+				display: block;
+				margin: auto;
+			}
+			.share-list span {
+				display: block;
+				font-size: 0.75rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<div class="flex-td2" onclick="closecurrent()"></div>
+			<!--<ul class="select-area">
+			<li class="active-word" onclick="closecurrent()">全部</li>
+			<li onclick="closecurrent()">支出</li>
+			<li onclick="closecurrent()">收入</li>
+			</ul>-->
+			<div style=" height: 150px; background-color: #fff">
+				<div class="share-top-box">
+					<h1>选择分享</h1><div class="close-div iconfont icon-shanchu2" onclick="closecurrent()"></div>
+				</div>
+				<div class="aui-col-xs-4 share-list"><img src="../../image/share3.jpg" onclick="qqQzone(1)"><span>QQ好友</span>
+				</div>
+				<div class="aui-col-xs-4 share-list"><img src="../../image/share2.jpg" onclick="qqQzone(2)"><span>QQ空间</span>
+				</div>
+				<div class="aui-col-xs-4 share-list"><img src="../../image/share1.jpg" onclick="BLog()"><span>微博</span>
+				</div>
+				<div class="aui-col-xs-4 share-list"><img src="../../image/share4.jpg" onclick="WeChat(1)"><span>微信好友</span>
+				</div>
+				<div class="aui-col-xs-4 share-list"><img src="../../image/share5.jpg" onclick="WeChat(2)"><span>朋友圈</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script>
+		apiready = function() {
+			//存储当前win的名字
+			$api.setStorage("curWinName", api.winName);
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+		}
+		function closecurrent() {
+			api.closeFrame({
+				//			    name: 'my-record-select'
+			});
+		}
+
+		// QQ朋友、QQ空间分享
+		function qqQzone(flag) {
+			var type = "QFriend";
+			if (flag == 2)
+				type = "QZone";
+			var baseURL = $api.getStorage("baseURL");
+			var obj = api.require('qq');
+			obj.installed(function(ret, err) {
+				if (ret.status) {
+					obj.shareNews({
+						url : "http://www.ycejy.com",
+						title : '延长E加油优惠活动分享',
+						description : '优惠活动',
+						imgUrl : baseURL + '/etmwebdocs/bootstrap/img/tjyl.png',
+						type : type,
+					}, function(ret, err) {
+						if (!ret.status) {
+							api.toast({
+								msg : '取消成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						} else {
+							api.toast({
+								msg : '分享成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}
+					});
+				} else {
+					api.toast({
+						msg : "对不起,没有安装QQ应用!",
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			})
+		}
+
+		// 微信好友、微信朋友圈分享
+		function WeChat(code) {
+			var baseURL = $api.getStorage("baseURL");
+			var scene = "session";
+			// 微信好友
+			if (code == 2)
+				scene = "timeline";
+			// 朋友圈
+			var wx = api.require('wx');
+			wx.isInstalled(function(ret, err) {
+				if (ret.installed) {
+					wx.shareWebpage({
+						apiKey : '',
+						scene : scene,
+						title : '延长E加油优惠活动分享',
+						description : '优惠活动',
+						thumb : baseURL + "/etmwebdocs/bootstrap/img/tjyl.png",
+						contentUrl : "http://www.ycejy.com",
+					}, function(ret, err) {
+						if (ret.status) {
+							api.toast({
+								msg : '分享成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						} else {
+							api.toast({
+								msg : '取消成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}
+					});
+				} else {
+					api.toast({
+						msg : '当前设备未安装微信客户端'
+					});
+				}
+			});
+		}
+
+		// 发表新浪微博
+		function BLog() {
+			var baseURL = $api.getStorage("baseURL");
+			var sinaWeiBo = api.require('sinaWeiBo');
+			sinaWeiBo.auth({
+				//isAuth : false
+			}, function(ret, err) {
+				if (ret.status) {
+					api.toast({
+						msg : '授权成功'
+					});
+					sinaWeiBo.sendRequest({
+						contentType : 'web_page',
+						imageUrl : 'widget://image/default/tjyl.jpg',
+						media : {
+							title : '延长E加油优惠活动分享',
+							description : '优惠活动活动',
+							thumbUrl : 'widget://image/default/tjyl.jpg',
+							webpageUrl : "http://www.ycejy.com",
+						}
+					}, function(ret, err) {
+						if (ret.status) {
+							api.toast({
+								msg : '发表微博成功'
+							});
+						} else {
+							api.toast({
+								msg : '取消发表或微博客户端未安装'
+							});
+						}
+					});
+				} else {
+					api.toast({
+						msg : '授权失败'
+					});
+				}
+			});
+		}
+	</script>
+</html>

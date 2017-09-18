@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.order-content {
+				/*height: 98px;*/
+				margin-left: 12px;
+				margin-right: 12px;
+				padding: 15px 13px;
+				background-color: #fff;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.order-list {
+				margin-top: 7px;
+				margin-bottom: 18px;
+			}
+			.title-pre {
+				margin-bottom: 11px;
+				font-size: 1.375rem;
+				color: #666;
+				text-align: center;
+			}
+			.title-content {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-size: 0.75rem;
+				color: #666;
+			}
+			.title-more {
+				position: relative;
+				padding-top: 10px;
+				font-size: 0.75rem;
+				color: #666;
+			}
+			.order-content img {
+				display: block;
+				margin: 0;
+				width: 100%;
+				height: auto;
+			}
+			.r-align {
+				text-align: right;
+			}
+			.c-align {
+				text-align: center;
+			}
+			.logo-area img {
+				width: 60px;
+				height: 60px;
+			}
+			.prime-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.875rem;
+				color: #ff7f00;
+				line-height: 40px;
+			}
+			.acount-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.75rem;
+				color: #ff7f00;
+			}
+			.acount-price02 {
+				background-color: #00803d;
+			}
+			.acount-price03 {
+				background-color: #808080;
+			}
+			.acount-price img {
+				width: 14px;
+				height: 14px;
+			}
+			.cancel-price {
+				font-size: 0.75rem;
+				color: #666;
+				text-decoration: line-through;
+				line-height: 40px;
+			}
+			.acount {
+				font-size: 0.75rem;
+				color: #666;
+				margin-left: 8px;
+				margin-right: 8px;
+			}
+			.ver-align {
+				vertical-align: top;
+			}
+			.clearfix {
+				clear: both;
+			}
+			.marTop8 { margin-top: 8px;}
+			.marTop15 { margin-top: 15px;}
+			.marTop22 { margin-top: 22px;}
+			.marTop28 { margin-top: 28px;}
+			.marBottom11 { margin-bottom: 11px;}
+			.order-list:before {
+				content: '';
+				display: block;
+				height: 1px;
+				width: 100%;
+				background: #c3c3c3;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.timeline {
+				margin: 14px auto;
+				width: 100px;
+				height: 14px;
+				font-size: 0.75rem;
+				text-align: center;
+				line-height: 14px;
+				color: #fff;
+				background-color: #666;
+			}
+			.common {
+				font-size: 0.75rem;
+				color: #666;
+			}
+			/*  文档中的图片进行等比例缩放  */
+			img{
+				 width:auto;
+				 height:auto;
+				 max-width:100%;
+				 max-height:100%;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="docCont" style="display: none">
+		<div class="order-list marTop8">
+			<div class="order-content">
+				<div class="title-pre">{doclistTitle}</div>
+				<!-- <div class="title-content">{doclistInfotxt}</div> -->
+				<div id="doclistTitle2" class="common marTop8">作者：{doclistTitle2}</div>
+				<div id="doclistInfopic1" class="common marTop8">来源：{doclistInfopic1}{doclistInfopicpath1}</div>
+				<div id="doclistTitle3" class="common marBottom8">备注：{doclistTitle3}</div>
+				<div id="doclistContent" class="common marTop22">{doclistContent}</div>
+			</div>
+		</div>
+		</div>	
+
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			var doclistId = api.pageParam.doclistId;
+			if(!doclistId || doclistId == ""){
+				api.toast({
+					msg : '请重新选择查看信息',duration : 2000,location : 'center'
+				});				
+			}else{
+				// 根据文档ID获取详情内容
+				findDocCont(doclistId);
+			}
+		};
+		function findDocCont(doclistId){
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPortalDoclistAjax!queryPortalDoclistViewVoCache.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.doclistId = doclistId;
+			ajaxObject.onSuccessFunction = function(data) {
+				getWorkBookHtmlByList(data.portalDoclistViewVo, "docCont");
+				//隐藏未显示选项
+				var pdvv = data.portalDoclistViewVo;
+				if(!pdvv.doclistTitle2 || pdvv.doclistTitle2 == ""){
+					$("#doclistTitle2").css("display","none");
+				}
+				if((!pdvv.doclistInfopic1 && !pdvv.doclistInfopicpath1) || (pdvv.doclistInfopic1 == "" && pdvv.doclistInfopicpath1 =="")){
+					$("#doclistInfopic1").css("display","none");
+				}
+				if(!pdvv.doclistTitle3 || pdvv.doclistTitle3 == ""){
+					$("#doclistTitle3").css("display","none");
+				}
+				if(!pdvv.doclistContent || pdvv.doclistContent == ""){
+					$("#doclistContent").html('<div class="no-img-box"><img src="../../image/nothing.png" />暂无信息</div>');
+				}
+			}
+			baseAjax(ajaxObject);			
+		}
+	</script>
+</html>

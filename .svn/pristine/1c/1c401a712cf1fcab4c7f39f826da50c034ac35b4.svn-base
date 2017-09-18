@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+	<title>文档</title>
+	<link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+	<link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+	<link rel="stylesheet" type="text/css" href="../../../../layer/need/layer.css" />
+	<style>
+		html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.aui-list .aui-list-item {
+			min-height: 3rem;
+		}
+		.aui-list .aui-list-item-title {
+			font-size: 0.875rem;
+		}
+		.aui-list .aui-list-item-right {
+			font-size: 0.875rem;
+			max-width: 100%;
+		}
+		.aui-list-item-arrow:before {
+			-webkit-transform: rotate(-45deg)
+		}
+		.content-car {
+			width: 100%;
+		}
+		.content-car li {
+			min-height: 40px !important;
+			line-height: 40px;
+		}
+		.content-car .aui-list-item-title {
+			color: #999;
+		}
+		.change-box {
+			overflow: hidden;
+			height: 40px;
+			line-height: 38px;
+			padding: 0px 10px 0px 10px;
+		}
+		.change-box .radio-box {
+			top: 10px;
+		}
+		.btn-group img {
+			width: 18px;
+			vertical-align: middle;
+			margin: 0px 2px 0px 2px;
+		}
+		.carList {
+			position: relative;
+		}
+		.carList:after {
+			content: "";
+			width: 100%;
+			height: 1px;
+			background: #ddd;
+			position: absolute;
+			bottom: 0px;
+		}
+		.displayNone .content-car {
+			display: none;
+		}
+		.displayBlock .content-car {
+			display: block;
+		}
+		/*重构的alert*/
+	  .layui-m-layercont{
+	     padding: 30px 0px 30px 0px!important;
+	     
+	  }
+	  .layui-m-layerbtn{
+	    height: 40px!important;
+	    line-height: 40px!important;
+	  }
+	  .layui-m-layer0 .layui-m-layerchild{
+	    width: 70%!important;
+	  }
+	</style>
+</head>
+<body>
+    
+	<div class="aui-content">
+		<ul class="aui-list" id="myBillList" style="display:none;">
+			<div class="carList">
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							{invoiceCompanyname}
+						</div>
+					</div>
+				</li>
+				<div class="content-car">
+					<ul class="aui-list">
+						<div class="change-box">
+							<div class="aui-pull-left">
+								<input class="aui-radio radio-box" type="radio" name="demo" id='AC_{invoiceCode}' onclick="makeInvoiceDefault('{invoiceCode}','{invoiceType}')">
+								设为默认
+							</div>
+							<div class="aui-pull-right btn-group">
+								<span><img src="../../../../image/car1.jpg" onclick="editInvoice('{invoiceCompanyname}','{invoiceCode}')">编辑</span>
+								<span><img src="../../../../image/car2.jpg" onclick="deleteInvoice({invoiceCode})">删除</span>
+							</div>
+						</div>
+					</ul>
+				</div>
+			</div>
+		</ul>
+	</div>
+	</div>
+	</ul>
+	</div>
+</body>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../script/uiselect.js"></script>
+<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../../../script/page.js"></script>
+<script type="text/javascript" src="../../../../script/common.js"></script>
+<script type="text/javascript" src="../../../../layer/layer.js"></script>
+<script>
+	apiready = function() {
+		var headbar = $api.byId('headbar');
+		$api.fixIos7Bar(headbar);
+		api.addEventListener({
+			name : 'scrolltobottom',
+			extra : {
+				threshold : 0 //设置距离底部多少距离时触发，默认值为0，数字类型
+			}
+		}, function(ret, err) {
+			nextPage(0);
+			queryInvoiceList();
+		});
+		api.setRefreshHeaderInfo({
+			visible : true,
+			bgColor : '#FFFFFF',
+			textColor : '#ccc',
+			textDown : '下拉刷新',
+			textUp : '松开刷新',
+			textLoading : '加载中',
+			showTime : true
+		}, function(ret, err) {
+			prevPage();
+			queryInvoiceList();
+		});
+		queryInvoiceList();
+	}
+	
+	//获取发票列表
+	function queryInvoiceList() {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appInvoiceAjax!queryInvoiceByPage.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.invoiceType = "3";
+		ajaxObject.onSuccessFunction = function(ret) {
+			api.refreshHeaderLoadDone();
+			if (ret.invoiceViewVoList.length > 0) {
+			getWorkBookHtmlByList(ret.invoiceViewVoList, "myBillList");
+				for (var i = 0; i < ret.invoiceViewVoList.length; i++) {
+					var invoiceViewVo = ret.invoiceViewVoList[i];
+					if (invoiceViewVo.invoiceIsdefault == 1) {
+						// 当为默认爱车
+						$("#AC_" + invoiceViewVo.invoiceCode).attr("checked", true);
+					}
+				}
+			}
+		//点击展开发票信息
+		 $(".carList").addClass("displayNone")
+		 $(".carList>li").click(function(){
+		 	$(this).parent().toggleClass("displayBlock").toggleClass("displayNone")
+		 })
+		}
+		baseAjax(ajaxObject);
+	}
+
+	//设置为默认显示
+	function makeInvoiceDefault(invoiceCode,invoiceType) {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appInvoiceAjax!makeInvoiceDefault.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params["invoiceViewVo.invoiceCode"] = invoiceCode;
+		ajaxObject.params["invoiceViewVo.invoiceType"] = invoiceType;
+		ajaxObject.onSuccessFunction = function(ret) {
+			api.sendEvent({
+				name : "flushMyFrameEvent"
+			});
+			api.toast({
+				msg : '设置默认信息成功',
+				duration : 2000,
+				location : 'center'
+			});
+		}
+		baseAjax(ajaxObject);
+	}
+
+	// 删除发票
+	function deleteInvoice(invoiceCode) {
+		layer.open({
+			content:"确定删除？",
+			btn:["确定","取消"],
+			yes:function(index){
+				var ajaxObject = new Object();
+				ajaxObject.url = "/appInvoiceAjax!deleteInvoice.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params["invoiceViewVo.invoiceCode"] = invoiceCode;
+				ajaxObject.onSuccessFunction = function(ret) {
+					api.sendEvent({
+						name : "flushMyFrameEvent"
+					});
+					api.toast({
+						msg : '删除成功',
+						duration : 2000,
+						location : 'center'
+					});
+					execScriptFrame("my-fapiao-head", "my-fapiao-page");
+				}
+				baseAjax(ajaxObject);
+			}
+		});
+	}
+
+	//编辑发票
+	function editInvoice(invoiceCompanyname,invoiceCode){
+		api.openWin({
+		   name: 'my-fapiao-add-head',
+		   url: 'my-fapiao-add-head.html',
+		   reload : true,
+		   pageParam : {
+		   		'invoiceCompanyname' : invoiceCompanyname,
+		   		'invoiceCode' : invoiceCode
+		   }
+  		});
+	}
+	
+	//点击展开车辆信息
+//	$(".carList").addClass("displayNone")
+//	$(".carList>li").click(function() {
+//		$(this).parent().toggleClass("displayBlock").toggleClass("displayNone")
+//	})
+</script>
+</html>

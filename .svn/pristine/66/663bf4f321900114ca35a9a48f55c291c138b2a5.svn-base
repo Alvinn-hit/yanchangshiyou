@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			/*列表*/
+			.white {
+				color: #fff;
+			}
+			.youquan-list-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				background: #fff;
+				background-size: 16px;
+				font-size: 0.875rem;
+				height: 130px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+			}
+			.list-left-all {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.list-right-all {
+				width: 6rem;
+				border-left: 1px dashed #ddd;
+				padding: 0px 5px 0px 5px;
+				background: #29d4c6;
+				border-radius: 0px 5px 5px 0px;
+			}
+			.list-right-all span {
+				text-align: center;
+				display: block;
+				margin-top: 5px;
+			}
+			.list-left-top {
+				height: 40px;
+				padding: 2px 0px 7px 10px;
+				color: #000;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-left-top img {
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.list-left-bottom {
+				padding: 6px 0px 4px 10px;
+				overflow: hidden;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				height: 80px;
+			}
+			.list-left-bottom img {
+				width: 100px;
+			}
+			.list-right-box {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-right: 5px;
+			}
+			.much-box {
+				width: 100%;
+			}
+			.span-ico1 {
+				border: 1px solid #1ba49e;
+				border-radius: 5px;
+				background: #fff;
+				color: #1ba49e;
+			}
+		
+			.circle {
+				width: 50px;
+				height: 50px;
+				position: relative;
+				border-radius: 50%;
+				background: #1ba49e;
+				margin: auto;
+				margin-top: 4px;
+			}
+			.pie_left, .pie_right {
+				width: 50px;
+				height: 50px;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.left, .right {
+				width: 50px;
+				height: 50px;
+				background: #fff;
+				border-radius: 50%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.pie_right, .right {
+				clip: rect(0,auto,auto,25px);
+			}
+			.pie_left, .left {
+				clip: rect(0,25px,auto,0);
+			}
+			.mask {
+				width: 42px;
+				height: 42px;
+				border-radius: 50%;
+				left: 4px;
+				top: 4px;
+				background: #29d4c6;
+				position: absolute;
+				text-align: center;
+				color: #fff;
+				padding-top: 6px;
+			}
+			.card1 .use-btn {
+				border: 1px solid #29d4c6;
+				border-radius: 10px;
+				background: #fafafb;
+				color: #29d4c6;
+				padding: 2px 0px 2px 0px;
+				font-size: 0.875rem;
+			}
+			.card1 .much-box {
+				margin-left: 5px;
+				margin-top: 5px;
+				overflow: hidden;
+				display: table-cell;
+				vertical-align: middle;
+			}
+			.card1 .much-box b {
+				font-size: 1.5rem;
+				color: #bf6cef;
+			}
+			.card2 .use-btn{
+			  border: 1px solid #333;
+				border-radius: 10px;
+				background: #fff;
+				color: #333;
+				padding: 2px 0px 2px 0px;
+				font-size: 0.875rem;
+			}
+			.card2 .list-right-all{
+			  background: #a7a6a6;
+			}
+			.card2 .span-ico1{
+			  border: 1px solid #333;
+			  background: #fff;
+			  color: #333;
+			}
+			.card2 .mask{
+			    background: #a7a6a6;
+			}
+			.card2 .left, .right{
+			  
+			}
+			.card2 .circle{
+			  background: #797979
+			}
+			.card2 .list-left-bottom img{
+			   -webkit-filter: grayscale(100%); 
+				-moz-filter: grayscale(100%); 
+				-ms-filter: grayscale(100%); 
+				-o-filter: grayscale(100%); 
+				filter: grayscale(100%); 
+				filter: gray; 
+			}
+			.card2 .list-left-top img{
+			  -webkit-filter: grayscale(100%); 
+				-moz-filter: grayscale(100%); 
+				-ms-filter: grayscale(100%); 
+				-o-filter: grayscale(100%); 
+				filter: grayscale(100%); 
+				filter: gray; 
+			}
+			.card2 b{
+			  color: #666!important;
+			}
+			.card2 span{
+			  color: #666!important;
+			}
+			/*列表*/
+			/*弹出层*/
+			.aui-list .aui-list-item:last-child:after {
+				height: 1px;
+			}
+			.aui-list {
+				font-size: 0.875rem;
+			}
+			.aui-popup-top-left {
+				width: 95%;
+			}
+			.aui-list-item-inner {
+				justify-content: center !important;
+				-webkit-justify-content: center;
+				min-height: 3.0rem !important;
+			}
+			.aui-popup-top-left {
+				top: 40px;
+			}
+			.aui-popup-arrow.aui-popup-arrow1 {
+				left: 2rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow2 {
+				left: 10rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow3 {
+				left: 16rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow4 {
+				left: 22rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="change-box-all">
+			<div class="aui-col-xs-6 aui-text-center change-box" aui-popup-for="top-left1">
+				团购列表<span class="arrow-ico"></span>
+			</div>
+			<div class="aui-col-xs-6 aui-text-center change-box">
+				我的团购
+			</div>
+		</div>
+		<div class="aui-content-padded">			
+			<div class="youquan-list-box card1">
+				<div class="list-left-all">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台预购券
+					</div>
+					<div class="list-left-bottom">
+						<img src="../../image/card4.jpg">
+						<div class="list-right-box">
+							<div class="much-box">
+								<b class="big-ico1">500升</b>
+								<!--<b class="big-ico1 aui-font-size-14 aui-margin-l-5">团购总额 <span class="aui-font-size-16">3</span>万</b>-->
+							</div>
+							<div class="aui-font-size-12">
+								满<span class="red">2000元</span>可成团 <span class="red">100元</span>起售 每人<span class="red">最高可购1000元</span>
+							</div>
+							<div class="aui-font-size-12">
+								活动截止：2016.12.31
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all">
+					<span class="aui-font-size-14 white">剩余张数</span>
+					<span class="aui-font-size-14 span-ico1">926张</span>
+
+						<div class="circle">
+							<div class="pie_left">
+								<div class="left" ></div>
+							</div>
+							<div class="pie_right">
+								<div class="right" ></div>
+							</div>
+							<div class="mask aui-font-size-14">
+								已抢<br><em>32</em>%
+							</div>
+						</div>
+
+					<span onclick="zhifubox()" class="use-btn">立即抢购</span>
+				</div>
+			</div>
+			
+			<!--<div class="youquan-list-box card1">
+				<div class="list-left-all">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台预购券
+					</div>
+					<div class="list-left-bottom">
+						<img src="../../image/card5.jpg">
+						<div class="list-right-box">
+							<div class="much-box">
+								<b class="big-ico1">9.2折</b>
+								<b class="big-ico1 aui-font-size-14 aui-margin-l-5">团购总额 <span class="aui-font-size-16">3</span>万</b>
+							</div>
+							<div class="aui-font-size-12">
+								满<span class="red">2000元</span>可成团 <span class="red">100元</span>起售 每人<span class="red">最高可购1000元</span>
+							</div>
+							<div class="aui-font-size-12">
+								活动截止：2016.12.31
+							</div>
+							
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all">
+					<span class="aui-font-size-14 white">距成团还剩</span>
+					<span class="aui-font-size-14 span-ico1">500升</span>
+
+						<div class="circle">
+							<div class="pie_left">
+								<div class="left" ></div>
+							</div>
+							<div class="pie_right">
+								<div class="right" ></div>
+							</div>
+							<div class="mask aui-font-size-14">
+								已抢<br><em>64</em>%
+							</div>
+						</div>
+
+					<span onclick="zhifubox()" class="use-btn">立即抢购</span>
+				</div>
+			</div>-->
+			
+			<div class="youquan-list-box card2">
+				<div class="list-left-all">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台预购券
+					</div>
+					<div class="list-left-bottom">
+						<img src="../../image/card5.jpg">
+						<div class="list-right-box">
+							<div class="much-box">
+								<b class="big-ico1">9.2折</b>
+								<b class="big-ico1 aui-font-size-14 aui-margin-l-5">团购总额 <span class="aui-font-size-16">3</span>万</b>
+							</div>
+							<div class="aui-font-size-12">
+								满<span class="red">2000元</span>可成团 <span class="red">100元</span>起售 每人<span class="red">最高可购1000元</span>
+							</div>
+							<div class="aui-font-size-12">
+								活动截止：2016.12.31
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all">
+					<span class="aui-font-size-14 white">距成团还剩</span>
+					<span class="aui-font-size-14 span-ico1">500升</span>
+
+						<div class="circle">
+							<div class="pie_left">
+								<div class="left" ></div>
+							</div>
+							<div class="pie_right">
+								<div class="right" ></div>
+							</div>
+							<div class="mask aui-font-size-14">
+								已抢<br><em>64</em>%
+							</div>
+						</div>
+
+					<span onclick="zhifubox()" class="use-btn">立即抢购</span>
+				</div>
+			</div>
+		</div>
+		<!--弹出层1-->
+		<div class="aui-popup aui-popup-top-left" id="top-left1">
+			<div class="aui-popup-arrow aui-popup-arrow2"></div>
+			<div class="aui-popup-content">
+				<ul class="aui-list aui-list-noborder ">
+					<div class="aui-col-xs-4">
+						<li  class="aui-list-item ">
+							<div class="aui-list-item-inner aui-list-item-middle aui-border-r">
+								油号
+							</div>
+						</li>
+						<li class="aui-list-item ">
+							<div class="aui-list-item-inner aui-border-r">
+								油牌
+							</div>
+						</li>
+					</div>
+					<div class="aui-col-xs-8">
+						<li onclick="hidePopup()" class="aui-list-item ">
+							<div class="aui-list-item-inner aui-list-item-middle ">
+								92#
+							</div>
+						</li>
+						<li onclick="hidePopup()" class="aui-list-item aui-text-center">
+							<div class="aui-list-item-inner">
+								95#
+							</div>
+						</li>
+						<li onclick="hidePopup()" class="aui-list-item aui-text-center">
+							<div class="aui-list-item-inner">
+								98#
+							</div>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+	<script>
+		apiready = function() {
+		}
+		//平台团购券
+		function openContent() {
+			api.openWin({
+				name : 'grouporder-detail-head',
+				url : 'grouporder-detail-head.html'
+			});
+		}
+
+		//弹出层
+		var popup = new auiPopup();
+		function hidePopup() {
+			popup.hide()
+		}
+		
+		$(function() {
+	    $('.circle').each(function(index, el) {	        
+	        var num = $(this).find('em').text() * 3.6;
+	        if (num<=180) {
+	            $(this).find('.right').css('-webkit-transform', "rotate(" + num + "deg)");
+	            $(this).find('.right').css('transform', "rotate(" + num + "deg)");
+	        } else {
+	            $(this).find('.right').css('-webkit-transform', "rotate(180deg)");
+	            $(this).find('.right').css('transform', "rotate(180deg)");
+	            $(this).find('.left').css('-webkit-transform', "rotate(" + (num - 180) + "deg)");
+	            $(this).find('.left').css('transform', "rotate(" + (num - 180) + "deg)");
+	        };
+	    });
+	});
+	</script>
+</html>

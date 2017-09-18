@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.content-bottom {
+				position: fixed;
+				width: 100%;
+				bottom: 0px;
+				height: 50px;
+				z-index: 9;
+			}
+			.content-bottom1 {
+				height: 50px;
+				background: #f9f9f9;
+			}
+			.content-bottom1 img {
+				width: 30px;
+				margin-top: 2px;
+			}
+			.content-bottom1 span {
+				display: block;
+				font-size: 0.75 rem;
+			}
+			.content-bottom2 {
+				background: #ff7f00;
+				height: 50px;
+				color: #fff;
+				line-height: 50px;
+				font-weight: bold;
+			}
+			.content-bottom2 img {
+				width: 35px;
+				float: left;
+				margin: 10px 0px 0px 10px;
+			}
+			.content-bottom3 {
+				background: #e6212a;
+				height: 50px;
+				color: #fff;
+				line-height: 50px;
+				font-weight: bold;
+			}
+			.content-bottom3 img {
+				width: 35px;
+				float: left;
+				margin: 10px 0px 0px 10px;
+			}
+			.content-box1 {
+				height: 40px;
+			}
+			.content-img img {
+				width: 75px;
+				padding: 4px 0px 4px 0px;
+			}
+			.content-span-box {
+				padding-top: 10px;
+				padding-left: 10px;
+			}
+			.content-span-ico1 {
+				color: #e6212a;
+				border: 1px solid #e6212a;
+				border-radius: 5px;
+				font-size: 0.875 rem;
+				padding: 0px 5px 0px 5px;
+				float: left;
+			}
+			.content-span-ico2 {
+				font-size: 0.75 rem;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 150px;
+				float: left;
+				margin-top: 2px;
+				margin-left: 5px;
+			}
+			.content-list-1 span img {
+				width: 16px;
+				float: left;
+			}
+			.content-list-1 span {
+				margin-left: 10px;
+				font-weight: normal;
+			}
+			.content-list-1 h1 {
+				font-size: 0.875 rem;
+				font-weight: bold;
+			}
+			.content-list-2 {
+				font-size: 0.875 rem;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.star-number {
+				background: #ff7f00;
+				padding: 0px 5px 0px 5px;
+				border-radius: 5px;
+				color: #fff;
+			}
+			.content-list-2 {
+				overflow: hidden;
+			}
+			.content-list-3 {
+				overflow: hidden;
+				font-size: 0.875 rem;
+			}
+			.content-list-3 span {
+				margin-right: 5px;
+			}
+			.content-list-4 {
+				overflow: hidden;
+			}
+			.content-list-4 span {
+				display: block;
+				float: left;
+				font-size: 0.875 rem;
+			}
+			.content-list-4 span img {
+				width: 12px;
+				margin-right: 5px;
+			}
+			.type-span1 {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				color: #ff0000;
+				margin-right: 10px;
+				padding: 0px 4px 0px 4px;
+			}
+			.type-span2 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				color: #c88bf5;
+				padding: 0px 4px 0px 4px;
+			}
+			.content-list-5 {
+				height: 65px;
+			}
+			.top-box {
+				overflow: hidden;
+				font-size: 0.875 rem;
+				height: 35px;
+				line-height: 30px;
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				width: 1%;
+			}
+			.top-box img {
+				width: 35px;
+				vertical-align: middle;
+			}
+			.bottom-box {
+				font-size: 0.875 rem;
+				padding: 0px 5px 0px 5px;
+				text-align: center;
+			}
+			.title-h1 {
+				font-size: 1rem;
+				margin-bottom: 10px;
+			}
+			.title-h2 {
+				font-size: 1rem;
+				margin-bottom: 10px;
+				margin-left: -10px;
+				margin-right: -10px;
+				padding-left: 10px;
+			}
+			.prize-box-all {
+				overflow: hidden;
+			}
+			.prize-box {
+				font-size: 0.875 rem;
+				width: 22%;
+				float: left;
+				border: 1px solid #ddd;
+				margin: 0px 5px 0px 5px;
+				padding: 5px;
+				text-align: center;
+				border-radius: 5px;
+			}
+			.prize-box b {
+				color: #FF0000;
+			}
+			.liuyan-top {
+				overflow: hidden;
+			}
+			.liuyan-top {
+				display: table-cell;
+				width: 1%;
+				height: 50px;
+				font-size: 0.875 rem;
+			}
+			.liuyan-top span {
+				vertical-align: middle;
+				width: 48%;
+			}
+			.liuyan-bottom {
+				overflow: hidden;
+			}
+			.liuyan-box {
+				padding-bottom: 50px;
+			}
+			.touxiang-img {
+				width: 33px;
+				border-radius: 50%;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.liuyan-bottom {
+				font-size: 0.875 rem;
+			}
+			.liuyan-box ul li {
+				margin-left: -10px;
+				margin-right: -10px;
+				padding: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content-banner">
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<img class="img-responsive" src="../../image/content10.jpg" />
+					</div>
+					<div class="swiper-slide">
+						<img class="img-responsive" src="../../image/content10.jpg" />
+					</div>
+					<div class="swiper-slide">
+						<img class="img-responsive" src="../../image/content10.jpg" />
+					</div>
+				</div>
+				<!-- Add Pagination -->
+				<div class="swiper-pagination"></div>
+				<!-- Add Arrows -->
+			</div>
+		</div>
+		<div id="gasDetail" style="display: none;">
+			<div class="content-box1 aui-border-b">
+				<div class="aui-col-xs-4 aui-border-r content-img aui-text-center">
+					<img  src="../../image/content2.jpg">
+				</div>
+				<div class="aui-col-xs-8 content-span-box">
+					<span class="content-span-ico1">特惠</span>
+					<span class="content-span-ico2">{tginfoContactPicsize}</span>
+				</div>
+			</div>
+			<div class="content-bottom aui-border-t">
+				<div class="aui-col-xs-2 content-bottom1 aui-text-center" onclick="collect()"><img src="../../image/content6.jpg"><span>收藏</span>
+				</div>
+				<div class="aui-col-xs-2 content-bottom1 aui-text-center aui-border-l"><img src="../../image/content7.jpg"><span>在线咨询</span>
+				</div>
+				<div onclick ="gotoHere()" class="aui-col-xs-4 content-bottom2 "><img src="../../image/content8.jpg">到这去
+				</div>
+				<div onclick="gotojiayou()" class="aui-col-xs-4 content-bottom3 "><img src="../../image/content9.jpg">键加油
+				</div>
+			</div>
+			<div class="aui-content-padded">
+				<div class="content-box2">
+					<div class="content-list-1">
+						<h1>{tginfoName}<span><img src="../../image/content3.jpg">{tginfoStatUser}km</span></h1>
+					</div>
+					<div class="content-list-2 aui-margin-t-15">
+						<span class="aui-pull-left">综合评分：</span>
+						<div class="star-all aui-pull-left">
+							<span class="star-span"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> </span>
+							<span class="star-number">5.0</span>
+							<span>{tginfoVisitnum}单</span>
+						</div>
+					</div>
+				</div>
+				<div class="content-list-3 aui-margin-t-15">
+					<span>油站环境5.0分</span>
+					<span>服务态度5.0分</span>
+					<span>油品质量5.0分</span>
+				</div>
+				<div class="content-list-4 aui-margin-t-15">
+					<span>优惠：</span>
+					<span class="type-span1"><img src="../../image/yz-ico2.jpg">预购</span>
+					<span class="type-span2"><img src="../../image/yz-ico3.jpg">团购</span>
+				</div>
+			</div>
+			<div class="content-list-5 aui-border-t">
+				<div class="aui-col-xs-6 aui-border-r">
+					<div class="top-box">
+						<img src="../../image/content4.jpg">油站公告
+					</div>
+					<div class="bottom-box">
+						{tginfoContactPicsize}
+					</div>
+				</div>
+				<div class="aui-col-xs-6 aui-border-r">
+					<div class="top-box">
+						<img src="../../image/content5.jpg">油站简介
+					</div>
+					<div class="bottom-box">
+						{tginfoName}位于{tginfoEtmurl}
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="aui-content-padded">
+			<h1 class="title-h1">实时油价</h1>
+			<div class="prize-box-all">
+				<div id="oilPriceList" style="display: none">
+					<div class="prize-box">
+						<span>{partsnameName} {pntreeName}</span>
+						<span><b>￥{goodsPrice}</b></span>
+					</div>
+				</div>
+			</div>
+			<div class="liuyan-box aui-margin-t-15">
+				<h1 class="title-h2 aui-border-b" >评论（<span id="commentCount"></span>）</h1>
+				<span id="commentContant"></span>
+				<ul>
+					<div id="comment" style="display: none">
+						<li class="aui-border-b">
+							<div class="liuyan-top">
+								<span><img class="touxiang-img" src="../../image/content11.jpg">{memberName}{operatorQq}</span>
+								<span class="aui-text-right">{messageDateStr}</span>
+							</div>
+							<div class="liuyan-bottom">
+								{messageContent}
+							</div>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/swiper.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script>
+		var map, lat, lon, aMapNavigation, tempLon, tempLat, inter, bannerPaths = new Array();
+		apiready = function() {
+			map = api.require('aMap');
+			//高德地图
+			aMapNavigation = api.require('aMapNavigation');
+			//高德导航
+			//加载数据
+			queryPortalShopsViewVo();
+		};
+		//加载详情
+		function queryPortalShopsViewVo() {
+			map.getLocation({
+				accuracy : '10m',
+				autoStop : true,
+				filter : 1
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var ajaxObject = new Object();
+					ajaxObject.url = "/appPortalShopsAjax!queryPortalShopsViewVo.htm";
+					ajaxObject.params = new Object();
+					ajaxObject.params.memberCode = api.pageParam.memberCode;
+					ajaxObject.isShowProgress = '1';
+					//不显示加载
+					ajaxObject.onSuccessFunction = function(ret) {
+						var portalTginfoViewVos = new Array();
+						portalTginfoViewVos[0] = ret.portalTginfoViewVo;
+						//banner图设置
+						var baseURL = $api.getStorage("baseURL");
+						bannerPaths.push(baseURL + "/" + portalTginfoViewVos[0].tginfoPicPath);
+						bannerPaths.push(baseURL + "/" + portalTginfoViewVos[0].tginfoContactPicurl);
+						//计算距离
+						tempLon = portalTginfoViewVos[0].tginfoStatUser;
+						//经度
+						tempLat = portalTginfoViewVos[0].tginfoStatPswd;
+						//纬度
+						if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+							var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+							distance = distance / 1000;
+							portalTginfoViewVos[0].tginfoStatUser = distance.toFixed(1);
+							//保留1位小数
+						}
+						$api.text($api.byId("memberSummary"), portalTginfoViewVos[0].memberSummary);
+						if (!portalTginfoViewVos[0].tginfoContactPicsize || portalTginfoViewVos[0].tginfoContactPicsize == "") {
+							portalTginfoViewVos[0].tginfoContactPicsize = "暂无信息";
+						}
+						getWorkBookHtmlByList(portalTginfoViewVos, 'gasDetail');
+						//(查油价)
+						qureyOilPriceList();
+					}
+					baseAjax(ajaxObject);
+				}
+			});
+		}
+
+		//(查油价)
+		function qureyOilPriceList() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicPriceAjax!queryPriceByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.memberCode = api.pageParam.memberCode;
+			ajaxObject.isShowProgress = '1';
+			//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				getWorkBookHtmlByList(ret.priceViewVoList, 'oilPriceList');
+				//查评论条数
+				qureyCommentMessageCount();
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//(查评论条数)
+		function qureyCommentMessageCount() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPortalCommentAjax!queryCommentMessageCount.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.messageOpbillcode = api.pageParam.memberCode;
+			ajaxObject.params.messageSubtype = "2";
+			//1商品评论 2商铺评论 3文章评论
+			ajaxObject.isShowProgress = '1';
+			//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				var count = ret.portalMessageViewVoCount;
+				$api.text($api.byId("commentCount"), count);
+				if (count >= 1) {
+					queryCommentList();
+				} else {
+					$api.text($api.byId("commentContant"), "暂无信息");
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//查评论
+		var commentsCount = 0;
+		function queryCommentList() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPortalCommentAjax!queryCommentMessageByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.messageOpbillcode = api.pageParam.memberCode;
+			ajaxObject.params.messageSubtype = "2";
+			//1商品评论 2商铺评论 3文章评论
+			ajaxObject.onSuccessFunction = function(ret) {
+				var portalMessageViewVoList = ret.portalMessageViewVoList;
+				commentsCount = portalMessageViewVoList.length;
+				if (commentsCount <= 0) {
+					$api.text($api.byId("commentCount"), "0");
+				} else {
+					$api.text($api.byId("commentCount"), commentsCount);
+				}
+				getWorkBookHtmlByList(portalMessageViewVoList, 'comment');
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//图片滚动
+		var swiper = new Swiper('.swiper-container', {
+			pagination : '.swiper-pagination',
+			paginationClickable : true,
+			centeredSlides : true,
+			autoplay : 2500,
+			autoplayDisableOnInteraction : false
+		});
+		//e键加油
+		function gotojiayou() {
+			api.openWin({
+				name : 'youzhan-zhifu-head',
+				url : 'youzhan-zhifu-head.html',
+				reload : true,
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode
+				},
+			});
+		}
+		function gotoHere(){
+			inter = setInterval("getDistance()",10000);
+			navigation();
+		}
+		
+		//导航
+		function navigation() {
+			api.showProgress({
+				style : 'default',
+				animationType : 'fade',
+				title : '搜索路线...',
+				text : '请稍候...',
+				modal : false
+			});
+			//先定位
+			map.getLocation({
+				autoStop : true
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					//再导航
+					aMapNavigation.start({
+						start : {
+							lon : lon,
+							lat : lat
+						},
+						end : {
+							lon : tempLon,
+							lat : tempLat
+						},
+					}, function(ret, err) {
+						api.hideProgress();
+						var msg;
+						if (ret) {
+							if (ret.eventType == 'calculateSuc') {
+								msg = '路径规划成功';
+							} else if (ret.eventType == 'calculateFai') {
+								msg = '路径规划失败';
+							} else if (ret.eventType == 'naviFai') {
+								msg = '导航发生错误';
+							} else if (ret.eventType == 'naviStart') {
+								msg = '开始导航';
+							} else if (ret.eventType == 'naviEnd') {
+								msg = '达到目的地导航结束';
+							} else if (ret.eventType == 'naviClose') {
+								msg = '用户关闭导航页面';
+							}
+						}
+						if (err) {
+							if (err.code == '2') {
+								msg = '网络超时或网络失败';
+							} else if (err.code == '3') {
+								msg = '起点错误';
+							} else if (err.code == '4') {
+								msg = '协议解析错误';
+							} else if (err.code == '6') {
+								msg = '终点错误';
+							} else if (err.code == '10') {
+								msg = '起点没有找到道路';
+							} else if (err.code == '11') {
+								msg = '没有找到通向终点的道路';
+							} else if (err.code == '12') {
+								msg = '没有找到通向途经点的道路';
+							} else if (err.code == '13') {
+								msg = '路径长度超过限制';
+							} else if (err.code == '14') {
+								msg = '其他错误';
+							}
+						}
+						api.toast({
+							msg : msg,
+							duration : 2000,
+							location : 'bottom'
+						});
+					});
+				}
+			});
+		}
+
+		function getDistance() {
+			//实时计算到油站的距离，小于指定距离则弹出下单页面
+			map.getLocation({
+				autoStop : true
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+					if (distance < 800) {
+						aMapNavigation.close();
+						clearInterval(inter);
+						api.openWin({
+							name : 'youzhan-zhifu-head',
+							url : 'youzhan-zhifu-head.html',
+							reload : true,
+							pageParam : {
+								"memberCode" : api.pageParam.memberCode
+							},
+						});
+					}
+				}
+			});
+		}
+
+		//收藏油站
+		function collect() {
+			event.stopPropagation();
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appUserCollAjax!saveUserColl.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params['collViewVo.opBillno'] = api.pageParam.memberCode;
+			//ajaxObject.isShowProgress = '1';//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				api.toast({
+					msg : ret.msg,
+					duration : 2000,
+					location : 'bottom'
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

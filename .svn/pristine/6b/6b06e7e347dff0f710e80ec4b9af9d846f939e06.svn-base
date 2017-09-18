@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			.balance-box {
+				background: #fff;
+				color: #333;
+				padding: 15px 15px 0px 15px;
+			}
+			.balance-box h1 {
+				font-size: 4.5 rem;
+				color: #FF0000;
+			}
+			.balance-box h2 {
+				font-size: 1.0 rem;
+			}
+			.my-list-all {
+				margin-top: 10px;
+			}
+			.my-list-all li {
+				padding: 10px 0px 10px 0px;
+				background: #fff;
+				border-bottom: 1px solid #e2e2e2;
+				position: relative;
+			}
+			.my-list-all span {
+				font-size: 0.75 rem;
+			}
+			.li-icon {
+				width: 28px;
+				height: 28px;
+				margin: 0px 10px 0px 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="balance-box" >
+			<h2>加油余额(元)</h2>
+			<h1>￥<span id="balance" style="font-size:48px;">0</span></h1>
+		</div>
+		<ul class="my-list-all">
+			<li onclick="chongzhi()">
+				<img class="li-icon fl" src="../../image/money-ico1.jpg">
+				<span>充值</span>
+				<em class="arrows iconfont icon-jiantou2"></em>
+			</li>
+		</ul>
+		<ul class="my-list-all">
+			<li onclick="paycard()">
+				<img class="li-icon fl" src="../../image/money-ico2.jpg">
+				<span>我的银行卡</span>
+				<em class="arrows iconfont icon-jiantou2"></em>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/countUp.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		apiready = function(){
+			queryMyAccountViewVo();
+		}
+		
+		//查询账户余额
+		function queryMyAccountViewVo() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayAccountAjax!queryAccountViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.accountType = "2";
+			//1-我的钱包 2-我的余额
+			ajaxObject.onSuccessFunction = function(ret) {//可用金额
+				var balance = parseFloat(toFixed(ret.accountViewVo.accountSmoney));
+				$api.text($api.byId("balance"), balance);
+				var demo = new CountUp("balance", 0, balance, 2, 2.5);
+				demo.start();
+			}
+			baseAjax(ajaxObject);
+		}
+		//打开充值
+		function chongzhi() {
+			api.openWin({
+				name : 'my-chongzhi-head',
+				url : 'my-chongzhi-head.html',
+				reload : true,
+			});
+		}
+
+		//打开银行卡管理
+		function paycard() {
+			api.openWin({
+				name : 'my-paycard-head',
+				url : 'my-paycard-head.html',
+				reload : true,
+			});
+		}
+	</script>
+</html>

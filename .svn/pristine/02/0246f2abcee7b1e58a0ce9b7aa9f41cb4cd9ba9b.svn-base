@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			.money-input {
+				text-align: right;
+				color: #ff0000 !important;
+			}
+			/*列表*/
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+				background: url("../../image/zhifu2.jpg") repeat-x #fff bottom;
+				background-size: 8%;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.aui-list-item-title {
+				font-size: 0.875rem !important;
+			}
+			.aui-list .aui-list-item-inner {
+				min-height: 3rem;
+			}
+			.aui-list-item-right {
+				font-size: 0.875rem !important;
+			}
+			.money-box {
+				background: #fff;
+				margin-top: 15px;
+				padding: 10px;
+			}
+			.money-box-top {
+				display: table-cell;
+				width: 1%;
+				padding-bottom: 10px;
+			}
+			.money-box-top span {
+				width: 48%;
+				font-size: 0.875rem;
+			}
+			.money-box-top span b {
+				color: #FF0000;
+			}
+			.money-box-bottom {
+				overflow: hidden;
+				margin-top: 20px;
+			}
+			.money-box-list {
+				float: left;
+				width: 22%;
+				margin: 0px 5px 0px 5px;
+				border: 1px solid #ddd;
+				text-align: center;
+				border-radius: 5px;
+				padding: 5px;
+			}
+			.money-box-list.active-money {
+				border: 1px solid #FF0000;
+				color: #FF0000;
+				background: url("../../image/zhifu1.png") bottom right no-repeat;
+				background-size: 25px 25px;
+			}
+			/*弹出*/
+			.list-ul {
+				margin: -50px -30px -50px -30px;
+			}
+			.list-ul li {
+				border-bottom: 1px solid #ddd;
+				padding: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="list-box-flex" id="gasDetail" style="display: none">
+			<div class="list-box1-td1 td-img">
+				<img src="{baseURL}/{tginfoPicUrl}"></img>
+			</div>
+			<div class="list-box1-td2">
+				<h1 class="list-title">{tginfoName}</h1>
+				<div class="star-all">
+					<span class="star-span" id="sumScore"> </span>
+					<span>{tginfoVisitnum}单</span>
+				</div>
+
+				<div class="list-line">
+					<span class="list-dizhi"> <img src="../../image/yz-ico4.jpg">{tginfoEtmurl} </span>
+				</div>
+			</div>
+			<div class="list-box1-td3 td-img1 aui-margin-t-15">
+				<img src="../../image/yz-ico1.jpg"></img>
+				<span class="goto">距此站</span>
+				<span>{tginfoStatUser}km</span>
+			</div>
+		</div>
+		<div id="center" style="display: none;">
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li onclick="youhao()" class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								请选择所需油号
+							</div>
+							<div class="aui-list-item-right youhao-box" id="oilNo">
+								选中的内容
+							</div>
+						</div>
+					</li>
+					<li onclick="youqiang()" class="aui-list-item">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								请选择枪号
+							</div>
+							<div class="aui-list-item-right youqiang-box" id="oilGun">
+								选中的内容
+							</div>
+						</div>
+					</li>
+					<li onclick="chepai()" class="aui-list-item">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								请选择车牌号
+							</div>
+							<div class="aui-list-item-right chepai-box" id="carNo">
+								选中的内容
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li onclick="jiesuanType()" class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								结算方式
+							</div>
+							<div class="aui-list-item-right jiesuanBox">
+								金额（元）
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div id="yuanChoosed" class="money-box money-type-box">
+				<div class="money-box-top aui-border-b">
+					<span>金额（元）</span>
+					<span class="aui-text-right">
+						<input class="money-input" type="number" id = "price"/>
+					</span>
+				</div>
+				<div class="money-box-bottom">
+					<div class="money-box-list">
+						100
+					</div>
+					<div class="money-box-list">
+						200
+					</div>
+					<div class="money-box-list">
+						300
+					</div>
+					<div class="money-box-list">
+						400
+					</div>
+				</div>
+			</div>
+			<div id="shengChoosed" class="money-box sheng-type-box" style="display: none" disabled="disabled">
+				<div class="money-box-top aui-border-b">
+					<span>升（结算）</span>
+					<span class="aui-text-right">
+						<input class="money-input" type="number" id = "oilNum"/>
+					</span>
+				</div>
+				<div class="money-box-bottom">
+					<div class="money-box-list">
+						20
+					</div>
+					<div class="money-box-list">
+						30
+					</div>
+					<div class="money-box-list">
+						40
+					</div>
+					<div class="money-box-list">
+						50
+					</div>
+				</div>
+			</div>
+			<div class="new-btn-box">
+				<div onclick="goPay()" class="aui-btn">
+					结算
+				</div>
+			</div>
+		</div>
+		<div id="layerYouhao" style="display: none">
+			<ul class="list-ul" id="gasNumDetail">
+				<li>
+					{oilGunStr5Str}
+				</li>
+			</ul>
+		</div>
+		<div id="layerYouqiang" style="display: none">
+			<ul class="list-ul" id="gasGunDetail">
+				<li>
+					{oilGunName}
+				</li>
+			</ul>
+		</div>
+		<div id="layerChepai" style="display: none">
+			<ul class="list-ul" id="carViewVoList">
+				<li>
+					{carNo}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/uiselect.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script>
+		var map, lat, lon, aMapNavigation, tempLon, tempLat, inter, bannerPaths, oilGunViewVoList, portalTginfoViewVos = new Array();
+		var price, oilNo, oilGun, carNo = "",payType="1";
+		apiready = function() {
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			map = api.require('aMap');
+			//高德地图
+			aMapNavigation = api.require('aMapNavigation');
+			//高德导航
+			//加载数据
+			openMap();
+		};
+		
+		function openMap(){
+			map.open({
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : api.frameHeight
+				},
+				zoomLevel : 17,
+				showUserLocation : true,
+				fixedOn : 'frame1',
+				fixed : true
+			}, function(ret) {
+				if (ret) {
+					//获取位置坐标
+					queryPortalShopsViewVo();
+				}
+			});
+		}
+		//加载详情
+		function queryPortalShopsViewVo() {
+			api.showProgress({style: 'default', animationType: 'fade', title: '加载中...', text: '',modal: false});
+			map.getLocation({
+				accuracy : '10m',
+				autoStop : true,
+				filter : 1
+			}, function(ret, err) {
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var ajaxObject = new Object();
+					ajaxObject.url = "/appPortalShopsAjax!queryPortalShopsViewVo.htm";
+					ajaxObject.params = new Object();
+					ajaxObject.params.memberCode = api.pageParam.memberCode;
+					ajaxObject.isShowProgress = '1';
+					//不隐藏加载
+					ajaxObject.isHideProgress = '1';
+					ajaxObject.onSuccessFunction = function(ret) {
+						portalTginfoViewVos[0] = ret.portalTginfoViewVo;
+						//计算距离
+						tempLon = portalTginfoViewVos[0].tginfoStatUser;
+						//经度
+						tempLat = portalTginfoViewVos[0].tginfoStatPswd;
+						//纬度
+						if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+							var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+							distance = distance / 1000;
+							portalTginfoViewVos[0].tginfoStatUser = distance.toFixed(1);
+							//保留1位小数
+						}
+						$api.text($api.byId("memberSummary"), portalTginfoViewVos[0].memberSummary);
+						if (!portalTginfoViewVos[0].tginfoContactPicsize || portalTginfoViewVos[0].tginfoContactPicsize == "") {
+							portalTginfoViewVos[0].tginfoContactPicsize = "暂无信息";
+						}
+						getWorkBookHtmlByList(portalTginfoViewVos, 'gasDetail');
+						//查询枪油号
+						oilGunViewVoList = ret.oilGunViewVoList;
+						var oilNoList = new Array();
+						for(var i= 0 ; i < oilGunViewVoList.length; i++){
+							if(oilNoList.length == 0){
+								oilNoList.push(oilGunViewVoList[i]);
+							}
+							for(var j= 0 ; j < oilNoList.length; j++){
+								if(oilNoList[j].oilGunStr5 != oilGunViewVoList[i].oilGunStr5){
+									oilNoList.push(oilGunViewVoList[i]);
+								}
+							}
+						}
+						getWorkBookHtmlByList(oilNoList, 'gasNumDetail');
+						getWorkBookHtmlByList(ret.oilGunViewVoList, 'gasGunDetail');
+						
+						queryGasStationScore();
+						
+					}
+					baseAjax(ajaxObject);
+				}
+			});
+		}
+
+		//查询车牌号列表
+		function queryCarNoList() {
+			//查询车牌号码
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicCarAjax!queryBasicCarByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.invoiceType = "3";
+			//不显示加载
+			ajaxObject.isShowProgress = '1';
+			
+			ajaxObject.onSuccessFunction = function(ret) {
+				for(var i = 0; i < ret.basicCarViewVoList.length; i++){
+					if(ret.basicCarViewVoList[i].carIsdefault == '1'){
+						$("#carNo").html(ret.basicCarViewVoList[i].carNo);
+						$("#oilNo").html(ret.basicCarViewVoList[i].carOilno);
+						carNo = ret.basicCarViewVoList[i].carNo;
+						oilNo = ret.basicCarViewVoList[i].carOilno;
+					}
+				}
+				getWorkBookHtmlByList(ret.basicCarViewVoList, 'carViewVoList');
+				$("#center").show();
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//查询油枪油号列表
+		function queryOilGunList() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicPriceAjax!queryPriceByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.params.memberCode = api.pageParam.memberCode;
+			ajaxObject.onSuccessFunction = function(ret) {
+				priceViewVoList = ret.priceViewVoList;
+				
+			}
+			baseAjax(ajaxObject);
+		}
+
+		
+		function goPay() {
+			price = $api.val($api.byId("price"));
+			oilNum = $api.val($api.byId("oilNum"));
+			price = $.trim(price);
+			oilNum = $.trim(oilNum);
+			var oilInfo = new Object();
+			//油枪非空验证，根据油枪查询单价
+			if (!oilNo || oilNo == "") {
+				api.toast({
+					msg : '请选择油号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (!oilGun || oilGun == "") {
+				api.toast({
+					msg : '请选择油枪',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			//车牌号
+			oilInfo.carNo = $.trim(carNo);
+			//油号
+			oilInfo.oilNo = $.trim(oilNo);
+			//油枪号
+			oilInfo.oilGun = $.trim(oilGun);
+			//每升的油价 单价
+			oilInfo.oilPrice = parseFloat(getOilPrice($.trim(oilGun)));
+			// 支付方式 1:元,2:升
+			oilInfo.payType = payType;
+			
+			if ($(".sheng-type-box").attr("disabled") == "disabled") {
+				//购买元
+				var pattern = /^[0-9]+([.]\d{1,2})?$/;
+				if (price && price != "" && price != "0") {
+					if (!pattern.test(price)) {
+						api.toast({
+							msg : '请输入正确的金额(例:0.00),最高保留两位小数',
+							duration : 2000,
+							location : 'center'
+						});
+						$("#price").focus();
+						return;
+					}
+				} else {
+					api.toast({
+						msg : '请输入金额数',
+						duration : 2000,
+						location : 'center'
+					});
+					$("#price").focus();
+					return;
+				}
+				//加油应付金额
+				oilInfo.price = price;
+				oilInfo.oilNum = "0";
+			} else {
+				//购买升
+				//加油数量（升）
+				var pattern = /^\d+$/;
+				if (oilNum && oilNum != "" && oilNum != "0") {
+					if (!pattern.test(oilNum)) {
+						api.toast({
+							msg : '加油升数不能为小数',
+							duration : 2000,
+							location : 'center'
+						});
+						$("#oilNum").focus();
+						return;
+					}
+				} else {
+					api.toast({
+						msg : '请输入加油升数',
+						duration : 2000,
+						location : 'center'
+					});
+					$("#oilNum").focus();
+					return;
+				}
+				oilInfo.price = (oilInfo.oilPrice) * oilNum;
+				oilInfo.oilNum = oilNum;
+			}
+			api.openWin({
+				name : 'youzhan-zhifu-head1.html',
+				url : 'youzhan-zhifu-head1.html',
+				reload : true,
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : oilInfo,
+				},
+			});
+		}
+
+		//获取指定油号的单价
+		function getOilPrice(oilGun) {
+			for (var i = 0; i < oilGunViewVoList.length; i++) {
+				if (oilGun == $.trim(oilGunViewVoList[i].oilGunName)) {
+					return oilGunViewVoList[i].oilGunStr6;
+				}
+			}
+		}
+
+		//选择金钱
+		$(".money-box-bottom div").click(function() {
+			$(".money-box-bottom").children("div").removeClass("active-money")
+			$(this).addClass("active-money")
+			var moneyNumber = $.trim($(this).html());
+			$(".money-input").val(moneyNumber)
+		})
+		//选择结算方式
+		function jiesuanType() {
+			layer.open({
+				title : ['选择结算方式', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : '<ul class="list-ul">' + "<li onclick='xzBalanceType(1)'>单位:元</li>" + "<li onclick='xzBalanceType(2)'>单位:升</li>" + "</ul>"
+			});
+			$(".list-ul>li").click(function() {
+				var jiesuanType = $.trim($(this).html());
+				$(".jiesuanBox").html(jiesuanType);
+				layer.closeAll()
+			})
+		}
+
+		function xzBalanceType(type) {
+			$(".money-type-box").find("input").val("");
+			$(".sheng-type-box").find("input").val("");
+			if (type == "1") {
+				$(".sheng-type-box").attr("disabled","disabled");
+				$(".sheng-type-box").hide();
+				$(".money-type-box").removeAttr("disabled");
+				$(".money-type-box").show();
+			} else {
+				$(".money-type-box").attr("disabled","disabled");
+				$(".money-type-box").hide();
+				$(".sheng-type-box").removeAttr("disabled");
+				$(".sheng-type-box").show();
+				payType = "2"; 			// 按升支付类型
+			}
+		}
+
+		//选择油号
+		function youhao() {
+			var layerHtml = $api.html($api.byId("layerYouhao"));
+			layer.open({
+				title : ['选择油号', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : layerHtml,
+			});
+			$(".list-ul>li").click(function() {
+				var youhao = $(this).html();
+				$(".youhao-box").html(youhao);
+				oilNo = youhao;
+				layer.closeAll();
+			})
+		}
+
+		//选择油枪
+		function youqiang() {
+			var layerHtml = $api.html($api.byId("layerYouqiang"));
+			layer.open({
+				title : ['选择油枪', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : layerHtml,
+			});
+			$(".list-ul>li").click(function() {
+				var youqiang = $(this).html();
+				oilGun = youqiang;
+				$(".youqiang-box").html(youqiang);
+				layer.closeAll();
+			})
+		}
+
+		//选择车牌
+		function chepai() {
+			var layerHtml = $api.html($api.byId("layerChepai"));
+			layer.open({
+				title : ['选择车牌', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : layerHtml,
+			});
+			$(".list-ul>li").click(function() {
+				var chepai = $(this).html();
+				$(".chepai-box").html(chepai);
+				carNo = chepai;
+				layer.closeAll();
+			})
+		}
+		
+		// 用户手动输入时金额或升数时清空输入框的值和选中价格的样式
+		$("#price").click(function(){
+			$("#price").val("");
+			$(".money-box-bottom").find("div[class='money-box-list active-money']").removeClass("active-money");
+		})
+		
+		$("#oilNum").click(function(){
+			$("#oilNum").val("");
+			$(".money-box-bottom").find("div[class='money-box-list active-money']").removeClass("active-money");
+		})
+		
+		// 查询油站综合评分
+		function queryGasStationScore(){	
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPortalCommentAjax!queryGasStationScore.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.isHideProgress = '1';
+			ajaxObject.params.messageOpbillcode = api.pageParam.memberCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.avgMap;
+				var sumAvg = data.sumAvg.toFixed(2);
+				// 显示对应值的对应星星 ----开始
+				var startHtmlStr = "<img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> ";
+				if(sumAvg > 0 && sumAvg < 2){
+					startHtmlStr = "<img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> ";
+				}
+				if(sumAvg >= 2  && sumAvg < 3){
+					startHtmlStr = "<img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> ";
+				}
+				if(sumAvg >= 3 && sumAvg < 4){
+				
+					startHtmlStr = "<img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-off-big.png'> <img src='../../image/star/img/star-off-big.png'> ";
+				}
+				if(sumAvg >= 4 && sumAvg < 5){
+			
+					startHtmlStr = "<img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-off-big.png'> ";
+				}
+				if(sumAvg >= 5 ){
+					startHtmlStr = "<img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> <img src='../../image/star/img/star-on-big.png'> ";
+				}
+				// 显示对应值的对应星星 ----结束
+
+				$api.html($api.byId("sumScore"), startHtmlStr);
+				queryCarNoList();
+			}
+			baseAjax(ajaxObject);
+		}	
+	</script>
+</html>

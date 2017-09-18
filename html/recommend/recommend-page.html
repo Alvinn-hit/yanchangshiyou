@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+		    .recommend-img{
+		      text-align: center;
+		    }
+			.recommend-img img{
+			  width:240px;
+			}
+			.recommend-img p{
+			  font-size: 0.875rem;
+			  margin-top: 12px;
+			  color:#ff7f00;
+			}
+			.aui-btn{
+			  width: 100%;
+			  padding: 8px 0px 8px 0px;
+			  font-size: 1rem;
+			  margin-top: 30px;
+			}
+			
+			/*分享弹窗*/
+			.close-div{                                  
+			  position: absolute;
+			  top:0px;
+			  right:0px;
+			  height: 20px;
+			  width: 20px;
+			  font-size: 12px;
+			}
+			.share-top-box{
+			  border-bottom:1px solid #efefef;
+			  padding: 0px 5px 5px 5px;
+			  position: relative;
+			}
+			.share-top-box h1{
+			  font-size: 0.875rem;
+			}
+			.share-list{
+			  text-align: center;
+			  margin-top: 12px;
+			}
+			.share-list img{
+			  width: 30px;
+			  display: block;
+			  margin: auto;
+			}
+			.share-list span{
+			  display: block;
+			  font-size: 0.75rem;
+			}
+			.copy-link-box{
+			  padding: 10px 10px 0px 10px;
+			  overflow: hidden;
+			  width: 94%;
+			}
+			.link-box{
+			  width: 75%!important;
+			  float: left;
+			  border:1px solid #ddd!important;
+			  padding: 0px 5px 0px 5px!important;
+			}
+			.copy-btn{
+			  float:left;
+			  background: #e6212a;
+			  width: 22%;
+			  color:#fff;
+			  font-size: 0.875rem;
+			  text-align: center;
+			  border-radius: 5px;
+			  margin-left: 5px;
+			  height: 31px;
+			  line-height: 31px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="recommend-img">
+		  <img src="../../image/tuijian.png">
+		  <p>推荐好友成功注册发放优惠券！</p>
+          <p>   好事大家一起分享！</p>
+		</div>
+		<div class="aui-btn aui-btn-danger" onclick="newRecommend()" id="memberCode" style="display: ">推荐获取优惠券</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript">
+		memberObj = new Object();
+		apiready = function() {
+			queryMyUserInfo();
+		}
+		
+		function queryMyUserInfo(){
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!queryMyUserInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.memberViewVo;
+				memberObj.memberName = data.memberName;
+				memberObj.memberCode = data.memberCode;
+				$("#memberCode").show();
+			}
+			baseAjax(ajaxObject);
+		}
+
+	  //推荐有奖
+	  function newRecommend(){
+		    layer.open({
+		    type: 1,
+		    content: 
+		    '<div class="share-top-box"><h1>选择分享</h1><div class="close-div iconfont icon-shanchu2"></div></div>'+
+		    '<div class="aui-col-xs-4 share-list"><img src="../../image/share3.jpg" onclick="qqQzone(1)"><span>QQ好友</span></div>'+
+		    '<div class="aui-col-xs-4 share-list"><img src="../../image/share2.jpg" onclick="qqQzone(2)"><span>QQ空间</span></div>'+
+		    '<div class="aui-col-xs-4 share-list"><img src="../../image/share1.jpg" onclick="BLog()"><span>微博</span></div>'+
+		    '<div class="aui-col-xs-4 share-list"><img src="../../image/share4.jpg" onclick="WeChat(1)"><span>微信好友</span></div>'+
+		    '<div class="aui-col-xs-4 share-list"><img src="../../image/share5.jpg" onclick="WeChat(2)"><span>朋友圈</span></div>'
+//		    +'<div class="aui-col-xs-4 share-list"><img src="../../image/share6.jpg" onclick="CopyLink()"><span>复制链接</span></div>'   
+		    ,
+		    anim: 'up',
+		    style: 'position:fixed; bottom:0; left:0; width: 100%; height: 150px; padding:10px 0; border:none;'
+		  });
+		  
+		   $(".close-div").click(function(){
+			    layer.closeAll();
+			  })
+	  }
+		// QQ朋友、QQ空间分享
+		function qqQzone(flag){
+			var type = "QFriend";
+			if(flag == 2) type = "QZone";
+			var baseURL = $api.getStorage("baseURL");
+			var obj = api.require('qq');
+			obj.installed(function (ret, err){
+				if(ret.status){
+					obj.shareNews({
+						url : baseURL+"/web/share.html?memberCode="+ memberObj.memberCode +"&memberName="+ memberObj.memberName +"",
+						title : memberObj.memberName+'推荐分享',
+						description : '注册有奖',
+						imgUrl : baseURL+'/etmwebdocs/bootstrap/img/tjyl.png',
+						type : type,
+					},function (ret,err){
+						if(!ret.status){
+							api.toast({
+								msg : '取消成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}else{
+							api.toast({
+								msg : '分享成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}
+					});
+				}else{
+					api.toast({
+							msg : "对不起,没有安装QQ应用!",
+							duration : 2000,
+							location : 'center'
+						});
+				}
+			})
+		}
+		
+	// 微信好友、微信朋友圈分享
+	function WeChat(code){
+		var baseURL = $api.getStorage("baseURL");
+		var scene = "session";				// 微信好友
+		if(code == 2) scene = "timeline";	// 朋友圈
+		var wx = api.require('wx');
+		wx.isInstalled(function(ret, err) {
+		    if (ret.installed) {
+				wx.shareWebpage({
+				    apiKey: '',
+				    scene: scene,
+				    title: '注册有奖',
+				    description: memberObj.memberName+'推荐分享',
+				    thumb: baseURL+"/etmwebdocs/bootstrap/img/tjyl.png",
+				    contentUrl: baseURL+"/web/share.html?memberCode="+ memberObj.memberCode +"&memberName="+ memberObj.memberName +"",
+				}, function(ret, err) {
+				    if (ret.status) {
+				        api.toast({
+							msg : '分享成功!',
+							duration : 2000,
+							location : 'center'
+						});
+				    } else {
+				    	api.toast({
+							msg : '取消成功!',
+							duration : 2000,
+							location : 'center'
+						});
+				        
+				    }
+				});        
+		    } else {
+		    	api.toast({
+	                msg:'当前设备未安装微信客户端'
+                });
+		    }
+		});	
+	}
+	
+	// 发表新浪微博
+	function BLog(){
+		var baseURL = $api.getStorage("baseURL");
+		var sinaWeiBo = api.require('sinaWeiBo');
+		sinaWeiBo.auth({
+			//isAuth : false
+		},function(ret, err) {
+		    if (ret.status) {
+		        api.toast({
+		            msg: '授权成功'
+		        });
+		        sinaWeiBo.sendRequest({
+			    contentType: 'web_page',
+			    imageUrl: 'widget://image/default/tjyl.jpg',
+			    media: {
+			        title: '推荐会员注册好礼相送',
+			        description: '延长e加油注册油礼相送！',
+			        thumbUrl: 'widget://image/default/tjyl.jpg',
+			        webpageUrl: baseURL+"/web/share.html?memberCode="+ memberObj.memberCode +"&memberName="+ memberObj.memberName +"",
+			    }
+			}, function(ret, err) {
+				    if (ret.status) {
+				        api.toast({
+	                        msg:'发表微博成功'
+                        });
+				    } else {
+				        api.toast({
+	                        msg:'取消发表或微博客户端未安装'
+                        });
+				    }
+				  });
+		        
+		    } else {
+		        api.toast({
+	                msg:'授权失败'
+                });
+		    }
+		});
+		
+	
+	}
+			
+	</script>
+</html>

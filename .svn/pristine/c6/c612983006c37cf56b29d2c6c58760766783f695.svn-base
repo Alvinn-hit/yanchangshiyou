@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background:#fff;			
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img img{
+		  width: 25px;	
+		  float:right;	
+		  margin-top: 10px; 
+		  margin-right:5px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		   margin-top: 2px;
+		 }
+		.logo-img-box{
+		  margin: auto;
+		  margin-bottom: 20px;
+		  margin-top: 10px;
+		}
+		.logo-img-box img{
+		  width: 90px;
+		  padding-top: 22px;
+		}
+		
+		.next-ul{
+		  margin-top: 20px;
+		}
+		.next-ul li{
+		  border:1px solid #FF7F00;
+		  overflow: hidden;
+		  border-radius: 5px;
+          font-size: 0.875rem;
+          margin-top: 10px;
+		}
+		.aui-list-item-title{
+        font-size: 0.875rem!important;
+      }
+      .aui-list-item-right{
+        font-size: 0.875rem!important;
+      }
+      .aui-list .aui-list-item-inner{
+        min-height: 4rem;
+      }
+      .aui-list .aui-list-item-media{
+        width: 3rem;
+      }
+      .zhuanzheng-ico{
+        width: 23px!important;
+      }
+    </style>
+</head>
+<body>
+    <div id="headbar"  class="head-bar">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                                        转赠油券			      
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center"></div>
+      </div>                                                          
+    </div>
+    
+    <div class="logo-img-box aui-text-center">
+       <img src="../../image/zhuanzeng.jpg">
+         <h1 class="yellow">转赠成功</h1>  
+     </div>
+     
+     <div class="aui-content ">
+    <ul class="aui-list">                   
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+               <div class="aui-list-item-media">
+                <img class="zhuanzheng-ico" src="../../image/zhuanzheng1.jpg">
+               </div>
+                <div class="aui-list-item-title">
+                                                 转赠成功，如果你的朋友在24小时之内没有领取油券将自
+                                                动回到您的账户！
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    
+     <div class="btn-box mt-25">
+          <div onclick="backbtn()"  class="aui-btn aui-btn-block aui-btn-warning">返回油券列表</div>
+        </div>
+    
+   </div>
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+	$api.fixIos7Bar( $api.byId('headbar') );
+    api.setStatusBarStyle({
+        style: 'light',
+    });
+ }
+ 
+function backbtn(){
+  api.openWin({
+	  name: 'my-youquan-head',
+	  url: 'my-youquan-head.html'
+  });
+}
+
+</script>
+</html>

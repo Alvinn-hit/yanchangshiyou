@@ -1,0 +1,276 @@
+function getWorkBookHtmlByMap(data, tagId, headerValue){
+	var tag = $api.dom("#" + tagId);
+
+	var arr = data;
+	var html = "";
+	var htmlTemplet = $api.html(tag);
+	if(headerValue != ""){
+		html += htmlTemplet.replace("-99", "-99").replace("全部", headerValue);
+	}
+	for(var i = 0; i < arr.length; i++){
+		html += htmlTemplet.replace("-99", arr[i].code).replace("全部", arr[i].value);
+	}
+	$api.html(tag, html);
+	$api.attr(tag, "style", "display:;"); 				
+}
+
+function getWorkBookHtmlByMapValue(data, tagId, headerValue, defaultValue){
+	var tag = $api.dom("#" + tagId);
+	
+	var arr = data;
+	var html = "";
+	var htmlTemplet = $api.html(tag);
+	if(headerValue != "" && isNaN(headerValue)){
+		html += htmlTemplet.replace("-99", "-99").replace("全部", headerValue);
+	}else if(headerValue != "" && !isNaN(headerValue)){
+		html += htmlTemplet.replace("-99", headerValue).replace("全部", headerValue);
+	}
+	for(var i = 0; i < arr.length; i++){
+		if(arr[i].value == defaultValue){
+			html += htmlTemplet.replace("-99", arr[i].value).replace("全部" , arr[i].value).replace("{flag}" , "selected='selected'");
+		}else{
+			html += htmlTemplet.replace("-99", arr[i].value).replace("全部" , arr[i].value).replace("{flag}" , "");
+		}
+	}
+	$api.html(tag, html);
+	$api.attr(tag, "style", "display:;"); 				
+}
+
+function getDropDownList(data, tagId, headerValue, attrName){
+	var tag = $api.dom("#" + tagId);
+
+	var arr = data;
+	var html = "";
+	var htmlTemplet = $api.html(tag);
+	if(headerValue != ""){
+		html += htmlTemplet.replace("-99", "-99").replace("全部", headerValue);
+	}
+	for(var i = 0; i < arr.length; i++){
+		html += htmlTemplet.replace("-99", arr[i][attrName]).replace("全部", arr[i][attrName]);
+	}
+	$api.html(tag, html);
+	$api.attr(tag, "style", "display:;"); 				
+}
+
+
+function getWorkBookHtmlByList(data, tagId, flag){
+	var tag = $api.dom("#" + tagId);
+	
+	var tagTemp = $api.dom("#" + tagId + "_htmlTemplet");
+	if(!$api.dom("#" + tagId + "_htmlTemplet") || $api.dom("#" + tagId + "_htmlTemplet") == null){
+		$api.after(tag, "<div id='" + tagId + "_htmlTemplet' style='display: none;'></div>");
+		tagTemp = $api.dom("#" + tagId + "_htmlTemplet");
+	}
+	
+	var arr = new Array();
+	if(data instanceof Array){
+		arr = data;
+	}else{
+		arr[0] = data;
+	}
+	
+	var html = "";
+	var tempHtml = "";
+	
+	if($api.html(tagTemp) == ""){
+		var htmlTemplet = $api.html(tag);
+		$api.html(tagTemp, htmlTemplet);
+	}
+	
+	if(arr.length > 0 || flag){
+		var baseURL = $api.getStorage("baseURL");
+		for(var i = 0; i < arr.length; i++){
+			tempHtml = $api.html(tagTemp);
+			
+			var obj = arr[i];
+			for(var key in obj){
+				if(obj[key] === 0 || obj[key] === ""){
+					obj[key] = String(obj[key]);
+				}
+			
+				if(obj[key] != null && obj[key] != "" && obj[key] != undefined){
+					tempHtml = tempHtml.replace(new RegExp("{" + key + "}","gm"), obj[key]);
+				}else{
+					tempHtml = tempHtml.replace(new RegExp("{" + key + "}","gm"), "");
+				}
+			}
+		
+			tempHtml = tempHtml.replace(new RegExp("{baseURL}","gm"), baseURL);
+			tempHtml = tempHtml.replace(new RegExp("{.*}","gm"), "");
+			
+			html += tempHtml;
+		}
+	}else{
+		
+		html = '<div class="aui-content"><div class="no-img-box"><img src="'+ api.wgtRootDir +'/image/nothing.png" />暂无信息</div></div>';
+		
+	}
+	
+	$api.html(tag, html);
+	$api.attr(tag, "style", "display:");
+}
+
+function findList(obj, url){
+	api.closeFrame({
+		name : 'frame-list'
+	});
+	
+	var headerH = $api.getStorage("headerH");
+	var headerH = parseInt(headerH);
+	var topDIV = $api.dom('.mui-content');
+	var offset = $api.offset(topDIV);
+	var topH = parseInt(offset.h);
+
+	api.openFrame({
+		name : 'frame-list',
+		url : url,
+		rect : {
+			x : 0,
+			y : topH + headerH,
+			w : 'auto',
+			h : $api.dom('.flex-td2').offsetHeight
+		},
+		bounces : true,
+		pageParam : {
+			"listObj" : obj
+		}
+	});
+}
+
+//格式化日期
+function formatDate(date, format) {   
+    if (!date) return;  
+    if (!format) format = "yyyy-MM-dd";   
+    switch(typeof date) {   
+        case "string":   
+            date = new Date(date.replace(/-/, "/"));   
+            break;   
+        case "number":   
+            date = new Date(date);   
+            break;   
+    }    
+    if (!date instanceof Date) return;   
+    var dict = {   
+        "yyyy": date.getFullYear(),   
+        "M": date.getMonth() + 1,   
+        "d": date.getDate(),   
+        "H": date.getHours(),   
+        "m": date.getMinutes(),   
+        "s": date.getSeconds(),   
+        "MM": ("" + (date.getMonth() + 101)).substr(1),   
+        "dd": ("" + (date.getDate() + 100)).substr(1),   
+        "HH": ("" + (date.getHours() + 100)).substr(1),   
+        "mm": ("" + (date.getMinutes() + 100)).substr(1),   
+        "ss": ("" + (date.getSeconds() + 100)).substr(1)   
+    };       
+    return format.replace(/(yyyy|MM?|dd?|HH?|ss?|mm?)/g, function() {   
+        return dict[arguments[0]];   
+    });                   
+}
+
+//计算两个日期天数之差
+function DateDiff(sDate1, sDate2) {//sDate1和sDate2是2002-12-18格式
+	if (sDate1 != "" && sDate2 != "") {
+		var startDate = sDate1.replace(/-/g, "/");
+		var endDate = sDate2.replace(/-/g, "/");
+		var S_Date = Date.parse(startDate);
+		var E_Date = Date.parse(endDate);
+		iDays = parseInt(Math.abs(S_Date - E_Date) / 1000 / 60 / 60 / 24);
+		//把相差的毫秒数转换为天数
+		return iDays;
+	}
+}
+
+//比较两个日期的大小
+function compareDate(sDate1, sDate2) {
+	if (sDate1 != "" && sDate2 != "") {
+		var startDate = sDate1.replace(/-/g, "/");
+		var endDate = sDate2.replace(/-/g, "/");
+		var S_Date = new Date(Date.parse(startDate));
+		var E_Date = new Date(Date.parse(endDate));
+		if (S_Date >= E_Date) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+}
+
+// 生成随机数
+function getRandomString(length, base){
+	if(base == null || base == ""){
+		base = "qwertyuioplkjhgfdsazxcvbnm123654789";
+	}
+	
+	var result = "";   
+	var strLength = parseInt(base.length);
+	for (var i = 0; i < length; i++) {     
+		var number = Math.floor(Math.random() * strLength);    
+		result += base.charAt(number);     
+	}     
+	return result;
+}
+
+//计算两经纬度间的直线距离-------------------------------------------
+function getRad(d){
+    return d*PI/180.0;
+}
+var EARTH_RADIUS = 6378137.0;    //单位M
+var PI = Math.PI;
+
+//返回单位为米（低精度）
+function getGreatCircleDistance(lat1,lng1,lat2,lng2){
+    var radLat1 = getRad(lat1);
+    var radLat2 = getRad(lat2);
+    
+    var a = radLat1 - radLat2;
+    var b = getRad(lng1) - getRad(lng2);
+    
+    var s = 2*Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) + Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+    s = s*EARTH_RADIUS;
+    s = Math.round(s*10000)/10000.0;
+            
+    return s;
+}
+//返回单位为米（高精度）
+function getFlatternDistance(lat1,lng1,lat2,lng2){
+    var f = getRad((lat1 + lat2)/2);
+    var g = getRad((lat1 - lat2)/2);
+    var l = getRad((lng1 - lng2)/2);
+    
+    var sg = Math.sin(g);
+    var sl = Math.sin(l);
+    var sf = Math.sin(f);
+    
+    var s,c,w,r,d,h1,h2;
+    var a = EARTH_RADIUS;
+    var fl = 1/298.257;
+    
+    sg = sg*sg;
+    sl = sl*sl;
+    sf = sf*sf;
+    
+    s = sg*(1-sl) + (1-sf)*sl;
+    c = (1-sg)*(1-sl) + sf*sl;
+    
+    w = Math.atan(Math.sqrt(s/c));
+    r = Math.sqrt(s*c)/w;
+    d = 2*w*a;
+    h1 = (3*r -1)/2/c;
+    h2 = (3*r +1)/2/s;
+    
+    return d*(1 + fl*(h1*sf*(1-sg) - h2*(1-sf)*sg));
+}
+//--------------------------------------------------------------
+//保留n位小数
+function toFixed(obj, num){
+	if(typeof(obj) == "string"){
+		obj = parseFloat(obj.valueOf());
+	}
+	var num = new Number(num);
+	if(num >= 0 && num <= 20){
+		return obj.toFixed(num);
+	}else{
+		return obj.toFixed(2);
+	}
+}

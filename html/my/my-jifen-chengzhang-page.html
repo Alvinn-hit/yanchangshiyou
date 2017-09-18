@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eee;
+			}
+			.chengzhang-box{
+			  background: #FFFFFF;
+			  padding: 10px;		  
+			}
+			.chengzhang-box p{
+			  font-size: 0.8rem;
+			  margin: 5px 0px 5px 0px;
+			}
+			.chengzhang-box b{
+			 color: #E42129;
+			}
+			.chengzhang-box1{
+			  margin-top:20px;
+			  background: #FFFFFF;
+			  padding: 10px;
+			}
+			.chengzhang-box1 h2{
+			  color: #E42129;
+			  margin-bottom: 20px;
+			}
+			.chengzhang-box1 h2 img{
+			  width:33px;
+			  vertical-align: middle;
+			}
+			.chengzhang-box1 p img{
+			  width:20px;
+			  vertical-align: bottom;
+			  margin-right: 5px;
+			}
+			.chengzhang-box1 p{
+			  font-size: 0.8rem;
+			  margin: 10px 0px 10px 0px;
+			}
+			.chengzhang-box1 span{
+			  display: inline-block;
+			  min-width:80px;
+			  color: #E42129;
+			}
+			.level-span{
+			  color: #E42129;
+			  margin-left:10px;
+			}
+			.level-span img{
+			  width: 20px;
+			  vertical-align: bottom;
+			}
+			.imgbox img{
+			  width: 50px;
+			  height: 50px;
+			  margin-right: 10px;
+			  margin-top: 10px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content" id="all" style="display: none">
+             <div class="chengzhang-box aui-border-t aui-border-b">
+	              <div class="imgbox aui-pull-left" id="memberImg" style="display: none">
+	               <img src="../../image/default/myImg.jpg" datasrc="{baseURL}/{operatorImgpath}" class="imgClass">
+	              </div>
+	              <div id="myScore" style="display: none">
+		               <p>{memberName} <span class="level-span"><img src="{baseURL}/{gradeImgUrl}" />{gradeName}</span></p>
+		               <p>当前积分值：<b>{usageScore}分</b></p>
+		               <p>当前积分成长值：<b>{gradeValue}分</b></p>
+		               <p>您距离升级还有<b>{surplus}</b>个成长值</p>
+	               </div>
+             </div>
+             
+             <div class="chengzhang-box1 aui-border-t aui-border-b">
+               <h2><img src="../../image/vip.jpg">会员积分说明</h2>
+               	<div id="integralGrade" style="display: none">
+               		<p><b class="aui-margin-r-10"><img src="{baseURL}/{gradeUrl}" />{gradeName}：</b><span>{gradeSvalue}-{gradeEvalue}分</span><b class="aui-margin-l-15 aui-margin-r-10">成长速度：</b>{gradeConvertratio}倍积分</p>
+               </div>
+             </div>
+        </div>  
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.raty.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			//沉浸式
+	     	var headbar=$api.byId('headbar');
+	    	$api.fixIos7Bar(headbar);
+	    	queryMyIntegration();
+		}
+		  function queryMyIntegration(){
+		  	// 头像显示
+			getWorkBookHtmlByList($api.getStorage("operator"),'memberImg');
+			//列表图片缓存
+			imageCache($api.dom(".imgClass"));
+		  
+		  	var ajaxObject = new Object();
+		  	ajaxObject.isHideProgress = '1';
+		  	ajaxObject.url = "/appIntegralUsageAjax!queryMyIntegralUsageViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.onSuccessFunction = function(data) {
+				var usageViewVo = data.usageViewVo;
+				var gradeViewVo = data.gradeViewVo;
+				if(gradeViewVo && gradeViewVo != null ){
+					usageViewVo.gradeImgUrl = gradeViewVo.gradeUrl;							//等级图片
+					
+					var gradeEvalue = parseInt(gradeViewVo.gradeEvalue+1); 		// 下一个等级下限值 +1
+					var gradeValue = parseInt(usageViewVo.gradeValue);			// 当前会员积分成长值 
+					usageViewVo.surplus = parseInt(gradeEvalue - gradeValue);	// 距离升级的值
+					
+				}
+				getWorkBookHtmlByList(usageViewVo,'myScore');
+				queryGradeByPage();
+			}
+		  	baseAjax(ajaxObject);
+		  }
+
+		// 查询积分等级
+		function queryGradeByPage(){
+			var ajaxObject = new Object();
+			ajaxObject.isShowProgress = '1';
+		  	ajaxObject.url = "/appIntegralGradeAjax!queryGradeByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.onSuccessFunction = function(data) {
+				getWorkBookHtmlByList(data.gradeViewVoList,'integralGrade');
+				
+				$("#all").show();
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

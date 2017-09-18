@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-t-10">
+    <ul class="aui-list aui-media-list">
+				<li class="aui-list-item" id="myScoreList" style="display: none">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title">
+									{ruleName}
+									<div class="aui-list-item-text aui-ellipsis-2">
+										{turnoverDateStr}
+									</div>
+								</div>
+								<div class="aui-list-item-right aui-font-size-18">
+									{turnoverScore}
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+      </div>  
+	</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../script/page.js"></script>
+<script type="text/javascript" src="../../script/system.js"></script>
+<script>
+	apiready = function() {
+		api.addEventListener({
+			name : 'scrolltobottom',
+			extra : {
+				threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+			}
+		}, function(ret, err) {
+			nextPage(0);
+			queryMyScoreList();
+		});
+		api.setRefreshHeaderInfo({
+			visible : true,
+			bgColor : '#FFFFFF',
+			textColor : '#ccc',
+			textDown : '下拉刷新',
+			textUp : '松开刷新',
+			textLoading : '加载中',
+			showTime : true
+		}, function(ret, err) {
+			prevPage();
+			queryMyScoreList();
+		});
+		
+		queryMyScoreList();
+	}
+	
+	function queryMyScoreList(){
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appIntegralTurnoverAjax!queryIntegralTurnoverByPage.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.onSuccessFunction = function(data) {
+			var data = data.turnoverViewVoList;
+			getWorkBookHtmlByList(data,'myScoreList');
+			api.refreshHeaderLoadDone();
+		}
+		baseAjax(ajaxObject);
+	}
+	
+</script>
+	
+</html>

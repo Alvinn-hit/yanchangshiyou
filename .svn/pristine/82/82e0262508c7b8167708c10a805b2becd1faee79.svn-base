@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			/*弹层*/
+			.zhifu-box {
+				position: relative;
+				overflow: hidden;
+				background: #fff;
+			}
+			.zhifu-box h1 {
+				font-size: 0.875rem;
+				text-align: center;
+				margin: 15px 0px 15px 0px;
+			}
+			.closeBox {
+				position: absolute;
+				right: 5px;
+				top: 15px;
+			}
+			.closeBox img {
+				width: 24px;
+			}
+			.add-zhifu {
+				margin: 15px 0px 15px 0px;
+				text-align: center;
+				font-size: 0.875rem;
+			}
+			.add-zhifu img {
+				vertical-align: middle;
+				width: 21px;
+			}
+			.checkInput {
+				position: absolute;
+				right: 10px;
+				top: 20px;
+			}
+			 /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-18">
+									订单金额
+								</div>
+								<div class="aui-list-item-right aui-font-size-18 red" id="price">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner" onclick="aliPayPre();" id="aliPay">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu1.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									支付宝
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								推荐支付宝用户使用
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item aui-list-item-middle" >
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu3a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									银联wap
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								支持储蓄卡
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/aliPay.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script>
+		var voucheViewVo = new Object();
+		apiready = function() {
+			var price = toFixed(api.pageParam.price);
+			$("#price").html('￥' + price);
+		}
+	
+		function toPay(payType){
+			api.openWin({
+				name : 'preorder-pay-password',
+				url : 'preorder-pay-password.html',
+				reload : true,
+				pageParam : {
+					'bonusAccountViewVo' : api.pageParam.bonusAccountViewVo,
+					'buyNumber' : api.pageParam.buyNumber,
+					'price' : api.pageParam.price,
+					'payType' : payType,
+				},
+			});
+		}
+		function aliPayPre(dom){
+			//禁用支付按钮
+			if($("#aliPay").attr("disabled") == "disabled"){
+				return;
+			}
+			$("#aliPay").attr("disabled","disabled");
+			//购买预购券
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPreVoucherAjax!saveSupplementPreVoucher.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.params['bonusAccountViewVo.cardCode'] = api.pageParam.bonusAccountViewVo.accountCode;
+			ajaxObject.params['payType'] = '7';
+			ajaxObject.params['bonusAccountViewVo.accountBmoney'] = api.pageParam.buyNumber;
+			ajaxObject.onSuccessFunction = function(data) {
+				voucheViewVo.payFunction = success;
+				voucheViewVo.failFunction = fail;
+				voucheViewVo.mgpriceBatch = data.accountCode;
+				voucheViewVo.flag = "3";
+			
+				aliPay(voucheViewVo);
+				
+			}
+			baseAjax(ajaxObject);
+		}
+		function success(){
+			layer.open({
+			    content: '支付成功',
+			    btn: '我知道了',
+			    yes: function(index){
+			      api.sendEvent({
+	               		name:'flushPre'
+	                });
+					api.closeToWin({
+						name : 'preorder-list-head'
+					});
+			    }
+			  });
+		}
+		
+		function fail(){
+			//取消禁用
+			$("#aliPay").removeAttr("disabled");
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPreVoucherAjax!cancelSupplementPreVoucher.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.params.accountCode = api.pageParam.bonusAccountViewVo.accountCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				api.toast({
+				    msg: '支付未完成',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

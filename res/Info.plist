@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+	<dict>
+	    <key>NSLocationWhenInUseUsageDescription</key>
+	    <string>延长e加油会在打开APP后持续使用GPS定位服务，继续使用GPS运行后台可以大大减少电池寿命。</string>
+	    <key>NSLocationAlwaysUsageDescription</key>
+	    <string>延长e加油会在打开APP后持续使用GPS定位服务，继续使用GPS运行后台可以大大减少电池寿命。</string>
+	</dict>
+</plist>

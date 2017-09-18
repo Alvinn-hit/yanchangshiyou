@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			html, body {
+				background: #F5F5F5;
+			}
+			/*列表*/
+			.purple {
+				color: #bf6cef;
+			}
+			.youquan-list-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+				background-size: 16px;
+				font-size: 0.875rem;
+				min-height: 120px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+				align-items: center;/*垂直居中*/
+                justify-content: center;/*水平居中*/
+			}
+			.list-left-all {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				border-right: 1px dashed #ddd;
+			}
+			.list-right-all {
+				width: 6rem;				
+				padding: 0px 5px 0px 5px;
+			}
+			.list-right-all span {
+				text-align: center;
+				display: block;
+				margin-top: 5px;
+			}
+			.list-left-top {
+				height: 40px;
+				padding: 2px 0px 7px 10px;
+				color: #000;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-left-top img {
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.list-left-bottom {
+				padding: 6px 0px 4px 10px;
+				overflow: hidden;
+			}
+			.list-left-bottom img {
+				width: 115px;
+				height: 80px;
+				float: left;
+			}
+			.card1 .use-btn {
+				border: 1px solid #6612fb;
+				border-radius: 10px;
+				background: #bf6cef;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card1 .overtime-btn {
+				border: 1px solid #444;
+				border-radius: 10px;
+				background: #666;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card1 .much-box {
+				float: left;
+				margin-left: 5px;
+				margin-top: 10px;
+			}
+			.card1 .much-box b {
+				font-size: 1.5rem;
+				color: #bf6cef;
+			}
+			/*列表*/
+			.card2 img {
+				-webkit-filter: grayscale(100%); 
+				-moz-filter: grayscale(100%); 
+				-ms-filter: grayscale(100%); 
+				-o-filter: grayscale(100%); 
+				filter: grayscale(100%); 
+				filter: gray;
+			}
+			.card2 .much-box {
+				float: left;
+				margin-left: 5px;
+				margin-top: 10px;
+			}
+			.card2 .much-box b {
+				font-size: 1.5rem;
+				color: #666;
+			}
+			.color666 { color: #666;}
+			.overdue {
+				position: absolute;
+				top: 20px;
+				left: 180px;
+				z-index: 9;
+				width: 60px;
+				height: 60px;
+			}
+			.card2 .use-btn {
+				border: 1px solid #444;
+				border-radius: 10px;
+				background: #666;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card2 .purple {
+				color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content-padded" id="myGroupVoucher" style="display: none;">
+			<div class="youquan-list-box {bonusRule10}" style="position:relative;" >
+				<div class="list-left-all " onclick="youquanContent('{accountCode}','{bonusRule10}')">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">{cardName}
+					</div>
+					<div class="list-left-bottom">
+						<img src="../../image/default/quan.jpg" datasrc="{baseURL}/{cardImgPath}" class="imgClass">
+						<div class="much-box">
+							剩余：
+							<br>
+							<b>{accountSmoney}{bonusRule5Str}</b>
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all">
+					<span class="aui-font-size-14 purple">{bonusRule2}{bonusRule1}</span>
+					<span class="aui-font-size-14 purple">{accountMoney}{bonusRule5Str}</span>
+					<span class="aui-font-size-14">有效日期截止</span>
+					<span class="aui-font-size-14">{dataEdateStr}</span>
+					<span onclick="zhifubox('{accountCode}','{bonusRule10}')" class="use-btn">去使用</span>
+				</div>
+				{bonusRule9Str}
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/system.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryMyGroupVoucher();
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryMyGroupVoucher(1);
+			});
+			queryMyGroupVoucher();
+		}
+		// 查询我的团购券
+		function queryMyGroupVoucher(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGroupVoucherAjax!queryMySupplementGroupVoucherByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = " dataBillstate in (2,10) and accountSmoney > 0";
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			// 查询状态为2可用团购券和10待成团的油券
+			ajaxObject.onSuccessFunction = function(ret) {
+				var data = ret.bonusAccountViewVoList;
+				for (var i = 0; i < data.length; i++) {
+					if(data[i].cardName.length > 15){
+						data[i].cardName = data[i].cardName.substring(0,15)+"...";
+					}
+					data[i].dataEdateStr = data[i].dataEdateStr.substring(0, 10);
+					// 处理不同状态的样式
+					if(data[i].dataBillstate == 10){
+						data[i].bonusRule9Str = '<img src="../../image/overdue.png" class="overdue">';
+					}else{
+						data[i].bonusRule9Str = '';
+					}
+				}
+				getWorkBookHtmlByList(data, 'myGroupVoucher');
+				//列表图片缓存
+				$(".imgClass").each(function(index){
+					imageCache(this);
+				});
+				api.refreshHeaderLoadDone();
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//  查看详情
+		function youquanContent(accountCode, bonusRule10) {
+			if(bonusRule10 == 'card1'){
+				api.openWin({
+					name : 'my-youquan-content-head',
+					url : 'my-youquan-content-head.html',
+					reload : true,
+					pageParam : {
+						"accountCode" : accountCode
+					}
+				});
+			}
+		}
+
+		// 去使用
+		function zhifubox(accountCode, bonusRule10) {
+			if(bonusRule10 == 'card1'){
+				var ajaxObject = new Object();
+				ajaxObject.url = "/appGroupVoucherAjax!queryGroupVoucherGasStation.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params.accountCode = accountCode;
+				ajaxObject.onSuccessFunction = function(data) {
+					var gasStationStr = data.gasStationStr;
+					api.openWin({
+						name : 'youzhan-head',
+						url : '../addoil/youzhan-head.html',
+						reload : true,
+						pageParam : {
+							gasStationStr : gasStationStr,
+						}
+					});
+				}
+				baseAjax(ajaxObject);
+			}
+		}
+	</script>
+</html>

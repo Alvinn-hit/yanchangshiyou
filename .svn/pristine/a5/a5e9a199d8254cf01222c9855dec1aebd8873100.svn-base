@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			/*列表*/
+			.aui-list-item-label-icon img{
+			  width: 35px;
+			}
+           .level-img{
+             width: 20px;
+             vertical-align: middle;
+           }
+           #myScore span{
+             display: block;
+             width: 100%;
+             margin: 5px 0px 5px 0px;
+           }
+           #myScore b{
+             display:inline-block;
+             width: 80px;
+             text-align: right;
+           }
+		</style>
+	</head>
+	<body>
+			 <div class="aui-content aui-margin-b-15">
+		       <ul class="aui-list">
+		       
+		        <li onclick="jifenContent()" class="aui-list-item">
+		         <div class="aui-list-item-label-icon">
+		                  <img src="../../image/jifen1.jpg">
+		                </div> 
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+		                                                      
+		                我的积分
+		            </div>
+		        </li>   
+		        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+		            <div id="myScore" style="display: none">		                                                      
+		                <span><b>积分：</b>{usageScore}分</span> <span><b>积分成长值：</b>{gradeValue}分    </span> <span><b>会员等级：</b><!-- <img class="level-img" src="../../image/level1.jpg"> -->{gradeName}</span>
+		            </div>
+		        </li>         
+		    </ul>
+		</div>
+	
+		<div class="aui-content aui-margin-b-15">
+       <ul class="aui-list">
+        <!--<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+         <div class="aui-list-item-label-icon">
+                  <img src="../../image/jifen2.jpg">
+                </div> 
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">积分商城</div>
+            </div>
+        </li>-->
+        <li  onclick="chengzhang()" class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+        <div class="aui-list-item-label-icon">
+                  <img src="../../image/jifen3.jpg">
+                </div> 
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">我的成长值</div>
+            </div>
+        </li>
+        <li onclick="guize()" class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+        <div class="aui-list-item-label-icon">
+                  <img src="../../image/jifen4.jpg">
+                </div> 
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">积分规则</div>
+            </div>
+        </li>
+    </ul>
+</div>
+	</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../script/page.js"></script>
+<script>
+apiready = function(){
+	queryMyIntegration()
+}
+  function queryMyIntegration(){
+  	var ajaxObject = new Object();
+  	ajaxObject.url = "/appIntegralUsageAjax!queryMyIntegralUsageViewVo.htm";
+	ajaxObject.params = new Object();
+	ajaxObject.onSuccessFunction = function(data) {
+		var data = data.usageViewVo;
+		getWorkBookHtmlByList(data,'myScore');
+	}
+  	baseAjax(ajaxObject);
+  }
+    
+  function guize(){
+     api.openWin({
+         name: 'my-jifen-guize-head',
+         url: 'my-jifen-guize-head.html'
+     });
+  }
+  
+  function jifenContent(){
+     api.openWin({
+         name: 'my-jifen-jilu-head',
+         url: 'my-jifen-jilu-head.html'
+     });
+  }
+  
+  function chengzhang(){
+    api.openWin({
+         name: 'my-jifen-chengzhang-head',
+         url: 'my-jifen-chengzhang-head.html'
+     });
+  }
+</script>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img{
+		  color:#fff;
+		  line-height: 45px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		 }
+		  /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+
+    </style>
+</head>
+<body>
+    <div id="headbar"  class="head-bar">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                           意见反馈
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center">
+                                
+       </div>
+      </div>                                                          
+    </div>
+     
+     <div class="aui-content-padded">
+       <textarea id="idea" rows="5" cols="20"></textarea>
+     </div>
+    
+    <div class="btn-box aui-margin-t-15">
+		<div class="aui-btn aui-btn-block aui-btn-danger"  onclick="commit()">
+			提交
+		</div>
+	</div>
+</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../layer/layer.js"></script>
+	<script type="text/javascript">
+	apiready = function() {
+		var headbar = $api.byId('headbar');
+		$api.fixIos7Bar(headbar);
+	};
+	
+		//提交意见反馈
+		function commit() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appFeedbackAjax!saveFeedbackMessage.htm";
+			ajaxObject.params = new Object();
+			var messageContent = $("#idea").val();
+			var messageTitle = "意见反馈";
+			ajaxObject.params["portalMessageViewVo.messageTitle"] = messageTitle;
+			ajaxObject.params["portalMessageViewVo.messageContent"] = messageContent;
+				ajaxObject.onSuccessFunction = function(ret) {
+					layer.open({
+					    content: '您的意见已提交',
+					    btn: '我知道了',
+					    yes: function(index){
+					      api.closeWin();
+					    }
+					  });
+				}
+			if (checkMessage()) {
+				baseAjax(ajaxObject);
+			}
+		}	
+		//提交校验
+		function checkMessage() {
+			var messageContent = $("#idea").val();
+			if (messageContent == '' || messageContent == '请输入反馈内容') {
+				api.toast({
+					msg : '请输入反馈内容',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
+</html>

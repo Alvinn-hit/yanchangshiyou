@@ -1,0 +1,11 @@
+//银联支付
+function unionPay(obj){
+	var cnPay = api.require('constructionPay');
+	
+	cnPay.pay({
+		tn: obj,
+		mode: '01'
+	}, function(ret){
+	   api.alert({msg:JSON.stringify(ret)});
+	});
+}

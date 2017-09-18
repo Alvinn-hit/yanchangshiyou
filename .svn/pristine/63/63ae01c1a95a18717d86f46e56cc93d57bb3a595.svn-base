@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html,body{
+        background: #F5F5F5;
+      }
+     .btn-box{
+		  width:100%;
+		  background: #fff;
+		  height: 50px;
+		  text-align: center;
+		  padding-top: 10px;
+		}
+		.btn-box .aui-btn{
+		  width: 95%;
+		  padding: 5px;
+		  font-size: 1rem;
+		}
+      /*列表*/     
+    .purple{
+       color: #bf6cef;   
+    }
+      .youquan-list-box{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+			background-size:16px;
+			font-size: 0.875rem;
+			height: 120px;	
+			border-radius: 5px;	
+			margin-bottom: 10px;
+      }     
+       .list-left-all{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .list-right-all{
+           width: 6rem;
+           border-left:1px dashed #ddd;
+           padding: 0px 5px 0px 5px;
+      }
+      .list-right-all span{
+        text-align: center;
+        display: block;
+        margin-top: 5px;
+      }
+      
+      .list-left-top{
+          height: 40px;
+          padding: 2px 0px 7px 10px;
+          color:#000;
+          border-bottom: 1px solid #ddd;
+      }
+      .list-left-top img{
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 5px;
+        
+      }
+      .list-left-bottom{
+        padding: 6px 0px 4px 10px; 
+        overflow: hidden;
+      }
+      .list-left-bottom img{
+        width: 100px;
+         float: left;
+      }
+      .card1 .use-btn{
+        border:1px solid #6612fb;
+        border-radius: 10px;
+        background: #bf6cef;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card1 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card1 .much-box b{
+        font-size: 1.5rem;
+        color: #bf6cef;
+      }     
+       /*列表*/
+    </style>
+</head>
+<body>
+    <div class="aui-content-padded">
+  <div class="youquan-list-box card1" id="groupVoucherCon" style="display: none">
+  	  <input type="hidden" value="{accountCode}" id="accountCode">
+      <div class="list-left-all ">
+       <div class="list-left-top">
+         <img src="../../image/logo-icon01.png">{cardName}
+       </div>
+       <div class="list-left-bottom">
+         <img src="../../image/default/quan.jpg" datasrc="{baseURL}/{cardImgPath}" class="imgClass">
+         <div class="much-box"> 
+                                                 剩余：<br>
+            <b>{accountSmoney}{bonusRule5Str}</b>                             
+         </div>
+       </div>
+      </div>
+      <div class="list-right-all">
+      <span class="aui-font-size-14 purple">{bonusRule2}{bonusRule1}</span>
+      <span class="aui-font-size-14 purple">{accountMoney}{bonusRule5Str}</span>
+        <span class="aui-font-size-14">有效日期截止</span>
+        <span class="aui-font-size-14">{dataEdateStr}</span>
+        <span onclick="zhifubox()" class="use-btn">去使用</span>
+      </div>
+   </div>
+</div>
+   <div class="aui-content ">
+    <ul class="aui-list">      
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title yellow">请确认并认真填写如下信息</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                 	<input type="text" placeholder="请输入赠送手机号" id="phone">
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                 <input type="text" placeholder="请输入备注信息">
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+
+<div onclick="nextpage()" class="btn-box">
+     <div class="aui-btn aui-btn-danger" >下一步</div>
+    </div>
+
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script>
+ apiready = function(){
+ 	var accountCode = api.pageParam.accountCode;
+ 	var voucherType = api.pageParam.voucherType;
+ 	queryGroupVoucherCon(accountCode,voucherType);
+ 
+ }
+ 
+   // 查询团购券、预购券详情
+  function queryGroupVoucherCon(Code,type){
+  	var ajaxObject = new Object();
+	ajaxObject.url = "/appGroupVoucherAjax!querySupplementGroupVoucherViewVo.htm";
+	if(type == "3"){
+		ajaxObject.url = "/appPreVoucherAjax!querySupplementPreVoucherViewVo.htm";
+	}
+	ajaxObject.params = new Object();
+	ajaxObject.params.accountCode = Code;
+	ajaxObject.onSuccessFunction = function(data) {
+		var data = data.bonusAccountViewVo;
+		bonusAccountViewVo = data;
+		getWorkBookHtmlByList(data,'groupVoucherCon');
+		//列表图片缓存
+		$(".imgClass").each(function(index){
+			imageCache(this);
+		});
+	}
+  		baseAjax(ajaxObject);
+ }
+ 
+ function nextpage(){
+   var accountCode = $("#accountCode").val();
+   var phone = $("#phone").val();
+   if(phone == "" || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)){
+   	api.toast({msg:'请输入被赠送人正确的手机号'});
+   	return false;
+   }
+   api.openWin({
+	   name: 'my-zhuanzeng-next-page',
+	   url: 'my-zhuanzeng-next-page.html',
+	   reload : true,
+	   pageParam:{
+	    	"accountCode" : accountCode,
+	    	"voucherType" : api.pageParam.voucherType,
+	    	"phone" : phone
+	    }
+   });
+ }
+  // 去使用
+  function zhifubox(){
+	api.openWin({
+		name : 'youzhan-head',
+		url : '../addoil/youzhan-head.html',
+		reload : true
+	});
+  }
+</script>
+</html>

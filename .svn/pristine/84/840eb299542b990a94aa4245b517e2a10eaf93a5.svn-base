@@ -1,0 +1,150 @@
+function baseAjax(ajaxObject){
+	var urlPath = $api.getStorage("baseURL") + "/admin/";
+	var url = urlPath + ajaxObject.url;
+	var method = "post";
+	if(ajaxObject.method != ""){
+		method = ajaxObject.method;
+	}
+	
+	var dataType = "json";
+	if(ajaxObject.dataType != ""){
+		dataType = ajaxObject.dataType;
+	}
+	
+	var tokenId = $api.getStorage("hz_tokenId");
+	if(!ajaxObject.params || ajaxObject.params == null){
+		ajaxObject.params = new Object();
+	}
+	
+	ajaxObject.params.tokenId = tokenId;
+	ajaxObject.params.limit = $api.getStorage("limit");
+	ajaxObject.params.offset = $api.getStorage("offset");
+	var data = ajaxObject.params;
+	var onSuccessFunction = ajaxObject.onSuccessFunction;
+	
+	if(!ajaxObject.isShowProgress || ajaxObject.isShowProgress == ""){
+		api.showProgress({style: 'default', animationType: 'fade', title: '加载中...', text: '',modal: false});
+	}
+
+	api.readFile({
+	    path: 'widget://dataconfig/data_config.txt'//配置文件路径
+	}, function(ret, err) {
+	    if (ret.status) {
+	        var fileData = ret.data;
+	        var urltemp = ajaxObject.url;
+	        var index = fileData.indexOf(urltemp);
+	        if(index != -1){//配置文件存在此路径
+	        	index = index++;
+	        	fileData = fileData.substring(index);
+	        	var filePath = fileData.substring(fileData.indexOf('=') + 1,fileData.indexOf(','));
+	        	var ABSpath = 'widget://' + filePath;
+	        	api.readFile({
+				    path: ABSpath
+				}, function(ret, err) {
+					if(!ajaxObject.isHideProgress || ajaxObject.isHideProgress == ""){
+						api.hideProgress();
+					}
+				    if (ret.status) {
+				    	var data = JSON.parse(ret.data);
+				        onSuccessFunction(data);
+				    } else {
+				        api.toast({msg:err.msg,duration:2000,location:'center'});
+				    }
+				});
+	        }else {//不存在此路径则正常提交
+	        	api.ajax({
+					url: url,
+				    method:method,
+				    dataType:dataType,
+				    data:{values:data},
+				    timeout:120,
+				    charset:"utf-8"
+			    },function(ret,err){
+			   		if(!ajaxObject.isHideProgress || ajaxObject.isHideProgress == ""){
+						api.hideProgress();
+					}
+			    	if(err){
+			    		// android
+			    		if(err.code == 0){
+				    		api.toast({msg:"连接错误",duration:2000,location:'center'});
+				    	}else if(err.code == 1){
+				    		api.toast({msg:"连接超时",duration:2000,location:'center'});
+				    	}else if(err.code == 2){
+				    		api.toast({msg:"授权错误",duration:2000,location:'center'});
+				    	}else if(err.code == 3){
+				    		api.toast({msg:"数据类型错误",duration:2000,location:'center'});
+				    	}else if(!ret || !ret.result || ret.result == null || ret.result == ""
+				    				|| !ret.data || ret.data == null || ret.data == ""){
+				    		api.toast({msg:"数据异常",duration:2000,location:'center'});
+				    	}else if(ret.state == ret.login){
+				    		api.openWin({
+								name : 'login',
+								url : 'widget://login.html'
+							});
+						}else if(ret.state != ret.success){
+							api.toast({msg:ret.msg,duration:2000,location:'center'});
+						}else{
+							if(ret.totalCount){
+								$api.setStorage("totalCount", ret.totalCount);
+							}
+							onSuccessFunction(ret);
+						}
+			    	}else{
+			    		// ios
+			    		if(!ret){
+			    			api.toast({msg:"数据异常",duration:2000,location:'center'});
+			    		}else if(ret.state == ret.login){
+				    		api.openWin({
+								name : 'login',
+								url : 'widget://login.html'
+							});
+						}else if(ret.state != ret.success){
+							api.toast({msg:ret.msg,duration:2000,location:'center'});
+						}else{
+							if(ret.totalCount){
+								$api.setStorage("totalCount", ret.totalCount);
+							}
+							onSuccessFunction(ret);
+						}
+			    	}
+			    });
+	        	
+	        }
+	    } else {
+	        api.toast({msg:err.msg,duration:2000,location:'center'});
+	    }
+	});	
+}
+
+function setLoginInfo(ret){
+	// 默认自动登录
+	$api.setStorage("isLogin", "1");
+	$api.setStorage("isAutoLogin", "1");
+}
+
+function execScriptFrame(name, frameName){
+	var jsfun = 'reloadFrame();';
+	api.execScript({
+		name: name,
+	    frameName: frameName,
+	    script: jsfun
+	});
+}
+
+function execScriptWin(name){
+	var jsfun = 'reloadFrame();';
+	api.execScript({
+		name: name,
+	    script: jsfun
+	});
+}
+
+function reloadFrame(){
+	location.reload();
+}
+
+/**判断是否为空**/
+function isEmpty(value, trim) {
+    return value === undefined || value === null || value.length === 0 || (trim && $.trim(value) === '');
+};
+

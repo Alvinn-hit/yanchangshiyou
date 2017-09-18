@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875 rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875 rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			/*弹出层*/
+			.aui-list .aui-list-item:last-child:after {
+				height: 1px;
+			}
+			.aui-list {
+				font-size: 0.875 rem;
+			}
+			.aui-popup-top-left {
+				width: 95%;
+			}
+			.aui-list-item-inner {
+				justify-content: center !important;
+				-webkit-justify-content: center;
+				min-height: 3.0 rem !important;
+			}
+			.aui-popup-top-left {
+				top: 40px;
+			}
+			.aui-popup-arrow.aui-popup-arrow1 {
+				left: 2rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow2 {
+				left: 10rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow3 {
+				left: 16rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow4 {
+				left: 22rem;
+			}
+			.active-word {
+				color: #FF7F00;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="change-box-all">
+			<div class="aui-col-xs-3 aui-text-center change-box" aui-popup-for="top-left">
+				品牌<span class="arrow-ico"></span>
+			</div>
+			<div class="aui-col-xs-3 aui-text-center change-box" aui-popup-for="top-left1">
+				油品<span class="arrow-ico"></span>
+			</div>
+			<div class="aui-col-xs-3 aui-text-center change-box" aui-popup-for="top-left2">
+				促销<span class="arrow-ico"></span>
+			</div>
+			<div class="aui-col-xs-3 aui-text-center change-box" aui-popup-for="top-left3">
+				综合榜<span class="arrow-ico"></span>
+			</div>
+		</div>
+		<div id="gasList" style="display: none;">
+			<div class="list-box-flex" onclick="openContent('{memberCode}')">
+				<div class="list-box1-td1 td-img">
+					<img src="{baseURL}/{tginfoPicUrl}"></img>
+				</div>
+				<div class="list-box1-td2" >
+					<h1 class="list-title">{tginfoName}</h1>
+					<div class="star-all">
+						<span class="star-span"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> </span>
+						<span>已售:{tginfoVisitnum}单</span>
+					</div>
+					<div class="list-line">
+						<div class="list-line-td">
+							<span class="ico-span"> <img src="../../image/yz-ico2.jpg">预购 </span>
+						</div>
+						<div class="list-line-td">
+							<span class="ico-span1"> <img src="../../image/yz-ico3.jpg">团购 </span>
+						</div>
+						<div class="list-line-td">
+							<span>{tginfoContactPicsize}</span>
+						</div>
+					</div>
+					<div class="list-line">
+						<span class="list-dizhi"> <img src="../../image/yz-ico4.jpg">{tginfoEtmurl}</span>
+					</div>
+				</div>
+				<div class="list-box1-td3 td-img1 aui-margin-t-15">
+					<img src="../../image/yz-ico1.jpg"></img>
+					<span class="goto">到这去</span>
+					<span>{tginfoStatUser}km</span>
+				</div>
+			</div>
+		</div>
+		<!--弹出层-->
+		<div class="aui-popup aui-popup-top-left" id="top-left">
+			<div class="aui-popup-arrow aui-popup-arrow1"></div>
+			<div class="aui-popup-content">
+				<ul class="aui-list aui-list-noborder ">
+					<li onclick="chooseSellUnit('top-left-li0')" class="aui-list-item" >
+						<div id="top-left-li0" class="aui-list-item-inner aui-list-item-middle">
+							全部
+						</div>
+					</li>
+					<div id="memberViewVoList" style="display: none">
+						<li onclick="chooseSellUnit('{memberCode}')" class="aui-list-item" >
+							<div id='{memberCode}' class="aui-list-item-inner aui-list-item-middle">
+								{memberName}
+							</div>
+						</li>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<!--弹出层1-->
+		<div class="aui-popup aui-popup-top-left" id="top-left1">
+			<div class="aui-popup-arrow aui-popup-arrow2"></div>
+			<div class="aui-popup-content">
+				<ul class="aui-list aui-list-noborder ">
+					<li onclick="queryMembercodeByPartsname('top-left1-li0')" class="aui-list-item ">
+						<div id="top-left1-li0" class="aui-list-item-inner aui-list-item-middle ">
+							全部
+						</div>
+					</li>
+					<div id="pntreeViewVoList" style="display: none">
+						<div class="aui-col-xs-4">
+							<li  class="aui-list-item ">
+								<div class="aui-list-item-inner aui-list-item-middle aui-border-r">
+									{dataStr3}
+								</div>
+							</li>
+						</div>
+						<div class="aui-col-xs-8" id="pntreeNameColor">
+							<li onclick="queryMembercodeByPartsname('{partsnameCode}')" class="aui-list-item ">
+								<div id='{partsnameCode}' class="aui-list-item-inner aui-list-item-middle ">
+									{pntreeName}
+								</div>
+							</li>
+						</div>
+					</div>
+				</ul>
+			</div>
+		</div>
+		<!--弹出层2-->
+		<div class="aui-popup aui-popup-top-left" id="top-left2">
+			<div class="aui-popup-arrow aui-popup-arrow3"></div>
+			<div class="aui-popup-content">
+				<ul class="aui-list aui-list-noborder ">
+					<li onclick="hidePopup()" class="aui-list-item ">
+						<div class="aui-list-item-inner aui-list-item-middle ">
+							团购
+						</div>
+					</li>
+					<li onclick="hidePopup()" class="aui-list-item aui-text-center">
+						<div class="aui-list-item-inner">
+							预购
+						</div>
+					</li>
+					<li onclick="hidePopup()" class="aui-list-item aui-text-center">
+						<div class="aui-list-item-inner">
+							优惠
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<!--弹出层3-->
+		<div class="aui-popup aui-popup-top-left" id="top-left3">
+			<div class="aui-popup-arrow aui-popup-arrow4"></div>
+			<div class="aui-popup-content" id="synthesize">
+				<ul class="aui-list aui-list-noborder ">
+					<li onclick="compreList('restore')" class="aui-list-item ">
+						<div id="restore" class="aui-list-item-inner aui-list-item-middle ">
+							还原
+						</div>
+					</li>
+					<li onclick="compreList('collect')" class="aui-list-item ">
+						<div id="collect" class="aui-list-item-inner aui-list-item-middle ">
+							我的收藏
+						</div>
+					</li>
+					<li onclick="compreList('distance')" class="aui-list-item aui-text-center">
+						<div id="distance" class="aui-list-item-inner aui-list-item-middle ">
+							离我最近
+						</div>
+					</li>
+					<li onclick="compreList('comment')" class="aui-list-item aui-text-center">
+						<div id="comment" class="aui-list-item-inner aui-list-item-middle ">
+							好评榜
+						</div>
+					</li>
+					<li onclick="compreList('hotSell')" class="aui-list-item aui-text-center">
+						<div id="hotSell" class="aui-list-item-inner aui-list-item-middle ">
+							热销榜
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/area.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		//获取搜索的高度赋给列表padding值
+		var map, lon, lat, city;
+		var smemberFullcode, queryStr, queryStr1, synthesize = "";
+		//品牌，油品，油品全部，综合榜
+		apiready = function() {
+			map = api.require('aMap');
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryPortalShopsByPage();
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryPortalShopsByPage(1);
+			});
+			queryPortalShopsByPage();
+			//加载页面数据
+			querySellUnit();
+			//查询品牌
+			queryPntree();
+			//查询油品
+		}
+		//弹出层初始化
+		var popup = new auiPopup();
+		function hidePopup() {
+			popup.hide();
+		}
+
+		function queryPortalShopsByPage(isShow) {
+			//定位
+			map.getLocation({
+				autoStop : true
+			}, function(ret, err) {
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					//获取当前城市名称
+					map.getNameFromCoords({
+						lon : lon,
+						lat : lat
+					}, function(ret, err) {
+						if (ret.status) {
+							city = ret.city;
+							city = city.replace("市", "");
+							var ajaxObject = new Object();
+							ajaxObject.url = "/appPortalShopsAjax!queryPortalShopsByPage.htm";
+							ajaxObject.params = new Object();
+							ajaxObject.params.whereStr = " tginfoEtmurl like '%" + city + "%'";
+							if (isShow) {
+								ajaxObject.isShowProgress = '1';
+								//不显示加载
+							}
+							//顶部查询条件处理
+							if (smemberFullcode == "top-left-li0") {
+							} else if (smemberFullcode && smemberFullcode != "") {
+								ajaxObject.params.whereStr += " and smemberFullcode = '" + smemberFullcode + "' ";
+							}
+							if (queryStr1 == "top-left1-li0") {
+							} else if (queryStr && queryStr != "") {
+								ajaxObject.params.whereStr += " and memberCode in " + queryStr + " ";
+							}
+							if (synthesize == "") {
+							} else if (synthesize == "hotSell") {
+								ajaxObject.params.orderBy = " tginfoVisitnum desc ";
+							}
+							ajaxObject.onSuccessFunction = function(ret) {
+								var count = ret.portalTginfoViewVoList.length;
+								var results = ret.portalTginfoViewVoList;
+								for (var i = 0; i < count; i++) {
+									//计算各油站的距离
+									var tempLon = results[i].tginfoStatUser;
+									//经度
+									var tempLat = results[i].tginfoStatPswd;
+									//纬度
+									if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+										var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+										distance = distance / 1000;
+										results[i].tginfoStatUser = distance.toFixed(1);
+									}
+								}
+								getWorkBookHtmlByList(ret.portalTginfoViewVoList, "gasList");
+								api.refreshHeaderLoadDone();
+							}
+							baseAjax(ajaxObject);
+						}
+					});
+				}
+			});
+		}
+
+		//查销售单位
+		function querySellUnit() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!queryMemberInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = " memberType in (1,5) ";
+			ajaxObject.onSuccessFunction = function(ret) {
+				getWorkBookHtmlByList(ret.memberViewVoList, "memberViewVoList");
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//查询油品油号
+		function queryPntree() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPartsnameAjax!queryPntree.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = "";
+			ajaxObject.onSuccessFunction = function(ret) {
+				var partsnameViewVoList = ret.partsnameViewVoList;
+				if (partsnameViewVoList.length > 0) {
+					var dataStr3 = "";
+					for (var i = 0; i < partsnameViewVoList.length; i++) {
+						if (partsnameViewVoList[i].dataStr3 != dataStr3) {
+							dataStr3 = partsnameViewVoList[i].dataStr3;
+						} else {
+							partsnameViewVoList[i].dataStr3 = "";
+						}
+					}
+				}
+				getWorkBookHtmlByList(ret.partsnameViewVoList, "pntreeViewVoList");
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//根据油号查询会员集合
+		function queryMembercodeByPartsname(partsnameName) {
+			queryStr = "(";
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicPriceAjax!queryMembercodeByPartsname.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.partsnameName = partsnameName;
+			ajaxObject.onSuccessFunction = function(ret) {
+				priceViewVoList = ret.priceViewVoList;
+				for (var i = 0; i < priceViewVoList.length; i++) {
+					queryStr += priceViewVoList[i].memberCode + ","
+				}
+				queryStr = queryStr.substring(0, queryStr.length - 1) + ")";
+				if (priceViewVoList.length == 0 || priceViewVoList == null) {
+					queryStr = "()";
+				}
+			}
+			if (partsnameName == "top-left1-li0") {
+				queryStr1 = "top-left1-li0";
+			} else {
+				queryStr1 = "";
+			}
+			baseAjax(ajaxObject);
+			queryPortalShopsByPage();
+			//样式调整
+			$("#top-left1-li0").attr("class", "aui-list-item-inner aui-list-item-middle ");
+			$("#pntreeNameColor li div").attr("class", "aui-list-item-inner aui-list-item-middle ");
+			document.getElementById(partsnameName).className = "aui-list-item-inner aui-list-item-middle active-word";
+			popup.hide();
+		}
+
+		//综合榜
+		function compreList(code) {
+			$("#synthesize ul li div").attr("class", "aui-list-item-inner aui-list-item-middle ");
+			if (code == "restore") {//还原
+				synthesize = "";
+				$("#restore").attr("class", "aui-list-item-inner aui-list-item-middle active-word");
+			}
+			if (code == "collect") {//收藏
+				synthesize = "collect";
+				$("#collect").attr("class", "aui-list-item-inner aui-list-item-middle active-word");
+			}
+			if (code == "distance") {//离我最近
+				synthesize = "distance";
+				$("#distance").attr("class", "aui-list-item-inner aui-list-item-middle active-word");
+			}
+			if (code == "comment") {//好评
+				synthesize = "comment";
+				$("#comment").attr("class", "aui-list-item-inner aui-list-item-middle active-word");
+			}
+			if (code == "hotSell") {//热销
+				synthesize = "hotSell";
+				$("#hotSell").attr("class", "aui-list-item-inner aui-list-item-middle active-word");
+			}
+			queryPortalShopsByPage();
+			popup.hide();
+		}
+
+		//打开详情页面
+		function openContent(memberCode) {
+			api.openWin({
+				name : 'youzhan-content-head',
+				url : 'youzhan-content-head.html',
+				pageParam : {
+					"memberCode" : memberCode
+				}
+			});
+		}
+
+		function chooseSellUnit(memberCode) {
+			smemberFullcode = memberCode;
+			queryPortalShopsByPage();
+			$("#top-left-li0").attr("class", "aui-list-item-inner aui-list-item-middle");
+			$("#memberViewVoList li div").attr("class", "aui-list-item-inner aui-list-item-middle");
+			document.getElementById(memberCode).className = "aui-list-item-inner aui-list-item-middle active-word";
+			popup.hide()
+		}
+	</script>
+</html>

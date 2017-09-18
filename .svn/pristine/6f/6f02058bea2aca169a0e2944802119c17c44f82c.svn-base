@@ -1,0 +1,196 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>底部导航</title>
+		<link rel="stylesheet" type="text/css" href="./css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/style.css"/>
+		<style>
+		    .overflow-box{
+			  overflow: auto;
+			}
+			#headbar{
+			  background: #E6212A;
+			}
+			header ul li {
+				height: 45px;
+				line-height: 45px;
+				text-align: center;
+				display: none;
+				color: #fff;
+				position: relative;
+				font-size: 16px;		
+			}
+			header ul li.active {
+				display: block;
+			}
+			#footer {
+				background-color: #fff;
+			}
+			#footer ul li {
+				padding-top: 36px;
+				padding-bottom: 4px;
+				background: url() no-repeat center 8px;
+				background-size: auto 25px;
+				text-align: center;
+				font-size: 0.875 rem;
+			}
+			#footer ul li.active {
+				color: #ff0000;
+			}
+			#footer ul li:nth-child(1) {
+				background-image: url(image/icon-1.jpg);
+			}
+			#footer ul li:nth-child(2) {
+				background-image: url(image/icon-2.jpg);
+			}
+			#footer ul li:nth-child(3) {
+				background-image: url(image/icon-3.jpg);
+			}
+			#footer ul li:nth-child(4) {
+				background-image: url(image/icon-4.jpg);
+			}
+			#footer ul li:nth-child(1).active {
+				background-image: url(image/icon-1a.jpg);
+			}
+			#footer ul li:nth-child(2).active {
+				background-image: url(image/icon-2a.jpg);
+			}
+			#footer ul li:nth-child(3).active {
+				background-image: url(image/icon-3a.jpg);
+			}
+			#footer ul li:nth-child(4).active {
+				background-image: url(image/icon-4a.jpg);
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap" class="flex-wrap flex-vertical">
+			<header id="headbar">
+				<ul>
+					<li class="border-b active" >
+						<div  class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								首页
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								附近
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								发现
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								我的
+							</div>
+						</div>
+					</li>
+				</ul>
+			</header>
+			<div id="main" class="flex-con overflow-box"></div>
+			<div id="footer" class="border-t">
+				<ul class="flex-wrap" >
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >
+						首页
+					</li>
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >
+						附近
+					</li>
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >
+						发现
+					</li>
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >
+						我的
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="./script/system.js"></script>
+<script type="text/javascript" src="./script/ajpush.js"></script>
+<script type="text/javascript">
+	apiready = function() {
+		$api.fixIos7Bar($api.byId('headbar'));
+		api.setStatusBarStyle({
+			style : 'light',
+		});
+		//初始化
+		initConfig();
+		ajpush_init();
+		ajpush_addEventListener();
+		funIniGroup();
+	}
+	function funIniGroup() {
+		var eHeaderLis = $api.domAll('header li'), frames = [];
+		for (var i = 0, len = eHeaderLis.length; i < len; i++) {
+			frames.push({
+				name : 'frame' + i,
+				url : 'html/index/frame' + i + '.html',
+				bgColor : 'rgba(0,0,0,.2)',
+				bounces : false
+			})
+		}
+		api.openFrameGroup({
+			name : 'group',
+			scrollEnabled : false,
+			rect : {
+				x : 0,
+				y : $api.byId('headbar').offsetHeight,
+				w : api.winWidth,
+				h : $api.dom('#main').offsetHeight
+			},
+			index : 0,
+			frames : frames
+		}, function(ret, err) {
+		});
+	}
+
+	// 随意切换按钮
+	function randomSwitchBtn(tag) {
+		if (tag == $api.dom('#footer li.active'))
+			return;
+		var eFootLis = $api.domAll('#footer li'), eHeaderLis = $api.domAll('header li'), index = 0;
+		for (var i = 0, len = eFootLis.length; i < len; i++) {
+			if (tag == eFootLis[i]) {
+				index = i;
+			} else {
+				$api.removeCls(eFootLis[i], 'active');
+				$api.removeCls(eHeaderLis[i], 'active');
+			}
+		}
+		$api.addCls(eFootLis[index], 'active');
+		$api.addCls(eHeaderLis[index], 'active');
+		api.setFrameGroupIndex({
+			name : 'group',
+			index : index,
+			reload : true,
+		});
+	}
+</script>

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.back {
+				color: #fff;
+				font-weight: bold;
+				float: left;
+				margin-top: 4px;
+				margin-right: 4px;
+			}
+			.head-box1 {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				height: 45px;
+			}
+			.head-box1-td1 {
+				width: 80px;
+			}
+			.head-box1-td3 {
+				width: 80px;
+			}
+			.head-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.ditu-img img {
+				width: 25px;
+				float: right;
+				margin-top: 10px;
+				margin-right: 5px;
+			}
+			.input-box {
+				text-align: center;
+				color: #fff;
+				line-height: 45px;
+				margin-top: 2px;
+			}
+			.logo-img-box {
+				margin: auto;
+				margin-bottom: 20px;
+				margin-top: 10px;
+			}
+			.logo-img-box h1 {
+				font-weight: bold;
+			}
+			.logo-img-box img {
+				width: 90px;
+				padding-top: 22px;
+			}
+			.next-ul {
+				margin-top: 20px;
+			}
+			.next-ul li {
+				border: 1px solid #FF7F00;
+				overflow: hidden;
+				border-radius: 5px;
+				font-size: 0.875rem;
+				margin-top: 10px;
+			}
+			.aui-list-item-title {
+				font-size: 0.875rem !important;
+			}
+			.aui-list-item-right {
+				font-size: 0.875rem !important;
+			}
+			.aui-list .aui-list-item-inner {
+				min-height: 4rem;
+			}
+			.aui-list .aui-list-item-media {
+				width: 3rem;
+			}
+			.zhuanzheng-ico {
+				width: 23px !important;
+			}
+			.word-success {
+				text-align: center;
+			}
+			.word-success b {
+				color: #FF0000;
+				font-size: 1.2rem;
+				margin: 0px 2px 0px 2px;
+			}
+			.word-box-list {
+				margin-top: 20px;
+			}
+			.word-box-list li {
+				padding-left: 50px;
+				padding-top: 5px;
+				font-size: 0.875rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="headbar"  class="head-bar">
+			<div class="head-box1">
+				<div class="head-box1-td1">
+					<div class="logo-img" onclick="closeWin()">
+						<span class="iconfont icon-jiantou3 back"></span>
+						<img src="../../image/logo2.jpg">
+					</div>
+				</div>
+				<div class="head-box1-td2 input-box">
+					支付订单
+				</div>
+				<!--<div class="head-box1-td3 aui-text-center" onclick="share()">
+					<span class="iconfont icon-fenxiang"></span>
+				</div>-->
+			</div>
+		</div>
+		<div class="logo-img-box aui-text-center">
+			<img src="../../image/zf-success.jpg">
+			<h1 class="red">支付成功</h1>
+		</div>
+		<div class="aui-content ">
+			<div class="word-success">
+				立即点评可获赠<b>超低价惊喜购</b>快来抢购吧！
+			</div>
+			<ul class="word-box-list" id="resourceMgprice" style="display:none;;">
+				<li>
+					&nbsp;&nbsp;&nbsp;&nbsp;订单号：{mgpriceBatch}
+				</li>
+				<li>
+					加油金额：{dataParam}元
+				</li>
+				<li>
+					实付金额：{pricesetPrice}元 (约<em id="oilNum"></em>升)
+				</li>
+				
+				<li>
+					优惠金额：{dataCallurl}元
+				</li>
+				<li>
+					支付方式：{memberCode}
+				</li>
+				<li>
+					付款时间：{mgpriceDateStr}
+				</li>
+			</ul>
+			<div class="btn-box mt-25">
+				<div onclick="backbtn()"  class="aui-btn aui-btn-block aui-btn-danger">
+					立即点评，获惊喜购
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script>
+		var oilInfo = new Object(); 
+		apiready = function() {
+			oilInfo = api.pageParam.oilInfo;
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+			getResourceMgprice();
+		}
+		
+		function getResourceMgprice(){
+			oilInfo.mgpriceBatch = api.pageParam.mgpriceBatch;	// 设置订单编号
+			var favPrice = oilInfo.favPrice;	// 优惠金额
+			var price = oilInfo.price;
+			var oilNum = oilInfo.oilNum;
+			if (oilNum != 0) {
+				price = oilNum * oilInfo.oilPrice
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGasStoreOrderAjax!queryGasStoreOrderViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.mgpriceBatch = api.pageParam.mgpriceBatch;
+			ajaxObject.params.ssgFlag = "1";
+			ajaxObject.onSuccessFunction = function(data) {
+				var resourceMgpriceViewVos = new Array();
+				resourceMgpriceViewVos[0] = formatter(data.resourceMgpriceViewVo);
+				if(oilNum == 0){
+					oilNum = price / oilInfo.oilPrice;
+				}
+				$("#oilNum").html(toFixed(oilNum,2));
+				resourceMgpriceViewVos[0].dataCallurl = Number(resourceMgpriceViewVos[0].dataCallurl).toFixed(2);
+			
+				if(data.ssgFlag == '1'){
+					// 支付宝支付的订单时判断随手购商品触发判断
+					api.pageParam.ssgFlag = 1;
+				}
+				getWorkBookHtmlByList(resourceMgpriceViewVos, 'resourceMgprice');
+			}
+			baseAjax(ajaxObject);
+		}
+		function backbtn() {
+			api.openWin({
+				name : 'youzhan-dianping-head',
+				url : 'youzhan-dianping-head.html',
+				reload : true,
+				slidBackEnabled:false,
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : api.pageParam.oilInfo,
+					"ssgFlag" : api.pageParam.ssgFlag,
+				}
+			});
+		}
+		
+		function formatter(resourceMgpriceViewVo){
+			if(resourceMgpriceViewVo.dataParam !="" && resourceMgpriceViewVo.dataParam != null){
+				resourceMgpriceViewVo.dataParam = toFixed(resourceMgpriceViewVo.dataParam);
+			}
+			resourceMgpriceViewVo.pricesetPrice = toFixed(resourceMgpriceViewVo.pricesetPrice);
+			if(resourceMgpriceViewVo.payType == '0'){
+				resourceMgpriceViewVo.memberCode = '银行支付';
+			}else if(resourceMgpriceViewVo.payType == '1'){
+				resourceMgpriceViewVo.memberCode = '钱包或平台账户支付';
+			}else if(resourceMgpriceViewVo.payType == '2'){
+				resourceMgpriceViewVo.memberCode = '余额支付';
+			}else if(resourceMgpriceViewVo.payType == '3'){
+				resourceMgpriceViewVo.memberCode = '团购券支付';
+				resourceMgpriceViewVo.dataCallurl = 0;
+				if(oilInfo.payOilType == 2){
+					resourceMgpriceViewVo.pricesetPrice = resourceMgpriceViewVo.dataParam;
+				}
+			}else if(resourceMgpriceViewVo.payType == '4'){
+				resourceMgpriceViewVo.memberCode = '预购券支付';
+				resourceMgpriceViewVo.dataCallurl = 0;
+				if(oilInfo.payOilType == 2){
+					resourceMgpriceViewVo.pricesetPrice = resourceMgpriceViewVo.dataParam;
+				}
+			}else if(resourceMgpriceViewVo.payType == '5'){
+				resourceMgpriceViewVo.memberCode = '加油卡支付';
+			}else if(resourceMgpriceViewVo.payType == '6'){
+				resourceMgpriceViewVo.memberCode = '微信支付';
+			}else if(resourceMgpriceViewVo.payType == '7'){
+				resourceMgpriceViewVo.memberCode = '支付宝支付';
+			}else {
+				resourceMgpriceViewVo.memberCode = '其它';
+			}
+			return resourceMgpriceViewVo;
+		}
+		//返回至油站详情		
+		function closeWin(){
+            api.sendEvent({
+                name:'flushGasStation'
+            });
+			api.closeToWin({
+	          	name : 'youzhan-content-head'
+            });
+		}
+		// 加油订单分享
+		function share() {
+			api.openFrame({
+				name : 'jiayou-share-page.html',
+				url : 'jiayou-share-page.html',
+				rect : {
+					x : 0,
+					y : 0,
+					w : 'auto',
+					h : 'auto',
+				}
+			});
+		}
+	</script>
+</html>

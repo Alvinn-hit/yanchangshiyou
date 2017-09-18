@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #F5F5F5;
+		}
+		.fixed-box{
+		  position: fixed;
+		  top:0px;
+		  z-index: 9;
+		  width: 100%;
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img img{
+		  width: 25px;	
+		  float:right;	
+		  margin-top: 10px; 
+		  margin-right:5px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		   margin-top: 2px;
+		 }
+		 .top-60{
+		   position: relative;
+		   top:60px;
+		 }
+		
+    /*列表*/     
+      .youquan-list-box{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+			background-size:16px;
+			font-size: 0.875rem;
+			height: 120px;	
+			border-radius: 5px;	
+			margin-bottom: 10px;
+      }     
+       .list-left-all{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .list-right-all{
+           width: 6rem;
+           border-left:1px dashed #ddd;
+           padding: 20px 5px 0px 5px;
+      }
+      .list-right-all span{
+        text-align: center;
+        display: block;
+        margin-top: 5px;
+      }
+      
+      .list-left-top{
+          height: 40px;
+          padding: 2px 0px 7px 10px;
+          color:#000;
+          border-bottom: 1px solid #ddd;
+      }
+      .list-left-top img{
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 5px;
+        
+      }
+      .list-left-bottom{
+        padding: 6px 0px 4px 10px; 
+        overflow: hidden;
+      }
+      .list-left-bottom img{
+        width: 100px;
+         float: left;
+      }
+      .card1 .use-btn{
+        border:1px solid #d91111;
+        border-radius: 10px;
+        background: #f74949;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card1 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card1 .much-box b{
+        font-size: 1.5rem;
+        color: #FF0000;
+      }
+       .card2 .use-btn{
+        border:1px solid #fd450b;
+        border-radius: 10px;
+        background: #f97224;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card2 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card2 .much-box b{
+        font-size: 1.5rem;
+        color: #f97224;
+      }
+      .card3 .use-btn{
+        border:1px solid #2277ff;
+        border-radius: 10px;
+        background: #37abfc;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card3 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card3 .much-box b{
+        font-size: 1.5rem;
+        color: #37abfc;
+      }
+      
+       /*列表*/ 
+       
+       /*详情*/
+   
+     .tel-img{
+			 width: 35px;
+			}
+			.word-box{
+			  background: #fff;
+			  margin-top:10px;
+			  padding: 10px;
+			}
+			.word-box h1{
+			  font-size: 0.875rem;
+			  padding-bottom: 5px;
+			  margin-bottom: 5px;
+			}
+			.word-box p{
+			   line-height: 18px;
+			}
+    </style>
+</head>
+<body>
+ <div id="headbar"  class="head-bar fixed-box">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                                       油卡详情		      
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center"></div>
+      </div>                                                          
+    </div>
+    
+   <div class="aui-content top-60">    
+   <div class="aui-content-padded">  
+   <div class="youquan-list-box card3" >
+      <div class="list-left-all">
+       <div class="list-left-top">
+         <img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油 企业折扣卡
+       </div>
+       <div class="list-left-bottom">
+         <img src="../../image/card3.jpg">
+         <div class="much-box"> 
+                                                 可享：<br>
+            <b>8.8折</b>                             
+         </div>
+       </div>
+      </div>
+      <div class="list-right-all">
+        <span class="aui-font-size-14">有效日期截止</span>
+        <span class="aui-font-size-14">2016.12.31</span>
+      </div>
+   </div>
+ </div>  
+ 
+ <ul class="aui-list aui-margin-t-15">
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title ">适用油站 （离我最近）</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">曲江庙坡头油站     30.00km<br><span style="color: #888">近西安唐城墙遗址公园</span></div>
+                <div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg"></div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">全部门店信息</div>
+                <div class="aui-list-item-right aui-font-size-16">共24站</div>
+            </div>
+        </li>
+    </ul>
+    
+    <div class="word-box">
+     <h1 class="aui-border-b">团购细则</h1>
+     <p>1.有效期: 自购买日起12月内有效</p>
+<p>2.该团购券限延长加油合作站使用</p>
+<p>3.无需预约、不可退款、不设找零，可分次消费</p>
+<p>4.不允许散装买油</p>
+<p>5.团购券与优惠券不可叠加使用且优先使用团购券</p>
+<p>6.请根据可用油站选择购买</p>
+    </div>
+</div>    
+</div>   
+   </div> 
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+<script type="text/javascript">
+    apiready = function(){
+     $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+    };
+    
+     //展开油站详情
+    $("#chakanList").click(function(){
+      $(".youzhan-content").toggleClass("displayNone")
+    })
+   
+</script>
+</html>

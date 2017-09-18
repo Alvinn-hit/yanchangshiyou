@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../../layer/need/layer.css" />
+		<style>
+			.aui-list:after {
+				height: 0px;
+			}
+			.btn-box {
+				width: 100%;
+				background: #fff;
+				height: 50px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			.btn-box .aui-btn {
+				width: 95%;
+				padding: 5px;
+				font-size: 1rem;
+			}
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3rem;
+			}
+			.aui-list .aui-list-item-title {
+				font-size: 0.875rem;
+			}
+			.aui-list .aui-list-item-right {
+				font-size: 0.875rem;
+				max-width: 100%;
+			}
+			.head-img img {
+				width: 64px;
+				margin: 10px 0px 10px 0px;
+			}
+			.aui-list-item-input{
+			  width: 70%!important;
+			  padding-right: 0px!important;
+			}
+			/*弹出*/
+			.list-ul {
+				margin: -20px 0px -20px 0px;
+			}
+			.list-ul li {
+				border-bottom: 1px solid #ddd;
+				padding: 10px 0px 10px 0px;
+				font-size: 0.875rem;
+			}
+			 /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list" id="memberData" style="display:none">
+				<li class="aui-list-item aui-list-item-middle" onclick="uploadHead()">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							头像
+						</div>
+						<div class="aui-list-item-right head-img"><img style="margin: auto" src="../../../image/default/myImg.jpg" id="headPic" datasrc="{baseURL}/{memberCertificate3No}">
+						</div>
+				</li>
+				<li class="aui-list-item" >
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							姓名
+						</div>
+						<div class="aui-list-item-input">
+							<input class="name-input" type="text" style="text-align:right" placeholder="请输入姓名" id="memberName" value="{memberName}"/>
+						</div>
+					</div>
+				</li>
+				<li onclick="sexBox()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							性别
+						</div>
+						<div class="aui-list-item-input ">
+							<div class="name-input"  style="text-align:right" placeholder="请选择性别" id="memberSex">{memberSex}</div>
+						</div>
+					</div>
+				</li>
+				<!--<li class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow" onclick="setDate()">
+						<div class="aui-list-item-title">
+							出生日期
+						</div>
+						<div class="aui-list-item-input">
+							<div class="name-input"  style="text-align:right" placeholder="请选择时间" id="dataDate2">{dataDate2}</div>
+						</div>
+					</div>
+				</li>-->
+				<li onclick="changetel('{memberPhone}')" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							手机号
+						</div>
+						<div class="aui-list-item-right">
+							{memberPhone}
+						</div>
+					</div>
+				</li>
+
+				<!-- <li class="aui-list-item">
+				<div class="aui-list-item-inner aui-list-item-arrow">
+				<div class="aui-list-item-title">实名认证</div>
+				<div class="aui-list-item-right">已认证</div>
+				</div>
+				</li>-->
+				<li class="aui-list-item" onclick="area();">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							常住地址
+						</div>
+						<div class="aui-list-item-right" id="areaName">
+							{areaName}
+						</div>
+					</div>
+				</li>
+				<li onclick="fapiao()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							发票信息
+						</div>
+						<div class="aui-list-item-right" id="invoiceData"></div>
+					</div>
+				</li>
+				<li onclick="mycar()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							我的爱车
+						</div>
+						<div class="aui-list-item-right" id="carData"></div>
+					</div>
+				</li>
+				<div class="btn-box" onclick="loginOut();">
+					<div class="aui-btn aui-btn-danger">
+						退出登录
+					</div>
+				</div>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../../script/my_upload.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/aui_compress.min.js"></script>
+	<script>
+		var areaName="";
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			getMyInfo();
+			//监听刷新本页面事件
+			api.addEventListener({
+				name : 'flushMyFrameEvent'
+			}, function(ret, err) {
+				getMyInfo(1);
+			});
+		};
+		//获取默认的个人信息展示
+		function getMyInfo(isShow) {
+			//先取缓存的数据
+			if($api.getStorage("basicCarList") && $api.getStorage("invoiceList")){
+				var basicCarList = $api.getStorage("basicCarList");
+				var invoiceList = $api.getStorage("invoiceList");
+				var basicCarViewVo, invoiceViewVo;
+				for(var i = 0 ; i < basicCarList.length; i++){
+					if(1 == basicCarList[i].carIsdefault){
+						basicCarViewVo = basicCarList[i];
+					}
+				}
+				for(var i = 0 ; i < invoiceList.length; i++){
+					if(1 == invoiceList[i].invoiceIsdefault){
+						invoiceViewVo = invoiceList[i];
+					}
+				}
+				dealData(invoiceViewVo, basicCarViewVo);
+			}else{
+				var ajaxObject = new Object();
+				ajaxObject.url = "/appMemberAjax!queryMyUserDefaultInfo.htm";
+				if (isShow) {
+					ajaxObject.isShowProgress = '1';
+				}
+				ajaxObject.onSuccessFunction = function(ret) {
+					dealData(ret.invoiceViewVo, ret.basicCarViewVo);
+				}
+				baseAjax(ajaxObject);
+			}
+		}
+			
+		function dealData(invoiceViewVo, basicCarViewVo){
+			var memberViewVo = $api.getStorage("member");
+			//日期格式转换
+//			if(memberViewVo.dataDate2){
+//				var date = new Date(memberViewVo.dataDate2);
+//				memberViewVo.dataDate2 = date.getFullYear() + "-" + (date.getMonth()+1) + "-" + date.getDate();
+//			}
+			getWorkBookHtmlByList(memberViewVo, "memberData");
+			imageCache($api.dom("#headPic"));
+			//发票信息
+			if (!invoiceViewVo) {
+				$("#invoiceData").html("请设置发票信息");
+			} else {
+				$("#invoiceData").html(invoiceViewVo.invoiceCompanyname);
+			}
+			//车辆信息
+			if (!basicCarViewVo) {
+				$("#carData").html("请设置默认爱车信息");
+			} else {
+				$("#carData").html(basicCarViewVo.carName);
+			}
+		}	
+	
+		//上传头像
+		function uploadHead() {
+			var ajaxObject = new Object();
+			ajaxObject.isCompress = 1;
+			ajaxObject.size = 4;
+			//需要压缩
+			ajaxObject.url = "/appFtpAjax!uloadFile.htm";
+			ajaxObject.onSuccessFunction = function(ret) {
+				var headPicPath = ret.fileVoList[0].filePath + ret.fileVoList[0].fileName;
+				//修改会员头像路径
+				var ajaxObject = new Object();
+				ajaxObject.isShowProgress = '1';
+				//不加载
+				ajaxObject.url = "/appMemberAjax!updateMyUserInfo.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params["operatorViewVo.operatorImgpath"] = headPicPath;
+				ajaxObject.onSuccessFunction = function(ret) {
+					//修改缓存的会员信息
+					var memberViewVo = $api.getStorage("member");
+					memberViewVo.memberCertificate3No = headPicPath;
+					$api.setStorage("member", memberViewVo);
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+					getMyInfo(1);
+					api.sendEvent({
+						name : 'flushMyEvent'
+					});
+				}
+				baseAjax(ajaxObject);
+			}
+			baseUploadPicUrl(ajaxObject);
+		}
+
+		function mycar() {
+			api.openWin({
+				name : 'my-car-head',
+				url : 'aiche/my-car-head.html',
+				reload : true,
+			});
+		}
+
+		function sexBox() {
+			layer.open({
+				title : ['选择性别', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : '<ul class="list-ul">' + '<li>男</li>' + '<li>女</li> </ul>'
+			});
+			$(".list-ul>li").click(function() {
+				var memberSex = $(this).html();
+				$("#memberSex").text(memberSex);
+				layer.closeAll();
+			})
+		}
+
+//		function setDate(){
+//			var str1 = "-";
+//			var str2 = ":";
+//			var date = new Date();
+//			var month = date.getMonth()+1;
+//			var currdate = date.getFullYear() + str1 + month + str1 + date.getDate() + " " +
+//				date.getHours() + str2 + date.getMinutes() + str2 + date.getSeconds();
+//			api.openPicker({
+//			    type: 'date_time',
+//			    date: currdate,
+//			    title: '选择时间'
+//				}, function(ret, err) {
+//			    if (ret) {
+//			        var dataDate2 = ret.year + str1 + ret.month + str1 + ret.day;
+//			        $("#dataDate2").text(dataDate2);
+//			    } else {
+//			        //alert(JSON.stringify(err));
+//			        api.toast({
+//						msg : JSON.stringify(err),
+//						duration : 2000,
+//						location : 'center'
+//					});
+//			    }
+//			});
+//		}
+
+		function changetel(memberPhone) {
+			api.openWin({
+				name : 'my-tel-head',
+				url : 'my-tel-head.html',
+				reload : true,
+				pageParam : {
+					"memberPhone" : memberPhone
+				}
+			});
+		}
+
+		//打开发票
+		function fapiao() {
+			api.openWin({
+				name : 'my-fapiao-head',
+				url : './fapiao/my-fapiao-head.html',
+				reload : true,
+			});
+		}
+
+		function loginOut() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appLoginAjax!userLogout.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.onSuccessFunction = function(ret) {
+				//清除登录会员缓存
+				rmLoginInfo();
+				$api.rmStorage("curWinName");
+				api.openWin({
+					name : 'login',
+					url : 'widget://login.html',
+					reload : true,
+					slidBackEnabled : false,
+				});
+			} 
+			baseAjax(ajaxObject);	
+		}
+		//保存方法
+		function save(){
+			var memberViewVo = $api.getStorage("member");
+			
+			var memberName = $("#memberName").val();
+			var memberSex = $.trim($("#memberSex").text());
+			//var dataDate2 = $("#dataDate2").val();
+			areaName = $("#areaName").text();
+			areaName = areaName.replace(new RegExp("\t","gm"), "");
+			areaName = areaName.replace(new RegExp("\n","gm"), "");
+			
+//			if(memberName == "" && memberSex == "" && dataDate2 == ""){
+//				api.toast({
+//						msg : '您没修改任何值!',
+//						duration : 2000,
+//						location : 'center'
+//					});
+//				return;
+//			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!updateMyUserInfo.htm";
+			ajaxObject.params = new Object();
+			if(memberName && memberName != ""){
+				ajaxObject.params["memberViewVo.memberName"] = memberName;
+				memberViewVo.memberName = memberName;
+			}
+			if(memberSex && memberSex != ""){
+				ajaxObject.params["memberViewVo.memberSex"] = memberSex;
+				memberViewVo.memberSex = memberSex;
+			}
+//			if(dataDate2 && dataDate2 != ""){
+//				ajaxObject.params["memberViewVo.dataDate2"] = dataDate2;
+//				memberViewVo.dataDate2 = dataDate2;
+//			}
+			if(areaName && areaName != ""){
+				ajaxObject.params["memberViewVo.areaName"] = areaName;
+				memberViewVo.areaName = areaName;
+			}	
+			ajaxObject.onSuccessFunction = function(ret) {	
+				//修改缓存的会员信息
+				$api.setStorage("member", memberViewVo);
+				api.toast({
+					msg : '保存成功!',
+					duration : 2000,
+					location : 'center'
+				});
+				execScriptFrame("my-head","my-page");
+				api.sendEvent({
+					name : 'flushMyEvent',
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//地区选择
+		function area() {
+			var UIActionSelector = api.require('UIActionSelector');
+			UIActionSelector.open({
+		    datas: 'widget://script/city.json',
+			    layout: {
+			        row: 5, 
+			        col: 3,
+			        height: 30, 
+			        size: 14,
+			        sizeActive: 16,
+			        rowSpacing: 5,
+			        colSpacing: 10,
+			        maskBg: 'rgba(0,0,0,0.2)',
+			        bg: '#fff',
+			        color: '#888',
+			        colorActive: '#F13D3E', 
+			        colorSelected: '#f00'
+			    },
+			    animation: true,
+			    cancel: {
+			        text: '取消', 
+			        size: 14,
+			        w: 90,  
+			        h: 35,
+			        bg: '#F13D3E',
+			        bgActive: '#F13D3E',
+			        color: '#fff',
+			        colorActive: '#fff'
+			    },
+			    ok: {
+			        text: '确定',
+			        size: 14,
+			        w: 90,
+			        h: 35,
+			        bg: '#F13D3E',
+			        bgActive: '#F13D3E',
+			        color: '#fff',
+			        colorActive: '#fff'
+			    },
+			    title: {
+			        text: '请选择',
+			        size: 14,
+			        h: 44,
+			        bg: '#eee',
+			        color: '#888'
+			    },
+			    fixedOn: api.frameName
+			}, function(ret, err) {
+				if(ret.eventType == "ok"){
+					areaName = "";
+				  	areaName += ret.level1 == "请选择" ? "" : ret.level1;
+				  	areaName += ret.level2 == "请选择" ? "" : ret.level2;
+				  	//areaName+=ret.level3 == "请选择" ? "" : ret.level3;
+				  	if(!ret.level3 || ret.level3 == "请选择"){
+				  		areaName += "";
+				  	}else{
+				  		areaName += ret.level3;
+				  	}
+					$("#areaName").text(areaName);
+				}
+			});
+		}
+	</script>
+</html>

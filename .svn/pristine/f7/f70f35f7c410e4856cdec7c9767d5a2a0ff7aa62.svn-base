@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.my-money-ul{
+		  padding: 10px;
+		}
+		.my-money-ul li{		  
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  overflow: hidden;
+		  height: 35px;
+		  line-height: 35px;
+		  margin-top: 20px;
+		  position: relative;
+		  font-size: 0.875rem;
+		}
+		.img-span img{
+		  width: 40px;
+		}
+		.arrow-span{
+		  position: absolute;
+		  right: 2px;
+		  color:#FF7F00
+		}
+		.money-b{
+		  padding-right: 10px;
+		  font-weight: normal;
+		}
+    </style>
+</head>
+<body>
+    <ul class="my-money-ul">
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/shezhi1.jpg"></span>
+       <span class="aui-padded-l-10">账户安全</span>
+       
+      </li>
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/shezhi2.jpg"></span>
+       <span class="aui-padded-l-10">意见反馈</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/shezhi3.jpg"></span>
+       <span class="aui-padded-l-10">用户协议</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/shezhi4.jpg"></span>
+       <span class="aui-padded-l-10">延长e加油介绍</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/shezhi5.jpg"></span>
+       <span class="aui-padded-l-10">客服电话</span>
+       <span class="aui-pull-right"><b class="money-b">654654446645</b></span>
+      </li>
+    </ul>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+ 
+ 
+
+</script>
+</html>

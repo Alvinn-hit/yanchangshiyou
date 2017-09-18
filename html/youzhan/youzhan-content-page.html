@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.content-bottom{
+		  position: fixed;
+		  width: 100%;
+		  bottom: 0px;
+		  height: 50px;
+		  z-index: 9;
+		}
+		.content-bottom1{
+		  height: 50px;
+		  background: #f9f9f9;
+		}
+		.content-bottom1 img{
+		  width: 30px;
+		  margin-top: 2px;
+		}
+		.content-bottom1 span{
+		 display: block;
+		 font-size: 0.75rem;
+		}
+		.content-bottom2{
+		  background:#ff7f00;
+		  height: 50px;
+		  color: #fff;
+		  line-height: 50px;
+		  font-weight: bold;
+		}
+		.content-bottom2 img{
+		  width: 35px;
+		  float:left;
+		  margin: 10px 0px 0px 10px;
+		}
+		.content-bottom3{
+		  background:#e6212a;
+		  height: 50px;
+		  color: #fff;
+		  line-height: 50px;
+		  font-weight: bold;
+		}
+		.content-bottom3 img{
+		  width: 35px;
+		  float:left;
+		  margin: 10px 0px 0px 10px;
+		}
+		.content-box1{
+		  height: 40px;
+		}
+		.content-img img{
+		  width: 75px;
+		  padding: 4px 0px 4px 0px;
+		}
+		.content-span-box{
+		  padding-top: 10px;
+		  padding-left: 10px;
+		}
+		.content-span-ico1{
+		  color: #e6212a;
+		  border:1px solid #e6212a;
+		  border-radius: 5px;
+		  font-size: 0.875rem;
+		  padding: 0px 5px 0px 5px;
+		   float:left;
+		}
+		.content-span-ico2{
+		  font-size: 0.75rem;
+		  white-space:nowrap;
+		  overflow:hidden;
+		  text-overflow: ellipsis;	
+		  width: 150px;  
+		  float:left;
+		  margin-top: 2px;
+		  margin-left: 5px;
+		}
+		
+		.content-list-1 span img{
+		  width: 16px;
+		  float:left;
+		}
+		.content-list-1 span{
+		  margin-left: 10px;
+		  font-weight: normal;
+		}
+		.content-list-1 h1{
+		  font-size: 0.875rem;
+          font-weight: bold;
+		}
+		.content-list-2{
+		  font-size: 0.875rem;
+		}
+		.star-span img{
+		   width: 12px;
+		   height: 12px;
+		   float: left;
+		 }
+		 .star-number{
+		   background: #ff7f00;
+		   padding: 0px 5px 0px 5px;
+		   border-radius: 5px;
+		   color:#fff;
+		 }
+		 .content-list-2{
+		   overflow: hidden;
+		 }
+		 .content-list-3{
+		   overflow: hidden;
+		   font-size: 0.875rem;
+		 }
+		 .content-list-3 span{
+		   margin-right: 5px;
+		 }
+		 .content-list-4 {
+		  overflow: hidden;
+		 }
+		 .content-list-4 span{
+		   display: block;
+		   float:left;
+		   font-size: 0.875rem;
+		 }
+		 .content-list-4 span img{
+		   width: 12px;
+		   margin-right: 5px;
+		 }
+		 .type-span1{
+		   border:1px solid #ff0000;
+		   border-radius: 5px;
+		   color:#ff0000;
+		   margin-right: 10px;
+		   padding: 0px 4px 0px 4px;
+		 }
+		 .type-span2{
+		    border:1px solid #c88bf5;
+		    border-radius: 5px;
+		    color:#c88bf5;
+		    padding: 0px 4px 0px 4px;
+		 }
+		 .content-list-5{
+		   height: 65px;
+		 }
+		 .top-box{
+		   overflow: hidden;
+		   font-size: 0.875rem;
+		   height: 35px;
+		   line-height: 30px;
+		   display: table-cell;
+		   vertical-align: middle;
+		   text-align: center;
+		   width: 1%;
+		 }
+		 .top-box img{
+		   width: 35px;
+		   vertical-align: middle;
+		 }
+		 .bottom-box{
+		   font-size: 0.875rem;
+		   padding: 0px 5px 0px 5px;
+		   text-align: center;
+		 }
+		 .title-h1{
+		   font-size: 1rem;
+		   margin-bottom: 10px;
+		 }
+		 .title-h2{
+		   font-size: 1rem;
+		   margin-bottom: 10px;
+		   margin-left: -10px;
+		   margin-right: -10px;
+		   padding-left: 10px;
+		 }
+		 .prize-box-all{
+		   overflow: hidden;
+		 }
+		 .prize-box{
+		    font-size:0.875rem;
+		    width:22%;
+		    float:left;
+		    border:1px solid #ddd;
+		    margin: 0px 5px 0px 5px;
+		    padding: 5px;
+		    text-align: center;
+		    border-radius: 5px;
+		 }
+		 .prize-box b{
+		   color:#FF0000;
+		 }
+		 .liuyan-top{
+		   overflow: hidden;
+		 }
+		 .liuyan-top{
+		   display: table-cell;		   
+		   width: 1%;
+		   height: 50px;
+		   font-size: 0.875rem;
+		 }
+		 .liuyan-top span{
+		   vertical-align: middle;
+		   width: 48%;
+		 }
+		 .liuyan-bottom{
+		   overflow: hidden;
+		 }
+		 .liuyan-box{
+		   padding-bottom:50px;
+		 }
+		 .touxiang-img{
+		    width: 33px;
+		    border-radius: 50%;
+		    vertical-align: middle;
+		    margin-right: 5px;
+		 }
+		 .liuyan-bottom{
+		   font-size: 0.875rem;
+		 }
+		 .liuyan-box ul li{
+		   margin-left:-10px;
+		   margin-right: -10px;
+		   padding: 10px;
+		 }
+    </style>
+</head>
+<body>
+   <div class="content-banner">
+     <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+             <img class="img-responsive" src="../../image/content10.jpg" />
+            </div>
+            <div class="swiper-slide">
+             <img class="img-responsive" src="../../image/content10.jpg" />
+            </div>
+            <div class="swiper-slide">
+             <img class="img-responsive" src="../../image/content10.jpg" />
+            </div>           
+        </div>
+        <!-- Add Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Add Arrows -->     
+    </div>
+   </div>
+   
+   
+   <div class="content-box1 aui-border-b">
+     <div class="aui-col-xs-4 aui-border-r content-img aui-text-center">
+       <img  src="../../image/content2.jpg">
+     </div>
+      <div class="aui-col-xs-8 content-span-box">
+       <span class="content-span-ico1">特惠</span>
+       <span class="content-span-ico2">97#汽油,降价0.5/升,快来抢购吧！97#汽油,降价0.5/升,快来抢购吧</span>
+      </div>
+   </div>
+   
+   <div class="content-bottom aui-border-t">
+    <div class="aui-col-xs-2 content-bottom1 aui-text-center"><img src="../../image/content6.jpg"><span>收藏</span></div>
+    <div class="aui-col-xs-2 content-bottom1 aui-text-center aui-border-l"><img src="../../image/content7.jpg"><span>在线咨询</span></div>
+    <div class="aui-col-xs-4 content-bottom2 "><img src="../../image/content8.jpg">到这去</div>
+    <div onclick="gotojiayou()" class="aui-col-xs-4 content-bottom3 "><img src="../../image/content9.jpg">键加油</div>
+   </div>  
+   
+   <div class="aui-content-padded">
+   <div class="content-box2">
+     <div class="content-list-1">
+      <h1>曲江庙坡头路延长油站<span><img src="../../image/content3.jpg">3.6km</span></h1>
+      </div>
+      <div class="content-list-2 aui-margin-t-15">
+       <span class="aui-pull-left">综合评分：</span> 
+       <div class="star-all aui-pull-left">
+	    <span class="star-span">
+	     <img src="../../image/star/img/star-on-big.png">
+	     <img src="../../image/star/img/star-on-big.png">
+	     <img src="../../image/star/img/star-on-big.png">
+	     <img src="../../image/star/img/star-on-big.png">
+	     <img src="../../image/star/img/star-on-big.png">
+	    </span>
+	    <span class="star-number">5.0</span>
+	    <span>100000单</span>
+      </div>
+      </div>
+   </div>
+   
+   <div class="content-list-3 aui-margin-t-15">
+     <span>油站环境5.0分</span>
+     <span>服务态度5.0分</span>
+     <span>油品质量5.0分</span>
+   </div>
+   
+   <div class="content-list-4 aui-margin-t-15">
+     <span>优惠：</span>
+     <span class="type-span1"><img src="../../image/yz-ico2.jpg">预购</span>
+     <span class="type-span2"><img src="../../image/yz-ico3.jpg">团购</span>
+   </div>
+ </div>  
+    
+ <div class="content-list-5 aui-border-t">
+   <div class="aui-col-xs-6 aui-border-r">
+    <div class="top-box">
+     <img src="../../image/content4.jpg">油站公告
+    </div>
+    <div class="bottom-box">油站优惠：97#汽油降价0.5/升</div>
+   </div>
+   <div class="aui-col-xs-6 aui-border-r">
+    <div class="top-box">
+     <img src="../../image/content5.jpg">油站简介
+    </div>
+    <div class="bottom-box">曲江庙坡头路延长油站位于松...</div>
+   </div>
+ </div>   
+ 
+ <div class="aui-content-padded">
+   <h1 class="title-h1">实时油价</h1>
+   <div class="prize-box-all">
+    <div class="prize-box">
+     <span>93# 汽油</span>
+     <span><b>￥9.88</b></span>
+    </div>
+    <div class=" prize-box">
+     <span>93# 汽油</span>
+     <span><b>￥9.88</b></span>
+    </div>
+    <div class=" prize-box">
+     <span>93# 汽油</span>
+     <span><b>￥9.88</b></span>
+    </div>
+    <div class=" prize-box">
+     <span>93# 汽油</span>
+     <span><b>￥9.88</b></span>
+    </div>
+   </div>
+
+  <div class="liuyan-box aui-margin-t-15">
+    <h1 class="title-h2 aui-border-b">评论（758）</h1>
+    <ul>
+     <li class="aui-border-b">
+      <div class="liuyan-top">
+       <span><img class="touxiang-img" src="../../image/content11.jpg">xty99940</span>
+        <span class="aui-text-right">2016-06-07</span>
+      </div>
+      <div class="liuyan-bottom">
+                          按时打算打算打算打算打算打算打算打算
+      </div>
+     </li>
+    <li class="aui-border-b">
+      <div class="liuyan-top">
+       <span><img class="touxiang-img" src="../../image/content11.jpg">xty99940</span>
+        <span class="aui-text-right">2016-06-07</span>
+      </div>
+      <div class="liuyan-bottom">
+                          按时打算打算打算打算打算打算打算打算
+      </div>
+     </li>
+     <li class="aui-border-b">
+      <div class="liuyan-top">
+       <span><img class="touxiang-img" src="../../image/content11.jpg">xty99940</span>
+        <span class="aui-text-right">2016-06-07</span>
+      </div>
+      <div class="liuyan-bottom">
+                          按时打算打算打算打算打算打算打算打算
+      </div>
+     </li>
+     <li class="aui-border-b">
+      <div class="liuyan-top">
+       <span><img class="touxiang-img" src="../../image/content11.jpg">xty99940</span>
+        <span class="aui-text-right">2016-06-07</span>
+      </div>
+      <div class="liuyan-bottom">
+                          按时打算打算打算打算打算打算打算打算
+      </div>
+     </li>
+    </ul>
+  </div>
+ </div>
+ 
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/swiper.min.js"></script>
+<script>
+ apiready = function(){
+   
+ }
+ 
+  //图片滚动
+	 var swiper = new Swiper('.swiper-container', {
+        pagination: '.swiper-pagination',
+        paginationClickable: true,
+        centeredSlides: true,
+        autoplay: 2500,
+        autoplayDisableOnInteraction: false
+    });
+
+
+//e键加油
+  function gotojiayou(){
+    api.openWin({
+	    name: 'youzhan-zhifu-head',
+	    url: 'youzhan-zhifu-head.html'
+    });
+  }
+
+</script>
+</html>

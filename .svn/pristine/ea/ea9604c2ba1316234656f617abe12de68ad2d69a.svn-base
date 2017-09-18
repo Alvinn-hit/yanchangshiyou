@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.chongzhi-box1{
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  padding: 0px 10px 0px 10px;
+		  font-size: 0.875rem;
+		  height: 42px;
+		  line-height: 42px;
+		 }
+		 .chongzhi-box3{
+		   margin-top: 20px;
+		 }
+		 .aui-row li{
+		   border:1px solid #FF7F00;
+		   margin: 0px 10px 10px 10px;
+		   border-radius: 5px;
+		   width: 18%;
+		   float:left;		
+		   font-size: 0.875rem;   
+		 }
+		 .money-card{
+		   display: block;
+		   height: 30px;
+		   line-height: 30px;
+		 }
+		 .border-li .money-input{
+		  color: #fff;
+		 }
+		 .money-input{
+		  font-size: 0.875rem!important;
+		  padding: 0px 2px 0px 2px!important;
+		 }
+		 .chongzhi-li{
+		   border:1px solid #FF7F00;
+		   border-radius: 5px;
+		   margin-top: 20px!important;
+		   height: 49px;
+		 }
+		 .border-li{
+		  background: #FF7F00;		  
+		 }
+		 .border-li .money-card{
+		   color:#fff;
+		 }
+		 
+		 .aui-list-item-media img{
+		    width: 30px!important;
+		    margin-top: 5px;	   
+		  }
+		  .aui-list .aui-list-item{
+		    padding-left: 5px;
+		  }
+		  .aui-list .aui-list-item-media{
+		    width: auto;
+		    padding-right: 5px;
+		  }
+		  .aui-list .aui-list-item:after{
+		    background: none;
+		  }
+		  .aui-list .aui-list-item-inner{
+		    padding-right: 0px;
+		  }
+		  .ok-box{
+		    border-left:1px solid #FF7F00;
+		    height: 48px;
+		    width: 48px;
+		    margin: -0.5rem 0 -0.5rem 0;
+		  }
+		  .ok-bg{
+		    background: url("../../image/ok.jpg") no-repeat;
+		    background-size: 100%;
+		  }
+		  .btn-box{
+		    width: 100%;
+		    padding-bottom: 20px;
+		  }
+    </style>
+</head>
+<body>
+    <div class="aui-content-padded">
+     <div class="chongzhi-box1">
+       <span>充值账户：7979779</span>
+     </div>
+     <div class="chongzhi-box2 aui-margin-t-15">
+       <h1 class="yellow aui-font-size-18">请选择充值金额</h1>
+       <ul class="aui-row aui-margin-t-15">
+        <li class="aui-text-center border-li"><span class="money-card">10元</span></li>
+        <li class="aui-text-center"><span class="money-card">20元</span></li>
+        <li class="aui-text-center"><span class="money-card">50元</span></li>
+        <li class="aui-text-center"><span class="money-card">100元</span></li>
+        <li class="aui-text-center"><span class="money-card">200元</span></li>
+        <li class="aui-text-center"><span class="money-card">300元</span></li>
+        <li class="aui-text-center"><span class="money-card">500元</span></li>
+        <li class="aui-text-center"><span class="money-card"><input class="money-input" type="text" placeholder="其他金额"/></span></li>
+        </ul>       
+     </div>
+     
+     <div class="chongzhi-box1 chongzhi-box3">
+       <span>售价：7979779</span>
+     </div>
+     
+    
+      <ul class="aui-list aui-media-list pay-list">
+      <li class="aui-list-item chongzhi-li">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="../../image/chongzhi-icon1.jpg">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18 yellow">微信支付</div>
+                    </div>
+                    <div class="aui-list-item-text aui-font-size-16">
+                        单笔最高金额5000元
+                    </div>
+                </div>
+                 <div class="aui-list-item-media aui-padded-r-0">
+                    <div class="ok-box ok-bg"></div>
+                </div>
+            </div>          
+        </li>
+        <li class="aui-list-item chongzhi-li">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="../../image/chongzhi-icon2.jpg">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18 yellow">支付宝支付</div>
+                    </div>
+                    <div class="aui-list-item-text aui-font-size-16">
+                        推荐有支付宝账号的用户使用
+                    </div>
+                </div>
+                <div class="aui-list-item-media aui-padded-r-0">
+                    <div class="ok-box"></div>
+                </div>
+            </div>          
+        </li>
+        <li class="aui-list-item chongzhi-li">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="../../image/chongzhi-icon3.jpg">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18 yellow">银联在支付</div>
+                    </div>
+                    <div class="aui-list-item-text aui-font-size-16">
+                        无需开通网银，单卡单日最高限额500元
+                    </div>
+                </div>
+                <div class="aui-list-item-media aui-padded-r-0">
+                   <div class="ok-box"></div>
+                </div>
+            </div>          
+        </li>
+        </ul>
+        
+        <div class="btn-box aui-margin-t-15">
+          <div class="aui-btn aui-btn-block aui-btn-warning">确认支付</div>
+        </div>
+    </div>
+    
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script>
+ //打钩选中
+  $(".pay-list>li").click(function(){
+     $(".pay-list").find(".ok-box").removeClass("ok-bg");  
+      $(this).find(".ok-box").addClass("ok-bg");
+  })
+  
+  //选中金额
+  $(".aui-row>li").click(function(){             
+      $(".chongzhi-box2").find(".aui-text-center").removeClass("border-li");   
+      $(this).addClass("border-li");
+      $(".aui-row>li:last").removeClass("border-li");
+  })
+  
+</script>
+</html>

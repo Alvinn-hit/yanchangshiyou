@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.chongzhi-box1 {
+				padding: 0px 10px 0px 10px;
+				font-size: 0.875 rem;
+				height: 42px;
+				line-height: 42px;
+				position: relative;
+			}
+			.chongzhi-box1:before {
+				height: 1px;
+				background-color: #dddddd;
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: auto;
+				bottom: auto;
+				width: 100%;
+				z-index: 2;
+				-webkit-transform-origin: 50% 50%;
+				transform-origin: 50% 50%;
+				pointer-events: none;
+				-webkit-transform: scaleY(0.333);
+				-ms-transform: scaleY(0.333);
+				-o-transform: scaleY(0.333);
+				transform: scaleY(0.333);
+			}
+			.chongzhi-box1:after {
+				height: 1px;
+				background-color: #dddddd;
+				display: block;
+				content: '';
+				position: absolute;
+				top: auto;
+				right: auto;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 2;
+				-webkit-transform-origin: 50% 50%;
+				transform-origin: 50% 50%;
+				pointer-events: none;
+				-webkit-transform: scaleY(0.333);
+				-ms-transform: scaleY(0.333);
+				-o-transform: scaleY(0.333);
+				transform: scaleY(0.333);
+			}
+			.chongzhi-box3 {
+				margin-top: 20px;
+			}
+			.aui-row li {
+				border: 1px dashed #ddd;
+				width: 25%;
+				float: left;
+				font-size: 0.875 rem;
+			}
+			.money-card {
+				display: block;
+				height: 30px;
+				line-height: 30px;
+			}
+			.border-li .money-input {
+				color: #fff;
+			}
+			.money-input {
+				font-size: 0.875 rem !important;
+				padding: 0px 2px 0px 2px !important;
+			}
+			.chongzhi-li {
+				height: 49px;
+			}
+			.border-li {
+				background: #FF7F00;
+			}
+			.border-li .money-card {
+				color: #fff;
+			}
+			.aui-list-item-media img {
+				width: 30px !important;
+				margin-top: 5px;
+				margin-right: 10px;
+			}
+			.aui-list .aui-list-item {
+				padding-left: 5px;
+			}
+			.aui-list .aui-list-item-media {
+				width: auto;
+				padding-right: 5px;
+			}
+			.aui-list .aui-list-item-inner {
+				padding-right: 0px;
+			}
+			.ok-box {
+				border-left: 1px solid #ddd;
+				height: 48px;
+				width: 48px;
+				margin: -0.5 rem 0 -0.5 rem 0;
+			}
+			.ok-bg {
+				background: url("../../image/ok.jpg") no-repeat;
+				background-size: 100%;
+			}
+			.btn-box {
+				width: 100%;
+				padding-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="chongzhi-box2 aui-margin-t-15">
+			<h1 class="yellow aui-font-size-18 aui-padded-l-10">请选择充值金额</h1>
+			<ul class="aui-row aui-margin-t-15">
+				<li class="aui-text-center border-li" style="border-right: none;border-bottom: none">
+					<span class="money-card"><span class="money">10</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-right: none;border-bottom: none">
+					<span class="money-card"><span class="money">20</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-right: none;border-bottom: none">
+					<span class="money-card"><span class="money">50</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-bottom: none">
+					<span class="money-card"><span class="money">100</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-right: none;">
+					<span class="money-card"><span class="money">200</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-right: none;">
+					<span class="money-card"><span class="money">300</span>元</span>
+				</li>
+				<li class="aui-text-center" style="border-right: none;">
+					<span class="money-card"><span class="money">500</span>元</span>
+				</li>
+				<li class="aui-text-center">
+					<span class="money-card">
+						<input class="money-input" type="number" placeholder="其他金额"  id="money"/>
+					</span>
+				</li>
+			</ul>
+		</div>
+		<div class="chongzhi-box1 chongzhi-box3">
+			<span>售价：<span id="price">10</span>元</span>
+		</div>
+		<ul class="aui-list aui-media-list pay-list aui-margin-t-15">
+			<li class="aui-list-item chongzhi-li" onclick="czPassword('3')">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-media">
+						<img src="../../image/chongzhi-icon2.jpg">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title aui-font-size-18 yellow">
+								支付宝支付
+							</div>
+						</div>
+						<div class="aui-list-item-text aui-font-size-16">
+							推荐有支付宝账号的用户使用
+						</div>
+					</div>
+				</div>
+			</li>
+			<li class="aui-list-item chongzhi-li" onclick="czPassword('0')">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-media">
+						<img src="../../image/chongzhi-icon3.jpg">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title aui-font-size-18 yellow">
+								银联在支付
+							</div>
+						</div>
+						<div class="aui-list-item-text aui-font-size-16">
+							无需开通网银，单卡单日最高限额500元
+						</div>
+					</div>
+				</div>
+			</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script>
+		apiready = function (){
+		}
+		
+	
+		function czPassword(payType) {
+			var price = $.trim($("#price").text());
+			if(!price || price == "" || price == 0){
+				api.toast({
+				    msg: '请选择充值金额',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			api.openWin({
+				name : 'my-chongzhi-password',
+				url : 'my-chongzhi-password.html',
+				reload : true,
+				pageParam : {
+					price : price,
+					payType : payType
+				}
+			});
+		}
+
+		//充值金额
+		$("#money").keyup(function(){
+			var money = $.trim($(this).val());
+			if(money && money != ""){
+				$("#price").html(money);
+			}else{
+				$("#price").html("0");
+			}
+		});
+		//选中金额
+		$(".aui-row>li").click(function() {
+			$(".chongzhi-box2").find(".aui-text-center").removeClass("border-li");
+			$(this).addClass("border-li");
+			$(".aui-row>li:last").removeClass("border-li");
+			var money = $.trim($(this).find(".money").html());
+			if(money && money != ""){
+				$("#price").html(money);
+			}else{
+				$("#price").html("0");
+			}
+		})
+	</script>
+</html>

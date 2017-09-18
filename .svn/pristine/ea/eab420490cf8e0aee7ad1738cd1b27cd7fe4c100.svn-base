@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+      html, body {
+			height: 100%;
+			background: #fff;
+		}
+		 .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+    </style>
+</head>
+<body>
+   <div class="aui-content">
+    <ul class="aui-list">
+      <li onclick="changepassword()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">登录密码修改</div> 
+           </div>                                   
+        </li>          
+        <li onclick="changepassword()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">支付密码修改</div> 
+            </div>               
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+           <div class="aui-list-item-title">小额免费管理</div> 
+             </div>               
+        </li>
+         <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">找回支付密码</div>
+             </div>               
+        </li>
+        
+    </ul>  
+</div>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+ apiready = function(){
+
+      
+ }
+ 
+ function changepassword(){
+  api.openWin({
+	  name: 'my-safe-changeword-page',
+	  url: 'my-safe-changeword-page.html'
+  });
+ }
+</script>
+</html>

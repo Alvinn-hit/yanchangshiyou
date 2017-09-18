@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+    <style>
+      html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img{
+		  color:#fff;
+		  line-height: 45px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		 }
+		 .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+    </style>
+</head>
+<body>
+   <div id="headbar"  class="head-bar">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                          支付密码修改
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center">
+                                
+       </div>
+      </div>                                                          
+    </div>
+
+   <div class="aui-content">
+    <ul class="aui-list">
+      <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <input type="password" placeholder="请输入原支付密码" id="oldPayPassword"/>
+            </div> 
+           </div>                                   
+        </li>          
+        
+        <div class="btn-box aui-margin-t-15">
+			<div onclick="nextpwd()" class="aui-btn aui-btn-block aui-btn-danger">
+				下一步
+			</div>
+		</div>
+    </ul>  
+</div>
+     
+    
+</body>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/area.js"></script>
+<script type="text/javascript" src="../../../../script/md5.js"></script>
+<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+      
+ }
+
+function nextpwd() {
+	var oldPayPassword = $api.val($api.dom("#oldPayPassword"));
+	if (oldPayPassword.length != 6 || oldPayPassword.match("^[0-9]+$") == null) {
+		api.toast({
+			msg : '支付密码为6位数字 ',
+			duration : 2000,
+			location : 'center'
+		});
+		return;
+	}
+	var ajaxObject = new Object();
+	ajaxObject.url = "/appMemberAjax!checkPayPassword.htm";
+	ajaxObject.params = new Object();
+	ajaxObject.params.payPassword = hex_md5(oldPayPassword).toUpperCase();
+	ajaxObject.onSuccessFunction = function(ret){
+		if(ret.state == 3){
+			api.openWin({
+			name : 'my-safe-changepaypwd-ok-page',
+			url : 'my-safe-changepaypwd-ok-page.html',
+			reload : true,
+			pageParam : {
+				'oldPayPassword' : hex_md5(oldPayPassword).toUpperCase(),
+				'memberPhone' : api.pageParam.memberPhone
+				}
+			});
+		}else{
+			api.alert({
+            	title : '提示',
+            	msg : ret.msg
+            });
+		}
+	}
+	baseAjax(ajaxObject);
+}
+</script>
+</html>

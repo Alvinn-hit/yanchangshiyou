@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 15px 10px;
+				background-color: #fff;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 4px;
+				background-image: url(../../image/border.png);
+				background-repeat: repeat-x;
+				background-size: 375px 4px;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.each-store {
+				margin-top: 6px;
+				background-color: #fff;
+			}
+			.store-title {
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			}
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+			}
+			.buy-last:before, .buy-last:after, .store-goods:before, .store-goods:after {
+				content: '';
+				display: block;
+				height: 1px;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%;
+				transform-origin: 50% 100%;
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 8px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 0.75rem;
+				color: #ff000c;
+			}
+			.color-ff000c {
+				color: #ff000c;
+			}
+			.font14 {
+				font-size: 0.875rem;
+			}
+			.marTop8 {
+				margin-top: 8px;
+			}
+			.posi-re {
+				position: relative;
+			}
+			.pay-area {
+				position: fixed;
+				bottom: 0;
+				height: 50px;
+				width: 100%;
+				z-index: 9999;
+				border-top: 1px solid #ddd;
+			}
+			.bg-fff {
+				background-color: #fff;
+			}
+			.bg-e6212a {
+				background-color: #e6212a;
+			}
+			.submit {
+				text-align: center;
+				color: #fff;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.submit-price {
+				padding-right: 12px;
+				text-align: right;
+				color: #e6212a;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.padBottom50 {
+				padding-bottom: 50px;
+			}
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 16px;
+				right: 10px;
+			}
+			.amount img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount li {
+				float: left;
+				margin-left: 7px;
+				margin-right: 7px;
+				font-size: 1rem;
+				line-height: 21px;
+				height: 21px;
+			}
+			.buy-amount {
+				position: absolute;
+				z-index: 99;
+				top: 32px;
+				right: 11px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.buy-all {
+				float: left;
+				margin-left: 13px;
+				line-height: 32px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.state {
+				float: right;
+				margin-top: 5px;
+				margin-right: 15px;
+				width: 60px;
+				height: 22px;
+				font-size: 0.875rem;
+				color: #fff;
+				text-align: center;
+				line-height: 22px;
+				color: #fff;
+				background-color: #909090;
+				border-radius: 4px;
+			}
+			.buy-last {
+				margin-top: 3px;
+				height: 32px;
+			}
+			.state-last {
+				padding-bottom: 6px;
+				padding-top: 6px;
+				padding-left: 13px;
+				font-size: 0.75rem;
+				color: #909090;
+				background-color: #fff;
+			}
+			.order-num {
+				height: 32px;
+				line-height: 32px;
+				padding-left: 12px;
+				color: #111;
+				background-color: #fff;
+			} 
+			.get-goods {
+				height: 32px;
+				line-height: 32px;
+				padding-left: 12px;
+				color: #f0d06b;
+				background-color: #fff;
+				font-size: 0.875rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="marTop8">
+			<div class="order-num aui-font-size-18">
+				单号：FY29433808PP36524815
+			</div>
+			<div class="aui-content aui-margin-b-15">
+				<ul class="aui-list aui-list-in">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								商品名称：
+							</div>
+							<div class="aui-list-item-right">
+								和路雪冰淇淋可爱多香草口味67g
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								商品数量
+							</div>
+							<div class="aui-list-item-right">
+								1
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								商品总价：
+							</div>
+							<div class="aui-list-item-right">
+								4.50元
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								付款时间：
+							</div>
+							<div class="aui-list-item-right">
+								2016-11-08 15:05
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								订单状态：
+							</div>
+							<div class="aui-list-item-right">
+								已收货
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								出货时间：
+							</div>
+							<div class="aui-list-item-right">
+								2016-11-08 15:05
+							</div>
+						</div>
+					</li>
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								收货时间
+							</div>
+							<div class="aui-list-item-right">
+								2016-11-08 15:05
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div>
+				<div class="get-goods">提货地点</div>
+				<ul class="aui-list aui-list-in">
+					<li class="aui-list-item aui-padded-t-5 aui-padded-b-5">
+						<div class="aui-list-item-inner">
+						
+							<div class="aui-col-xs-10">
+								<div>西安桃园北路东加油站</div>
+								<div>西安大庆路与桃园路十字向北200米路东</div>
+							</div>
+							<div class="aui-col-xs-2">
+								1221.85km
+							</div>
+							<!--<div class="aui-list-item-title">
+								提货地点：
+							</div>
+							<div class="aui-list-item-right">
+								和路雪冰淇淋可爱多香草口味67g
+							</div>-->
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="marTop8">
+				<div class="get-goods">提货方式</div>
+				<ul class="aui-list aui-list-in">
+					<li class="aui-list-item">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-title">
+								现场取货
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+		}
+		//打开详情
+		function openContent() {
+			api.openWin({
+				name : 'youzhan-content-head',
+				url : 'youzhan-content-head.html'
+			});
+		}
+	</script>
+</html>

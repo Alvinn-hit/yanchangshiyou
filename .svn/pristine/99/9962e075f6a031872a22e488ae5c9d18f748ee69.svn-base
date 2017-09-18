@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3rem;
+			}
+			.aui-list .aui-list-item-title {
+				font-size: 0.875 rem;
+			}
+			.aui-list .aui-list-item-right {
+				font-size: 0.875 rem;
+				max-width: 100%;
+			}
+			.content-car {
+				width: 100%;
+			}
+			.content-car li {
+				min-height: 40px !important;
+				line-height: 40px;
+			}
+			.content-car .aui-list-item-title {
+				color: #999;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list">
+				<li onclick="changepassword()" class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							登录密码修改
+						</div>
+					</div>
+				</li>
+				<li onclick="payPage()" id="payChange" class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							支付密码设置
+						</div>
+					</div>
+				</li>
+				<li onclick="payback()" class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							忘记支付密码
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+		}
+		//修改密码
+		function changepassword() {
+			api.openWin({
+				name : 'my-safe-changepwd-page',
+				url : 'my-safe-changepwd-page.html',
+				reload : true,
+				pageParam : {
+					memberPhone : $api.getStorage("member").memberPhone
+				}
+			});
+		}
+
+		//支付密码设置
+		function payPage() {
+			api.openWin({
+				name : 'my-pay-head',
+				url : 'my-pay-head.html',
+				reload : true,
+				pageParam : {
+					memberPhone : $api.getStorage("member").memberPhone
+				}
+			});
+		}
+
+		//找回支付密码
+		function payback() {
+			api.openWin({
+				name : 'my-safe-payback-page',
+				url : 'my-safe-payback-page.html',
+				reload : true,
+				pageParam : {
+					memberPhone : $api.getStorage("member").memberPhone
+				}
+			});
+		}
+	</script>
+</html>

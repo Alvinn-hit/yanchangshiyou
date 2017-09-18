@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list {
+				font-size: 0.875rem;
+			}
+			.aui-list-item-label img {
+				width: 16px;
+				height: 22px;
+			}
+			.aui-list .aui-list-item-label {
+				width: 15%;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3.2rem;
+			}
+			.yzm-btn {
+				position: absolute;
+				right: 10px;
+				top: 4px;
+				background: #e6212a;
+				color: #fff;
+				border-radius: 5px;
+				font-size: 0.875rem;
+			}
+			.yzm-input {
+				border: none!important;
+			}
+			.xieyi-p {
+				padding: 0px 15px 10px 15px;
+				line-height: 24px;
+				font-size: 0.875rem;
+			}
+			.xieyi-p .aui-checkbox {
+				margin-right: 10px;
+				margin-top: 4px;
+			}
+			.aui-checkbox:checked {
+				background: #F13D3E;
+				border: 1px solid #F13D3E;
+			}
+			.xieyi-btn {
+				color: #F13D3E;
+			}
+			.number-input{
+		       -webkit-text-security:disc;
+		       text-security:disc; /*使用指定形状代替文字显示 circle圆圈 disc 圆形 square 正方形*/
+	        }
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			 <input type="hidden" id="operator"/>
+			<ul class="aui-list aui-form-list">
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<img src="image/tel.jpg">
+						</div>
+						<div class="aui-list-item-input">
+							<input type="number" id="memberPhone" placeholder="请输入手机号码">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<img src="image/lock.jpg">
+						</div>
+						<div class="aui-list-item-input">
+							<input type="number" id="rendCode" placeholder="请填写验证码">
+							<button class="yzm-btn" onclick="checkMemberPhone()">
+								发送验证码
+							</button>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-label">
+                   <img src="image/lock.jpg">
+                </div>
+                <div class="aui-list-item-input">
+                   <input type="number" placeholder="请设置新密码" id="passWord" class="number-input" />
+                </div>
+            </div>
+        </li>  
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-label">
+                   <img src="image/lock.jpg">
+                </div>
+                <div class="aui-list-item-input">
+                   <input type="number" placeholder="请再次输入密码" id="aginPassWord" class="number-input"/>
+                </div>
+            </div>
+        </li>  
+			</ul>
+		</div>
+		<div class="btn-box aui-margin-t-15">
+			<div onclick="nextForget()" class="aui-btn aui-btn-block aui-btn-danger">
+				确认
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="script/api.js"></script>
+	<script type="text/javascript" src="script/my_ajax.js"></script>
+	<script type="text/javascript" src="script/common.js"></script>
+	<script type="text/javascript" src="script/jquery.min.js"></script>
+	<script type="text/javascript" src="script/system.js"></script>
+	<script type="text/javascript" src="script/md5.js"></script>
+	<script type="text/javascript" src="layer/layer.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+		};
+		// 验证手机号是否为注册会员
+		function checkMemberPhone() {
+			$(".yzm-btn").attr("readonly", true);
+			var phone = $api.val($api.byId("memberPhone"));
+			if (phone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(phone)) {
+				api.toast({
+					msg : '请输入正确的 手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!uniqueCheckRegInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.checkValue = phone;
+			ajaxObject.params.checkType = 1;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == "3") {
+					if (ret.isUnique == "0") {
+						// 是注册会员,发送短信验证码
+						sendCode();
+					} else {
+						api.toast({
+							msg : '该手机号还不是平台用户',
+							duration : 2000,
+							location : 'center'
+						});
+						$(".yzm-btn").removeAttr("readonly");
+					}
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject, 1);
+		}
+
+		// 发送验证码
+		function sendCode() {
+			var memberPhone = $api.val($api.byId("memberPhone"));
+			if (memberPhone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(memberPhone)) {
+				api.toast({
+					msg : '请输入正确的 手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = memberPhone;
+			ajaxObject.params.cmodelCode = "DX000002";
+			ajaxObject.params.validateCodeRequired = 0;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == "3") {
+					// 发送成功,倒计时开始
+					api.toast({
+						msg : '发送短信验证码成功',
+						duration : 2000,
+						location : 'center'
+					});
+					sendCodeTime(120);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		// 发送验证码倒计时
+		function sendCodeTime(wait) {
+			if (wait == 0) {
+				$("#memberPhone").removeAttr("readonly");
+				$(".yzm-btn").html("发送验证码");
+				$("#memberPhone").removeAttr("disabled");
+				$(".yzm-btn").removeAttr("disabled");
+			} else {
+				$(".yzm-btn").html("重新发送(" + wait + ")");
+				$(".yzm-btn").attr("disabled", true);
+				$("#memberPhone").attr("readonly", true);
+				wait--;
+				setTimeout("sendCodeTime(" + wait + ")", 1000);
+			}
+		}
+
+		// 下一步	 校验短信验证码
+		function nextForget() {
+			var memberPhone = $api.val($api.byId("memberPhone"));
+			if (memberPhone == '' || !/^0{0,1}(13[0-9]|15[3-9]|147|15[0-2]|18[0-9]|17[0-9])[0-9]{8}$/.test(memberPhone)) {
+				api.toast({
+					msg : '请输入正确的 手机号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var rendCode = $api.val($api.byId("rendCode"));
+			if (rendCode == "") {
+				api.toast({
+					msg : '请输入短信验证码',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!verifySmsCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = memberPhone;
+			ajaxObject.params.rendCode = rendCode;
+			ajaxObject.params.cmodelCode = "DX000002";
+			ajaxObject.onSuccessFunction = function(ret) {
+				// 发送成功，调用倒计时  120秒
+				if (ret.state == "3") {
+					// isCodeValid =1 校验成功
+					if (ret.isCodeValid == 1) {
+						// 根据手机号查询操作员代码
+						findOperator();
+					} else {
+						api.toast({
+							msg : "验证码不正确",
+							duration : 2000,
+							location : 'center'
+						});
+					}
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject, 1);
+		}
+		
+	function findOperator(){
+		var memberPhone = $api.val($api.byId("memberPhone"));
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appMemberAjax!queryOperatorCodeByName.htm";	
+		ajaxObject.params = new Object();
+		ajaxObject.params.memberPhone = memberPhone;
+		ajaxObject.onSuccessFunction = function(ret) {	
+			if(ret.state=="3"){
+				findLoginPwd(ret.operatorViewVo.operatorCode);
+			}else{
+				api.toast({
+					msg : ret.msg,
+					duration : 2000,
+					location : 'center'
+				}); 
+			}
+		}
+		baseAjax(ajaxObject);	
+	}	
+	
+	// 找回登录密码
+	function findLoginPwd(operatorCode){
+		var pwd = document.getElementById("passWord").value;
+		var aginPwd = document.getElementById("aginPassWord").value;
+		if(pwd != aginPwd ){
+			api.toast({
+				msg : '两次密码输入不一致',duration : 2000,location : 'center'
+			});
+			return;				
+		}
+		var ajaxObject = new Object();
+		ajaxObject.url = "appMemberAjax!findLoginPassword.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.operatorCode = operatorCode;
+		ajaxObject.params.newPassword = hex_md5(pwd).toUpperCase();		// 新密码
+		ajaxObject.params.rendCodeRequired = 0;							// 0不要求验证验证码
+		ajaxObject.onSuccessFunction = function(ret) {	
+			if(ret.state=="3"){
+				layer.open({
+				    content: '重置登录密码成功',
+				    btn: '我知道了',
+				    yes: function(index){
+				      $("#passWord").val('');
+					  $("#aginPassWord").val('');
+					  $api.rmStorage("curWinName");
+					  api.openWin({
+			              name: 'login',
+			              url: 'login.html',
+			              slidBackEnabled:false,
+		              });
+				    }
+				 });		
+			}else{
+				api.toast({
+					msg : ret.msg,
+					duration : 2000,
+					location : 'center'
+				}); 
+			}
+		}
+		baseAjax(ajaxObject);			
+	}
+	</script>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			/*弹层*/
+			.zhifu-box {
+				position: relative;
+				overflow: hidden;
+				background: #fff;
+			}
+			.zhifu-box h1 {
+				font-size: 0.875 rem;
+				text-align: center;
+				margin: 15px 0px 15px 0px;
+			}
+			.closeBox {
+				position: absolute;
+				right: 5px;
+				top: 15px;
+			}
+			.closeBox img {
+				width: 24px;
+			}
+			.add-zhifu {
+				margin: 15px 0px 15px 0px;
+				text-align: center;
+				font-size: 0.875 rem;
+			}
+			.add-zhifu img {
+				vertical-align: middle;
+				width: 21px;
+			}
+			.checkInput {
+				position: absolute;
+				right: 10px;
+				top: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-18">
+									订单金额
+								</div>
+								<div class="aui-list-item-right aui-font-size-18 red" id="price">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner" onclick="aliPay();">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu1.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									支付宝
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								推荐支付宝用户使用
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li onclick="payBox()" class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu2a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									延长e加油支付
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								延长e加油旗下，安全支付
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu3a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									银联wap
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								支持储蓄卡
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script>
+		var accountBalance = "";
+		apiready = function() {
+			var price = toFixed(api.pageParam.oilInfo.payPrice);
+			$("#price").html('￥' + price);
+		}
+		
+		function payBox() {
+			queryMyAccountViewVo();
+		}
+
+		//查询账户余额
+		function queryMyAccountViewVo() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayAccountAjax!queryAccountViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.accountType = "2";
+			ajaxObject.isShowProgress = '1';
+			//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				//可用金额
+				accountBalance = ret.accountViewVo.accountSmoney;
+				balanceStr = toFixed(accountBalance) + "元";
+				payLayer();
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//支付弹窗
+		function payLayer(){
+			var index = layer.open({
+				type : 1,
+				content : '<div  class="zhifu-box">' + '<div class="closeBox"><img src="../../image/zf-ico1.png">' + '</div>' + '<h1>选择支付方式</h1>' + '<div class="aui-content">' + '<ul class="aui-list aui-media-list">' + '<li class="aui-list-item aui-list-item-middle" id="myWallet">' + '<div class="aui-media-list-item-inner">' + '<div class="aui-list-item-media" style="width: 3.5rem;">' + '<img src="../../image/zhifu2a.jpg">' + '</div>' + '<div class="aui-list-item-inner">' + '<div class="aui-list-item-text">' + '<div class="aui-list-item-title aui-font-size-16">' + '我的钱包' + '</div>' + '</div>' + '<div class="aui-list-item-text">' + '延长e加油旗下，安全支付' + '</div>' + '<div class="checkInput"><input class="aui-radio" type="radio" name="demo" ></div>' + '</div>' + '</div>' + '</li>' + '<li class="aui-list-item aui-list-item-middle" id="myBankCard">' + '<div class="aui-media-list-item-inner">' + '<div class="aui-list-item-media" style="width: 3.5rem;">' + '<img src="../../image/zf2.jpg">' + '</div>' + '<div class="aui-list-item-inner">' + '<div class="aui-list-item-text">' + '<div class="aui-list-item-title aui-font-size-16">' + '交通银行储蓄卡（尾号0453）' + '</div>' + '</div>' + '<div class="aui-list-item-text">' + '支持储蓄卡' + '</div>' + '<div class="checkInput"><input class="aui-radio" type="radio" name="demo" ></div>' + '</div>' + '</div>' + '</li>' + '<li class="aui-list-item aui-list-item-middle" id="myBalance">' + '<div class="aui-media-list-item-inner">' + '<div class="aui-list-item-media" style="width: 3.5rem;">' + '	<img src="../../image/zf3.jpg">' + '</div>' + '<div class="aui-list-item-inner">' + '<div class="aui-list-item-text">' + '<div class="aui-list-item-title aui-font-size-16">' + '余额' + '</div>' + '</div>' + '<div class="aui-list-item-text">' + '￥' + balanceStr + '</div>' + '<div class="checkInput"><input class="aui-radio" type="radio" name="demo" ></div>' + '</div>' + '</div>' + '</li>' + '</ul>' + '<div class="add-zhifu">' + '<img src="../../image/zf-ico2.png"> 使用新银行卡' + '</div>' + '</div>' + '</div>',
+				anim : 'up',
+				style : 'position:fixed; bottom:0; left:0; width: 100%; height: auto; padding:10px 0; border:none;'
+			});
+			$(".closeBox").click(function() {
+				layer.close(index);
+			})
+			//选择支付方式，余额
+			$("#myBalance").click(function() {
+				var payType = "2";
+				if(parseFloat(accountBalance) < parseFloat(api.pageParam.oilInfo.payPrice)){
+					api.toast({msg : '余额不足，请充值',duration : 2000,location : 'center'});
+					return;
+				}
+				$(this).find(".checkInput input").attr("checked", "checked");
+				api.openWin({
+					name : 'youzhan-zhifu-password',
+					url : 'youzhan-zhifu-password.html',
+					reload : true,
+					pageParam : {
+						"memberCode" : api.pageParam.memberCode,
+						"oilInfo" : api.pageParam.oilInfo,
+						"payType" : payType,
+					},
+				});
+				
+			});
+		}
+		
+		function aliPay(){
+			api.openWin({
+				name : 'youzhan-zhifu-password',
+				url : 'youzhan-zhifu-password.html',
+				reload : true,
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : api.pageParam.oilInfo,
+					"payType" : '7',
+				},
+			});
+		}
+	</script>
+</html>

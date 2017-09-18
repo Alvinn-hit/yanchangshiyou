@@ -1,0 +1,706 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>APP</title>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css" />
+	</head>
+	<style type="text/css">
+		body {
+			background-color: #ffffff;
+		}
+		.info {
+			background: rgba(0,0,0,.5);
+			color: #fff;
+			font-size: 12px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			position: fixed;
+			z-index: 999;
+			top: 0px;
+			width: 100%;
+		}
+		
+		/*地图下位置块*/
+		.map-list-box{
+		  height: 100px;
+		  position: fixed;
+		  bottom: 0px;
+		  width: 100%;
+		  background: #fff;
+		}
+		.aui-list .aui-list-item-media{
+		  width: 2rem;
+		  padding-right: 0px;
+		  margin-right: 10px;
+		}
+		.weizhi-text{
+		  vertical-align: middle;
+		  color:#666;
+		  overflow: hidden;
+		  white-space: nowrap;
+		}
+		.img-dingwei{
+		  width:10px;
+		}
+		.img-box{
+		  width: 35px!important;
+		  height: 35px;
+		}
+		.img-box1{
+		  width: 18px;
+		  height: 18px;
+		  vertical-align: middle;
+		  margin-right: 5px;
+		  margin-top: -4px;
+		}
+		
+	</style>
+	<body>
+		<div class="map-list-box">
+			<div class="map-list-top">
+				<ul class="aui-list aui-media-list">
+					<li class="aui-list-item aui-list-item-arrow" id="detail" >
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-media">
+								<img class="img-box"  src="../../image/map-all.jpg">
+							</div>
+							<div class="aui-list-item-inner">
+								<div class="aui-list-item-text">
+									<div class="aui-list-item-title aui-font-size-14" id="name">&nbsp;</div>
+								</div>
+								<div class="aui-font-size-12 weizhi-text">
+									<img class="img-dingwei" src="../../image/yz-ico4.jpg">
+									<!--<span class="aui-margin-r-10" id="distance">23.89km</span><span id="address">陕西省西安市高新区688号陕西省西安市高新区688号陕西省西安市高新区688号</span>-->
+									<span class="aui-margin-r-10" id="distance">&nbsp;</span><span id="address">&nbsp;</span>
+								</div>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="map-list-bottom aui-margin-t-10">
+				<div class="aui-col-xs-4 aui-text-center aui-border-r aui-font-size-12" onclick="getLocation('0');">
+					<img class="img-box1"  src="../../image/map-all.jpg">
+					所有油站
+				</div>
+				<div class="aui-col-xs-4 aui-text-center aui-border-r aui-font-size-12" onclick="getLocation('1');">
+					<img class="img-box1"  src="../../image/logo-icon06.png">延长油站
+				</div>
+				<div class="aui-col-xs-4 aui-text-center aui-font-size-12" id="go" >
+					<img class="img-box1"  src="../../image/yz-ico1.jpg">到这去
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript">
+	var map, lat = 39.9994480000, lon = 116.4021310000, flag = 0, endLat = 0, endLon = 0, aMapNavigation;
+	var inter = new Object(), memberCode, currLat, currLon, currCity;
+	apiready = function() {
+		api.parseTapmode();
+		map = api.require('aMap');//高德地图
+		aMapNavigation = api.require('aMapNavigation');//高德导航
+		
+		//打开地图
+		open();
+		//监听单击事件
+		map.addEventListener({
+		    name: 'click'
+		}, function(ret) {
+		    if (ret.status) {
+		    	//closeBubble();
+		    }
+		});
+		
+	}
+	var locationArr = new Array();
+	function viewChangeLocation(){
+		lon = locationArr[locationArr.length - 1].lon;
+		lat = locationArr[locationArr.length - 1].lat;
+		getNameFromCoords(flag);
+    	locationArr.splice(0, locationArr.length);
+    	
+	}
+
+	function open() {
+		var y = api.pageParam.height;
+		map.open({
+			rect : {
+				x : 0,
+				y : y,
+				w : api.winWidth,
+				h : api.frameHeight-100
+			},
+//			center : {
+//				lon : lon,
+//				lat : lat
+//			},
+			zoomLevel : 12,
+			showUserLocation : true,
+			fixedOn : '',
+			fixed : true
+		}, function(ret) {
+			if (ret) {
+				//打开其他页面
+				openOtherFrame();
+				//显示比例尺
+				var x = api.frameWidth * 18 / 100;
+				var y = api.frameHeight * 91 / 100;
+				map.setScaleBar({
+				    show: true,
+				    position: {
+				        x: x,
+				        y: y
+				    }
+				});
+				
+				getLocation();
+			}
+		});
+	}
+	
+	var first = 0;
+	//定位当前用户
+	function getLocation(mapFlag) {
+		api.showProgress({style: 'default', animationType: 'fade', title: '加载中...', text: '',modal: true});
+		if(mapFlag == 1 || mapFlag == 0){
+			first = 0;
+			flag = mapFlag;
+		}
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			if (ret.status) {
+				lat = ret.lat;
+				lon = ret.lon;
+				currLat = ret.lat;
+				currLon = ret.lon;
+				//设置地图中心
+				map.setCenter({
+					coords : {
+						lon : lon,
+						lat : lat
+					},
+					animation : false
+				});
+				getNameFromCoords(flag);
+			}
+		});
+	}
+	
+	//打开地图时调用
+	function getNameFromCoords(flag) {
+		map.getNameFromCoords({
+			lon : lon,
+			lat : lat
+		}, function(ret, err) {
+			if (ret.status) {
+				city = ret.city;
+				if(!city || city == ""){
+					city = ret.state;
+				} 
+				currCity = city;
+				$api.setStorage("currCity", city);
+				$api.setStorage("currLon", lon);
+				$api.setStorage("currLat", lat);
+				yanchangOil(flag);
+			}
+		});
+	}
+	
+	//视角改变监听事件调用
+	function getNameFromCoordsByViewChange(flag) {
+		map.getNameFromCoords({
+			lon : lon,
+			lat : lat
+		}, function(ret, err) {
+			if (ret.status) {
+				city = ret.city;
+				if(!city || city == ""){
+					city = ret.state;
+				} 
+				console.log("视角城市："+ city);
+				console.log("当前城:" +currCity);
+				if(city == currCity){
+					yanchangOil(flag);
+				}
+			}
+		});
+	}
+	
+	//查询延长石油列表
+	var annotations = new Array();
+	var results = new Array();
+	var exchangeObj = new Array();
+	function yanchangOil(flag){
+		console.log("发送请求：" + new Date().getTime());
+		removeAnnotations();
+		
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appPortalShopsAjax!queryPortalShopsByColumn.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.lat = lat;
+		ajaxObject.params.lon = lon;
+		ajaxObject.params.city = $api.getStorage("currCity");
+		if(flag == 1){//只查询延长油站
+			ajaxObject.params.flag = flag;
+		}
+		ajaxObject.isShowProgress = '1';//不显示加载
+		ajaxObject.isHideProgress = '1';//不显示加载
+		ajaxObject.onSuccessFunction = function(ret) {	
+			console.log("进入回调：" + new Date().getTime());
+			var tempPor = null;
+			var counts = ret.portalTginfoList.length;
+			results = ret.portalTginfoList;
+			annotations = new Array();
+			
+			if(counts > 0){
+				var distance1 = 0, distance2 = 0, index = -1;
+				for (var i = 1; i <= counts; i++) {
+					//把有经纬度的油站保存并显示
+					var tempLon = results[i -1].tginfoStatUser;
+					var tempLat = results[i -1].tginfoStatPswd;
+					
+				   	var annotation = new Object();
+				    annotation.lon = tempLon;
+					annotation.lat = tempLat;
+					annotation.id = i;
+					if(results[i -1].memberContactQq == 1){
+						annotation.icons = ['widget://image/bmap/youzhan.png'];
+					}else{
+						annotation.icons = ['widget://image/bmap/youzhan_red.png'];
+					}
+					annotations.push(annotation);
+					
+					if(endLon ==  tempLon && endLat == tempLat){
+						tempPor = results[i -1];
+					}
+					
+					if(first == 0){
+						if(distance1 == 0){
+							distance1 = getGreatCircleDistance(lat, lon, tempLat, tempLon);	
+							index = i;			
+						}else{
+							distance2 = getGreatCircleDistance(lat, lon, tempLat, tempLon);		 
+							if(distance1 > distance2){
+								distance1 = distance2;
+								index = i;
+							}
+						}
+					}
+				}
+				map.addAnnotations({
+					annotations : annotations,
+					draggable : false
+				}, function(ret) {
+					if(ret && ret.eventType == 'click'){
+						var id = ret.id;
+						dealStation(results[id - 1],id);
+					}
+				});
+				if(!isEmpty(tempPor)){
+					toChangeFirst(tempPor);
+				}
+				if(first == 0){
+					exchangeObj = results[index - 1];
+					toChangeFirst(results[index - 1], index);
+				}
+				first = 1;
+			}
+	        api.hideProgress();
+			console.log("结束回调：" + new Date().getTime());
+		}
+		baseAjax(ajaxObject);
+	}
+	
+	function toChangeFirst(obj){
+		removeMapListener("viewChange");
+		map.removeAnnotations({
+		    ids: [99]
+		});
+		var tempAnno = new Array();
+		var temp = new Object();
+		temp.id = 99;
+	    temp.lon = obj.tginfoStatUser;
+		temp.lat = obj.tginfoStatPswd;
+		
+		if(obj.memberContactQq == 1){
+			temp.icons = ['widget://image/bmap/youzhan1.png'];
+		}else{
+			temp.icons = ['widget://image/bmap/youzhan1_yellow.png'];
+		}
+		tempAnno.push(temp);
+		map.addAnnotations({
+			annotations : tempAnno,
+			draggable : false
+		}, function(ret) {
+		});
+		endLon = obj.tginfoStatUser;
+		endLat = obj.tginfoStatPswd;
+		
+		memberCode = obj.memberCode;
+		$("#detail").attr("onclick", "toStation()");
+		$("#go").attr("onclick", "goHere()");
+		$("#name").text(obj.tginfoName);
+		if(obj.tginfoEtmurl.length > 13){
+			obj.tginfoEtmurl = obj.tginfoEtmurl.substring(0, 13) + "..."
+		}
+		$("#address").text(obj.tginfoEtmurl);
+		$("#distance").text(toFixed(getGreatCircleDistance(currLat, currLon, endLat, endLon)/1000) + "km");
+		setTimeout(viewChangeListener,1000);
+	}
+	function toChange(obj, index){
+		map.removeAnnotations({
+		    ids: [99]
+		});
+		var tempAnno = new Array();
+		var temp = new Object();
+		temp.id = 99;
+	    temp.lon = obj.tginfoStatUser;
+		temp.lat = obj.tginfoStatPswd;
+		
+		if(obj.memberContactQq == 1){
+			temp.icons = ['widget://image/bmap/youzhan1.png'];
+		}else{
+			temp.icons = ['widget://image/bmap/youzhan1_yellow.png'];
+		}
+		tempAnno.push(temp);
+		map.addAnnotations({
+			annotations : tempAnno,
+			draggable : false
+		}, function(ret) {
+		
+		});
+		
+		map.removeAnnotations({
+		    ids: [index]
+		});
+		var tempAnno = new Array();
+		var temp = new Object();
+		temp.id = index;
+	    temp.lon = exchangeObj.tginfoStatUser;
+		temp.lat = exchangeObj.tginfoStatPswd;
+		
+		if(exchangeObj.memberContactQq == 1){
+			temp.icons = ['widget://image/bmap/youzhan.png'];
+		}else{
+			temp.icons = ['widget://image/bmap/youzhan_red.png'];
+		}
+		tempAnno.push(temp);
+		//把点击的对象赋值,以便下次交换
+		results[index - 1] = exchangeObj;
+		exchangeObj = obj;
+		map.addAnnotations({
+			annotations : tempAnno,
+			draggable : false
+		}, function(ret) {
+			if(ret && ret.eventType == 'click'){
+				var id = ret.id;
+				dealStation(results[id - 1],id);
+			}
+		});
+	}
+	
+	//放大地图
+	function magnifyMap() {
+		removeMapListener("viewChange");
+		//先获取地图比例尺级别（0.01-20）
+		map.getZoomLevel(function(ret) {
+			var level = ret.level;
+			if(level == 20){
+				level = 20;
+			}else {
+				level = level + 1;
+			}
+			map.setZoomLevel({
+			    level: level,
+			    animation : false
+			});
+		});
+		setTimeout(viewChangeListener,1000);
+	}
+	//缩小地图
+	function shrinkMap() {
+		removeMapListener("viewChange");
+		//先获取地图比例尺级别（0.01-2）
+		map.getZoomLevel(function(ret) {
+			var level = ret.level;
+			if(level == 1){
+				level = 1;
+			}else {
+				level = level - 1;
+			}
+			map.setZoomLevel({
+			    level: level,
+			    animation : false
+			});
+		});
+		setTimeout(viewChangeListener,1000);
+	}
+	
+	//设置定位
+	function showUser() {
+		removeMapListener("viewChange");
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			if (ret.status) {
+				currLat = ret.lat;
+				currLon = ret.lon;
+				//设置地图中心
+				map.setCenter({
+					coords : {
+						lon : currLon,
+						lat : currLat
+					},
+					animation : false
+				});
+				if(currLat == lat && currLon == lon){
+					console.log("定位相同");
+					setTimeout(viewChangeListener,500);
+					return;
+				}
+				lat = ret.lat;
+				lon = ret.lon;
+//				map.getNameFromCoords({
+//					lon : lon,
+//					lat : lat
+//				}, function(ret, err) {
+//					if (ret.status) {
+//						city = ret.city;
+//						currCity = ret.city;
+//						if(!city || city == ""){
+//							city = ret.state;
+//							currCity = ret.state;
+//						}
+//					}
+//				});
+			}
+		});
+		setTimeout(viewChangeListener,500);
+	}
+	
+	
+	//高德导航
+	function navigation(){
+		aMapNavigation.start({
+		    start: {
+		        lon: currLon,
+		        lat: currLat
+		    },
+		    end: {
+		        lon: endLon,
+		        lat: endLat
+		    },
+		    type: 'drive',
+		    strategy: 'fast',
+		    mode: 'GPS',
+		    styles: {
+		        preference: {
+		            night: false,
+		            compass: false,
+		            crossImg: false,
+		            degree: 30,
+		            yawReCal: false,
+		            jamReCal: false,
+		            alwaysBright: false
+		        }
+		    }
+		}, function(ret, err) {
+			var msg;
+			if(ret){
+			    if (ret.eventType == 'calculateSuc') {
+			    	msg = '路径规划成功';
+			    }else if(ret.eventType == 'calculateFai'){
+			    	msg = '路径规划失败';
+			    	clearInterval(inter);
+			    }else if(ret.eventType == 'naviFai'){
+			    	msg = '退出导航';
+			    	clearInterval(inter);
+			    }else if(ret.eventType == 'naviStart'){
+			    	msg = '开始导航';
+			    }else if(ret.eventType == 'naviEnd'){
+			    	msg = '达到目的地导航结束';
+			    	clearInterval(inter);
+			    }else if(ret.eventType == 'naviClose'){
+			    	msg = '用户关闭导航页面';
+			    	clearInterval(inter);
+			    }
+			}
+		    if (err){
+		    	clearInterval(inter);
+			    if (err.code == '2'){
+			        msg = '网络超时或网络失败';
+			    }else if (err.code == '3'){
+			        msg = '起点错误';
+			    }else if (err.code == '4'){
+			        msg = '协议解析错误';
+			    }else if (err.code == '6'){
+			        msg = '终点错误';
+			    }else if (err.code == '10'){
+			        msg = '起点没有找到道路';
+			    }else if (err.code == '11'){
+			        msg = '没有找到通向终点的道路';
+			    }else if (err.code == '12'){
+			        msg = '没有找到通向途经点的道路';
+			    }else if (err.code == '13'){
+			        msg = '路径长度超过限制';
+			    }else if (err.code == '14'){
+			        msg = '其他错误';
+			    }
+		    }
+	       	//api.toast({msg: msg,duration: 2000,location: 'bottom'});
+		});
+	}
+	
+	function getDistance(){
+		//实时计算到油站的距离，小于指定距离则弹出下单页面
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			api.hideProgress();
+			if (ret.status) {
+				lat = ret.lat;
+				lon = ret.lon;
+				var distance = getGreatCircleDistance(lat,lon,endLat,endLon);
+				var param = $api.getStorage("navigationParam");
+				if(Number(distance) < Number(param)){
+					clearInterval(inter);
+					aMapNavigation.close();
+					api.openWin({
+						name : 'youzhan-zhifu-head',
+						url : 'youzhan-zhifu-head.html',
+						reload : true,
+						pageParam : {
+							"memberCode" : memberCode
+						},
+					});
+				}
+			}
+		});
+	}
+	function openOtherFrame(){
+		//打开定位按钮显示页面
+		var x = api.frameWidth * 6 / 100;
+		var y = api.frameHeight * 78 / 100;
+		api.openFrame({
+			name : 'bmap_location_frm',
+			url : 'bmap_location_frm.html',
+			rect : {
+				x : x,
+				y : y,
+				w : 34,
+				h : 34
+			},
+			bounces : false,
+			vScrollBarEnabled : false,
+			hScrollBarEnabled : false
+		});
+		x = api.frameWidth * 84 / 100;
+		y = api.frameHeight * 75 / 100;
+		//打开放大缩小显示页面
+		api.openFrame({
+			name : 'bmap_do_frm',
+			url : 'bmap_do_frm.html',
+			rect : {
+				x : x,
+				y : y,
+				w : 42,
+				h : 84
+			},
+			bounces : false,
+			vScrollBarEnabled : false,
+			hScrollBarEnabled : false
+		})
+	}
+	function toStation(){
+		api.openWin({
+			name : 'youzhan-content-head',
+			url : 'youzhan-content-head.html',
+			pageParam : {
+				"memberCode" : memberCode
+			}
+		});
+	}
+	function goHere(endLat, endLon){
+		navigation();
+		inter = setInterval("getDistance()",10000);
+	}
+	function dealStation(obj, id){
+		if(id == 99)return;
+		removeMapListener("viewChange");
+		
+		endLon = obj.tginfoStatUser;
+		endLat = obj.tginfoStatPswd;
+		
+		toChange(obj, id);
+		
+		memberCode = obj.memberCode;
+		$("#detail").attr("onclick", "toStation()");
+		$("#go").attr("onclick", "goHere()");
+		$("#name").text(obj.tginfoName);
+		if(obj.tginfoEtmurl.length > 13){
+			obj.tginfoEtmurl = obj.tginfoEtmurl.substring(0, 13) + "..."
+		}
+		$("#address").text(obj.tginfoEtmurl);
+		$("#distance").text(toFixed(getGreatCircleDistance(currLat, currLon, endLat, endLon)/1000) + "km");
+		map.setCenter({
+			coords : {
+				lon : endLon,
+				lat : endLat
+			},
+			animation : true
+		});
+		setTimeout(viewChangeListener,1000);
+	}
+	
+	var viewChangeArr = new Array();
+	function viewChangeListener(){
+		//监听视角改变事件
+		map.addEventListener({
+		    name: 'viewChange'
+		}, function(ret) {
+			console.log("视角改变"+ JSON.stringify(ret));
+		    if (ret.status) {
+		    	var lonAndLat = new Object();
+		    	lonAndLat.lon = ret.lon;
+		    	lonAndLat.lat = ret.lat;
+		    	viewChangeArr.unshift(lonAndLat);
+		    	setTimeout("whetherRequest('"+ JSON.stringify(ret)+"')", 500);
+		    }
+		});
+	}
+	
+	function whetherRequest(jsonStr){
+		var ret = JSON.parse(jsonStr);
+		lon = ret.lon;
+		lat = ret.lat;
+		if(viewChangeArr.length > 0 && viewChangeArr[0].lat == lat && viewChangeArr[0].lon == lon){
+			if(currLon != lon || currLat != lat){
+				yanchangOil(flag);
+				console.log(lon + "," + lat);
+			}
+			viewChangeArr.splice(0, viewChangeArr.length);
+		}
+		
+	}
+	
+	function removeMapListener(name){
+		map.removeEventListener({
+		    name: name
+		});
+	}
+	function removeAnnotations(){
+		map.removeAnnotations({
+		    ids: [1,2,3,4,5,6,7,8,9,10]
+		});
+	}
+</script>

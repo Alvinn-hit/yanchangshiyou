@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #f2f2f2;
+			}
+			.chongzhi-box1 {
+				padding: 0px 10px 0px 10px;
+				font-size: 0.875rem;
+				height: 42px;
+				line-height: 42px;
+				position: relative;
+			}
+			.chongzhi-box1:before {
+				height: 1px;
+				background-color: #dddddd;
+				display: block;
+				content: '';
+				position: absolute;
+				top: 0;
+				left: 0;
+				right: auto;
+				bottom: auto;
+				width: 100%;
+				z-index: 2;
+				-webkit-transform-origin: 50% 50%;
+				transform-origin: 50% 50%;
+				pointer-events: none;
+				-webkit-transform: scaleY(0.333);
+				-ms-transform: scaleY(0.333);
+				-o-transform: scaleY(0.333);
+				transform: scaleY(0.333);
+			}
+			.chongzhi-box1:after {
+				height: 1px;
+				background-color: #dddddd;
+				display: block;
+				content: '';
+				position: absolute;
+				top: auto;
+				right: auto;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				z-index: 2;
+				-webkit-transform-origin: 50% 50%;
+				transform-origin: 50% 50%;
+				pointer-events: none;
+				-webkit-transform: scaleY(0.333);
+				-ms-transform: scaleY(0.333);
+				-o-transform: scaleY(0.333);
+				transform: scaleY(0.333);
+			}
+			.chongzhi-box3 {
+				margin-top: 20px;
+			}
+			.aui-row li {
+				border: 1px solid #ddd;
+				width: 22%;
+				float: left;
+				font-size: 0.875rem;
+				margin: 5px;
+				border-radius: 5px;
+				text-align: center;
+				padding: 4px 0px 4px 0px
+			}
+			.active-box{
+			  background: url("../../image/zhifu1.png") no-repeat bottom right;
+			  background-size: 20px 20px;
+			  color:#E6212A;
+			}
+			.number-box{
+			 overflow: hidden;
+			  border:1px solid #ddd;
+			  margin: 5px 10px 0px 5px;
+			  border-radius: 5px
+			}
+			.number-box input{
+			  padding-left: 10px;
+			}
+			.money-card {
+				display: block;
+				height: 30px;
+				line-height: 30px;
+			}
+			.border-li .money-input {
+				color: #fff;
+			}
+			.money-input {
+				font-size: 0.875rem !important;
+				padding: 0px 2px 0px 2px !important;
+			}
+			.chongzhi-li {
+				height: 49px;
+			}
+			.border-li {
+				background: #FF7F00;
+			}
+			.border-li .money-card {
+				color: #fff;
+			}
+			.aui-list-item-media img {
+				width: 30px !important;
+				margin-top: 5px;
+				margin-right: 10px;
+			}
+			.aui-list .aui-list-item {
+				padding-left: 5px;
+			}
+			.aui-list .aui-list-item-media {
+				width: auto;
+				padding-right: 5px;
+			}
+			.aui-list .aui-list-item-inner {
+				padding-right: 0px;
+			}
+			.ok-box {
+				border-left: 1px solid #ddd;
+				height: 48px;
+				width: 48px;
+				margin: -0.5rem 0 -0.5rem 0;
+			}
+			.ok-bg {
+				background: url("../../image/ok.jpg") no-repeat;
+				background-size: 100%;
+			}
+			.btn-box {
+				width: 100%;
+				padding-bottom: 20px;
+			}
+			/*弹出层*/
+			.layui-m-layerchild h3{
+			  height: 40px!important;
+			  line-height: 40px!important;
+			  font-size: 12px!important;
+			}
+			.form-box .layui-m-layercont{
+			   padding: 0px;
+			}
+			.alert-box .layui-m-layercont{
+			  padding: 25px;
+			}
+			.btn-box{
+			  width: 96%;
+			  margin: auto;
+			}
+			.aui-list:after{
+			  height:0px;
+			}
+			.aui-btn-block{
+			  padding: 0.4rem 0 0.4rem 0;
+			}
+			#boxPwd input{
+			  min-height: 3.2rem;
+			}
+			.close-div{
+			  position: absolute;
+			  right:0px;
+			  top:0px;
+			  color:#fff;
+			  height: 40px;
+			  width: 40px;
+			  line-height: 40px;
+			  font-size: 12px;
+			}
+			.aui-list-item-arrow:before {
+				content: '';
+				width: 0.7rem;
+				height: 0.7rem;
+				position: absolute;
+				top: 50%;
+				right: 1rem;
+				margin-top: -0.4rem;
+				background: transparent;
+				border: 1px solid #999;
+				border-top: none;
+				border-right: none;
+				z-index: 2;
+				-webkit-border-radius: 0;
+				border-radius: 0;
+				-webkit-transform: rotate(-135deg);
+				transform: rotate(-135deg);
+			}
+			.chongzhi-box1,
+			.chongzhi-box2 { background-color: #fff;}
+			.chongzhi-box2 { 
+				padding-top: 12px;
+				padding-bottom: 20px;
+			}
+			.chongzhi-box4 { padding-top: 20px;}
+		</style>
+	</head>
+	<body>
+		<div class="chongzhi-box2">
+			<h1 class="yellow aui-font-size-18 aui-padded-l-10">请选择充值金额</h1>
+			<ul class="aui-row aui-margin-t-15">
+			    <li class="active-box">10</li>
+			    <li>20</li>
+			    <li>50</li>
+			    <li>100</li>
+			    <li>200</li>
+			    <li>300</li>
+			    <li>500</li>
+			    <li>1000</li>
+			    <div class="clearfix"></div>
+			    <div class="number-box">
+			     <input id="money" type="number"  placeholder="请输入自定义金额" onkeyup="if(! /^\d+(\.\d{0,2})?$/.test(this.value)){api.toast({msg : '只能输入数字，小数点后只能保留两位',duration : 2000,location : 'center'});this.value='';}"/>
+			    </div>
+			</ul>
+		</div>
+		<div class="chongzhi-box1">
+			<span>充值金额：<span id="price">10</span>元</span>
+		</div>
+		<ul class="aui-list aui-media-list pay-list aui-margin-t-15">
+			<li class="aui-list-item chongzhi-li" onclick="aliPay();">
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-media">
+						<img src="../../image/chongzhi-icon2.jpg">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div  class="aui-list-item-title aui-font-size-18 yellow">
+								支付宝支付
+							</div>
+						</div>
+						<div class="aui-list-item-text aui-font-size-16">
+							推荐有支付宝账号的用户使用
+						</div>
+					</div>
+				</div>
+			</li>
+			<!--<li onclick="unionPayGroup()" class="aui-list-item chongzhi-li" >
+				<div class="aui-media-list-item-inner aui-list-item-arrow">
+					<div class="aui-list-item-media">
+						<img src="../../image/chongzhi-icon3.jpg">
+					</div>
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-text">
+							<div class="aui-list-item-title aui-font-size-18 yellow">
+								银联wap
+							</div>
+						</div>
+						<div class="aui-list-item-text aui-font-size-16">
+							支持储蓄卡
+						</div>
+					</div>
+				</div>
+			</li>-->
+		</ul>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script type="text/javascript" src="../../script/aliPay.js"></script>
+		<script type="text/javascript" src="../../script/unionPay.js"></script>
+	<script>
+		var payPwdFlag = false, memberPhone = "" ,poinfoBillno;
+		//全局定时器
+		var inter = null, second = 120;
+		apiready = function (){
+			queryMyUserInfo();
+		}
+		
+		// 获取我的信息,判断是否设置了交易密码
+		function queryMyUserInfo(){
+			var operatorViewVo = $api.getStorage("operator");
+			if(operatorViewVo.operatorPayPassword && operatorViewVo.operatorPayPassword != null && operatorViewVo.operatorPayPassword != ""){
+				payPwdFlag = true;
+			}else{
+				// 检测到未设置支付密码时,获取到会员手机号
+				memberPhone = $api.getStorage("member").memberPhone;
+			}
+		}
+	
+		function czPassword(payType) {
+			if(payPwdFlag == false){
+				// 未设置支付密码
+				layerPayPwd();
+				return ;
+			}
+			var price = $.trim($("#price").text());
+			if(!price || price == "" ){
+				api.toast({
+				    msg: '请选择充值金额',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			if(!/^\d+(\.\d{0,2})?$/.test(price)){
+				api.toast({
+				    msg: '充值金额只能输入数字，小数点后只能保留两位',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			if(price <= 0 ){
+				api.toast({
+				    msg: '充值金额不能小于等于0',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			api.openWin({
+				name : 'my-chongzhi-password',
+				url : 'my-chongzhi-password.html',
+				reload : true,
+				pageParam : {
+					price : price,
+					payType : payType
+				}
+			});
+		}
+
+		//充值金额
+		$("#money").keyup(function(){
+		 	$(".aui-row li").siblings().removeClass("active-box");
+			var money = $.trim($(this).val());
+			if(money && money != ""){
+				$("#price").html(money);
+			}else{
+				$("#price").html("0");
+			}
+		});
+		//选中金额
+		$(".aui-row>li").click(function() {	
+		    $(".aui-row li").siblings().removeClass("active-box");		
+			$(this).addClass("active-box");
+			var money = $.trim($(this).html());
+			if(money && money != ""){
+				$("#price").html(money);
+			}else{
+				$("#price").html("0");
+			}
+		})
+
+
+		// 未设置支付密码时弹出设置框
+	   function layerPayPwd(){
+		    layer.open({
+		    className: 'form-box',
+		    title: [
+		      '请先设置支付密码',
+		      'background-color: #E6212A; color:#fff;'
+		    ]
+		    ,content: '<div id="boxPwd" class="aui-content">'+
+		    '<div class="close-div iconfont icon-shanchu2"></div>'+
+			    '<ul class="aui-list">'+
+			     ' <li  class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner">'+
+			            '<div class="aui-list-item-input">'+
+			            ' <input type="password" placeholder="设置支付密码" id="payPwd"/>'+
+			           ' </div> '+
+			           '</div>  ' +                                
+			       ' </li>'+          
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<input type="password" placeholder="再次输入密码" id="rePayPwd"/>'+
+			           ' </div> '+
+			            ' </div>  '+             
+			       ' </li>'+
+			        
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<div class="aui-col-xs-8"><input type="number" placeholder="请填写手机验证码" id="messageCode"/></div>'+
+			             '<div class="aui-col-xs-4"><button style="width: 90%; height: 2rem; line-height: 1.5rem;margin-top:5px;" class="aui-btn aui-btn-danger" id="send" onclick="send()">发送验证码</button></div>'+
+			            '</div> '+
+			            ' </div>  ' +            
+			        '</li>'+
+			        
+			        '<div class="btn-box aui-margin-t-15 aui-margin-b-15">'+
+						'<div class="aui-btn aui-btn-block aui-btn-danger" onclick="setPayPwd()">'+
+							'确认'+
+						'</div>'+
+					'</div>'+
+			   ' </ul> ' +
+			'</div>'
+		  });   
+	    $(".close-div").click(function(){
+		    layer.closeAll();
+		  })
+	   }
+	   
+		//时间刷新
+		function autoRefresh() {
+			if (second != 0) {
+				second = second - 1;
+			}
+			$api.text($api.dom('#send'), "重新发送(" + second + ")");
+			if (second == 0) {
+				clearInterval(inter);
+				second = 120;
+				$api.removeAttr($api.dom('#send'), 'disabled');
+				$api.dom("#send").style.backgroundColor = "#5bc0de";
+				$api.val($api.dom('#send'), '点击发送验证码');
+			}
+		}
+
+		//发送短信验证码
+		function send() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = memberPhone;
+			ajaxObject.params.cmodelCode = "DX000007";
+			ajaxObject.params.validateCodeRequired = "0";
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					api.toast({
+						msg : '验证码已经发送至您的手机，请注意查收',
+						duration : 2000,
+						location : 'center'
+					});
+					$api.attr($api.dom('#send'), 'disabled', 'disabled');
+					$api.dom("#send").style.backgroundColor = "#CCC";
+					inter = setInterval("autoRefresh()", 1000);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		function setPayPwd() {
+			var payPwd = $api.val($api.dom("#payPwd"));
+			var rePayPwd = $api.val($api.dom("#rePayPwd"));
+			var messageCode = $api.val($api.dom("#messageCode"));
+			if (payPwd.length != 6) {
+				api.toast({
+					msg : '支付密码为6位',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd.match("^[0-9]+$") == null) {
+				api.toast({
+					msg : '支付密码由数字组成',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd != rePayPwd) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (!messageCode || messageCode == "") {
+				api.toast({
+					msg : '验证码为空或格式不正确',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!savePayPassword.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.newPayPassword = hex_md5(payPwd).toUpperCase();
+			ajaxObject.params.rendCodeRequired = "1";
+			ajaxObject.params.rendCode = messageCode;
+			ajaxObject.params.loginNo = memberPhone;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					 api.toast({msg:'设置交易密码成功'});
+					 var operatorViewVo = $api.getStorage("operator");
+					 operatorViewVo.operatorPayPassword = hex_md5(payPwd).toUpperCase();
+					 $api.setStorage("operator", operatorViewVo);
+				     payPwdFlag = true;
+				   	 window.location.reload();
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}		   		
+		
+		function aliPay(){
+			var price = $.trim($("#price").text());
+			if(!price || price == "" ){
+				api.toast({
+				    msg: '请选择充值金额',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			if(price <= 0 ){
+				api.toast({
+				    msg: '充值金额不能小于等于0',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayRechargeAjax!savePayPoinfoRecharge.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.rendCodeRequired = "0";//不需要发短信验证码
+			ajaxObject.params['payPoinfoViewVo.dataType'] = '2';//账户类型1-钱包2-余额
+			ajaxObject.params['payPoinfoViewVo.poinfoaMode'] = 7;//支付类型
+			ajaxObject.params['payPoinfoViewVo.poinfoaMoney'] = price;//支付金额
+			ajaxObject.params['payPoinfoViewVo.markNo'] = "1";//需要审核
+			ajaxObject.onSuccessFunction = function(data) {
+				var payPoinfoViewVo = new Object();
+				payPoinfoViewVo.failFunction = fail;
+				payPoinfoViewVo.payFunction = success;
+				payPoinfoViewVo.poinfoBillno = data.poinfoBillno;
+				payPoinfoViewVo.flag = 5;//支付宝余额充值标识
+				aliPayByBalance(payPoinfoViewVo);
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function unionPayGroup(){
+			var price = $.trim($("#price").text());
+			if(!price || price == "" ){
+				api.toast({
+				    msg: '请选择充值金额',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			if(price <= 0 ){
+				api.toast({
+				    msg: '充值金额不能小于等于0',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayRechargeAjax!savePayPoinfoRecharge.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.rendCodeRequired = "0";//不需要发短信验证码
+			ajaxObject.params['payPoinfoViewVo.dataType'] = '2';//账户类型1-钱包2-余额
+			ajaxObject.params['payPoinfoViewVo.poinfoaMode'] = '0';//支付类型
+			ajaxObject.params['payPoinfoViewVo.poinfoaMoney'] = price;//支付金额
+			ajaxObject.params['payPoinfoViewVo.markNo'] = "1";//需要审核
+			ajaxObject.onSuccessFunction = function(data) {
+				poinfoBillno = data.poinfoBillno;
+				var payPoinfoViewVo = new Object();
+				payPoinfoViewVo.failFunction = fail;
+				payPoinfoViewVo.payFunction = unionPaySuccess;
+				payPoinfoViewVo.tn = data.tn;
+				unionPay(payPoinfoViewVo);
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function unionPaySuccess(){
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appUnionpayAjax!unionpayResult.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.billno = poinfoBillno;
+			ajaxObject.params.orderType = "5";
+			ajaxObject.onSuccessFunction = function() {
+				success();
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function success(){
+			// 发送广播，刷新余额
+			api.sendEvent({
+				name:'flushBalance'
+			});
+			api.sendEvent({
+				name:'flushMyEvent'
+			});
+			layer.open({
+			    className: 'alert-box',
+			    content: '充值成功',
+			    btn: '我知道了',
+			    yes: function(index){
+			    	if(api.pageParam.recharge){
+			    		execScriptWin(api.pageParam.recharge);
+			    		api.closeWin();
+			    	}else{
+						api.closeToWin({
+							name : 'my-yue-head'
+						});
+			    	}
+					layer.close(index);
+			   	}
+			});
+		}
+		function fail(){
+			api.toast({
+			    msg: '支付未完成',
+			    duration: 2000,
+			    location: 'bottom'
+			});
+		}
+	</script>
+</html>

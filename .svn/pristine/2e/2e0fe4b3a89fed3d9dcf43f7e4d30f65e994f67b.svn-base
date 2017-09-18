@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+       .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+    </style>
+</head>
+<body>
+  <div class="aui-content">
+    <ul class="aui-list">
+   		<li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-input">
+            	<input class="name-input" type="text" placeholder="请输入 用户名" id="memberName"/>
+                </div>
+           </div>                                   
+        </li>   
+    </ul>
+    <div class="btn-box aui-margin-t-15">
+		<div class="aui-btn aui-btn-block aui-btn-danger"  onclick="saveName()">
+			保存
+		</div>
+	</div>
+</div>  
+    
+</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+<script>
+	apiready = function() {
+	//沉浸式
+	var headbar = $api.byId('headbar');
+	$api.fixIos7Bar(headbar);
+	$("#memberName").attr('placeholder',api.pageParam.memberName);
+	};
+
+	function saveName(){
+			var ajaxObject = new Object();
+			var memberName = $("#memberName").val();
+			if (checkName()) {
+				ajaxObject.url = "/appMemberAjax!updateMyUserInfo.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params["memberViewVo.memberType"] = "0";
+				ajaxObject.params["operatorViewVo.memberType"] = "0";
+				ajaxObject.params["memberViewVo.memberName"] = memberName;
+				ajaxObject.onSuccessFunction = function(ret) {
+					api.alert({
+						title : '提示',
+						msg : '保存成功!',
+					}, function(ret, err) {
+						api.closeWin();
+					});
+					execScriptFrame("my-head","my-page");
+					api.sendEvent({
+						name : 'flushMyEvent',
+					});
+				}
+				baseAjax(ajaxObject);
+		};
+		
+	}
+	
+	//姓名校验
+		function checkName() {
+			//var placeholderName = $api.attr($api.byId("memberName"),"placeholder");
+			var memberName = $("#memberName").val();
+			if (memberName == '') {
+				api.toast({
+					msg : '未修改任何信息',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (!/^[\u4E00-\u9FA5]{2,6}$/.test(memberName)) {
+				api.toast({
+					msg : '请检查姓名格式',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			return true;
+		}
+</script>
+</html>

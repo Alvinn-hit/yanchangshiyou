@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>Hello APP</title>
+    <link rel="stylesheet" type="text/css" href="css/api.css" />
+    <link rel="stylesheet" type="text/css" href="css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="css/aui-flex.css" />
+    <link rel="stylesheet" type="text/css" href="css/my-style.css" />
+    <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+	<style>
+	  
+	</style>
+</head>
+<body>
+	<div id="headbar" class="flex-td1">
+        <div class="flex-tr">
+          <div class="flex-tr-1">
+           <a onclick="api.closeWin();" class="head-my"><span class="iconfont icon-jiantou3"></span></a>
+          </div>
+          <div class="flex-tr-2">
+            <span class="logo">
+                                                 用户协议
+            </span>
+          </div>
+          <div  class="flex-tr-3">         
+          </div>
+        </div>
+     </div>
+     
+    
+     
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript">
+	apiready = function(){
+		//沉浸式
+     var headbar=$api.byId('headbar');
+     $api.fixIos7Bar(headbar);
+     
+     //打开协议的内容页面
+     
+     api.openFrame({
+	     name: 'xieyi-frame',
+	     url: 'xieyi-frame.html',
+	     rect: {
+		     x:0,
+		     y:$api.byId('headbar').offsetHeight,
+		     w:"auto",
+		     h:"auto"
+	     }
+     });
+	};
+	
+	
+</script>
+</html>

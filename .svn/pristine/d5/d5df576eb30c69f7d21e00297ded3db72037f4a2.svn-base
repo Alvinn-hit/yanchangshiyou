@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		
+    </style>
+</head>
+<body>
+    <div class="aui-content ">
+    <ul class="aui-list">     
+        <li onclick="messageContent()" class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+             <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+           <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+    </ul>
+</div>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+  //打开消息详情
+   function messageContent(){
+     api.openWin({
+	     name: 'my-message-content-page',
+	     url: 'my-message-content-page.html'
+     });
+   }
+
+</script>
+</html>

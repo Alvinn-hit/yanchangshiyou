@@ -1,0 +1,357 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>底部导航</title>
+		<link rel="stylesheet" type="text/css" href="./css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="./css/iconfont.css"/>
+		<style>
+		    .overflow-box{
+			  overflow: auto;
+			}
+			#headbar{
+			  background: #E6212A;
+			}
+			header ul li {
+				height: 45px;
+				line-height: 45px;
+				text-align: center;
+				display: none;
+				color: #fff;
+				position: relative;
+				font-size: 16px;		
+			}
+			header ul li.active {
+				display: block;
+			}
+			#footer {
+				background-color: #fff;
+			}
+			#footer ul li {
+				padding-top: 36px;
+				padding-bottom: 4px;
+				background: url() no-repeat center 8px;
+				background-size: auto 25px;
+				text-align: center;
+				font-size: 0.875rem;
+			}
+			#footer ul li.active {
+				color: #ff0000;
+			}
+			#footer ul li:nth-child(1) {
+				background-image: url(image/icon-1.jpg);
+			}
+			#footer ul li:nth-child(2) {
+				background-image: url(image/icon-2.jpg);
+			}
+			#footer ul li:nth-child(3) {
+				background-image: url(image/icon-3.jpg);
+			}
+			#footer ul li:nth-child(4) {
+				background-image: url(image/icon-4.jpg);
+			}
+			#footer ul li:nth-child(1).active {
+				background-image: url(image/icon-1a.jpg);
+			}
+			#footer ul li:nth-child(2).active {
+				background-image: url(image/icon-2a.jpg);
+			}
+			#footer ul li:nth-child(3).active {
+				background-image: url(image/icon-3a.jpg);
+			}
+			#footer ul li:nth-child(4).active {
+				background-image: url(image/icon-4a.jpg);
+			}
+			.menu-list{
+			  position: absolute;
+			  right:15px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="wrap" class="flex-wrap flex-vertical">
+			<header id="headbar">
+				<ul>
+					<li class="border-b active" >
+						<div  class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								首页		
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								附近
+								<span onclick="openList()" class="menu-list iconfont icon-santiao"></span>
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								发现
+							</div>
+						</div>
+					</li>
+					<li class="border-b" >
+						<div class="head-bar">
+							<div class="logo-img">
+								<img src="image/logo2.jpg">
+							</div>
+							<div class="head-box">
+								我的
+							</div>
+						</div>
+					</li>
+				</ul>
+			</header>
+			<div id="main" class="flex-con overflow-box"></div>
+			<div id="footer" class="border-t">
+				<ul class="flex-wrap" >
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con active" >
+						首页
+					</li>
+					<li tapmode="hover" onclick="nearly();" class="flex-con" >
+						附近
+					</li>
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >
+						发现
+					</li>
+					<li tapmode="hover" onclick="randomSwitchBtn( this );" class="flex-con" >
+						我的
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="script/api.js"></script>
+<script type="text/javascript" src="./script/system.js"></script>
+<script type="text/javascript" src="./script/ajpush.js"></script>
+<script type="text/javascript" src="./script/my_ajax.js"></script>
+<script type="text/javascript" src="./script/common.js"></script>
+<script type="text/javascript" src="./script/version_update.js"></script>
+<script type="text/javascript">
+	var index = 0;
+	apiready = function() {
+		//存储当前win的名字
+		$api.setStorage("curWinName",api.winName);
+	
+		$api.fixIos7Bar($api.byId('headbar'));
+		api.setStatusBarStyle({
+			style : 'light',
+		});
+		//初始化
+		initConfig();
+		ajpush_init();
+		ajpush_addEventListener();
+		funIniGroup();
+		
+		//退出app
+		exitApp();
+		
+		getSessionId();
+		//循环定位获取经纬度和当前城市名
+		loopGetLocation();
+	}
+	function funIniGroup() {
+		var eHeaderLis = $api.domAll('header li'), frames = [];
+		for (var i = 0, len = eHeaderLis.length; i < len; i++) {
+			frames.push({
+				name : 'frame' + i,
+				url : 'html/index/frame' + i + '.html',
+				bgColor : 'rgba(0,0,0,.2)',
+				bounces : false,
+				pageParam : {
+					"height" : $api.byId('headbar').offsetHeight,
+					"mapFlag" : "0"
+				},   
+			})
+		}
+		api.openFrameGroup({
+			name : 'group',
+			scrollEnabled : false,
+			rect : {
+				x : 0,
+				y : $api.byId('headbar').offsetHeight,
+				w : api.winWidth,
+				h : $api.dom('#main').offsetHeight,
+				marginLeft:0,    //相对父window左外边距的距离
+			    marginTop:0,    //相对父window上外边距的距离
+			    marginBottom:0,    //相对父window下外边距的距离
+			    marginRight:0,    //相对父window右外边距的距离
+				
+			},
+			index : 0,
+			preload :　0,
+			frames : frames
+			}, function(ret, err) {
+			}
+		);
+		api.setFrameGroupIndex({
+			name : 'group',
+			index : 0,
+		});
+	}
+
+	// 随意切换按钮
+	function randomSwitchBtn(tag) {
+		if (tag == $api.dom('#footer li.active')){
+			return;
+		}
+		var eFootLis = $api.domAll('#footer li'), eHeaderLis = $api.domAll('header li');
+		for (var i = 0, len = eFootLis.length; i < len; i++) {
+			if (tag == eFootLis[i]) {
+				index = i;
+			} else {
+				$api.removeCls(eFootLis[i], 'active');
+				$api.removeCls(eHeaderLis[i], 'active');
+			}
+		}
+		$api.addCls(eFootLis[index], 'active');
+		$api.addCls(eHeaderLis[index], 'active');
+		
+		var reload = false;
+		if(index == 3){
+			reload = true;
+		}
+		api.setFrameGroupIndex({
+			name : 'group',
+			index : index,
+			reload : reload,
+		});
+		
+//		if(index != '1'){
+//			hideMapFrame();
+//		}else{
+//			showMapFrame();
+//		}
+	}
+	
+	function getSessionId(){
+		var appSessionId = $api.getStorage("appSessionId");
+		if(appSessionId == null || appSessionId == ""){
+			var ajaxObject = new Object();
+			ajaxObject.url = "appMemberAjax!getAppSessionId.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.onSuccessFunction = function(ret){
+				$api.setStorage("appSessionId", ret.appSessionId);
+			}
+			baseAjax(ajaxObject);
+		}
+	}
+	
+	function hideMapFrame(){
+		var names = ['bmap_do_frm1','bmap_location_frm1'];
+		for(var i = 0 ; i < names.length; i++){
+			api.setFrameAttr({
+			    name: names[i],
+			    hidden:true,
+			});	
+		}
+	}
+	function showMapFrame(){
+		var names = ['bmap_do_frm1','bmap_location_frm1'];
+		for(var i = 0 ; i < names.length; i++){
+			api.setFrameAttr({
+			    name: names[i],
+			    hidden:false,
+			});	
+		}
+	}
+
+	
+	function openList(){
+	  api.openWin({
+	      name: 'listHead',
+	      url: 'html/addoil/youzhan-head.html'
+      });
+	}
+
+	
+	function nearly(){
+		api.openWin({
+			name : 'ejiayou',
+			url : 'html/addoil/ejiayou.html', 
+			reload : true,
+		});
+	}
+	
+	function exitApp() {
+		api.addEventListener({
+			name : 'keyback'
+		}, function(ret, err) {
+			//提示
+			api.toast({
+				msg : '再按一次返回键退出',
+				duration : 2000,
+				location : 'bottom'
+			});
+			//退出事件
+			api.addEventListener({
+				name : 'keyback'
+			}, function(ret, err) {
+				api.closeWidget({
+					silent : true,
+				});
+			});
+			//3喵内不退出重置提示。
+			setTimeout(function() {
+				exitApp();
+			}, 2000);
+		});
+	}
+	
+	function loopGetLocation(){
+		getCurrLocation();
+		setTimeout(loopGetLocation, 15*1000);
+	}	
+	
+	function getCurrLocation(){
+		var aMapLBS = api.require('aMapLBS');//定位
+		var	map = api.require('aMap');//定位
+		aMapLBS.configManager({
+		    accuracy: 'hundredMeters',
+		    filter: 1
+		}, function(ret, err) {
+		    if (ret.status) {
+		        aMapLBS.singleLocation({
+				    timeout: 10
+				}, function(ret, err) {
+				    if (ret.status) {
+				    	var lat = ret.lat;
+						var lon = ret.lon;
+						$api.setStorage("currLat",lat);
+						$api.setStorage("currLon",lon);
+						map.getNameFromCoords({
+							lon : lon,
+							lat : lat
+						}, function(ret, err) {
+							if (ret.status) {
+								var city = ret.city;
+								if(!city || city == ""){
+									city = ret.state;
+								}
+								$api.setStorage("currCity", city);
+							}
+						});
+				    }
+				});
+		    }
+		});
+	}
+</script>

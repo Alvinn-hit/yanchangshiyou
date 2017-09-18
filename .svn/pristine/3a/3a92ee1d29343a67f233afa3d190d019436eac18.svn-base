@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				background: #F5F5F5;
+			}
+			.aui-list:before {
+				height: 0px;
+			}
+			.btn-box {
+				width: 100%;
+				background: #fff;
+				height: 50px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			.btn-box .aui-btn {
+				width: 95%;
+				padding: 5px;
+				font-size: 1rem;
+			}
+			.fix-box {
+				position: fixed;
+				bottom: 0px;
+			}
+			/*列表*/
+			.purple {
+				color: #bf6cef;
+			}
+			.youquan-list-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+				background-size: 16px;
+				font-size: 0.875rem;
+				height: 120px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+			}
+			.list-left-all {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.list-right-all {
+				width: 6rem;
+				border-left: 1px dashed #ddd;
+				padding: 0px 5px 0px 5px;
+			}
+			.list-right-all span {
+				text-align: center;
+				display: block;
+				margin-top: 5px;
+			}
+			.list-left-top {
+				height: 40px;
+				padding: 2px 0px 7px 10px;
+				color: #000;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-left-top img {
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.list-left-bottom {
+				padding: 6px 0px 4px 10px;
+				overflow: hidden;
+			}
+			.list-left-bottom img {
+				width: 100px;
+				float: left;
+			}
+			.card1 .use-btn {
+				border: 1px solid #6612fb;
+				border-radius: 10px;
+				background: #bf6cef;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card1 .much-box {
+				float: left;
+				margin-left: 5px;
+				margin-top: 10px;
+			}
+			.card1 .much-box b {
+				font-size: 1.5rem;
+				color: #bf6cef;
+			}
+			/*列表*/
+			/*详情*/
+			.content-all {
+				overflow: hidden;
+				padding-bottom: 50px;
+			}
+			.tel-img {
+				width: 35px;
+			}
+			.word-box {
+				background: #fff;
+				margin-top: 10px;
+				padding: 10px;
+			}
+			.word-box h1 {
+				font-size: 0.875rem;
+				padding-bottom: 5px;
+				margin-bottom: 5px;
+			}
+			.word-box p {
+				line-height: 18px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content-all" id="all" style="display: none">
+			<div class="aui-content-padded">
+				<div class="youquan-list-box card1" id="couponInfoCon" style="display:none ">
+					<input type="hidden" value="{dataBillstate}" id="dataBillstate"/>
+					<input type="hidden" value="{accountSmoney}" id="accountSmoney"/>
+					<input type="hidden" value="{accountMoney}" id="accountMoney"/>
+					<input type="hidden" value="{accountCode}" id="accountCode"/>
+					<div class="list-left-all ">
+						<div class="list-left-top">
+							<img src="../../image/logo-icon01.png">{couponGrantName}
+						</div>
+						<div class="list-left-bottom">
+							<img src="{baseURL}/{couponRule10}">
+							<div class="much-box">
+								优惠券面值：
+								<br>
+								<b>￥{couponMoney}</b>
+							</div>
+						</div>
+					</div>
+					<div class="list-right-all">
+						<span class="aui-font-size-14">有效日期截止</span>
+						<span class="aui-font-size-14">{effectiveEdateStr}</span>
+						<span onclick="zhifubox('{couponCode}')" class="use-btn">去使用</span>
+					</div>
+				</div>
+			</div>
+			<ul class="aui-list aui-margin-t-15">
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10" id="couponRule">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title ">
+							适用油号 :&nbsp;{couponRule2}
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title ">
+							适用油站 （离我最近）
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10" id="gasDetail" style="display: none">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							{tginfoName}     {tginfoStatUser}km
+							<br>
+							<span style="color: #888">{tginfoEtmurl}</span>
+						</div>
+						<div class="aui-list-item-right" onclick="call('{memberContactPhone}');">
+							<img class="tel-img" src="../../image/tel-ico1.jpg">
+						</div>
+					</div>
+				</li>
+				<li onclick="useYouzhan()" class="aui-list-item aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							全部门店信息
+						</div>
+						<div class="aui-list-item-right aui-font-size-16">
+							共<span id="count">0</span>站
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="word-box">
+				<h1 class="aui-border-b" >优惠券使用细则</h1>
+				<p id="yhCon"></p>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/system.js"></script>
+	<script>
+		var couponInfoViewVo, accountBmoney, accountCmoney;
+		var map, lat, lon, aMapNavigation, tempLon, tempLat;
+		apiready = function() {
+			map = api.require('aMap');
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+			var couponCode = api.pageParam.couponCode;
+			if (couponCode && couponCode != "") {
+				// 查询优惠券详情
+				openMap(couponCode);
+			}
+		}
+		
+		function openMap(couponCode){
+			map.open({
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : api.frameHeight
+				},
+				zoomLevel : 17,
+				showUserLocation : true,
+				fixedOn : 'frame1',
+				fixed : true
+			}, function(ret) {
+				if (ret) {
+					//获取位置坐标
+					queryCouponInfoCon(couponCode);
+				}
+			});
+		}
+		
+		// 查询优惠券券详情
+		function queryCouponInfoCon(Code) {
+			var ajaxObject = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.url = "/appCouponAjax!queryCouponInfoViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.couponCode = Code;
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.couponInfoViewVo;
+				data.effectiveEdateStr = data.effectiveEdateStr.substring(0, 10);
+				couponInfoViewVo = data;
+				if(data.couponRemark){
+					data.couponRemark =  data.couponRemark.replace(new RegExp("\r","gim"), "<br/>");
+				}
+				$("#yhCon").html(data.couponRemark);
+				getWorkBookHtmlByList(data, 'couponInfoCon');
+				getWorkBookHtmlByList(data, 'couponRule');
+				queryPortalShopsViewVo();
+				// 查询门店
+			}
+			baseAjax(ajaxObject);
+		}
+
+		// 查询门店
+		function queryPortalShopsViewVo() {
+			map.getLocation({
+				accuracy : '10m',
+				autoStop : true,
+				filter : 1
+			}, function(ret, err) {
+				api.hideProgress();
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var ajaxObject = new Object();
+					ajaxObject.isShowProgress = '1';
+					ajaxObject.url = "/appPortalShopsAjax!queryCouponInfoShops.htm";
+					ajaxObject.params = new Object();
+					ajaxObject.params.memberBcode = couponInfoViewVo.memberBcode;
+					ajaxObject.params.couponRule8 = couponInfoViewVo.couponRule8;
+					ajaxObject.params.pageFlag = "1";
+					//不隐藏加载
+					ajaxObject.onSuccessFunction = function(ret) {
+						var portalTginfoViewVo, temp = 0;
+						var count = ret.portalTginfoViewVoList.length;
+						var results = ret.portalTginfoViewVoList;
+						for (var i = 0; i < count; i++) {
+							//计算各油站的距离
+							var tempLon = results[i].tginfoStatUser;
+							//经度
+							var tempLat = results[i].tginfoStatPswd;
+							//纬度
+							if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+								var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+								distance = distance / 1000;
+								results[i].tginfoStatUser = distance.toFixed(2);
+								if (temp == 0 || temp > distance) {
+									temp = distance;
+									portalTginfoViewVo = results[i];
+								}
+							}
+						}
+						$("#count").html(count);
+						getWorkBookHtmlByList(portalTginfoViewVo, 'gasDetail');
+						$("#all").show();
+					}
+					baseAjax(ajaxObject);
+				} else {
+					$("#gasDetail").html("暂无信息");
+					$("#all").show();
+				}
+			});
+		}
+
+		// 拨打电话
+		function call(tel) {
+			if (!tel || tel == "") {
+				return;
+			}
+			api.call({
+				type : 'tel_prompt',
+				number : tel
+			});
+		}
+
+		//可用油站
+		function useYouzhan() {
+			api.openWin({
+				name : 'use-youzhan-list-head',
+				url : '../grouporder/use-youzhan-list-head.html',
+				reload : true,
+				pageParam : {
+					memberBcode : couponInfoViewVo.memberBcode,
+					couponRule8 : couponInfoViewVo.couponRule8,
+					queryFlag : "1"
+				}
+			});
+		}
+
+		function zhifubox(couponCode) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCouponAjax!queryCouponGasStation.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.couponCode = couponCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				var gasStationStr = data.gasStationStr;
+				api.openWin({
+					name : 'youzhan-head',
+					url : '../addoil/youzhan-head.html',
+					reload : true,
+					pageParam : {
+						gasStationStr : gasStationStr,
+					}
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

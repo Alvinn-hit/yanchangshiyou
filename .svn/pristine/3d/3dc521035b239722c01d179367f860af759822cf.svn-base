@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui-slide.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 15px 10px;
+				background-color: #fff;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 4px;
+				background-image: url(../../image/border.png);
+				background-repeat: repeat-x;
+				background-size: 375px 4px;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.each-store {
+				margin-top: 16px;
+				margin-bottom: 8px;
+				background-color: #fff;
+			}
+			.store-title {
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			}
+			.store-goods {
+				position: relative;
+				padding-bottom: 12px;
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 10px;
+				font-size: 1rem;
+				color: #000;
+				padding-left: 10px;
+			}
+			.second-title {
+				margin-top: 14px;
+				font-size: 0.875rem;
+				color: #e6212a;
+				padding-left: 10px;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 0.75rem;
+				color: #ff000c;
+			}
+			.color-ff000c {
+				color: #ff000c;
+			}
+			.font14 {
+				font-size: 0.875rem;
+			}
+			.posi-re {
+				position: relative;
+			}
+			.pay-area {
+				/*position: fixed;
+				bottom: 0;*/
+				height: 50px;
+				width: 100%;
+				z-index: 9999;
+				border-top: 1px solid #ddd;
+			}
+			.bg-fff {
+				background-color: #fff;
+			}
+			.bg-e6212a {
+				background-color: #e6212a;
+			}
+			.submit {
+				text-align: center;
+				color: #fff;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.submit-price {
+				padding-right: 12px;
+				text-align: right;
+				color: #e6212a;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.padBottom50 {
+				padding-bottom: 50px;
+			}
+			.amount {
+				margin-top: 20px;
+			}
+			.amount img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount li {
+				float: left;
+				margin-top: 28px;
+				font-size: 1rem;
+				line-height: 21px;
+				height: 21px;
+			}
+			.amount .amount-num {
+				padding-left: 14px;
+				padding-right: 14px;
+			}
+			.aui-slide-page-active {
+				background: #e6212a;
+			}
+			.swiper-slide img{
+				width: 100%;
+				height: 376px;
+			}
+			.swiper-pagination-bullet-active {
+				opacity: 1;
+				background: #e6212a;
+			}
+			.price {
+				margin-top: 28px;
+				padding-left: 10px;
+				color: #e6212a;
+				font-size: 1rem;
+				line-height: 21px;
+			}
+			.font24 { font-size: 1.5rem;}
+			.font12 { font-size: 0.75rem;}
+			.get-goods {
+				margin-top: 34px;
+				padding-left: 10px;
+				font-size: 0.75;
+				color: #888;
+			}
+			.sell-amount {
+				margin-top: 34px;
+				padding-right: 10px;
+				font-size: 0.75;
+				color: #888;
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.6rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<div id="banner" class="flex-td2">
+				<div class="swiper-container">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="../../image/goods-img01.png" />
+						</div>
+						<div class="swiper-slide">
+							<img src="../../image/goods-img01.png" />
+						</div>
+						<div class="swiper-slide">
+							<img src="../../image/goods-img01.png" />
+						</div>
+						<div class="swiper-slide">
+							<img src="../../image/goods-img01.png" />
+						</div>
+					</div>
+					<!-- Add Pagination -->
+					<div class="swiper-pagination"></div>
+					<!-- Add Arrows -->
+				</div>
+			</div>
+			<!--<div id="aui-slide3">
+			<div class="aui-slide-wrap" >
+			<div class="aui-slide-node bg-dark">
+			<img src="../../image/goods-img01.png" />
+			</div>
+			<div class="aui-slide-node bg-dark">
+			<img src="../../image/goods-img01.png" />
+			</div>
+			<div class="aui-slide-node bg-dark">
+			<img src="../../image/goods-img01.png" />
+			</div>
+			<div class="aui-slide-node bg-dark">
+			<img src="../../image/goods-img01.png" />
+			</div>
+			</div>
+			<div class="aui-slide-page-wrap">
+			</div>
+			</div>-->
+			<div class="flex-td2a">
+				<div class="each-store">
+					<div class="store-goods">
+						<div class="aui-col-xs-9 ">
+							<div class="goods-title">
+								昆仑山雪山矿泉水510ml*24瓶  （整箱装）
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="aui-col-xs-9 ">
+							<div class="second-title">
+								来自雪山的矿泉水，优选昆仑山！
+							</div>
+						</div>
+						<div class="clearfix"></div>
+						<div class="aui-col-xs-9 ">
+							<div class="price">
+								¥<span class="font24">88.</span><span class="font12">00</span>
+							</div>
+						</div>
+						<div class="aui-col-xs-3 fr">
+							<div class="amount">
+								<div class="aui-bar aui-bar-btn" style="width:80%;" type="count" id="demo">
+								    <div class="aui-bar-btn-item aui-font-size-20">
+								        <i class="aui-iconfont aui-icon-minus"></i>
+								    </div>
+								    <div class="aui-bar-btn-item">
+								        <input type="number" class="aui-input aui-text-center" id="count" value="1">
+								    </div>
+								    <div class="aui-bar-btn-item aui-font-size-20">
+								        <i class="aui-iconfont aui-icon-plus"></i>
+								    </div>
+								</div>
+							</div>
+						
+							<!--<ul class="amount">
+								<li>
+									<img src="../../image/minus.jpg" />
+								</li>
+								<li class="amount-num">
+									4
+								</li>
+								<li>
+									<img src="../../image/plus.jpg" />
+								</li>
+							</ul>-->
+						</div>
+						<div class="clearfix"></div>
+						<div class="aui-col-xs-9 get-goods">
+								提货方式:现场提取
+						</div>
+						<div class="aui-col-xs-3 sell-amount fr">
+							月销7046笔
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<!--<div class="padBottom50"></div>-->
+				<!--<div class="pay-area">
+					<div class="aui-col-xs-8 bg-fff submit-price">
+						实付款:¥200.<span class="font14">00</span>
+					</div>
+					<div class="aui-col-xs-4 bg-e6212a submit">
+						提交订单
+					</div>
+				</div>-->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/aui-slide.js"></script>
+	<script type="text/javascript" src="../../script/swiper.min.js"></script>
+	<script>
+		apiready = function() {
+		}
+		
+		var bar = document.querySelectorAll(".aui-bar-btn");
+	    if(bar){
+	        for(var i=0; i<bar.length;i++){
+	            var d = bar[i];
+	            var tab = new auiTab({
+	                element:bar[i],
+	                repeatClick:true
+	            },function(ret){
+	                if(ret.dom.parentNode.getAttribute("type") && ret.dom.parentNode.getAttribute("type")=="count"){
+	                    var count = parseInt(document.getElementById("count").value);
+	                    if(ret.index==2)return;
+	                    if(ret.index==1){
+	                        document.getElementById("count").value = count-1;
+	                        if(count==0){
+	                        	document.getElementById("count").value = 0;
+	                        }
+	                    }
+	                    if(ret.index==3){
+	                        document.getElementById("count").value = count+1;
+	                    }
+	                }
+	            });
+	
+	        }
+	    }
+		
+		//打开详情
+		function openContent() {
+			api.openWin({
+				name : 'youzhan-content-head',
+				url : 'youzhan-content-head.html'
+			});
+		}
+		
+		//图片滚动
+		var swiper = new Swiper('.swiper-container', {
+	        pagination: '.swiper-pagination',
+	        paginationClickable: true,
+	        centeredSlides: true,
+	        autoplay: false,
+	        autoplayDisableOnInteraction: false
+		});
+
+//		var slide3 = new auiSlide({
+//			container : document.getElementById("aui-slide3"),
+//			// "width":300,
+//			"height" : 376,
+//			"speed" : 500,
+//			"autoPlay" : false, //自动播放
+//			"loop" : true,
+//			"pageShow" : true,
+//			"pageStyle" : 'dot',
+//			'dotPosition' : 'center'
+//		})
+	</script>
+</html>

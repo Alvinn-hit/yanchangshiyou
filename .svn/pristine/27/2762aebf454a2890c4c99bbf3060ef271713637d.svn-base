@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.fixed-box{
+		  position: fixed;
+		  top:0px;
+		  z-index: 9;
+		  width: 100%;
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img img{
+		  width: 25px;	
+		  float:right;	
+		  margin-top: 10px; 
+		  margin-right:5px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		   margin-top: 2px;
+		 }
+		 .top-60{
+		   position: relative;
+		   top:60px;
+		 }
+		  /*列表*/
+      .youquan-list-top{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #ff7f00;
+			color:#fff;
+			font-size: 0.875rem;
+			height: 30px;
+			line-height: 30px;
+      }
+      .youquan-list-top-td1{
+           width: 10rem;
+      }
+       .youquan-list-top-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+       .youquan-list-top-td3{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      
+       .youquan-list-bottom{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			font-size: 0.875rem;
+			background: #fff;
+			padding: 10px 0px 10px 0px;
+      }
+      .youquan-list-bottom-td1{
+           width: 10rem;
+      }
+       .youquan-list-bottom-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .youquan-logo img{
+        width: 3.9rem;
+        float:left;
+      }
+      .youquan-list-bottom-td2 img{
+        width: 18px;
+      }
+      .youquan-list-bottom-td2 span{
+        display: block;
+      }
+       /*列表*/ 
+       .title-h1{
+         font-size: 0.875rem;
+         margin-bottom: 5px;
+       }
+       .content-word1{
+         border:1px solid #ddd;
+         overflow: hidden;
+         border-left:none;
+         border-right: none;
+         font-size: 0.875rem;
+         padding: 10px;
+       }
+       .content-word2{
+        font-size: 0.875rem;
+        padding: 10px;
+        line-height: 1.5rem;
+       }
+       .content-word2a{
+        font-size: 0.875rem;       
+       }
+       .aui-list .aui-list-item-title{
+       font-size: 0.875rem;
+       color:#FF7F00;
+     }
+     .aui-list:before{
+       background: #FF7F00;
+     }
+     .aui-list .aui-list-item:after{
+     background: #FF7F00;
+      }
+     .aui-list:after{
+       background: #FF7F00;
+     }
+     .aui-list-item-arrow:before{
+       border-color: #FF7F00;
+       -webkit-transform:rotate(-45deg);
+     }
+        .displayNone{
+	       display: none;
+	     }
+	     .youzhan-content{
+	      padding: 10px;
+	      font-size: 0.875rem;
+	     }
+    </style>
+</head>
+<body>
+ <div id="headbar"  class="head-bar fixed-box">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                                       我的油卡			      
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center"></div>
+      </div>                                                          
+    </div>
+    
+   <div class="aui-content top-60">    
+      <div class="youquan-list-box" onclick="youquanContent()">
+     <div class="youquan-list-top">
+       <div class="youquan-list-top-td1 aui-padded-l-5">延长壳牌加油卡</div>
+       <div class="youquan-list-top-td3 aui-text-right aui-padded-r-10">主</div>
+     </div>
+     <div class="youquan-list-bottom">
+       <div class="youquan-list-bottom-td1 aui-padded-l-5">
+        <div class="youquan-logo">
+         <img src="../../image/youquan2.jpg">
+         <img src="../../image/youquan3.jpg">
+        </div>
+       </div>
+       <div class="youquan-list-bottom-td2">
+        <span class="yellow aui-font-size-20">￥950.00元</span>
+        <span>有效日期截止 2016.12.31</span>
+       </div>
+     </div>
+   </div>
+    
+    <div class="content-word1">
+     <span class="aui-col-xs-9">
+                  距离您最近的可用油站：西安长安南路加油站 
+     </span>
+     <span class="aui-col-xs-3 aui-text-right yellow">
+                100米
+     </span>
+    </div>
+    
+    <div class="content-word2a aui-margin-t-15">
+       <ul class="aui-list ">  
+        <li id="chakanList" class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">查看可用油站</div>
+            </div>
+        </li> 
+        <div class="youzhan-content displayNone">
+                        西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站
+        </div>      
+    </ul>
+    </div>
+    
+     <div class="content-word2 aui-margin-t-15">
+      <h1 class="title-h1 yellow">使用须知</h1>
+      <div class="youzhan-list">
+                    1.加油卡仅限加油使用，不可购买非油品<br>
+					2.加油卡余额不可提现、不可转让，不能透支、不计利息<br>
+					3.充值是不开具发票，请使用加油卡时，在合作油站按照加油<br>
+					实付金额开具（返利部分不开具发票）<br>
+					4.该加油卡只能在e加油与延长壳牌合作的指定加油站使用<br>
+					5.一张加油卡仅限一个用户使用<br>
+					6.此卡仅限e加油用户使用
+					
+      </div>
+    </div>    
+   </div> 
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+<script type="text/javascript">
+    apiready = function(){
+     $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+    };
+    
+     //展开油站详情
+    $("#chakanList").click(function(){
+      $(".youzhan-content").toggleClass("displayNone")
+    })
+   
+</script>
+</html>

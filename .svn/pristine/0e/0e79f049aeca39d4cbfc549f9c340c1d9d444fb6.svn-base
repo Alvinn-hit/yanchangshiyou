@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.back {
+				color: #fff;
+				font-weight: bold;
+				float: left;
+				margin-top: 4px;
+				margin-right: 4px;
+			}
+			.head-box1 {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				height: 45px;
+			}
+			.head-box1-td1 {
+				width: 80px;
+			}
+			.head-box1-td3 {
+				width: 80px;
+			}
+			.head-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.ditu-img img {
+				width: 25px;
+				float: right;
+				margin-top: 10px;
+				margin-right: 5px;
+			}
+			.input-box {
+				text-align: center;
+				color: #fff;
+				line-height: 45px;
+			}
+			.pay-area {
+				height: 50px;
+				width: 100%;
+				z-index: 9999;
+			}
+			.pay-area:before {
+				content: '';
+				display: block;
+				height: 1px;
+				width: 100%;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.bg-fff {
+				background-color: #fff;
+			}
+			.bg-e6212a {
+				background-color: #e6212a;
+			}
+			.submit {
+				text-align: center;
+				color: #fff;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.submit-price {
+				padding-right: 12px;
+				text-align: right;
+				color: #e6212a;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<div id="headbar"  class="head-bar flex-td1">
+				<div class="head-box1">
+					<div class="head-box1-td1">
+						<div class="logo-img">
+							<span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+							<img src="../../image/logo2.jpg">
+						</div>
+					</div>
+					<div class="head-box1-td2 input-box">
+						确认支付
+					</div>
+					<div class="head-box1-td3 ditu-img aui-text-center"></div>
+				</div>
+			</div>
+			<div class="flex-td2a"></div>
+			<div class="pay-area flex-td3" id="footer">
+				<div class="aui-col-xs-8 bg-fff submit-price">
+					实付款:¥200.<span class="font14">00</span>
+				</div>
+				<div class="aui-col-xs-4 bg-e6212a submit">
+					提交订单
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+			api.openFrame({
+				name : 'preorder-pay-page',
+				url : 'preorder-pay-page.html',
+				rect : {
+					x : 0,
+					y : $api.byId("headbar").offsetHeight,
+					w : 'auto',
+					h : api.winHeight - $api.byId('headbar').offsetHeight - $api.byId('footer').offsetHeight
+				}
+			});
+		}
+	</script>
+</html>

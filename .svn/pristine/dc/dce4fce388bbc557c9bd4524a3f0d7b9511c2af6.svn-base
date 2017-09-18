@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+       .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }
+	   .aui-list-item-arrow:before{
+	     -webkit-transform:rotate(-45deg)
+	   }
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+	   .change-box{
+	     overflow: hidden;
+	     height: 40px;
+	     line-height: 38px;
+	     padding: 0px 10px 0px 10px;
+	   }
+	   .change-box .radio-box{
+	    top:10px;
+	     }
+	   .btn-group img{
+	     width: 18px;
+	     vertical-align: middle;
+	     margin: 0px 2px 0px 2px;
+	   }
+	   .carList{
+	     position: relative;
+	   }
+	   .carList:after{
+	     content:"";
+	     width: 100%;
+	     height: 1px;
+	     background: #ddd;
+	     position: absolute;
+	     bottom:0px;
+	   }
+	   .displayNone .content-car{
+	    display: none;
+	   }
+	   .displayBlock .content-car{
+	    display: block;
+	   }
+    </style>
+</head>
+<body>
+  <div class="aui-content">
+    <ul class="aui-list">
+     <div class="carList">
+      <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">上海石油发展有限公司</div> 
+            </div>                                   
+        </li>
+        <div class="content-car">
+               <ul class="aui-list">                 
+                 <div class="change-box">
+                   <div class="aui-pull-left">
+                   <input class="aui-radio radio-box" type="checkbox" name="demo" >
+                                                        设为默认</div>
+                   <div class="aui-pull-right btn-group">
+                     <span><img src="../../image/car1.jpg">编辑</span>
+                     <span><img src="../../image/car2.jpg">删除</span>
+                   </div>
+                 </div>
+               </ul>
+            </div>    
+        </div>         
+               </ul>
+            </div> 
+        </div>
+    </ul>
+  </div>
+  
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script>
+ apiready = function(){
+  
+ }
+ //点击展开车辆信息
+ $(".carList").addClass("displayNone")
+ $(".carList>li").click(function(){
+   $(this).parent().toggleClass("displayBlock").toggleClass("displayNone")
+ })
+
+</script>
+</html>

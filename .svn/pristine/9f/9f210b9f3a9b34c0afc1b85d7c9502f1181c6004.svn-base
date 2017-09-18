@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.each-store {
+				margin-bottom: 8px;
+				background-color: #fff;
+			}
+			.store-title { 
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				margin-top: 3px;
+				height: 105px;
+				border-top: 1px solid #e0e0e0;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 8px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 0.75rem;
+				color: #ff000c;
+			}
+			.color-ff000c { color: #ff000c;}
+			.font14 { font-size: 0.875rem;}
+			.posi-re { position: relative;}
+			.ver-align { vertical-align: middle}
+		</style>
+	</head>
+	<body>
+		<div class="each-store">
+			<div class="store-title">
+				<img src="../../image/logo-icon02.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>
+				<div class="store-detail" onclick="more()">查看全部<span class="iconfont icon-jiantou2"></span></div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods" onclick="goods()">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods" onclick="goods()">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<div class="each-store" onclick="more()">
+			<div class="store-title">
+				<img src="../../image/logo-icon06.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>
+				<div class="store-detail">查看全部<span class="iconfont icon-jiantou2"></span></div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods" onclick="goods()">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods" onclick="goods()">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script>
+		apiready = function() {
+		}
+		//查看全部
+		function more() {
+			api.openWin({
+				name : 'cvstore-more-head',
+				url : 'cvstore-more-head.html'
+			});
+		}
+		//查看单个商品
+		function goods() {
+			api.openWin({
+				name : 'goods-detail-head',
+				url : 'goods-detail-head.html'
+			});
+		}
+
+	</script>
+</html>

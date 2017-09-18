@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			.aui-list:before {
+				height: 0px;
+			}
+			.btn-box {
+				width: 100%;
+				background: #fff;
+				height: 50px;
+				text-align: center;
+				padding-top: 10px;
+			}
+			.btn-box .aui-btn {
+				width: 95%;
+				padding: 5px;
+				font-size: 1rem;
+			}
+			.fix-box {
+				position: fixed;
+				bottom: 0px;
+			}
+			/*详情*/
+			.content-all {
+				overflow: hidden;
+				padding-bottom: 50px;
+			}
+			.content-top-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px;
+				background: #fff;
+			}
+			.content-top-1 {
+				width: 120px;
+			}
+			.content-top-1 img {
+				width: 120px;
+				padding-top: 10px;
+			}
+			.content-top-2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				padding-left: 5px;
+			}
+			.title-h1 {
+				font-size: 0.875rem;
+			}
+			.span-img {
+				border: 1px solid #BF6CF0;
+				color: #BF6CF0;
+				border-radius: 5px;
+				padding: 2px;
+			}
+			.span-img img {
+				width: 15px;
+				vertical-align: middle;
+			}
+			.money-box {
+				background: #fff;
+				margin-top: 15px;
+			}
+			.money-box-top {
+				position: relative;
+				display: table-cell;
+				width: 1%;
+				padding-bottom: 10px;
+			}
+			.money-box-top span {
+				width: 48%;
+				font-size: 0.875rem;
+			}
+			.money-box-top span b {
+				color: #FF0000;
+			}
+			.money-box-bottom {
+				overflow: hidden;
+				margin-top: 20px;
+				margin-bottom: 20px;
+			}
+			.money-box-list {
+				float: left;
+				width: 22%;
+				margin: 0px 5px 0px 5px;
+				border: 1px solid #ddd;
+				text-align: center;
+				border-radius: 5px;
+				padding: 5px;
+			}
+			.money-box-list.active-money {
+				border: 1px solid #FF0000;
+				color: #FF0000;
+				background: url("../../image/zhifu1.png") bottom right no-repeat;
+				background-size: 25px 25px;
+			}
+			.money-input {
+				text-align: right;
+				color: #ff0000 !important;
+			}
+			.tel-img {
+				width: 35px;
+			}
+			.word-box {
+				background: #fff;
+				margin-top: 10px;
+				padding: 10px;
+			}
+			.word-box h1 {
+				font-size: 0.875rem;
+				padding-bottom: 5px;
+				margin-bottom: 5px;
+			}
+			.word-box p {
+				line-height: 18px;
+			}
+			.color-1ba49e {
+				color: #1ba49e
+			}
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 6px;
+				right: 4px;
+			}
+			.amount-add {
+				position: absolute;
+				z-index: 99;
+				bottom: 16px;
+				right: 10px;
+			}
+			.amount img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount-add img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount li {
+				float: left;
+				margin-left: 7px;
+				margin-right: 7px;
+				font-size: 1rem;
+				line-height: 21px;
+				height: 21px;
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.6rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="content-all">
+			<div class="content-top-box">
+				<div class="content-top-1">
+					<img src="../../image/card4.jpg" />
+				</div>
+				<div class="content-top-2">
+					<h1 class="title-h1">1000元 92# 高速延长预购劵 可享9.2折 <span class="red">劲省800元</span></h1>
+					<p>
+						<!--<span class="span-img"><img src="../../image/yz-ico3.jpg">已成团</span>-->
+						<span>已售21000元</span>
+					</p>
+					<p>
+						最高可购<span class="red">5张</span>
+					</p>
+					<p class="color-1ba49e">
+						团购成功，不可退，未使用可转赠
+					</p>
+					<!--<p>满<span class="red">1000升</span>可成团<span class="red"> 100升</span>起售 每人<span class="red">最高可购800升</span></p>-->
+					<p>
+						活动截止日期：2016.12.31
+					</p>
+				</div>
+			</div>
+			<div class="money-box money-type-box">				
+				<div class="money-box-top aui-border-t aui-padded-l-10 aui-padded-r-10 aui-padded-t-15">
+					<span>数量</span>
+					<div class="aui-text-right amount">
+						<div class="aui-bar aui-bar-btn" style="width:80%;" type="count" id="demo">
+						    <div class="aui-bar-btn-item aui-font-size-20">
+						        <i class="aui-iconfont aui-icon-minus"></i>
+						    </div>
+						    <div class="aui-bar-btn-item">
+						        <input type="number" class="aui-input aui-text-center input-count" id="count" value="1">
+						    </div>
+						    <div class="aui-bar-btn-item aui-font-size-20">
+						        <i class="aui-iconfont aui-icon-plus"></i>
+						    </div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="money-box money-type-box">
+				<!--<div class="money-box-top aui-border-b aui-padded-l-10 aui-padded-r-10 aui-padded-t-15">
+					<span>金额（元）</span>
+					<span class="aui-text-right">
+						<input class="money-input" type="number" />
+					</span>
+				</div>
+				<div class="money-box-bottom">
+					<div class="money-box-list active-money">
+						100
+					</div>
+					<div class="money-box-list">
+						200
+					</div>
+					<div class="money-box-list">
+						300
+					</div>
+					<div class="money-box-list">
+						400
+					</div>
+				</div>-->
+				<div class="money-box-top aui-border-t aui-padded-l-10 aui-padded-r-10 aui-padded-t-15">
+					<span>支付金额</span>
+					<span class="aui-text-right"> <em class="red">1019.20元</em> </span>
+				</div>
+			</div>
+			<ul class="aui-list aui-margin-t-15">
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title ">
+							适用油站 （离我最近）
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							曲江庙坡头油站     30.00km
+							<br>
+							<span style="color: #888">近西安唐城墙遗址公园</span>
+						</div>
+						<div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg">
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							全部门店信息
+						</div>
+						<div class="aui-list-item-right aui-font-size-16">
+							共24站
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="word-box">
+				<h1 class="aui-border-b">团购细则</h1>
+				<p>
+					1.有效期: 自购买日起12月内有效
+				</p>
+				<p>
+					2.该团购券限延长加油合作站使用
+				</p>
+				<p>
+					3.无需预约、不可退款、不设找零，可分次消费
+				</p>
+				<p>
+					4.不允许散装买油
+				</p>
+				<p>
+					5.团购券与优惠券不可叠加使用且优先使用团购券
+				</p>
+				<p>
+					6.请根据可用油站选择购买
+				</p>
+			</div>
+		</div>
+		<!--<div class="btn-box fix-box">
+			<div class="aui-btn aui-btn-danger" >
+				立即支付 1019.20元
+			</div>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script>
+		apiready = function() {
+		}
+		
+		var bar = document.querySelectorAll(".aui-bar-btn");
+	    if(bar){
+	        for(var i=0; i<bar.length;i++){
+	            var d = bar[i];
+	            var tab = new auiTab({
+	                element:bar[i],
+	                repeatClick:true
+	            },function(ret){
+	                if(ret.dom.parentNode.getAttribute("type") && ret.dom.parentNode.getAttribute("type")=="count"){
+	                    var count = parseInt(document.getElementById("count").value);
+	                    if(ret.index==2)return;
+	                    if(ret.index==1){
+	                        document.getElementById("count").value = count-1;
+	                        if(count==0){
+	                        	document.getElementById("count").value = 0;
+	                        }
+	                    }
+	                    if(ret.index==3){
+	                        document.getElementById("count").value = count+1;
+	                    }
+	                }
+	            });
+	
+	        }
+	    }
+		
+		//打开详情
+		function openContent() {
+			api.openWin({
+				name : 'grouporder-pay-head',
+				url : 'grouporder-pay-head.html'
+			});
+		}
+
+		//选择金钱
+		$(".money-box-bottom div").click(function() {
+			$(".money-box-bottom").children("div").removeClass("active-money")
+			$(this).addClass("active-money")
+			var moneyNumber = $.trim($(this).html());
+			$(".money-input").val(moneyNumber)
+		})
+	</script>
+</html>

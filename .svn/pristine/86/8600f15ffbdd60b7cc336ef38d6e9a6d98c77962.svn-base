@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+
+		 .balance-box{
+	       background:#fff;
+	       color:#333;
+	       padding: 15px 15px 0px 15px;
+	     }
+	     .balance-box h1{
+	       font-size: 4.5rem;
+	       color: #FF0000;
+	     }
+	     .balance-box h2{
+	       font-size: 1.0rem;
+	     }
+	     .my-list-all{
+		  margin-top: 10px;
+		}
+		.my-list-all li{
+		   padding:10px 0px 10px 0px;
+		   background: #fff;
+		   border-bottom: 1px solid #e2e2e2;
+		   position: relative;
+		}
+		.my-list-all span{
+		   font-size:0.75rem;
+		}
+		.li-icon{
+		  width: 28px;
+		  height: 28px;
+		  margin: 0px 10px 0px 10px;
+		}
+    </style>
+</head>
+<body>
+    
+     <div class="balance-box">
+       <h2>加油余额(元)</h2>
+       <h1>￥0.00</h1>
+     </div>
+     
+     <ul class="my-list-all">
+      <li onclick="consume()">
+        <img class="li-icon fl" src="../../image/money-ico1.jpg">
+        <span>充值</span>
+        <em class="arrows iconfont icon-jiantou2"></em>
+      </li>    
+     </ul>
+     
+      <ul class="my-list-all">
+      <li onclick="paycard()">
+         <img class="li-icon fl" src="../../image/money-ico2.jpg">
+        <span>我的银行卡</span>
+        <em class="arrows iconfont icon-jiantou2"></em>
+      </li>
+     </ul>
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+
+//打开充值
+ function chongzhi(){
+   api.openWin({
+	   name: 'my-chongzhi-head',
+	   url: 'my-chongzhi-head.html'
+   });
+ }
+
+//打开银行卡管理
+function paycard(){
+  api.openWin({
+	   name: 'my-paycard-head',
+	   url: 'my-paycard-head.html'
+   });
+}
+
+
+
+
+</script>
+</html>

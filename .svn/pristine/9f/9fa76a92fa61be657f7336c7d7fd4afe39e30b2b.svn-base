@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.logo-img img{
+			  vertical-align: top;
+			}
+			.logo-img{
+			  bottom:8px;
+			}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		 margin-top: 4px;
+		  margin-right: 4px;
+		}
+    </style>
+</head>
+<body>
+   <div id="headbar"  class="head-bar">
+                <div onclick="api.closeWin()" class="logo-img">
+                 <span  class="iconfont icon-jiantou3 back"></span> 
+                 <img src="image/logo2.jpg">
+                </div>
+                <div class="head-box">重置密码</div>                                                         
+              </div>
+     
+    
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+        
+        api.openFrame({
+	        name: 'forget-page',
+	        url: 'forget-page.html',
+	        rect: {
+		        x:0,
+		        y:$api.byId("headbar").offsetHeight ,
+		        w:'auto',
+		        h:'auto'
+	        }
+        });
+ }
+ 
+
+</script>
+</html>

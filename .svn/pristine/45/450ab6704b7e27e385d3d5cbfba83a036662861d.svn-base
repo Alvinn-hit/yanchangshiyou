@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>Hello APP</title>
+		<link rel="stylesheet" type="text/css" href="css/api.css" />
+		<link rel="stylesheet" type="text/css" href="css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.logo-img img{
+			  vertical-align: top;
+			}
+			.logo-img{
+			  bottom:8px;
+			}
+			/*.back {
+				color: #fff;
+				position: absolute;
+				left: 5px;
+				top: 10px;
+				font-weight: bolder;
+			}*/
+			.login-form {
+				background: #fff;
+				padding-top: 20px;
+			}
+			.icon-img {
+				float: left;
+				margin-right: 10px;
+			}
+			.icon-img img {
+				width: 16px;
+				height: 22px;
+				margin-top: 10px;
+			}
+			.forger-p {
+				text-align: center;
+				padding: 12px;
+				margin-top: 5px;
+			}
+			.forger-p a {
+				display: inline-block;
+				color: #888;
+				margin: 0px 10px 0px 10px;
+				font-size: 0.875rem;
+			}
+			.login-logo {
+				text-align: center;
+			}
+			.login-logo img {
+				/*width: 144px;*/
+				width: 114px;
+				height: 114px;
+				/*height: 117px;*/
+				border-radius: 50%;
+				margin-bottom: 10px;
+			}
+			.login-logo {
+				background: #fff;
+			}
+			.back {
+				color: #fff;
+				font-weight: bold;
+				float: left;
+				margin-top: 4px;
+				margin-right: 4px;
+			}
+			.head-box1-td1 {
+				width: 80px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="headbar" class="head-bar">			
+			<div class="head-box1-td1">
+				<div class="logo-img" onclick="goIndex()">
+					<span class="iconfont icon-jiantou3 back"></span>
+					<img src="image/logo2.jpg">
+				</div>
+			</div>
+			<div class="head-box">
+				登录
+			</div>
+		</div>
+		<div class="login-form">
+			<div class="login-logo">
+				<img src="image/logo11.png" onclick="goIndex()">
+			</div>
+			<ul class="aui-list aui-form-list aui-font-size-18">
+				<li class="aui-list-item aui-padded-t-5 aui-padded-b-5">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<span class="icon-img"><img src="image/tel.jpg"></span>
+							用户名
+						</div>
+						<div class="aui-list-item-input">
+							<input type="number" placeholder="请输入用户名" id="phone" />
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-padded-t-5 aui-padded-b-5">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-label">
+							<span class="icon-img"><img src="image/lock.jpg"></span>
+							密码
+						</div>
+						<div class="aui-list-item-input">
+							<input type="password" placeholder="请输入密码" id="password" />
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<div class="btn-box aui-margin-t-15">
+			<div onclick="login()" class="aui-btn aui-btn-block aui-btn-danger">
+				登录
+			</div>
+		</div>
+		<p class="forger-p">
+			<a onclick="reg()">注册账号</a><a onclick="forget()">忘记密码</a>
+		</p>
+	</body>
+	<script type="text/javascript" src="script/api.js"></script>
+	<script type="text/javascript" src="script/my_ajax.js"></script>
+	<script type="text/javascript" src="script/common.js"></script>
+	<script type="text/javascript" src="script/jquery.min.js"></script>
+	<script type="text/javascript" src="script/system.js"></script>
+	<script type="text/javascript" src="script/ajpush.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			api.addEventListener({
+				name : 'keyback'
+			}, function(ret, err) {
+				goIndex();
+			});
+			initConfig();
+		};
+		//注册
+		function reg() {
+			api.openWin({
+				name : 'reg-head',
+				url : 'reg-head.html',
+				reload : true
+			});
+		}
+		
+		//跳到首页
+		function goIndex() {
+			api.openWin({
+				name : 'index',
+				url : 'index.html',
+				reload : true,
+				slidBackEnabled : false,
+			});
+		}
+
+		//忘记密码
+		function forget() {
+			api.openWin({
+				name : 'forget-head',
+				url : 'forget-head.html',
+				reload : true
+			});
+		}
+
+		//进入页面
+		function login() {
+			var phone = document.getElementById("phone").value;
+			var password = document.getElementById("password").value;
+			if (phone == '') {
+				api.toast({
+					msg : '请输入登陆账号',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (password == '') {
+				api.toast({
+					msg : '请输入登录密码',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appLoginAjax!userLoginCache.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.loginNo = phone;
+			ajaxObject.params.password = password;
+			ajaxObject.params.picRendCodeRequired = 0;
+			ajaxObject.onSuccessFunction = function(ret) {
+				setLoginInfo(ret);
+				//ajpush_bindAliasAndTags(ret.memberCode);
+				
+				api.sendEvent({
+	                name:'flushMyEvent'
+                });
+				//刷新前一个页面
+				if(isEmpty($api.getStorage("curWinName"))){
+					api.openWin({
+						name : 'index',
+						url : 'index.html',
+						reload : true,
+						slidBackEnabled : false,
+					});
+				}else{
+					execScriptWin($api.getStorage("curWinName"));
+					api.closeWin();
+				}
+				document.getElementById("phone").value = "";
+				document.getElementById("password").value = "";
+			}
+			baseAjax(ajaxObject);
+		}
+		
+	</script>
+</html>

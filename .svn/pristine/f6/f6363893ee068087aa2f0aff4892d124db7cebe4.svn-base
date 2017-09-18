@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3rem;
+			}
+			.aui-list .aui-list-item-title {
+				font-size: 0.875 rem;
+			}
+			.aui-list .aui-list-item-right {
+				font-size: 0.875 rem;
+				max-width: 100%;
+			}
+			.head-img img {
+				width: 64px;
+				margin: 10px 0px 10px 0px;
+			}
+			/*弹出*/
+			.list-ul {
+				margin: -50px -30px -50px -30px;
+			}
+			.list-ul li {
+				border-bottom: 1px solid #ddd;
+				padding: 10px 0px 10px 0px;
+				font-size: 0.875 rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content ">
+			<ul class="aui-list" id="memberData" style="display:none">
+				<li class="aui-list-item aui-list-item-middle" onclick="uploadHead()">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							头像
+						</div>
+						<div class="aui-list-item-right head-img"><img style="margin: auto" src="{baseURL}/{memberCertificate3No}" id="headPic" data="">
+						</div>
+				</li>
+				<li class="aui-list-item" onclick="nameChange('{memberName}')">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							用户名
+						</div>
+						<div class="aui-list-item-right">
+							{memberName}
+						</div>
+					</div>
+				</li>
+				<li onclick="sexBox()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							性别
+						</div>
+						<div class="aui-list-item-right ">
+							{memberSex}
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							出生日期
+						</div>
+						<div class="aui-list-item-right">
+							1911-02-03
+						</div>
+					</div>
+				</li>
+				<li onclick="changetel()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							手机号
+						</div>
+						<div class="aui-list-item-right">
+							{memberPhone}
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner ">
+						<div class="aui-list-item-title">
+							我的等级
+						</div>
+						<div class="aui-list-item-right">
+							{memberGradeStr}
+						</div>
+					</div>
+				</li>
+				<!-- <li class="aui-list-item">
+				<div class="aui-list-item-inner aui-list-item-arrow">
+				<div class="aui-list-item-title">实名认证</div>
+				<div class="aui-list-item-right">已认证</div>
+				</div>
+				</li>-->
+				<li class="aui-list-item" onclick="area('areaValueId','areaShowId')">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							常住地址
+						</div>
+						<div class="aui-list-item-right">
+							{areaName}
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							发票信息
+						</div>
+						<div class="aui-list-item-right" id="invoiceData"></div>
+					</div>
+				</li>
+				<li onclick="mycar()" class="aui-list-item">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							我的爱车
+						</div>
+						<div class="aui-list-item-right" id="carData"></div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/area.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../../script/my_upload.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/aui_compress.min.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			getMyInfo();
+			//监听刷新本页面事件
+			api.addEventListener({
+				name : 'flushMyFrameEvent'
+			}, function(ret, err) {
+				getMyInfo(1);
+			});
+		};
+		//获取默认的个人信息展示
+		function getMyInfo(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!queryMyUserInfo.htm";
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.isHideProgress = '1';
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (!ret.memberViewVo) {
+					$("#memberPhone").html("请输入电话号码");
+					$("#areaShowId").html("请选择地区");
+				} else {
+					ret.memberViewVo.memberCertificate3No = ret.operatorViewVo.operatorImgpath;
+					getWorkBookHtmlByList(ret.memberViewVo, "memberData");
+				}
+				getDefaultBill(1);
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//获取默认发票信息
+		function getDefaultBill(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appInvoiceAjax!queryDefaultInvoiceViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.invoiceType = "3";
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.isHideProgress = '1';
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (!ret.invoiceViewVo) {
+					$("#invoiceData").html("请设置发票信息");
+				} else {
+					$("#invoiceData").html(ret.invoiceViewVo.invoiceCompanyname);
+				}
+				getDefaultCar(1);
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//获取默认爱车信息
+		function getDefaultCar(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBasicCarAjax!queryDefaultBasicCarViewVo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.invoiceType = "3";
+			if (isShow) {
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (!ret.basicCarViewVo) {
+					$("#carData").html("请设置默认爱车信息");
+				} else {
+					$("#carData").html(ret.basicCarViewVo.carName);
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//上传头像
+		function uploadHead() {
+			var ajaxObject = new Object();
+			ajaxObject.isCompress = 1;
+			//需要压缩
+			ajaxObject.url = "/appFtpAjax!uloadFile.htm";
+			ajaxObject.onSuccessFunction = function(ret) {
+				var headPic = $api.dom("#headPic");
+				var headPicPath = ret.fileVoList[0].filePath + ret.fileVoList[0].fileName;
+				//修改会员头像路径
+				var ajaxObject = new Object();
+				ajaxObject.isShowProgress = '1';
+				//不加载
+				ajaxObject.url = "/appMemberAjax!updateMyUserInfo.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params["operatorViewVo.operatorImgpath"] = headPicPath;
+				ajaxObject.onSuccessFunction = function(ret) {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+					getMyInfo(1);
+					api.sendEvent({
+						name : 'flushMyEvent'
+					});
+				}
+				baseAjax(ajaxObject);
+			}
+			baseUploadPicUrl(ajaxObject);
+		}
+
+		function mycar() {
+			api.openWin({
+				name : 'my-car-head',
+				url : 'aiche/my-car-head.html',
+				reload : true,
+			});
+		}
+
+		function nameChange(memberName) {
+			api.openWin({
+				name : 'my-name-change-head',
+				url : 'my-name-change-head.html',
+				reload : true,
+				pageParam : {
+					'memberName' : memberName
+				}
+			});
+		}
+
+		function sexBox() {
+			layer.open({
+				title : ['选择性别', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : '<ul class="list-ul">' + '<li>男</li>' + '<li>女</li>'
+			});
+			$(".list-ul>li").click(function() {
+				layer.closeAll()
+			})
+		}
+
+		function changetel() {
+			api.openWin({
+				name : 'my-tel-head',
+				url : 'my-tel-head.html'
+			});
+		}
+	</script>
+</html>

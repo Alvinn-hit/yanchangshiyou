@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			.display-none {
+				display: none !important;
+			}
+			/*列表*/
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+				background: url("../../image/zhifu2.jpg") repeat-x #fff bottom;
+				background-size: 8%;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875 rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.aui-list-item-title {
+				font-size: 0.875 rem !important;
+			}
+			.aui-list .aui-list-item-inner {
+				min-height: 3rem;
+			}
+			.aui-list-item-right {
+				font-size: 0.875 rem !important;
+			}
+			.jiesuan-box {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				height: 50px;
+			}
+			.tijiao {
+				background: #FF0000;
+				color: #fff;
+				height: 50px;
+				line-height: 50px;
+			}
+			.prize-all {
+				height: 50px;
+				line-height: 50px;
+				color: #FF0000;
+				padding-right: 5px;
+			}
+			.aui-switch {
+				width: 2.8 rem;
+				height: 1.5 rem;
+			}
+			.aui-switch:before {
+				width: 1.4 rem;
+				height: 1.4 rem;
+				border-radius: 0.7 rem;
+			}
+			.aui-switch:checked:before {
+				left: 1.4 rem;
+			}
+			.aui-switch:checked {
+				background: #4cd964;
+				border-color: #4cd964;
+			}
+			/*弹出*/
+			.list-ul {
+				margin: -50px -30px -50px -30px;
+			}
+			.list-ul li {
+				border-bottom: 1px solid #ddd;
+				padding: 8px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="dataDetail" style="display: none;">
+			<div class="list-box-flex">
+				<div class="list-box1-td1 td-img">
+					<img src="../../image/yz-img.jpg"></img>
+				</div>
+				<div class="list-box1-td2">
+					<h1 class="list-title" id="tginfoName"></h1>
+					<div class="list-line">
+						<span class="list-dizhi" id="carNo"></span>
+					</div>
+					<div class="list-line">
+						<span class="list-dizhi" id="oilNo"></span>
+						<span class="list-dizhi" id="oilGun"></span>
+					</div>
+					<div class="list-line aui-padded-b-5">
+						<span class="list-dizhi red" > 金额结算：￥<span id="price"></span> </span>
+					</div>
+				</div>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li onclick="youhuicard()" class="aui-list-item aui-list-item-middle" id="chooseYHk">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								优惠卡
+							</div>
+							<div class="aui-list-item-right">
+								请选择
+							</div>
+						</div>
+					</li>
+					<li onclick="youhuiquan()" class="aui-list-item aui-list-item-middle" >
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								优惠券
+							</div>
+							<div class="aui-list-item-right" id="favorCoupon">
+								请选择
+							</div>
+						</div>
+					</li>
+					<li  class="aui-list-item">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								开具发票
+							</div>
+							<div class="aui-list-item-right">
+								<input class="aui-switch" type="checkbox" id="isInvoice" >
+							</div>
+						</div>
+					</li>
+					<li onclick="fapiao()" id="fapiao"  class="aui-list-item display-none">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								发票抬头
+							</div>
+							<div class="aui-list-item-right chepai-box" id="invoice">
+								请选择
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li  class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner ">
+							<div class="aui-list-item-title">
+								商品金额
+							</div>
+							<div class="aui-list-item-right">
+								<b class="red" >￥<span id="brandPrice"></span></b>
+							</div>
+						</div>
+					</li>
+					<li  class="aui-list-item">
+						<div class="aui-list-item-inner ">
+							<div class="aui-list-item-title">
+								优惠金额
+							</div>
+							<div class="aui-list-item-right">
+								<b class="red" >￥<span id="favPrice">0.00</span></b>
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="jiesuan-box aui-border-t">
+				<div class="aui-col-xs-8 aui-text-right prize-all" >
+					实付款:￥<span id="payPrice"></span>
+				</div>
+				<div onclick="tijiao()" class="aui-col-xs-4 aui-text-center tijiao">
+					提交订单
+				</div>
+			</div>
+		</div>
+		<div id="layerInvoice" style="display: none;">
+			<ul class="list-ul" id="invoiceList">
+				<li>{invoiceCompanyname}</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script>
+		var oilInfo;
+		apiready = function() {
+			oilInfo = api.pageParam.oilInfo;
+			
+			loadData();
+	        //监听选择优惠券事件
+			favorListener();
+			//清空开票信息
+			$("#isInvoice").bind("change",function (){
+				var isInvoice = $("#isInvoice").attr("checked");
+				if(isInvoice != "checked"){
+					oilInfo.isInvoice = '0';
+					oilInfo.invoiceName = "";
+					$("#invoice").html("");
+				}
+			});
+		}
+		function loadData() {
+			//页面数据展示
+			var price = oilInfo.price;
+			var oilNum = oilInfo.oilNum;
+			if (oilNum != 0) {
+				price = oilNum * oilInfo.oilPrice
+			}
+			price = toFixed(price);
+			oilInfo.favPrice = 0;//优惠金额
+	        oilInfo.payPrice = parseFloat(price);
+	        oilInfo.isInvoice = '0';
+			oilInfo.invoiceName = "";
+			$("#tginfoName").html(oilInfo.tginfoName);
+			$("#carNo").html(" 车牌号：" + oilInfo.carNo);
+			$("#oilNo").html("油号：" + oilInfo.oilNo);
+			$("#oilGun").html("油枪：" + oilInfo.oilGun);
+			$("#price").html(price);
+			$("#brandPrice").html(price);
+			$("#payPrice").html(price);
+			//查询开票
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appInvoiceAjax!queryInvoiceByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.invoiceType = 3;
+			//ajaxObject.isShowProgress = '1';//不显示加载
+			ajaxObject.onSuccessFunction = function(ret) {
+				var invoiceViewVoList = ret.invoiceViewVoList;
+				getWorkBookHtmlByList(invoiceViewVoList, 'invoiceList');
+			}
+			baseAjax(ajaxObject);
+			$("#dataDetail").show();
+		}
+
+		//选择是否开具发票
+		$(".aui-switch").click(function() {
+			$("#fapiao").toggleClass("display-none")
+		})
+		//选择发票
+		function fapiao() {
+			var layerHtml = $api.html($api.byId("layerInvoice"));
+			layer.open({
+				title : ['选择发票抬头', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : layerHtml
+			});
+			$(".list-ul>li").click(function() {
+				var invoice = $api.trimAll($(this).html());
+				oilInfo.invoiceName = invoice;
+				oilInfo.isInvoice = '1';
+				$("#invoice").html(invoice);
+				layer.closeAll();
+			})
+		}
+		//提交
+		function tijiao() {
+			var isInvoice = $("#isInvoice").attr("checked");
+			if(isInvoice == "checked"){
+				if($("#invoice").text(invoice).match("请选择") == "请选择"){
+					api.toast({
+					    msg: '请选择开票抬头',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					return;
+				}
+			}
+			api.openWin({
+				name : 'youzhan-xiadan-head',
+				url : 'youzhan-xiadan-head.html',
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : oilInfo
+				},
+				reload : true
+			});
+		}
+		//选择优惠卡
+		function youhuicard() {
+			var isInvoice = $("#isInvoice").attr("checked");
+			if(isInvoice == "checked"){
+				if($("#invoice").text(invoice).match("请选择") == "请选择"){
+					api.toast({
+					    msg: '请选择开票抬头',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					return;
+				}
+			}
+			api.openWin({
+				name : 'youzhan-card-list-head',
+				url : 'youzhan-card-list-head.html',
+				pageParam : {
+					"memberCode" : api.pageParam.memberCode,
+					"oilInfo" : oilInfo
+				}
+			});
+		}
+		//选择优惠券
+		function youhuiquan() {
+			api.openWin({
+				name : 'youzhan-coupon-list-head',
+				url : 'youzhan-coupon-list-head.html',
+				pageParam : {
+					memberCode : api.pageParam.memberCode,
+				}
+			});
+		}
+		
+		//监听选择优惠券事件
+		function favorListener(){
+			api.addEventListener({
+	            name:'favorCouponEvent'
+	        },function(ret,err){
+        		$("#chooseYHk").hide();
+	        	oilInfo.favorType = ret.value.favorType;
+	        	if(ret.value.favorType == '2'){
+	        		var discount = ret.value.accountCmoney;
+		        	$api.text($api.byId("favorCoupon"), discount + '折');
+		        	var oriPrice = oilInfo.price;//原价
+		        	oilInfo.payPrice = parseFloat(oriPrice) * parseFloat(discount) / 10; 
+	        		oilInfo.favPrice = parseFloat(oriPrice) - parseFloat(oilInfo.payPrice);//优惠金额
+	        		$("#price").html(toFixed(oilInfo.price));
+					$("#favPrice").html(toFixed(oilInfo.favPrice));
+					$("#payPrice").html(toFixed(oilInfo.payPrice));
+	        	}else{
+	        		var favPrice = toFixed(ret.value.couponMoney);
+	        		$api.text($api.byId("favorCoupon"), favPrice);
+	        		oilInfo.favPrice = parseFloat(favPrice);//优惠金额
+	        		oilInfo.payPrice = parseFloat(oilInfo.price) - parseFloat(favPrice);//实付金额
+	        		$("#price").html(toFixed(oilInfo.price));
+					$("#favPrice").html(toFixed(oilInfo.favPrice));
+					$("#payPrice").html(toFixed(oilInfo.payPrice));
+	        	}
+	        	oilInfo.accountCode = ret.value.accountCode;
+	        	oilInfo.ginfoBillno = "";
+	        });
+		}
+	</script>
+</html>

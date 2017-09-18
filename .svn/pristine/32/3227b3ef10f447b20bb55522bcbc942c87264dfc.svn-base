@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+    /*列表*/
+      .youquan-list-top{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #ff7f00;
+			color:#fff;
+			font-size: 0.875rem;
+			height: 30px;
+			line-height: 30px;
+      }
+      .youquan-list-top-td1{
+           width: 10rem;
+      }
+       .youquan-list-top-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+       .youquan-list-top-td3{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      
+       .youquan-list-bottom{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			font-size: 0.875rem;
+			background: #fff;
+			padding: 10px 0px 10px 0px;
+      }
+      .youquan-list-bottom-td1{
+           width: 10rem;
+      }
+       .youquan-list-bottom-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .youquan-logo img{
+        width: 3.9rem;
+        float:left;
+      }
+      .youquan-list-bottom-td2 img{
+        width: 18px;
+      }
+      .youquan-list-bottom-td2 span{
+        display: block;
+      }
+       /*列表*/
+    </style>
+</head>
+<body>
+   <div class="youquan-list-box">
+     <div class="youquan-list-top">
+       <div class="youquan-list-top-td1 aui-padded-l-5">平台团购券</div>
+       <div class="youquan-list-top-td2">93#(92#）汽油</div>
+       <div class="youquan-list-top-td3 aui-text-right aui-padded-r-10">5000.00元</div>
+     </div>
+     <div class="youquan-list-bottom">
+       <div class="youquan-list-bottom-td1 aui-padded-l-5">
+        <div class="youquan-logo">
+         <img src="../../image/youquan2.jpg">
+         <img src="../../image/youquan3.jpg">
+        </div>
+       </div>
+       <div class="youquan-list-bottom-td2">
+        <span >加油金额满200元可用</span>
+        <span class="aui-padded-t-5" >仅限西安壳牌加油公司</span>
+        <span class="aui-padded-t-5">有效日期 2016.12.31-2016.12.31</span>
+       </div>
+     </div>
+   </div>
+   
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+
+<script type="text/javascript">
+ 
+</script>
+</html>

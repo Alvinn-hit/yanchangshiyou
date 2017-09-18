@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list-item-media img {
+				width: 30px !important;
+				margin-left: 15px;
+			}
+			.roll-red {
+				width: 8px;
+				height: 8px;
+				background: #D8515E;
+				border-radius: 50%;
+				position: absolute;
+			}
+			.aui-list .aui-list-item-text {
+				font-size: 0.75rem;
+			}
+			.aui-list .aui-list-item {
+				padding-right: 0.75rem;
+				padding-top: 0.5rem;
+				padding-bottom: 0.5rem;
+			}
+			
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}			
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				/*margin-right: 10px;*/
+			}
+			.acrrow-div{
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				top: 0px;
+				left: 50%;
+			}
+			/*弹出层*/
+			.aui-list .aui-list-item:last-child:after {
+				height: 1px;
+			}
+			.aui-list {
+				font-size: 0.875rem;
+			}
+			.aui-popup-top-left {
+				width: 95%;
+			}
+			.aui-list-item-inner {
+				justify-content: center !important;
+				-webkit-justify-content: center;
+				min-height: 3.0rem !important;
+			}
+			.aui-popup-top-left {
+				top: 40px;
+			}
+			.aui-popup-arrow.aui-popup-arrow1 {
+				left: 2rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow2 {
+				/*left: 13rem;*/
+				left: 50%;
+			}
+			.aui-popup-arrow.aui-popup-arrow3 {
+				left: 16rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow4 {
+				left: 22rem;
+			}
+			.active-word {
+				color: #e6212a;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list" id="accountList" style="display: none;">
+				<li class="aui-list-item">
+					<div style=" float: left;">
+						<div class="aui-font-size-20">
+							充值
+						</div>
+						<div class="aui-font-size-18">
+							余额: {accountNowsmoney}
+						</div>
+					</div>
+					<div style=" float: right;">
+						<div class="aui-text-right aui-font-size-16" style=" color: #999;">
+							{dataSystemdate}
+						</div>
+						<div class="aui-text-right aui-font-size-20" style=" font-weight: 400;">
+							+{accountlistMoney}
+						</div>
+					</div>
+					<div class="clearfix"></div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		apiready = function() {
+			//上拉刷新
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryAccountlistByPage();
+			});
+			//下拉刷新
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryAccountlistByPage(1);
+			});
+			queryAccountlistByPage();
+		}
+		
+		//加载页面数据
+		function queryAccountlistByPage(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayAccountlistAjax!queryAccountlistByPage.htm";
+			if (isShow) {
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.params = new Object();
+			ajaxObject.params.accountType = '2';
+			ajaxObject.params.whereStr = " opObillno1 = '1' and accountlistPo = '1' and accountlistType = '9' and dataListFtype in ('0', '6', '7') ";
+			ajaxObject.onSuccessFunction = function(ret) {
+				var data = ret.payPoinfoViewVoList;
+				for (var i = 0; i < data.length; i++) {
+					data[i].dataSystemdate = formatDate(data[i].dataSystemdate, "yyyy-MM-dd HH:mm:ss");
+					data[i].accountNowsmoney = toFixed(data[i].accountNowsmoney);
+					data[i].accountlistMoney = toFixed(data[i].accountlistMoney);
+				}
+				getWorkBookHtmlByList(data, "accountList");
+				api.refreshHeaderLoadDone();
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

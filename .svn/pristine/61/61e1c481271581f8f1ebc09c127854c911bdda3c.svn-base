@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+    html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bold;
+		}
+		.fix-box{
+		  position: relative;
+		  top:90px;
+		  margin-top: 0px;
+		}
+      .youquan-box{
+          padding-bottom: 0px;
+        }
+        .youquan-list{
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }
+        .youhui-middle{
+         padding-left: 10px;
+        }
+        .youquan-middle{
+        padding-left: 10px;
+        }
+        .youhui-all{
+          background: url("../../image/my-youquan-line.jpg") repeat-y left;        
+        }
+      
+        .youquan-left img{
+          width: 63px;
+          height: 45px;
+        }
+        .youquan-left h1{
+          font-size:0.875rem;
+          color:#FF7F00;
+        }
+        .youquan-right {
+          font-size: 0.875rem;         
+          padding-right: 5px;
+        }
+       
+        .youquan-middle p{
+          font-size: 0.875rem;
+          padding-left: 5px;
+          margin-top: 4px;
+        }
+        .youquan-middle p img{
+          width:22px;
+          float:left;
+        }
+        .content-word1{
+          overflow:hidden;
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          padding: 10px;
+          font-size: 0.875rem;
+        }
+        .content-word2{
+          overflow:hidden;
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          font-size: 0.875rem;
+        }
+        .title-h1{
+          border-bottom:1px solid #FF7F00;
+          padding: 5px;
+          font-size: 0.875rem;
+        }
+        .youzhan-list{
+          padding: 10px;
+          line-height: 1.5rem;
+         }
+    </style>
+</head>
+<body>
+ <div class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span class="title-span">油卡详情</span>
+               <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+        </div>
+     </div>
+   <div class="aui-content-padded fix-box">    
+      <div class="youquan-box">
+      <div onclick="youkaWord()" class="youquan-list">
+       <div class="aui-col-xs-3 youquan-left aui-text-center aui-padded-t-10">
+        <img src="../../image/my-quan.jpg">
+       </div>
+       <div class="aui-col-xs-9 youhui-all">
+         <div class="aui-col-xs-7 youquan-middle aui-padded-t-10">
+          <p class="aui-font-size-18 yellow">延长壳牌加油卡</p>        
+          <p class="yellow">￥5000.00元</p>
+         </div>
+         <div class="aui-col-xs-5 youquan-right aui-text-right">
+         <h2 class="yellow aui-padded-b-5">主</h2>
+          有效日期截止<br>2016.12.31
+         </div>
+       </div>
+      </div>     
+    </div> 
+    
+    <div class="content-word1">
+     <span class="aui-col-xs-9">
+                  距离您最近的可用油站：西安长安南路加油站 
+     </span>
+     <span class="aui-col-xs-3 aui-text-right yellow">
+                100米
+     </span>
+    </div>
+    
+    <div class="content-word2 aui-margin-t-15">
+      <h1 class="title-h1 yellow">油站列表</h1>
+      <div class="youzhan-list">
+                     西安丰禾路加油站、西安长安南路加油站、西安明光路加油站, 西安丰禾路加油站、西安长安南路加油站、西安明光路加油站
+      </div>
+    </div>
+    
+     <div class="content-word2 aui-margin-t-15">
+      <h1 class="title-h1 yellow">使用须知</h1>
+      <div class="youzhan-list">
+                    1.加油卡仅限加油使用，不可购买非油品<br>
+					2.加油卡余额不可提现、不可转让，不能透支、不计利息<br>
+					3.充值是不开具发票，请使用加油卡时，在合作油站按照加油<br>
+					实付金额开具（返利部分不开具发票）<br>
+					4.该加油卡只能在e加油与延长壳牌合作的指定加油站使用<br>
+					5.一张加油卡仅限一个用户使用<br>
+					6.此卡仅限e加油用户使用
+					
+      </div>
+    </div>
+    
+   </div> 
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script type="text/javascript">
+    apiready = function(){
+     $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+    };
+    
+   
+</script>
+</html>

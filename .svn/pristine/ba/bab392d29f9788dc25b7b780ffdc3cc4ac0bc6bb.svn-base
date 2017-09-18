@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+    <style>
+      html, body {
+			height: 100%;
+			background: #fff;
+		}
+		 .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+    </style>
+</head>
+<body>
+   <!-- <div class="aui-content">
+    <ul class="aui-list">
+        <li onclick="paypwd()" id="payPwd" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">支付密码设置</div> 
+            </div>               
+        </li>          
+        <li onclick="changepaypwd()" id="payChange" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">支付密码修改</div> 
+            </div>               
+        </li>
+    </ul>  
+   </div> -->
+     <div class="aui-content" id="paySet" style="display: none">
+    <ul class="aui-list">
+      <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <input type="password" placeholder="请输入支付密码" id="payPwd"/>
+            </div> 
+           </div>                                   
+        </li>          
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner ">
+           <div class="aui-list-item-input">
+             <input type="password" placeholder="请再次输入支付密码" id="rePayPwd" onblur="changeSet()"/>
+            </div> 
+            </div>               
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner ">
+           <div class="aui-list-item-input">
+             <div class="aui-col-xs-8"><input type="number" placeholder="请填写验证码" id="messageCodeSet"/></div>
+             <div class="aui-col-xs-4"><button style="width: 100%; height: 2rem; line-height: 1.5rem;" class="aui-btn aui-btn-danger"  id="sendSet" onclick="sendPaySet()">发送验证码</button></div>
+            </div> 
+             </div>               
+        </li>
+        
+        <div class="btn-box aui-margin-t-15">
+			<div class="aui-btn aui-btn-block aui-btn-danger" onclick="setPaySet()">
+				保存
+			</div>
+		</div>
+    </ul>  
+	</div>
+    
+     <div class="aui-content" id="payChange" style="display: none">
+    <ul class="aui-list">
+      <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <input type="password" placeholder="请输入原支付密码" onblur = "nextpwd()" id="oldPayPassword"/>
+            </div> 
+           </div>                                   
+        </li>          
+        <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <input type="password" placeholder="请输入新支付密码" id="newPayPassword"/>
+            </div> 
+           </div>                                   
+        </li>          
+        <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <input type="password" placeholder="请再次输入支付密码" id="reNewPayPassword" onblur="change()"/>
+            </div> 
+           </div>                                   
+        </li>  
+        <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-input">
+             <div class="aui-col-xs-8"><input type="number" placeholder="请填写验证码" id="messageCodeChange"/></div>
+             <div class="aui-col-xs-4"><button style="width: 100%; height: 2rem; line-height: 1.5rem;" class="aui-btn aui-btn-danger" id="sendChange" onclick="sendPayChange()">发送验证码</button></div>
+            </div> 
+           </div>                                   
+        </li>
+        <div class="btn-box aui-margin-t-15">
+			<div onclick="updatePayChange()" class="aui-btn aui-btn-block aui-btn-danger">
+				确认
+			</div>
+		</div> 
+    </ul>  
+</div>
+
+</body>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../../../script/common.js"></script>
+<script type="text/javascript" src="../../../../script/md5.js"></script>
+<script type="text/javascript" src="../../../../script/push.js"></script>
+<script type="text/javascript" src="../../../../script/area.js"></script>
+<script type="text/javascript" src="../../../../layer/layer.js"></script>
+<script type="text/javascript" src="../../../../script/jquery.min.js"></script>
+<script>
+ apiready = function(){
+	//沉浸式
+	var headbar = $api.byId('headbar');
+	$api.fixIos7Bar(headbar);
+	var index = api.pageParam.index;
+	if(index == 0){
+		$("#paySet").css("display","");
+	}else{
+		$("#payChange").css("display","");
+	}
+ }
+ 
+ 	//全局定时器
+	var inter1 = null;
+	var inter2 = null;
+	var second = 120;
+	//时间刷新
+	function autoRefreshSet() {
+		if (second != 0) {
+			second = second - 1;
+		}
+		$api.text($api.dom('#sendSet'), "重新发送(" + second + ")");
+		if (second == 0) {
+			clearInterval(inter1);
+			second = 120;
+			$api.removeAttr($api.dom('#sendSet'), 'disabled');
+			$api.text($api.dom('#sendSet'), '点击发送验证码');
+		}
+	}
+ 	
+ 	function autoRefreshChange() {
+		if (second != 0) {
+			second = second - 1;
+		}
+		$api.text($api.dom('#sendChange'), "重新发送(" + second + ")");
+		if (second == 0) {
+			clearInterval(inter2);
+			second = 120;
+			$api.removeAttr($api.dom('#sendChange'), 'disabled');
+			$api.text($api.dom('#sendChange'), '点击发送验证码');
+		}
+	}
+ 	
+ 	//发送短信验证码
+		function sendPaySet() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = api.pageParam.memberPhone;
+			ajaxObject.params.cmodelCode = "DX000007";
+			ajaxObject.params.validateCodeRequired = "0";
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					api.toast({
+						msg : '验证码已经发送至您的手机，请注意查收',
+						duration : 2000,
+						location : 'center'
+					});
+					$api.attr($api.dom('#sendSet'), 'disabled', 'disabled');
+					$api.dom("#sendSet").style.backgroundColor = "#CCC";
+					inter1 = setInterval("autoRefreshSet()", 1000);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		function changeSet(){
+			var payPwd = $api.val($api.dom("#payPwd"));
+			var rePayPwd = $api.val($api.dom("#rePayPwd"));
+			if (payPwd != rePayPwd) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+		}
+
+		function setPaySet() {
+			var payPwd = $api.val($api.dom("#payPwd"));
+			var rePayPwd = $api.val($api.dom("#rePayPwd"));
+			var messageCode = $api.val($api.dom("#messageCodeSet"));
+			if (payPwd.length != 6) {
+				api.toast({
+					msg : '支付密码为6位',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd.match("^[0-9]+$") == null) {
+				api.toast({
+					msg : '支付密码由数字组成',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd != rePayPwd) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (!messageCode || messageCode == "") {
+				api.toast({
+					msg : '验证码为空或格式不正确',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!savePayPassword.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.newPayPassword = hex_md5(payPwd).toUpperCase();
+			ajaxObject.params.rendCodeRequired = "1";
+			ajaxObject.params.loginNo = api.pageParam.memberPhone;
+			ajaxObject.params.rendCode = messageCode;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					layer.open({
+					    content: '设置支付密码成功',
+					    btn: '我知道了',
+					    yes: function(index){
+					      api.openWin({
+							name : 'index',
+							url : '../../../../index.html'
+							});
+					    }
+				  });
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function nextpwd() {
+			var oldPayPassword = $api.val($api.dom("#oldPayPassword"));
+			if (oldPayPassword.length != 6 || oldPayPassword.match("^[0-9]+$") == null) {
+				api.toast({
+					msg : '支付密码为6位数字 ',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!checkPayPassword.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.payPassword = hex_md5(oldPayPassword).toUpperCase();
+			ajaxObject.onSuccessFunction = function(ret){
+				if(ret.state == 3){
+				}else{
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//发送短信验证码
+	function sendPayChange() {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.phoneNo = api.pageParam.memberPhone;
+		ajaxObject.params.cmodelCode = "DX000008";
+		ajaxObject.params.validateCodeRequired = "0";
+		ajaxObject.onSuccessFunction = function(ret) {
+			if (ret.state == 3) {
+				api.toast({
+					msg : '验证码已经发送至您的手机，请注意查收',
+					duration : 2000,
+					location : 'center'
+				});
+				$api.attr($api.dom('#sendChange'), 'disabled', 'disabled');
+				$api.dom("#sendChange").style.backgroundColor = "#CCC";
+				inter2 = setInterval("autoRefreshChange()", 1000);
+			} else {
+				api.toast({
+					msg : ret.msg,
+					duration : 2000,
+					location : 'center'
+				});
+			}
+		}
+		baseAjax(ajaxObject);
+	}
+	
+	function change(){
+			var newPayPassword = $api.val($api.dom("#newPayPassword"));
+			var reNewPayPassword = $api.val($api.dom("#reNewPayPassword"));
+			if (newPayPassword != reNewPayPassword) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+		}
+	
+	function updatePayChange() {
+		var oldPayPassword = $api.val($api.dom("#oldPayPassword"));
+		var newPayPassword = $api.val($api.dom("#newPayPassword"));
+		var reNewPayPassword = $api.val($api.dom("#reNewPayPassword"));
+		var messageCode = $api.val($api.dom("#messageCodeChange"));
+		if (newPayPassword.length != 6) {
+			api.toast({
+				msg : '支付密码为6位',
+				duration : 2000,
+				location : 'center'
+			});
+			return false;
+		}
+		if (newPayPassword.match("^[0-9]+$") == null) {
+			api.toast({
+				msg : '支付密码由数字组成',
+				duration : 2000,
+				location : 'center'
+			});
+			return false;
+		}
+		if (newPayPassword != reNewPayPassword) {
+			api.toast({
+				msg : '两次输入的密码不一致',
+				duration : 2000,
+				location : 'center'
+			});
+			return false;
+		}
+		if (!messageCode || messageCode == "") {
+			api.toast({
+				msg : '验证码为空或格式不正确',
+				duration : 2000,
+				location : 'center'
+			});
+			return;
+		}
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appMemberAjax!updatePayPassword.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.oldPayPassword = hex_md5(oldPayPassword).toUpperCase();
+		ajaxObject.params.newPayPassword = hex_md5(newPayPassword).toUpperCase();
+		ajaxObject.params.rendCodeRequired = "1";
+		ajaxObject.params.loginNo = api.pageParam.memberPhone;
+		ajaxObject.params.rendCode = messageCode;
+		ajaxObject.onSuccessFunction = function(ret) {
+			if (ret.state == 3) {
+				layer.open({
+				    content: '修改支付密码成功',
+				    btn: '我知道了',
+				    yes: function(index){
+				      api.openWin({
+						name : 'index',
+						url : '../../../../index.html'
+					});
+				    }
+				  });
+			} else {
+				api.toast({
+					msg : ret.msg,
+					duration : 2000,
+					location : 'center'
+				});
+			}
+		}
+		baseAjax(ajaxObject);
+	}
+</script>
+</html>

@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+      html,body{
+         background: #fff;
+      }
+       /*列表*/
+      .list-box-flex{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			position: relative;
+			padding: 10px 10px 0px 10px;
+		}
+		.list-box-flex:after{
+		  content:"";
+		  width: 100%;
+		  height: 1px;
+		  background: #ddd;
+		  position: absolute;
+		  bottom:0px;
+		  left:0px;
+		}
+		.list-box1-td1 {
+	       width: 98px;		
+		}
+		.td-img img{
+		  width: 90px;
+		}
+		.list-box1-td2 {
+		  -webkit-box-flex: 1;
+		  -webkit-flex: 1;
+		  flex: 1;
+		}
+		.td-img1 img{
+		  width: 40px;
+		}
+		.list-box1-td3 {
+		  width: 50px;
+		}
+		 .star-span img{
+		   width: 12px;
+		   height: 12px;
+		   float: left;
+		 }
+		 .list-line{
+		   margin-top: 5px;
+		 }
+		 .list-line-td{
+		   display: table-cell;
+		   padding: 0px 2px 0px 2px;
+		 }
+		 .list-line-td span{
+		   display: block;
+		 }
+		 .ico-span{
+		   border:1px solid #ff0000;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#FF0000;
+		 }
+		 .ico-span1{
+		   border:1px solid #c88bf5;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#c88bf5;
+		 }
+		 .ico-span img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .ico-span1 img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .list-dizhi img{
+		   width: 11px;
+		   float: left;
+		   margin-top: 2px;
+		   margin-right: 5px;
+		 }
+		 .list-dizhi{
+		   font-size: 0.875rem;
+		 }
+		 .list-title{
+		   font-size: 1rem;
+		   font-weight: 800;
+		 }
+		 .goto{
+		   color:#FF0000;
+		 }
+		.aui-list-item-title{
+		  font-size: 0.875rem!important;
+		}
+		.aui-list .aui-list-item-inner{
+		  min-height: 3rem;
+		}
+		.aui-list-item-right{
+		  font-size: 0.875rem!important;
+		}
+		.jiesuan-box{
+		  position: fixed;
+		  bottom: 0px;
+		  width: 100%;
+		  height: 50px;
+		}
+		 .tijiao{
+		   background: #FF0000;
+		   color:#fff;
+		   height: 50px;
+		   line-height: 50px;
+		 }
+		 .prize-all{
+		    height: 50px;
+		   line-height: 50px;
+		   color:#FF0000;
+		   padding-right: 5px;
+		 }
+		 .aui-switch{
+		    width: 2.8rem;
+		    height: 1.5rem;
+		 }
+		 .aui-switch:before{
+		   width: 1.4rem;
+		   height: 1.4rem;
+		   border-radius: 0.7rem;
+		  }
+		  .aui-switch:checked:before{
+		    left:1.4rem;
+		  }
+		  .aui-switch:checked{
+		    background: #4cd964;
+		    border-color: #4cd964;
+		  }
+	 
+	 /*评价*/
+	.pingjia-all {
+				padding-top: 20px;
+				background: #fff;
+			}
+			.pingjia-textarea {
+				width: 90%;
+				height: 100px;
+				font-size: 14px;
+				word-wrap: break-word;
+				margin: auto;
+			}
+			.star-all {
+				width: 90%;
+				margin: 0 auto;
+				overflow: hidden;
+			}
+			.star-all-ul {
+			}
+			.star-all-ul li {
+				height: 40px;
+				line-height: 30px;
+			}
+			.star-div-all {
+				width: auto !important;
+				vertical-align: middle;
+			}
+			.star-div-all img{
+			 vertical-align: middle;
+			}
+			.btn-box{
+			  padding: 10px;
+			}
+			.pingfen-bg{
+			  height: 80px;
+			  border:1px solid #ddd;
+			  border-radius: 5px;
+			  line-height: 80px;
+			}
+			.pingfen-bg span{
+			  color:#ff933f;
+			  width:100%;
+			  text-align: center;
+			  font-size: 1.75rem;
+			}
+			 /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+		 
+	 	
+    </style>
+</head>
+<body>
+  <div class="list-box-flex">
+	<div class="list-box1-td1 td-img">
+		<img src="../../image/yz-img.jpg"></img>
+	</div>
+	<div class="list-box1-td2">
+		<h1 class="list-title" id="tginfoName"></h1>
+		<div class="list-line">
+			<span class="list-dizhi" id="carNo"></span>
+		</div>
+		<div class="list-line">
+			<span class="list-dizhi" id="oilNo"></span>
+			<span class="list-dizhi" id="oilGun"></span>
+		</div>
+		<div class="list-line aui-padded-b-5">
+			<span class="list-dizhi red" > 金额结算：￥<span id="price"></span> </span>
+		</div>
+	</div>
+</div>
+  <!--评价-->
+  <div class="pingjia-all">
+     <div class="star-all">
+      
+				<ul class="star-all-ul aui-col-xs-9">
+					<li>
+						<label class="aui-col-xs-4 "> 油站环境</label>
+						<div class="aui-col-xs-8 ">
+							<div class="aui-pull-left star-div-all" id="star"></div>
+							<div style="display: none" class="aui-pull-left score-word none" id="result"></div>
+						</div>
+					</li>
+					<li>
+						<label class="aui-col-xs-4 "> 服务态度</label>
+						<div class="aui-col-xs-8 ">
+							<div class="aui-pull-left star-div-all" id="star1"></div>
+							<div style="display: none" class="aui-pull-left score-word none" id="result1"></div>
+						</div>
+					</li>
+					<li>
+						<label class="aui-col-xs-4 "> 油品质量</label>
+						<div class="aui-col-xs-8">
+							<div class="aui-pull-left star-div-all" id="star2"></div>
+							<div style="display: none" class="aui-pull-left score-word none" id="result2"></div>
+						</div>
+					</li>				
+				</ul>
+				
+				<ul class="aui-col-xs-3 pingfen-bg">
+				  <span id="total"></span>
+				</ul>
+			</div>
+  
+     <div class="aui-text-center">
+		<textarea class="pingjia-textarea" id="pingjia-text" cols="20" rows="2" name="textarea"> </textarea>
+	</div>
+	
+	<div class="btn-box">
+	 <button class="aui-btn aui-btn-block aui-btn-danger" onclick="save()">提交</button> 
+	</div>
+   </div>
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/jquery.raty.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+
+ <script>
+ var oilInfo;
+	apiready = function() {
+		//沉浸式
+	     var headbar=$api.byId('headbar');
+	     $api.fixIos7Bar(headbar);
+		oilInfo = api.pageParam.oilInfo;
+		loadData();
+	}
+ 	function loadData() {
+		//页面数据展示
+		var price = oilInfo.price;
+		var oilNum = oilInfo.oilNum;
+		if (oilNum != 0) {
+			price = oilNum * oilInfo.oilPrice
+		}
+		price = toFixed(price);
+		oilInfo.favPrice = 0;//优惠金额
+        oilInfo.payPrice = parseFloat(price);
+        oilInfo.isInvoice = '0';
+		oilInfo.invoiceName = "";
+		$("#tginfoName").html(oilInfo.tginfoName);
+		$("#carNo").html(" 车牌号：" + oilInfo.carNo);
+		$("#oilNo").html("油号：" + oilInfo.oilNo);
+		$("#oilGun").html("油枪：" + oilInfo.oilGun);
+		$("#price").html(price);
+		$("#brandPrice").html(price);
+		$("#payPrice").html(price);
+	}
+ 
+	
+	//星星评价
+	$.fn.raty.defaults.path = '../../image/star/img';
+	$('#star').raty({
+		click : function(){
+			var star = $("#star").raty('getScore');
+	    	var star1 = $("#star1").raty('getScore');
+	    	var star2 = $("#star2").raty('getScore');
+	    	if(typeof(star) == "undefined"){star = 0;}
+	    	if(typeof(star1) == "undefined"){star1 = 0;}
+	    	if(typeof(star2) == "undefined"){star2 = 0;}
+	    	var total = star + star1 +star2;
+	    	$api.text($api.byId("total"),toFixed(total));
+		}
+	});
+	$('#star1').raty({
+		click : function(){
+			var star = $("#star").raty('getScore');
+	    	var star1 = $("#star1").raty('getScore');
+	    	var star2 = $("#star2").raty('getScore');
+	    	if(typeof(star) == "undefined"){star = 0;}
+	    	if(typeof(star1) == "undefined"){star1 = 0;}
+	    	if(typeof(star2) == "undefined"){star2 = 0;}
+	    	var total = star + star1 +star2;
+	    	$api.text($api.byId("total"),toFixed(total));
+		}
+	});
+	$('#star2').raty({
+		click : function(){
+			var star = $("#star").raty('getScore');
+	    	var star1 = $("#star1").raty('getScore');
+	    	var star2 = $("#star2").raty('getScore');
+	    	if(typeof(star) == "undefined"){star = 0;}
+	    	if(typeof(star1) == "undefined"){star1 = 0;}
+	    	if(typeof(star2) == "undefined"){star2 = 0;}
+	    	var total = star + star1 +star2;
+	    	$api.text($api.byId("total"),toFixed(total));
+		}
+	});
+	
+	
+	function save(){
+		var star = $("#star").raty('getScore');
+    	var star1 = $("#star1").raty('getScore');
+    	var star2 = $("#star2").raty('getScore');
+		if(typeof(star) == "undefined"){
+            api.toast({
+					msg : '请给我们的环境打个分',
+					duration : 2000,
+					location : 'center'
+			});
+            return;
+    	}
+    	if(typeof(star1) == "undefined"){
+    		api.toast({
+					msg : '我们的服务怎么样，亲',
+					duration : 2000,
+					location : 'center'
+			});
+            return;
+    	}
+    	if(typeof(star2) == "undefined"){
+    		api.toast({
+					msg : '油的评分是重中之重',
+					duration : 2000,
+					location : 'center'
+			});
+            return;
+    	}
+    	var pingjia = $api.val($api.byId("pingjia-text"));
+    	var total = parseInt(star) + parseInt(star1) + parseInt(star2);
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appPortalCommentAjax!saveCommentMessage.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params["portalMessageViewVo.messageOpbillcode"] = api.pageParam.memberCode;//文档编号
+		ajaxObject.params["portalMessageViewVo.messageSubtype"] = "2";//1.商品评论2.商铺评论3.文章评论
+		ajaxObject.params["portalMessageViewVo.messageValue1"] = star;//评分1
+		ajaxObject.params["portalMessageViewVo.messageValue2"] = star1;//评分2
+		ajaxObject.params["portalMessageViewVo.messageValue3"] = star2;//评分3
+		ajaxObject.params["portalMessageViewVo.messageValue"] = total;//总分值
+		ajaxObject.params["portalMessageViewVo.messageContent"] = pingjia;//内容
+		ajaxObject.params["portalMessageViewVo.messageTitle"] = "油站评价";//内容
+		ajaxObject.onSuccessFunction = function(data){
+			if(data.state == "3"){
+				layer.open({
+				    content: '评论成功，您的建议是我们进步的动力',
+				    btn: '我知道了',
+				    yes: function(index){
+					    api.closeToWin({
+							name : 'youzhan-content-head'
+						});
+						api.sendEvent({
+	                        name:'flushGasStation'
+                        });
+				    }
+				});
+			}else{
+				api.toast({
+					msg : data.msg,
+					duration : 2000,
+					location : 'center'
+				});
+			}
+		}
+		baseAjax(ajaxObject);
+	}
+ </script>
+
+</script>
+</html>

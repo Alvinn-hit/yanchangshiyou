@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff ;
+			
+		}
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img img{
+		  width: 25px;	
+		  float:right;	
+		  margin-top: 10px; 
+		  margin-right:5px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		   margin-top: 2px;
+		 }
+		
+		
+		.logo-img-box{
+		  width: 100px;
+		  height: 100px;
+		  border: 1px solid #FF7F00;
+		  border-radius: 50%;
+		  margin: auto;
+		  margin-bottom: 20px;
+		  margin-top: 20px;
+		}
+		.logo-img-box img{
+		  width: 64px;
+		  padding-top: 22px;
+		}
+		
+		.next-ul{
+		  margin-top: 20px;
+		}
+		.next-ul li{
+		  border:1px solid #FF7F00;
+		  overflow: hidden;
+		  border-radius: 5px;
+          font-size: 0.875rem;
+          margin-top: 10px;
+		}
+		.aui-list-item-title{
+        font-size: 0.875rem!important;
+      }
+      .aui-list-item-right{
+        font-size: 0.875rem!important;
+      }
+      .aui-list .aui-list-item-inner{
+        min-height: 3rem;
+      }
+		/*弹出层*/
+	.layui-m-layerchild h3{
+	  height: 40px!important;
+	  line-height: 40px!important;
+	  font-size: 12px!important;
+	}
+	.layui-m-layercont{
+	   padding: 0px!important;
+	}
+	.btn-box{
+	  width: 96%;
+	  margin: auto;
+	}
+	.aui-list:after{
+	  height:0px;
+	}
+	.aui-btn-block{
+	  padding: 0.4rem 0 0.4rem 0;
+	}
+	#boxPwd input{
+			  min-height: 3.2rem;
+			}
+			.close-div{
+			  position: absolute;
+			  right:0px;
+			  top:0px;
+			  color:#fff;
+			   height: 40px;
+			  width: 40px;
+			  line-height: 40px;
+			  font-size: 12px;
+			}
+    </style>
+</head>
+<body>
+     <div id="headbar"  class="head-bar">
+      <div class="head-box1">
+       <div class="head-box1-td1">
+         <div class="logo-img">
+                 <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span> 
+                 <img src="../../image/logo2.jpg">
+                </div>
+       </div>
+       <div class="head-box1-td2 input-box">
+                                        转赠油券			      
+      </div>
+       <div class="head-box1-td3 ditu-img aui-text-center"></div>
+      </div>                                                          
+    </div>
+     
+     
+     <div class="logo-img-box aui-text-center">
+       <img src="../../image/logo.jpg">
+     </div>
+     
+     <div class="aui-content ">
+    <ul class="aui-list" id="memberCon" style="display: none">     
+    	<input type="hidden" value="{memberCode}" id="memberCode">       
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                     {memberName}                                   
+                </div>
+                 <div class="aui-list-item-right">
+                       {memberPhone}
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                  确认是要赠送油券给朋友吗？
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    
+     <div class="btn-box mt-25" style="display: none" id="btnPlay">
+          <div onclick="okbtn()"  class="aui-btn aui-btn-block aui-btn-danger" >确认赠与</div>
+     </div>
+    
+   </div>   
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script type="text/javascript" src="../../script/md5.js"></script>
+<script>
+ var accountCode,phone;
+ //全局定时器
+ var payPwdFlag = false, memberPhone = "" ;
+ var inter = null, second = 120;
+ 
+ apiready = function(){
+   accountCode = api.pageParam.accountCode;
+   phone = api.pageParam.phone;
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+   	queryMemberCon(phone);
+ }
+ 
+ // 查询被赠送会员信息
+ function queryMemberCon(phone){
+ 	var ajaxObject = new Object();
+	ajaxObject.url = "/appMemberAjax!queryMemberViewVo.htm";
+	ajaxObject.params = new Object();
+	ajaxObject.params.memberPhone = phone;
+	ajaxObject.onSuccessFunction = function(data) {
+ 		var data = data.memberViewVo;
+ 		$("#btnPlay").show();
+		getWorkBookHtmlByList(data,'memberCon');
+		queryMyUserInfo();
+ 		
+ 	}
+ 	baseAjax(ajaxObject);
+ }
+ 
+ // 获取我的信息,判断是否设置了交易密码
+ function queryMyUserInfo(){
+	 var ajaxObject = new Object();
+	 ajaxObject.isShowProgress = '1';
+	 ajaxObject.url = "/appMemberAjax!queryMyUserInfo.htm";
+	 ajaxObject.params = new Object();
+	 ajaxObject.onSuccessFunction = function(data) {
+		 var operatorViewVo = data.operatorViewVo;
+		 if(operatorViewVo.operatorPayPassword && operatorViewVo.operatorPayPassword != null && operatorViewVo.operatorPayPassword != ""){
+			 payPwdFlag = true;
+		 }else{
+			 // 检测到未设置支付密码时,获取到会员手机号
+			 memberPhone = data.memberViewVo.memberPhone;
+		 }
+	 }
+	 baseAjax(ajaxObject);
+ }
+ // 跳转到支付密码验证页
+ function okbtn(){
+  if(payPwdFlag == false){
+	// 未设置支付密码
+	layerPayPwd();
+	return ;
+  }
+  var memberCode = document.getElementById("memberCode").value;
+  api.openFrame({
+	  name: 'my-zhuanzeng-password',
+	  url: 'my-zhuanzeng-password.html',
+	  reload : true,
+	  pageParam:{
+	    	"accountCode" : accountCode,
+	    	"voucherType" : api.pageParam.voucherType,
+	    	"memberCode" : memberCode
+	  },	 
+	  rect: {
+		  x:0,
+		  y:0,
+		  w:'auto',
+		  h:api.winHeight
+	  },
+	  
+  });
+}
+ 
+ 
+ 
+ // 未设置支付密码时弹出设置框
+	   function layerPayPwd(){
+		    layer.open({
+		    title: [
+		      '请先设置支付密码',
+		      'background-color: #E6212A; color:#fff;'
+		    ]
+		    ,content: '<div id="boxPwd" class="aui-content">'+
+		    '<div class="close-div iconfont icon-shanchu2"></div>'+
+			    '<ul class="aui-list">'+
+			     ' <li  class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner">'+
+			            '<div class="aui-list-item-input">'+
+			            ' <input type="password" placeholder="设置支付密码" id="payPwd"/>'+
+			           ' </div> '+
+			           '</div>  ' +                                
+			       ' </li>'+          
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<input type="password" placeholder="再次输入密码" id="rePayPwd"/>'+
+			           ' </div> '+
+			            ' </div>  '+             
+			       ' </li>'+
+			        
+			        '<li class="aui-list-item aui-list-item-middle aui-padded-t-10 aui-padded-b-10">'+
+			            '<div class="aui-list-item-inner ">'+
+			           '<div class="aui-list-item-input">'+
+			             '<div class="aui-col-xs-8"><input type="number" placeholder="请填写手机验证码" id="messageCode"/></div>'+
+			             '<div class="aui-col-xs-4"><button style="width: 90%; height: 2rem; line-height: 1.5rem; margin-top:5px;" class="aui-btn aui-btn-danger" id="send" onclick="send()">发送验证码</button></div>'+
+			            '</div> '+
+			            ' </div>  ' +            
+			        '</li>'+
+			        
+			        '<div class="btn-box aui-margin-t-15 aui-margin-b-15">'+
+						'<div class="aui-btn aui-btn-block aui-btn-danger" onclick="setPayPwd()">'+
+							'确认'+
+						'</div>'+
+					'</div>'+
+			   ' </ul> ' +
+			'</div>'
+		  });   
+	    $(".close-div").click(function(){
+		    layer.closeAll();
+		  })
+	   }
+	   
+		//时间刷新
+		function autoRefresh() {
+			if (second != 0) {
+				second = second - 1;
+			}
+			$api.text($api.dom('#send'), "重新发送(" + second + ")");
+			if (second == 0) {
+				clearInterval(inter);
+				second = 120;
+				$api.removeAttr($api.dom('#send'), 'disabled');
+				$api.dom("#send").style.backgroundColor = "#5bc0de";
+				$api.val($api.dom('#send'), '点击发送验证码');
+			}
+		}
+
+		//发送短信验证码
+		function send() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPhonemsgAjax!sendSmsVerifyCode.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.phoneNo = memberPhone;
+			ajaxObject.params.cmodelCode = "DX000007";
+			ajaxObject.params.validateCodeRequired = "0";
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					api.toast({
+						msg : '验证码已经发送至您的手机，请注意查收',
+						duration : 2000,
+						location : 'center'
+					});
+					$api.attr($api.dom('#send'), 'disabled', 'disabled');
+					$api.dom("#send").style.backgroundColor = "#CCC";
+					inter = setInterval("autoRefresh()", 1000);
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		function setPayPwd() {
+			var payPwd = $api.val($api.dom("#payPwd"));
+			var rePayPwd = $api.val($api.dom("#rePayPwd"));
+			var messageCode = $api.val($api.dom("#messageCode"));
+			if (payPwd.length != 6) {
+				api.toast({
+					msg : '支付密码为6位',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd.match("^[0-9]+$") == null) {
+				api.toast({
+					msg : '支付密码由数字组成',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (payPwd != rePayPwd) {
+				api.toast({
+					msg : '两次输入的密码不一致',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			if (!messageCode || messageCode == "") {
+				api.toast({
+					msg : '验证码为空或格式不正确',
+					duration : 2000,
+					location : 'center'
+				});
+				return;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!savePayPassword.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.newPayPassword = hex_md5(payPwd).toUpperCase();
+			ajaxObject.params.rendCodeRequired = "1";
+			ajaxObject.params.rendCode = messageCode;
+			ajaxObject.params.loginNo = memberPhone;
+			ajaxObject.onSuccessFunction = function(ret) {
+				if (ret.state == 3) {
+					 api.toast({msg:'设置交易密码成功'});
+				     payPwdFlag = true;
+				   	 layer.closeAll();
+				} else {
+					api.toast({
+						msg : ret.msg,
+						duration : 2000,
+						location : 'center'
+					});
+				}
+			}
+			baseAjax(ajaxObject);
+		}		 
+</script>
+</html>

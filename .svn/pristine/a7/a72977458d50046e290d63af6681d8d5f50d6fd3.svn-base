@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+      /*弹窗*/
+     .zhifu-box{
+       position: relative;
+       background: #fff;
+       overflow: hidden;
+     }
+     .add-card{
+       background: #FFFFFF;
+       text-align: center;
+       padding: 20px 10px 20px 10px;
+       font-size: 0.875rem;
+     }
+     .add-card img{
+       vertical-align: middle;
+       width:22px; 
+     }
+     .close-box{
+       position: absolute;
+       right:5px;
+       top:15px;
+     }
+     .zhifu-box h1{
+       text-align: center;
+       margin: 10px 0px 10px 0px;
+     }
+     .close-box img{
+       width:22px; 
+     }
+    </style>
+</head>
+<body>
+    <div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-media-list">
+         <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-18">订单金额</div>
+                        <div class="aui-list-item-right aui-font-size-18 red">200.00</div>
+                    </div>                 
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 3.5rem;">
+                    <img src="../../image/zhifu1.jpg">
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-16">支付宝</div>
+                    </div>
+                    <div class="aui-list-item-text">
+                        推荐支付宝用户使用
+                    </div>
+                </div>
+            </div>
+        </li>     
+    </ul>
+</div>
+
+    <div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-media-list">
+        <li onclick="zhifubox()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 3.5rem;">
+                    <img src="../../image/zhifu2a.jpg">
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-16">延长e加油支付</div>
+                    </div>
+                    <div class="aui-list-item-text">
+                        延长e加油旗下，安全支付
+                    </div>
+                </div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" style="width: 3.5rem;">
+                    <img src="../../image/zhifu3a.jpg">
+                </div>
+                <div class="aui-list-item-inner aui-list-item-arrow">
+                    <div class="aui-list-item-text">
+                        <div class="aui-list-item-title aui-font-size-16">银联wap</div>
+                    </div>
+                    <div class="aui-list-item-text">
+                                           支持储蓄卡
+                    </div>
+                </div>
+            </div>
+        </li>
+    </ul>
+</div>
+     
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+   
+        
+      
+ }
+ 
+ function zhifubox(){
+    layer.open({
+    type: 1,
+    content:'<div class="zhifu-box">'+
+  '<span class="close-box" onclick="close()"><img src="../../image/zf-ico1.jpg"></span>'+
+ '<h1>选择支付方式</h1>'+
+  '<div class="aui-content aui-margin-b-15">'+
+    '<ul class="aui-list aui-media-list">'+
+        '<li onclick="Ezhifu()" class="aui-list-item aui-list-item-middle">'+
+            '<div class="aui-media-list-item-inner">'+
+               ' <div class="aui-list-item-media" style="width: 3.5rem;">'+
+                '    <img src="../../image/zf1.jpg">'+
+              '  </div>'+
+                '<div class="aui-list-item-inner aui-list-item-arrow">'+
+                    '<div class="aui-list-item-text">'+
+                        '<div class="aui-list-item-title aui-font-size-16">我的钱包</div>'+
+                   ' </div>'+
+                    '<div class="aui-list-item-text">'+
+                        '延长e加油旗下，安全支付'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</li>'+
+        '<li class="aui-list-item aui-list-item-middle">'+
+            '<div class="aui-media-list-item-inner">'+
+                '<div class="aui-list-item-media" style="width: 3.5rem;">'+
+                    '<img src="../../image/zf2.jpg">'+
+                '</div>'+
+                '<div class="aui-list-item-inner aui-list-item-arrow">'+
+                   '<div class="aui-list-item-text">'+
+                        '<div class="aui-list-item-title aui-font-size-16">交通银行储蓄卡（尾号0453）</div>'+
+                   ' </div>'+
+                    '<div class="aui-list-item-text">'+
+                                           '支持储蓄卡'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</li>'+
+        '<li class="aui-list-item aui-list-item-middle">'+
+            '<div class="aui-media-list-item-inner">'+
+                '<div class="aui-list-item-media" style="width: 3.5rem;">'+
+                    '<img src="../../image/zf3.jpg">'+
+                '</div>'+
+                '<div class="aui-list-item-inner aui-list-item-arrow">'+
+                    '<div class="aui-list-item-text">'+
+                        '<div class="aui-list-item-title aui-font-size-16">余额0.00元</div>'+
+                    '</div>'+
+                    '<div class="aui-list-item-text">'+
+                                           '支持储蓄卡'+
+                    '</div>'+
+                '</div>'+
+            '</div>'+
+        '</li>'+
+    '</ul>'+
+    '<div class="add-card">'+
+                    '<img src="../../image/zf-ico2.jpg">使用新银行卡'+
+    '</div>'+
+'</div>'+
+'</div>'    ,
+    anim: 'up',
+    style: 'position:fixed; bottom:0; left:0; width: 100%; height: auto; padding:10px 0; border:none;'
+  });
+ }
+
+
+</script>
+</html>

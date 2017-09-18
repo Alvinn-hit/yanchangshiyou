@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			.my-box-all {
+				position: relative;
+			}
+			.my-box-1 {
+				overflow: hidden;
+			}
+			.my-box-2 {
+				border: 1px solid #ff7f00;
+				overflow: hidden;
+				margin: 25px 10px 10px 10px;
+				height: 42px;
+				border-radius: 5px;
+			}
+			.my-tel-img {
+				width: 12px;
+				float: left;
+			}
+			.tel-number {
+				font-size: 0.875rem;
+				margin-left: 5px;
+				margin-top: 2px;
+			}
+			.aui-list .aui-list-item-text {
+				display: block;
+			}
+			.weima-img {
+				position: absolute;
+				right: 0px;
+				width: 20px;
+				top: 15px;
+			}
+			.aui-list .name-title {
+				font-size: 1rem !important;
+			}
+			.bottom-ul {
+				background: #fff;
+				overflow: hidden;
+			}
+			.bottom-ul li {
+				float: left;
+				width: 33%;
+				position: relative;
+				height: 50px;
+			}
+			.bottom-ul li span {
+				display: block;
+				text-align: center;
+				margin-top: 6px;
+			}
+			.bottom-ul li:after {
+				content: "";
+				width: 1px;
+				height: 30px;
+				top: 10px;
+				background: #ddd;
+				position: absolute;
+				right: 0px;
+			}
+			.span-top {
+				font-size: 0.875rem;
+			}
+			.span-bottom {
+				font-size: 0.75rem;
+			}
+			.span-top img {
+				width: 19px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			/*列表*/
+			.li-icon {
+				display: block;
+				margin-right: 5px;
+				margin-top: 10px;
+				margin-left: 10px;
+			}
+			.li-icon img {
+				width: 20px;
+			}
+			.aui-list-item-title {
+				font-size: 0.875rem !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div>
+			<div class="my-box-all">
+				<div class="my-box-1">
+					<div class="my-box-top " onclick="my()">
+						<div class="aui-content">
+							<ul class="aui-list aui-media-list">
+								<li class="aui-list-item aui-list-item-middle">
+									<div class="aui-media-list-item-inner">
+										<div class="aui-list-item-media" >
+											<img class="img-head" src="../../image/default/myImg.jpg" datasrc="">
+										</div>
+										<div class="aui-list-item-inner aui-list-item-arrow">
+											<div class="aui-list-item-text">
+												<div class="aui-list-item-title name-title" id="memberName">
+													&nbsp;&nbsp;
+												</div>
+											</div>
+											<div class="aui-list-item-text aui-margin-t-10">
+												<img class="my-tel-img" src="../../image/my3.jpg">
+												<span class="tel-number" id="memberPhone"></span>
+											</div>
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="my-box-bottom">
+						<ul class="bottom-ul">
+							<li onclick="toBalance()">
+								<span class="span-top"> <img src="../../image/my4.jpg"> 加油余额 </span>
+								<span class="span-bottom" id="dataStr3">0.00</span>
+							</li>
+							<li onclick="goHrefCoupon()">
+								<span class="span-top"> <img src="../../image/my5.jpg"> 优惠券 </span>
+								<span class="span-bottom" id="dataStr5">0</span>
+							</li>
+							<li onclick="messageList()">
+								<span class="span-top"> <img src="../../image/my6.jpg"> 消息 </span>
+								<span class="span-bottom" id="dataStr4">0</span>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="aui-content aui-margin-t-15">
+					<ul class="aui-list ">
+						<li onclick="myyouka()" class="aui-list-item">
+							<div class="aui-list-item-label-icon">
+								<span class="li-icon"><img src="../../image/my-icon2.jpg"></span>
+							</div>
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									油卡
+								</div>
+							</div>
+						</li>
+						<li onclick="myyouquan()" class="aui-list-item">
+							<div class="aui-list-item-label-icon">
+								<span class="li-icon"><img src="../../image/my-icon3.jpg"></span>
+							</div>
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									油券
+								</div>
+							</div>
+						</li>
+						<li onclick="jifen()" class="aui-list-item">
+							<div class="aui-list-item-label-icon">
+								<span class="li-icon"><img src="../../image/my-icon4.jpg"></span>
+							</div>
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									积分
+								</div>
+							</div>
+						</li>
+						<li onclick="xiaofei()" class="aui-list-item">
+							<div class="aui-list-item-label-icon">
+								<span class="li-icon"><img src="../../image/my-icon5.jpg"></span>
+							</div>
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									消费记录
+								</div>
+							</div>
+						</li>
+						<li  class="aui-list-item" onclick="shezhi();">
+							<div class="aui-list-item-label-icon">
+								<span class="li-icon"><img src="../../image/my-icon7.jpg"></span>
+							</div>
+							<div class="aui-list-item-inner aui-list-item-arrow">
+								<div class="aui-list-item-title">
+									设置
+								</div>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		var balance = "";//余额
+		apiready = function() {
+			//存储当前frame的名字
+			$api.setStorage("curWinName", 'root');
+			$api.setStorage("curFrameName",api.frameName);
+			
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+			//监听刷新本页面事件
+			api.addEventListener({
+				name : 'flushMyEvent'
+			}, function(ret, err) {
+				findMyInfo();
+			});
+			
+			findMyInfo();
+		}
+		//获取会员电话,等级，头像
+		function findMyInfo() {
+			var ajaxObject = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.isHideProgress = '1';
+			ajaxObject.url = "/appMemberAjax!queryMyUserInfoCache.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.onSuccessFunction = function(ret) {
+				var memberViewVo = $api.getStorage("member");
+				$(".img-head").attr("datasrc", $api.getStorage("baseURL") + memberViewVo.memberCertificate3No);
+				$("#memberName").text(memberViewVo.memberName);
+				$("#memberPhone").text(memberViewVo.memberPhone);
+				
+				$("#dataStr3").text(toFixed(ret.memberViewVo.dataStr3));//余额
+				$("#dataStr5").text(ret.memberViewVo.dataStr5);			//优惠券数
+				$("#dataStr4").text(ret.memberViewVo.dataStr4);			//未读消息数
+				
+				balance = toFixed(ret.memberViewVo.dataStr3);
+				
+				imageCache($api.dom(".img-head"));
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//打开我的钱包
+		function mymoney() {
+			api.openWin({
+				name : 'my-money-head',
+				url : '../my/my-money-head.html',
+				reload : true,
+			});
+		}
+
+		//打开我的油券
+		function myyouquan() {
+			api.openWin({
+				name : 'my-youquan-head',
+				url : '../my/my-youquan-head.html',
+				reload : true,
+			});
+		}
+
+		//打开我的信息
+		function my() {
+			api.openWin({
+				name : 'my-head',
+				url : '../my/gerenxinxi/my-head.html',
+				reload : true,
+			});
+		}
+
+		//打开油卡
+		function myyouka() {
+			api.openWin({
+				name : 'my-youka-head',
+				url : '../my/my-youka-head.html',
+				reload : true,
+			});
+		}
+
+		//打开设置
+		function shezhi() {
+			api.openWin({
+				name : 'my-shezhi-head',
+				url : '../my/shezhi/my-shezhi-head.html',
+				reload : true,
+			});
+		}
+
+		//打开发票
+		function fapiao() {
+			api.openWin({
+				name : 'my-fapiao-head',
+				url : '../my/my-fapiao-head.html',
+				reload : true,
+			});
+		}
+
+		//打开余额
+		function toBalance() {
+			api.openWin({
+				name : 'my-yue-head',
+				url : '../my/my-yue-head.html',
+				reload : true,
+				pageParam : {
+					"balance" : balance
+				}
+			});
+		}
+
+		//打开消费记录
+		function xiaofei() {
+			api.openWin({
+				name : 'my-xiaofei',
+				url : '../my/xiaofei/my-xiaofei.html',
+				reload : true,
+			});
+		}
+		//打开消息记录
+		function messageList() {
+			api.openWin({
+				name : 'my-message-head',
+				url : '../my/my-message-head.html',
+				reload : true,
+			});
+		}
+		//打开积分
+		function jifen() {
+			api.openWin({
+				name : 'my-jifen-head',
+				url : '../my/my-jifen-head.html',
+				reload : true,
+			});
+		}
+	  // 打开优惠券列表
+	  function goHrefCoupon(){
+	  	api.openWin({
+			name : 'my-youquan-head',
+			url : '../my/my-youquan-head.html',
+			reload : true,
+			pageParam : {
+				pageIndex : 3
+			}
+		});
+	  }	
+	</script>
+</html>

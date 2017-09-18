@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			/*弹层*/
+			.zhifu-box {
+				position: relative;
+				overflow: hidden;
+				background: #fff;
+			}
+			.zhifu-box h1 {
+				font-size: 0.875rem;
+				text-align: center;
+				margin: 15px 0px 15px 0px;
+			}
+			.closeBox {
+				position: absolute;
+				right: 5px;
+				top: 15px;
+			}
+			.closeBox img {
+				width: 24px;
+			}
+			.add-zhifu {
+				margin: 15px 0px 15px 0px;
+				text-align: center;
+				font-size: 0.875rem;
+			}
+			.add-zhifu img {
+				vertical-align: middle;
+				width: 21px;
+			}
+			.checkInput {
+				position: absolute;
+				right: 10px;
+				top: 20px;
+			}
+			.aui-list-item-arrow:before {
+				content: '';
+				width: 0.7rem;
+				height: 0.7rem;
+				position: absolute;
+				top: 50%;
+				right: 1rem;
+				margin-top: -0.4rem;
+				background: transparent;
+				border: 1px solid #999;
+				border-top: none;
+				border-right: none;
+				z-index: 2;
+				-webkit-border-radius: 0;
+				border-radius: 0;
+				-webkit-transform: rotate(-135deg);
+				transform: rotate(-135deg);
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item">
+					<div class="aui-media-list-item-inner">
+						<div class="aui-list-item-inner">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-18">
+									订单金额
+								</div>
+								<div class="aui-list-item-right aui-font-size-18 red" id="price">
+								
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-media-list-item-inner" onclick="aliPayGroup();" id="aliPay">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu1.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									支付宝
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								推荐支付宝用户使用
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<!--<div class="aui-content aui-margin-b-15">
+			<ul class="aui-list aui-media-list">
+				<li class="aui-list-item aui-list-item-middle" >
+					<div onclick="unionPayGroup()"  class="aui-media-list-item-inner" id="unionPay">
+						<div class="aui-list-item-media" style="width: 3.5rem;">
+							<img src="../../image/zhifu3a.jpg">
+						</div>
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-text">
+								<div class="aui-list-item-title aui-font-size-16">
+									银联wap
+								</div>
+							</div>
+							<div class="aui-list-item-text">
+								支持储蓄卡
+							</div>
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>-->
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/aliPay.js"></script>
+	<script type="text/javascript" src="../../script/unionPay.js"></script>
+	<script>
+		var voucheViewVo = new Object(), accountCode;
+		apiready = function() {
+			var price = toFixed(api.pageParam.price);
+			$("#price").html('￥' + price);
+		}
+		
+		function toPay(payType){
+			api.openWin({
+				name : 'grouporder-pay-password',
+				url : 'grouporder-pay-password.html',
+				reload : true,
+				pageParam : {
+					'bonusAccountViewVo' : api.pageParam.bonusAccountViewVo,
+					'buyNumber' : api.pageParam.buyNumber,
+					'price' : api.pageParam.price,
+					'payType' : payType,
+				},
+			});
+		}
+		function aliPayGroup(){
+			//禁用支付按钮
+			if($("#aliPay").attr("disabled") == "disabled"){
+				return;
+			}
+			$("#aliPay").attr("disabled","disabled");
+			//购买团购券
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGroupVoucherAjax!saveSupplementGroupVoucher.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params['bonusAccountViewVo.cardCode'] = api.pageParam.bonusAccountViewVo.accountCode;
+			ajaxObject.params['payType'] = '7';
+			ajaxObject.params['bonusAccountViewVo.accountBmoney'] = api.pageParam.price;
+			if(api.pageParam.bonusAccountViewVo.bonusRule5 == "2"){//单位为升 则传数量
+				ajaxObject.params['bonusAccountViewVo.accountBmoney'] = api.pageParam.buyNumber;
+			}
+			ajaxObject.onSuccessFunction = function(data) {
+				accountCode = data.accountCode;
+				voucheViewVo.payFunction = success;
+				voucheViewVo.failFunction = fail;
+				voucheViewVo.mgpriceBatch = accountCode;
+				voucheViewVo.flag = "2";
+				aliPay(voucheViewVo);
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function unionPayGroup(){
+			//禁用支付按钮
+			if($("#unionPay").attr("disabled") == "disabled"){
+				return;
+			}
+			$("#unionPay").attr("disabled","disabled");
+			//购买团购券
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGroupVoucherAjax!saveSupplementGroupVoucher.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params['bonusAccountViewVo.cardCode'] = api.pageParam.bonusAccountViewVo.accountCode;
+			ajaxObject.params['payType'] = '0';
+			ajaxObject.params['bonusAccountViewVo.accountBmoney'] = api.pageParam.price;
+			if(api.pageParam.bonusAccountViewVo.bonusRule5 == "2"){//单位为升 则传数量
+				ajaxObject.params['bonusAccountViewVo.accountBmoney'] = api.pageParam.buyNumber;
+			}
+			ajaxObject.onSuccessFunction = function(data) {
+				accountCode = data.accountCode;
+				voucheViewVo.payFunction = unionPaySuccess;
+				voucheViewVo.failFunction = fail;
+				voucheViewVo.mgpriceBatch = accountCode;
+				voucheViewVo.flag = "2";
+				voucheViewVo.tn = data.tn;
+				unionPay(voucheViewVo);
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function unionPaySuccess(){
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appUnionpayAjax!unionpayResult.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.billno = accountCode;
+			ajaxObject.params.orderType = "2"; //订单类型 1加油订单  2团购  3预购 4便利店订单  
+			ajaxObject.onSuccessFunction = function() {
+				success();
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function success(){
+			layer.open({
+			    content: '支付成功',
+			    btn: '我知道了',
+			    yes: function(index){
+			      api.sendEvent({
+                		name:'flushGroup'
+	                });
+					api.closeToWin({
+						name : 'grouporder-list-head'
+					});
+			    }
+			  });
+		}
+		
+		function fail(){
+			//取消禁用
+			$("#aliPay").removeAttr("disabled");
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appGroupVoucherAjax!cancelSupplementGroupVoucher.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.params.accountCode = accountCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				api.toast({
+				    msg: '支付未完成',
+				    duration: 2000,
+				    location: 'bottom'
+				});
+				
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

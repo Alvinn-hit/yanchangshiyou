@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bold;
+		}
+    </style>
+</head>
+<body>
+    <div id="headtop" class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+              <span class="title-span">车辆列表</span>
+        </div>
+     </div>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+        
+        api.openFrame({
+	        name: 'my-car-page',
+	        url: 'my-car-page.html',
+	        rect: {
+		        x:0,
+		        y:$api.byId("headtop").offsetHeight ,
+		        w:'auto',
+		        h:'auto'
+	        }
+        });
+ }
+ 
+
+</script>
+</html>

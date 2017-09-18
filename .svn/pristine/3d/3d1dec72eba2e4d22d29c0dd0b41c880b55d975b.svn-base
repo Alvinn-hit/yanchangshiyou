@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+    html, body {
+			height: 100%;
+			background: #fff;
+		}
+        .youquan-box{
+          padding-bottom: 20px;
+        }
+        .youquan-list{
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }
+        .youhui-middle{
+         padding-left: 10px;
+        }
+        .youquan-middle{
+        padding-left: 10px;
+        }
+        .youhui-all{
+          background: url("../../image/my-youquan-line.jpg") repeat-y left;        
+        }
+      
+        .youquan-left img{
+          width: 63px;
+          height: 45px;
+        }
+        .youquan-left h1{
+          font-size:0.875rem;
+          color:#FF7F00;
+        }
+        .youquan-right {
+          font-size: 0.875rem;         
+          padding-right: 5px;
+        }
+       
+        .youquan-middle p{
+          font-size: 0.875rem;
+          padding-left: 5px;
+          margin-top: 4px;
+        }
+        .youquan-middle p img{
+          width:22px;
+          float:left;
+        }
+      
+      
+      
+    </style>
+</head>
+<body>
+<div class="aui-content-padded">
+    <div class="youquan-box">
+      <div onclick="youkaWord()" class="youquan-list">
+       <div class="aui-col-xs-3 youquan-left aui-text-center aui-padded-t-10">
+        <img src="../../image/my-quan.jpg">
+       </div>
+       <div class="aui-col-xs-9 youhui-all">
+         <div class="aui-col-xs-7 youquan-middle aui-padded-t-10">
+          <p class="aui-font-size-18 yellow">延长壳牌加油卡</p>        
+          <p class="yellow">￥5000.00元</p>
+         </div>
+         <div class="aui-col-xs-5 youquan-right aui-text-right">
+         <h2 class="yellow aui-padded-b-5">主</h2>
+          有效日期截止<br>2016.12.31
+         </div>
+       </div>
+      </div>
+       <div class="youquan-list">
+       <div class="aui-col-xs-3 youquan-left aui-text-center aui-padded-t-10">
+        <img src="../../image/my-quan.jpg">
+       </div>
+       <div class="aui-col-xs-9 youhui-all">
+         <div class="aui-col-xs-7 youquan-middle aui-padded-t-10">
+           <p class="aui-font-size-18 yellow">延长壳牌加油卡</p>        
+          <p class="yellow">￥5000.00元</p>
+         </div>
+         <div class="aui-col-xs-5 youquan-right aui-text-right">
+         <h2 class="yellow aui-padded-b-5">副</h2>
+          有效日期截止<br>2016.12.31
+         </div>
+       </div>
+      </div>      
+    </div> 
+       
+   </div> 
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script type="text/javascript">
+    apiready = function(){
+        api.parseTapmode();
+    }
+    var tab = new auiTab({
+        element:document.getElementById("tab"),
+        // callback:function(o,dom){
+        //     console.log(o);
+        // }
+    });
+    
+    function youkaWord(){
+      api.openWin({
+	      name: 'my-youkaword-page',
+	      url: 'my-youkaword-page.html'
+      });
+    }
+</script>
+</html>

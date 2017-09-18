@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+		.back{
+		  color:#fff;
+		  font-weight: bold;
+		  float: left;
+		  margin-top: 4px;
+		  margin-right: 4px;
+		}
+		.head-box1{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			height: 45px;
+		}
+		.head-box1-td1 {
+	       width: 80px;		
+		}
+		.head-box1-td3 {
+		   width: 80px;	
+		}
+		.head-box1-td2 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.ditu-img img{
+		  width: 25px;	
+		  float:right;	
+		  margin-top: 10px; 
+		  margin-right:5px;
+		}
+		.input-box{
+		   text-align:center;
+		   color:#fff;
+		   line-height: 45px;
+		   margin-top: 2px;
+		 }
+		.zhifu-img img{
+		   width: 42px;
+		   vertical-align: middle;
+		   margin: 10px 5px 10px 0px;
+		}
+		/*列表*/
+      .list-box-flex{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			position: relative;
+			padding: 10px 10px 0px 10px;
+			background: #fff;
+			background-size: 8%;
+		}
+		.list-box-flex:after{
+		  content:"";
+		  width: 100%;
+		  height: 1px;
+		  background: #ddd;
+		  position: absolute;
+		  bottom:0px;
+		  left:0px;
+		}
+		.list-box1-td1 {
+	       width: 98px;		
+		}
+		.td-img img{
+		  width: 90px;
+		}
+		.list-box1-td2 {
+		  -webkit-box-flex: 1;
+		  -webkit-flex: 1;
+		  flex: 1;
+		}
+		.td-img1 img{
+		  width: 40px;	  
+		}
+		.list-box1-td3 {
+		  width: 50px;
+		}
+		 .star-span img{
+		   width: 12px;
+		   height: 12px;
+		   float: left;
+		 }
+		 .list-line{
+		   margin-top: 2px;
+		 }
+		 .list-line-td{
+		   display: table-cell;
+		   padding: 0px 2px 0px 2px;
+		 }
+		 .list-line-td span{
+		   display: block;
+		 }
+		 .ico-span{
+		   border:1px solid #ff0000;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#FF0000;
+		 }
+		 .ico-span1{
+		   border:1px solid #c88bf5;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#c88bf5;
+		 }
+		 .ico-span img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .ico-span1 img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .list-dizhi img{
+		   width: 11px;
+		   float: left;
+		   margin-top: 2px;
+		   margin-right: 5px;
+		 }
+		 .list-dizhi{
+		   font-size: 0.875rem;
+		   width: 100%;
+		 }
+		 .list-title{
+		   font-size: 1rem;
+		   font-weight: 800;
+		 }
+		 .goto{
+		   color:#FF0000;
+		 }
+		.aui-list-item-title{
+		  font-size: 0.875rem!important;
+		}
+		.aui-list .aui-list-item-inner{
+		  min-height: 3rem;
+		}
+		.aui-list-item-right{
+		  font-size: 0.875rem!important;
+		}
+	/*列表*/
+		
+    </style>
+</head>
+<body>
+    <div class="list-box-flex">
+    <div class="list-box1-td1 td-img">
+      <img src="../../image/yz-img.jpg"></img>
+    </div>
+    <div class="list-box1-td2" onclick="openContent()">
+      <h1 class="list-title">曲江庙坡头路延长油站</h1>
+       <div class="list-line">
+        <span class="list-dizhi">
+                          95#汽油
+        </span>
+      </div>
+      <div class="list-line">
+        <span class="list-dizhi">
+                           油枪：1号枪 <i class="aui-pull-right" style="font-style: normal;">加油总量：2015升</i>
+        </span>
+      </div>
+      <div class="list-line">
+        <span class="list-dizhi">
+                           车牌号：沪c 25125 <i class="aui-pull-right" style="font-style: normal;">2015-05-05 12:33</i>
+        </span>
+      </div>
+    </div>   
+  </div>   
+  
+  <div class="aui-content aui-margin-t-15">
+    
+    <ul class="aui-list">           
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">应付金额</div>
+                <div class="aui-list-item-right">2.00元</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">优惠金额</div>
+                <div class="aui-list-item-right">2.00元</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">实付金额</div>
+                <div class="aui-list-item-right">2.00元</div>
+            </div>
+        </li>
+          <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">订单编号</div>
+                <div class="aui-list-item-right">YC415415641515</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">支付方式</div>
+                <div class="aui-list-item-right">支付宝</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">订单时间</div>
+                <div class="aui-list-item-right">2016/10/17 20：30:17</div>
+            </div>
+        </li>
+    </ul>
+</div>
+    
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+
+<script>
+ apiready = function(){
+  
+ }
+      
+        
+
+
+
+</script>
+</html>

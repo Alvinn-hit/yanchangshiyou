@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #f4f4f4;
+			}
+			.back {
+				color: #fff;
+				font-weight: bold;
+				float: left;
+				margin-top: 4px;
+				margin-right: 4px;
+			}
+			.head-box1 {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				height: 45px;
+			}
+			.head-box1-td1 {
+				width: 80px;
+			}
+			.head-box1-td3 {
+				width: 80px;
+			}
+			.head-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.ditu-img img {
+				width: 25px;
+				float: right;
+				margin-top: 10px;
+				margin-right: 5px;
+			}
+			.input-box {
+				text-align: center;
+				color: #fff;
+				line-height: 45px;
+				margin-top: 2px;
+			}
+			.fix-box {
+				position: relative;
+				top: 90px;
+				margin-top: 0px;
+			}
+			.number-box {
+				width: 100%;
+				padding: 20px;
+				border-radius: 5px;
+			}
+			.number-all {
+				background: #fff;
+			}
+			.number-box input {
+				border: 1px solid #FF7F00;
+				border-radius: 5px;
+				background: #fff;
+				height: 40px;
+				padding: 10px;
+				font-size: 1rem;
+			}
+			.number-input {
+				border: 1px solid #ddd;
+				background: #fff;
+				width: 100%;
+				position: fixed;
+				bottom: 1px;
+			}
+			.aui-row.number-row div {
+				padding: 10px 0px 10px 0px;
+				font-size: 1.2 rem;
+				height: 45px;
+			}
+			.black-roll {
+				background: url('../../image/dd_03.jpg') no-repeat center;
+				background-size: 25%;
+			}
+			.aui-row div {
+				border: 1px solid #ddd;
+				font-size: 1.5 rem;
+				padding: 12px 0px 12px 0px;
+			}
+			.img-number {
+				background: url('../../image/del-number.jpg') no-repeat center;
+				background-size: 40%;
+				height: 55px;
+			}
+			.border-right-none {
+				border-right: none !important;
+			}
+			.border-bottom-none {
+				border-bottom: none !important;
+			}
+			.border-top-none {
+				border-top: none !important;
+			}
+			.border-left-none {
+				border-left: none !important;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="headbar"  class="head-bar">
+			<div class="head-box1">
+				<div class="head-box1-td1">
+					<div class="logo-img">
+						<span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+						<img src="../../image/logo2.jpg">
+					</div>
+				</div>
+				<div class="head-box1-td2 input-box">
+					充值支付
+				</div>
+				<div class="head-box1-td3 ditu-img aui-text-center"></div>
+			</div>
+		</div>
+		<div class=" fix-box" >
+			<div class="number-box">
+				<div class="number-all">
+					<div id="numberPwd" class="aui-row number-row">
+						<div class="aui-col-xs-2 border-right-none aui-text-center"></div>
+						<div class="aui-col-xs-2 border-right-none aui-text-center"></div>
+						<div class="aui-col-xs-2 border-right-none aui-text-center"></div>
+						<div class="aui-col-xs-2 border-right-none aui-text-center"></div>
+						<div class="aui-col-xs-2 border-right-none aui-text-center"></div>
+						<div class="aui-col-xs-2 aui-text-center"></div>
+					</div>
+				</div>
+				<div class="btn-box mt-25">
+					<div onclick="okbtn()"  class="aui-btn aui-btn-block aui-btn-warning">
+						确定
+					</div>
+				</div>
+			</div>
+			<div class="number-input">
+				<div id="numberKey" class="aui-row">
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-left-none border-top-none border-right-none border-bottom-none" data="1">
+						1
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-top-none border-right-none border-bottom-none" data="2">
+						2
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-top-none border-bottom-none border-right-none" data="3">
+						3
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-left-none border-bottom-none border-right-none" data="4">
+						4
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-bottom-none border-right-none" data="5">
+						5
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-bottom-none border-right-none" data="6">
+						6
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-left-none border-bottom-none border-right-none" data="7">
+						7
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-bottom-none border-right-none" data="8">
+						8
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-bottom-none border-right-none" data="9">
+						9
+					</div>
+					<div  class="aui-col-xs-4 aui-text-center border-left-none border-right-none border-bottom-none" data="-2"></div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-right-none border-bottom-none" data="0">
+						0
+					</div>
+					<div tapmode="hover-a" class="aui-col-xs-4 aui-text-center border-bottom-none border-right-none" data="-1">
+						<span class="iconfont icon-shanchu2"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<input type="password" id="payPassword" name="payPassword" value="" style="display: none;" />
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script>
+		apiready = function() {
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+		}
+		var numFlag = 0;
+		var keyDivArr = document.getElementById("numberKey").getElementsByTagName("div");
+		var pwdDivArr = document.getElementById("numberPwd").getElementsByTagName("div");
+		for (var i = 0; i < keyDivArr.length; i++) {
+			keyDivArr[i].onclick = function() {
+				var dataValue = this.getAttribute("data");
+				if (dataValue == -1) {
+					if (numFlag > 0) {
+						numFlag = numFlag - 1;
+						var classList = pwdDivArr[numFlag].getAttribute("class");
+						classList = classList.replace("black-roll", "");
+						pwdDivArr[numFlag].setAttribute("class", classList);
+						var payPassword = document.getElementById("payPassword").value;
+						payPassword = payPassword.substring(0, numFlag);
+						document.getElementById("payPassword").value = payPassword;
+					} else {
+						numFlag = 0;
+					}
+				} else if (dataValue == -2) {
+				} else {
+					if (numFlag <= 5) {
+						var classList = pwdDivArr[numFlag].getAttribute("class");
+						classList = classList + " black-roll";
+						pwdDivArr[numFlag].setAttribute("class", classList);
+						var payPassword = document.getElementById("payPassword").value;
+						payPassword += dataValue;
+						document.getElementById("payPassword").value = payPassword;
+						numFlag = numFlag + 1;
+					}
+				}
+			}
+		}
+		function okbtn() {
+			//清空
+			$("#numberPwd div").removeClass("black-roll");
+			numFlag = 0;
+			savePayPoinfoRecharge();
+			$("#payPassword").val("");
+		}
+		
+		//充值申请
+		function savePayPoinfoRecharge(){
+			//先验证支付密码
+			var payPwd = $("#payPassword").val();
+			if(!payPwd || payPwd == ""){
+				api.toast({msg : '请输入支付密码',duration : 2000,location : 'center'});
+				return;
+			}
+			
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appPayRechargeAjax!savePayPoinfoRecharge.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.rendCodeRequired = "0";//不需要发短信验证码
+			ajaxObject.params.payPassword = hex_md5(payPwd).toUpperCase();//交易密码
+			ajaxObject.params['payPoinfoViewVo.dataType'] = '2';//账户类型1-钱包2-余额
+			ajaxObject.params['payPoinfoViewVo.poinfoaMode'] = api.pageParam.payType;//支付类型
+			ajaxObject.params['payPoinfoViewVo.poinfoaMoney'] = api.pageParam.price;//支付金额
+			ajaxObject.params['payPoinfoViewVo.markNo'] = "3";//需要不审核
+			ajaxObject.onSuccessFunction = function(data) {
+				api.toast({msg : '充值成功',duration : 2000,location : 'center'});
+				execScriptFrame("my-yue-head","my-yue-page");
+				api.closeToWin({
+					name : 'my-yue-head'
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

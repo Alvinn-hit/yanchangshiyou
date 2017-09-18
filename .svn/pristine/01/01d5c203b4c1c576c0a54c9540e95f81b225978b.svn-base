@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			.tel-img {
+				width: 35px;
+			}
+			.dizhi-span {
+				color: #a5a5a5;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list" id="gasList" style="display: none;">
+				<li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							{tginfoName}
+							<br>
+							<span class="dizhi-span">{tginfoEtmurl}<em class="aui-margin-l-15">{tginfoStatUser}km</em></span>
+						</div>
+						<div class="aui-list-item-right" onclick="call('{memberContactPhone}');">
+							<img class="tel-img" src="../../image/tel-ico1.jpg">
+						</div>
+					</div>
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script>
+		var map, lat, lon, aMapNavigation, tempLon, tempLat;
+		apiready = function() {
+			map = api.require('aMap');
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryPortalShopsViewList(1);
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryPortalShopsViewList(1);
+			});
+			
+			openMap();
+		}
+		
+		function openMap(isShow){
+			map.open({
+				rect : {
+					x : 0,
+					y : 0,
+					w : api.winWidth,
+					h : api.frameHeight
+				},
+				zoomLevel : 17,
+				showUserLocation : true,
+				fixedOn : 'frame1',
+				fixed : true
+			}, function(ret) {
+				if (ret) {
+					//获取位置坐标
+					queryPortalShopsViewList(isShow);
+				}
+			});
+		}
+		
+		function queryPortalShopsViewList(isShow) {
+			map.getLocation({
+				accuracy : '10m',
+				autoStop : true,
+				filter : 1
+			}, function(ret, err) {
+				if (ret.status) {
+					lat = ret.lat;
+					lon = ret.lon;
+					var ajaxObject = new Object();
+					ajaxObject.url = "/appPortalShopsAjax!queryCompanyPortalShopsByPage.htm";
+					ajaxObject.params = new Object();
+					ajaxObject.params.memberCcode = api.pageParam.memberCcode;
+					ajaxObject.params.memberCode = api.pageParam.memberCode;
+					
+					/** 当查询优惠券下可用油站时调用优惠券下使用的油站  开始 */
+					if(api.pageParam.queryFlag){
+						ajaxObject.url = "/appPortalShopsAjax!queryCouponInfoShops.htm";
+						ajaxObject.params.memberBcode = api.pageParam.memberBcode;
+						ajaxObject.params.couponRule8 = api.pageParam.couponRule8;
+					}
+					/** 当查询优惠券下可用油站时调用优惠券下使用的油站  结束*/					
+					
+					if(isShow){
+						ajaxObject.isShowProgress = '1';
+					}
+					ajaxObject.onSuccessFunction = function(ret) {
+						var count = ret.portalTginfoViewVoList.length;
+						var results = ret.portalTginfoViewVoList;
+						for (var i = 0; i < count; i++) {
+							//计算各油站的距离
+							var tempLon = results[i].tginfoStatUser;
+							//经度
+							var tempLat = results[i].tginfoStatPswd;
+							//纬度
+							if (tempLon && tempLon != "" && tempLat && tempLat != "") {
+								var distance = getGreatCircleDistance(lat, lon, tempLat, tempLon);
+								distance = distance / 1000;
+								results[i].tginfoStatUser = distance.toFixed(2);
+							}
+						}
+						getWorkBookHtmlByList(results, 'gasList');
+						api.refreshHeaderLoadDone();	
+					}
+					baseAjax(ajaxObject);
+				}
+			});
+		}
+		function call(tel){
+			if(!tel || tel == ""){
+				return;
+			}
+			api.call({
+			    type: 'tel_prompt',
+			    number: tel
+			});
+		}
+	</script>
+</html>

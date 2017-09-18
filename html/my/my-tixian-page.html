@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff ;
+			
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bold;
+		}
+		.fix-box{
+		  position: relative;
+		  top:90px;
+		  margin-top: 0px;
+		}
+		.paycard-ul li{
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  height: 52px;
+		  font-size: 0.875rem;
+		  margin-bottom: 20px;
+		  position: relative;
+		}
+		.paycard-left-img{
+		  height: 51px;
+		  border-right:1px solid #FF7F00;
+		}
+		.paycard-left-img img{
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 5px;
+		}
+		.paycard-word-span{
+		  		 
+		}
+		.paycard-word-span i{
+		   font-style:normal;
+		   display: table-cell;
+		   height:50px;
+		   vertical-align: middle;
+		}
+		.arrow-span1{
+		  position: absolute;
+		  right: 2px;
+		  color:#FF7F00;
+		  top:12px;
+		}
+		.arrow-span{
+		  position: absolute;
+		  right: 2px;
+		  color:#FF7F00;
+		}
+		.my-box-ul li{
+		  overflow: hidden;
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  margin-top: 20px;
+		  height: 40px;
+		  line-height: 40px;
+		  padding: 0px 30px 0px 10px;
+		  font-size: 0.875rem;
+		  position: relative;
+		}
+		.out-input{
+		  font-size: 0.875rem!important;
+		}
+		
+		/*弹出列表*/
+	  .bank-list{
+	     background: #fff;	 	      
+	   }
+	   .bank-list li{
+	       height:55px;
+	       width: 100%;
+	       border-bottom:1px solid #e2e2e2;
+	       font-size: 0.875rem;
+	     
+	   }
+	   .bank-list li em{
+	    display: block;
+	    text-align: left;
+	   }
+	   .bank-list li span{
+	     display: block;
+	     height: 50px;
+	     padding-top: 5px;
+	   }
+	   .bank-list li input{
+	     margin: 0px;
+	     margin-top: 5px;
+	     margin-left: 10px;
+	   }
+	   .em-name{
+	     font-size: 0.875rem;
+	   }
+	   .okbtn button{
+	     background: none;
+	     border:none;
+	     font-size: 0.875rem;
+	   }
+	   .em-data{
+	     line-height: 45px;
+	   }
+	   .data-radio input{
+	     margin-top: 12px!important;
+	   }
+	   .layermend::before{
+	     background-color: #fff!important;
+	   }	  
+	   .layermend::after{
+	     background-color: #fff!important;
+	   } 
+	   .aui-radio{
+	    width: 1.8rem;
+	    height: 1.8rem;
+	    border-radius: 0.9rem;
+	    }
+	    .layui-m-layercont{
+	      padding: 5px 10px 5px 10px!important;
+	    }
+    </style>
+</head>
+<body>
+    <div class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span class="title-span">提现</span>
+              <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+        </div>
+     </div>
+
+    <div class="aui-content-padded fix-box" >
+    <ul class="paycard-ul">
+      <li onclick="openDialog()">
+        <span class="paycard-left-img aui-pull-left">
+         <img src="../../image/paycard1.jpg">
+        </span>
+        <span class="aui-pull-left aui-padded-l-10 paycard-word-span">
+		    <i>浦发银行储蓄卡
+		   <br>
+		   52102****56214 
+		   </i>    
+        </span>   
+        <span class="iconfont icon-jiantou2 arrow-span1"></span>   
+      </li>            
+    </ul>
+    
+     <ul class="my-box-ul">
+    <li onclick="dataDialog()">
+      <span class="aui-pull-left">到账时间</span>
+      <span class="aui-pull-right">
+                              两小时内到账
+      </span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+     </li>
+     <li>
+      <span class="aui-pull-left">转出金额(元)</span>
+      <span class="aui-pull-left aui-padded-l-15">
+          <input class="out-input" type="text" placeholder="请输入转出金额"/>
+      </span>
+       
+     </li>
+     </ul>
+    
+    <div class="btn-box aui-margin-t-15">
+          <div class="aui-btn aui-btn-block aui-btn-warning">确认</div>
+        </div>
+</div>   
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+ }
+ 
+ //银行选择
+   function openDialog(){
+		   layer.open({
+		    title: [
+		        '选择',
+		        'background-color:#FF7F00; color:#fff; height:40px;line-height:40px;'
+		    ],
+		    content: '<div class="bank-list">'+
+   '<ul>'+
+    '<li>'+
+    '<span class="aui-col-xs-10">'+
+       '<em class="em-name">上海中国上海银行</em>'+
+       '<em>尾号8589 储蓄卡</em>'+
+    '</span>'+
+    '<span class="aui-col-xs-2">'+
+    '<input class=" aui-radio aui-radio-info" type="radio" name="radio">'+
+    '</span>'+
+    '</li>'+   
+   '<li>'+
+    '<span class="aui-col-xs-10">'+
+       '<em class="em-name">上海中国上海银行</em>'+
+       '<em>尾号8589 储蓄卡</em>'+
+    '</span>'+
+    '<span class="aui-col-xs-2">'+
+    '<input class=" aui-radio aui-radio-info" type="radio" name="radio">'+
+    '</span>'+
+    '</li>'+
+    '<li>'+
+    '<span class="aui-col-xs-10">'+
+       '<em class="em-name">上海中国上海银行</em>'+
+       '<em>尾号8589 储蓄卡</em>'+
+    '</span>'+
+    '<span class="aui-col-xs-2">'+
+    '<input class=" aui-radio aui-radio-info" type="radio" name="radio">'+
+    '</span>'+
+    '</li>'+
+   '</ul>'+
+   '<div class="okbtn"><button onclick="okBtn()">确定</button></div>'+  
+  '</div>',		  
+		});
+    }
+    
+     //关闭layer窗口
+    function okBtn(){
+      layer.closeAll();
+    }
+    
+    //时间选择
+    function dataDialog(){
+		   layer.open({
+		    title: [
+		        '选择',
+		        'background-color:#FF7F00; color:#fff;height:40px;line-height:40px;'
+		    ],
+		    content: '<div class="bank-list">'+
+   '<ul>'+
+    '<li>'+
+    '<span class="aui-col-xs-10">'+
+       '<em class="em-data">两个小时内到账</em>'+
+    '</span>'+
+    '<span class="aui-col-xs-2 data-radio">'+
+    '<input class=" aui-radio aui-radio-info" type="radio" name="radio">'+
+    '</span>'+
+    '</li>'+    
+    '<li>'+
+    '<span class="aui-col-xs-10">'+
+       '<em class="em-data">二十四小时内到账</em>'+
+    '</span>'+
+    '<span class="aui-col-xs-2 data-radio">'+
+    '<input class=" aui-radio aui-radio-info" type="radio" name="radio">'+
+    '</span>'+
+    '</li>'+    
+   '</ul>'+
+   '<div class="okbtn"><button onclick="okBtn()">确定</button></div>'+  
+  '</div>',		  
+		});
+    }
+
+</script>
+</html>

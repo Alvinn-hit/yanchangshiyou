@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			.tel-img{
+			  width: 35px;
+			}
+			.dizhi-span{
+			  color:#a5a5a5;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+	     <ul class="aui-list">       
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">曲江庙坡头路延长油站 曲江庙坡头路延长油站<br><span class="dizhi-span">近西安唐城墙遗址公园<em class="aui-margin-l-15">2.3km</em></span></div>
+                <div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg"></div>
+            </div>     
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">曲江庙坡头路延长油站 曲江庙坡头路延长油站<br><span class="dizhi-span">近西安唐城墙遗址公园<em class="aui-margin-l-15">2.3km</em></span></div>
+                <div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg"></div>
+            </div>     
+        </li>
+         <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">曲江庙坡头路延长油站 曲江庙坡头路延长油站<br><span class="dizhi-span">近西安唐城墙遗址公园<em class="aui-margin-l-15">2.3km</em></span></div>
+                <div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg"></div>
+            </div>     
+        </li>
+    </ul>
+		</div>		
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		
+	</script>
+</html>

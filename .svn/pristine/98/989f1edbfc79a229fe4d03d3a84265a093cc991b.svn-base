@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+      /*列表*/
+      .youquan-list-top{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #ff7f00;
+			color:#fff;
+			font-size: 0.875rem;
+			height: 30px;
+			line-height: 30px;
+      }
+      .youquan-list-top-td1{
+           width: 10rem;
+      }
+       .youquan-list-top-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+       .youquan-list-top-td3{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      
+       .youquan-list-bottom{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			font-size: 0.875rem;
+			background: #fff;
+			padding: 10px 0px 10px 0px;
+      }
+      .youquan-list-bottom-td1{
+           width: 10rem;
+      }
+       .youquan-list-bottom-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .youquan-logo img{
+        width: 3.9rem;
+        float:left;
+      }
+      .youquan-list-bottom-td2 img{
+        width: 18px;
+      }
+      .youquan-list-bottom-td2 span{
+        display: block;
+      }
+      .yz-content-box{
+        overflow: hidden;
+        padding-right: 5px;
+      }
+      .yz-content-box img{
+        vertical-align: middle;
+      }
+      .yz-content-box1{
+            display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			font-size: 0.875rem;
+			border:1px solid #FF7F00;
+			margin-top: 5px;
+      }
+      .yz-content-box1-td1{
+           -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			background: #FF7F00;
+			color:#fff;
+			text-align: center;
+      }
+       .yz-content-box1-td2{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+			text-align: right;
+			color:#FF7F00;
+      }
+      .aui-list .aui-list-item-title{
+       font-size: 0.875rem;
+       color:#FF7F00;
+     }
+     .aui-list:before{
+       background: #FF7F00;
+     }
+     .aui-list:after{
+       background: none;
+     }
+     .aui-list-item-arrow:before{
+       border-color: #FF7F00;
+       -webkit-transform:rotate(-45deg);
+     }
+     .zz-btn{
+       width: 100%;
+       background: #FF7F00;
+       font-size: 0.875rem;
+       color:#fff;
+       padding: 8px 0px 8px 0px;
+     }
+     .youzhan-content{
+       background: #fff;
+       padding: 10px;
+       line-height: 1.5rem;
+       font-size: 0.875rem;
+     }
+     .displayNone{
+       display: none;
+     }
+       /*列表*/
+      
+      /*内容*/
+     .content-box{
+      padding: 10px;
+      background: #fff;
+     }
+     .content-box h1{
+       font-size: 0.875rem;
+       margin: 5px 0px 5px 0px;
+       color:#FF7F00;
+     }
+     .content-box p{
+      font-size: 0.875rem;
+      line-height: 1.4rem;
+     }
+     
+    </style>
+</head>
+<body>
+   <div class="youquan-list-box">
+     <div class="youquan-list-top">
+       <div class="youquan-list-top-td1 aui-padded-l-5">平台团购券</div>
+       <div class="youquan-list-top-td2">93#(92#）汽油</div>
+       <div class="youquan-list-top-td3 aui-text-right aui-padded-r-10">总购买量1000元</div>
+     </div>
+     <div class="youquan-list-bottom">
+       <div class="youquan-list-bottom-td1 aui-padded-l-5">
+        <div class="youquan-logo">
+         <img src="../../image/youquan2.jpg">
+         <img src="../../image/youquan3.jpg">
+        </div>
+       </div>
+       <div class="youquan-list-bottom-td2">
+       <div class="yz-content-box">
+         <span class="aui-pull-left yellow"><img src="../../image/yzcontent1.jpg">优惠券</span>
+         <span class="aui-pull-right">折扣率:97%</span>
+       </div>        
+        <span class="aui-padded-t-5" >有效截止日期 2016.12.31</span>
+        <div class="yz-content-box1">
+          <div class="yz-content-box1-td1">剩余345元</div>
+          <div class="yz-content-box1-td2">剩余比例34%</div>
+        </div>
+       </div>
+     </div>
+   </div>
+   <div class="aui-content">
+    <ul class="aui-list ">  
+        <li id="chakanList" class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">查看可用油站</div>
+            </div>
+        </li> 
+        <div class="youzhan-content displayNone">
+                        西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站西安油站,西安油站,西安油站,西安油站,西安油站
+        </div>      
+    </ul>
+    </div>
+   <div onclick="zhuanzeng()" class="aui-btn zz-btn">转赠与朋友</div>
+   <div class="content-box">
+     <h1>使用信息</h1>
+     <p>有效期<br>自购买日起12月内有效</p>
+     <h1>使用规则</h1>
+     <p>有效期<br>该团购券限延长加油合作站使用<br>
+无需预约、不可退款、不设找零，可分次消费<br>
+不允许散装买油<br>
+团购券与优惠券不可叠加使用且优先使用团购券<br>
+请根据可用油站选择购买</p>
+   </div>
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+<script>
+  
+  //展开油站详情
+    $("#chakanList").click(function(){
+      $(".youzhan-content").toggleClass("displayNone")
+    })
+  
+  //打开转增
+  function zhuanzeng(){
+    api.openWin({
+	    name: 'my-zhuanzeng-head',
+	    url: 'my-zhuanzeng-head.html'
+    });    
+  }
+</script>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div class="content-div" id="gzDoc" style="display: none">
+		      {doclistContent}
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.raty.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript">
+	apiready = function() {
+		//沉浸式
+     	var headbar=$api.byId('headbar');
+    	$api.fixIos7Bar(headbar);
+    	queryMyIntegrRule();
+	}
+	function queryMyIntegrRule(){
+	// 查询积分规则新闻
+	var ajaxObject = new Object();
+	ajaxObject.url = "/appPortalDoclistAjax!queryPortalDoclistViewVoByMenu.htm";
+	ajaxObject.params = new Object();
+	ajaxObject.params.menuComcode = "1006";		// 查询积分规则新闻
+	ajaxObject.onSuccessFunction = function(data) {
+		getWorkBookHtmlByList(data.portalDoclistViewVo, "gzDoc");	
+	}
+	baseAjax(ajaxObject);		
+}
+	
+	</script>
+</html>

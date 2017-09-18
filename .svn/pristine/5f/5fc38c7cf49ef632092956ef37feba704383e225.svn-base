@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.each-store {
+				margin-bottom: 8px;
+				padding-bottom: 8px;
+				background-color: #fff;
+			}
+			.store-title { 
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+			}
+			.store-goods:before,
+			.store-goods:after {
+				content: '';
+				display: block;
+				height: 1px;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 4px;
+				/*font-size: 0.75rem;*/
+				color: #000;
+			}
+			.goods-price {
+				/*margin-top: 7px;*/
+				/*font-size: 0.75rem;*/
+				color: #ff000c;
+			}
+			.color-ff000c { color: #ff000c;}
+			.font14 { font-size: 0.875rem;}
+			.posi-re { position: relative;}
+			.ver-align { vertical-align: middle}
+			.buy-btn {
+				position: absolute;
+				top: 50%;
+				right: 12px;
+				width: 60px;
+				height: 24px;
+				margin-top: -12px;
+				line-height: 24px;
+				border-radius: 10px;
+				border: 1px solid #ff000c;
+				color: #ff000c;
+				text-align: center;
+			}			
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 12px;
+				left: 33.33%;
+				/*width: 60px;*/
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.8rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+			.aui-bar-btn {
+				position: relative;
+				font-size: 0.7rem;
+				display: table;
+				white-space: nowrap;
+				margin-left: 0;
+				padding: 0;
+				border: none;
+				width: 100%;
+				min-height: 1.8rem;
+			}
+			.show-more {
+				margin: 0 auto;
+				width: 40px;
+				height: 24px;
+				line-height: 24px;
+				/*font-size: 0.75rem;*/
+				text-align: center;
+				color: #ff000c;
+				border: 1px solid #ff000c;
+				border-radius: 4px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="each-store">
+			<div class="store-title">
+				<img src="../../image/logo-icon02.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>
+				<!--<div class="store-detail" onclick="more()">查看全部<span class="iconfont icon-jiantou2"></span></div>-->
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods posi-re">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6">
+					<div class="goods-title aui-font-size-12">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price aui-font-size-12">¥<span class="aui-font-size-14">4</span>.5</div>
+					
+				</div>
+				
+				<div class="buy-btn aui-font-size-12">购买</div>
+				
+				<div class="amount">
+					<div class="aui-bar aui-bar-btn" style=" width: 88px;" type="count" id="demo">
+					    <div class="aui-bar-btn-item aui-font-size-12">
+					        <i class="aui-iconfont aui-icon-minus"></i>
+					    </div>
+					    <div class="aui-bar-btn-item">
+					        <input type="number" class="aui-input aui-text-center input-count" id="count" value="1">
+					    </div>
+					    <div class="aui-bar-btn-item aui-font-size-11">
+					        <i class="aui-iconfont aui-icon-plus"></i>
+					    </div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title aui-font-size-14">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price aui-font-size-12">¥<span class="aui-font-size-14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="buy-btn aui-font-size-12">购买</div>
+				
+				<div class="amount">
+					<div class="aui-bar aui-bar-btn" style=" width: 88px;" type="count" id="demo">
+					    <div class="aui-bar-btn-item aui-font-size-12">
+					        <i class="aui-iconfont aui-icon-minus"></i>
+					    </div>
+					    <div class="aui-bar-btn-item">
+					        <input type="number" class="aui-input aui-text-center input-count" id="count" value="1">
+					    </div>
+					    <div class="aui-bar-btn-item aui-font-size-11">
+					        <i class="aui-iconfont aui-icon-plus"></i>
+					    </div>
+					</div>
+				</div>
+			</div>
+			<div class="show-more aui-font-size-12">更多</div>
+		</div>
+		<div class="each-store">
+			<div class="store-title">
+				<img src="../../image/logo-icon06.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>
+				<!--<div class="store-detail">查看全部<span class="iconfont icon-jiantou2"></span></div>-->
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script>
+		apiready = function() {
+		}
+		var bar = document.querySelectorAll(".aui-bar-btn");
+	    if(bar){
+	        for(var i=0; i<bar.length;i++){
+	            var d = bar[i];
+	            var tab = new auiTab({
+	                element:bar[i],
+	                repeatClick:true
+	            },function(ret){
+	                if(ret.dom.parentNode.getAttribute("type") && ret.dom.parentNode.getAttribute("type")=="count"){
+	                    var count = parseInt(document.getElementById("count").value);
+	                    if(ret.index==2)return;
+	                    if(ret.index==1){
+	                        document.getElementById("count").value = count-1;
+	                        if(count==0){
+	                        	document.getElementById("count").value = 0;
+	                        }
+	                    }
+	                    if(ret.index==3){
+	                        document.getElementById("count").value = count+1;
+	                    }
+	                }
+	            });
+	
+	        }
+	    }
+		//查看全部
+		function more() {
+			api.openWin({
+				name : 'cvstore-more-head',
+				url : 'cvstore-more-head.html'
+			});
+		}
+		//查看单个商品
+		function goods() {
+			api.openWin({
+				name : 'goods-detail-head',
+				url : 'goods-detail-head.html'
+			});
+		}
+
+	</script>
+</html>

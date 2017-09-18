@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.each-store {
+				background-color: #fff;
+			}
+			.store-title { 
+				padding-top: 8px;
+				position: relative;
+				margin-bottom: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.8rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+				padding-left: 14px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+			}
+			.store-title:after{
+			    content: '';
+				width:100%;
+				height: 1px;
+				background: #e0e0e0;
+				position:absolute;
+				bottom:-6px;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.goods-all:after {
+				content: '';
+				display: block;
+				height: 1px;
+				width:100%;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+				position: absolute;
+				bottom:0px;
+				left:0px;
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 4px;
+				font-size: 0.8rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 1rem;
+				color: #ff000c;
+			}
+			.goods-number {
+				margin-top: 7px;
+				font-size: 0.8rem;
+				color: #888;
+			}
+			.color-ff000c { color: #ff000c;}
+			.font14 { font-size: 0.875rem;}
+			.posi-re { position: relative;}
+			.ver-align { vertical-align: middle}
+			.buy-btn {
+				position: absolute;
+				top: 50%;
+				right: 12px;
+				width: 60px;
+				height: 24px;
+				margin-top: -12px;
+				line-height: 24px;
+				border-radius: 10px;
+				border: 1px solid #ff000c;
+				color: #fff;
+				background:#ff0000;
+				text-align: center;
+			}			
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 12px;
+				left: 33.33%;
+				/*width: 60px;*/
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+			
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.8rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+			.aui-bar-btn {
+				position: relative;
+				font-size: 0.7rem;
+				display: table;
+				white-space: nowrap;
+				margin-left: 0;
+				padding: 0;
+				border: none;
+				width: 100%;
+				min-height: 1.8rem;
+			}
+			.show-more {
+				margin: 0 auto;
+				width: 40px;
+				height: 24px;
+				line-height: 24px;
+				/*font-size: 0.75rem;*/
+				text-align: center;
+				color: #ff000c;
+				border: 1px solid #ff000c;
+				border-radius: 4px;
+			}
+			.goods-all{
+			   overflow: hidden;
+			   position: relative;
+			}
+			.yuan-price{
+			  color: #888;
+			  margin-left: 10px;
+			  font-size: 0.8rem;
+			  text-decoration: line-through;
+			}
+			.jingxi-btn{
+			  background: #e6212a;
+			  color:#fff;
+			  border-radius: 5px;
+			  width: 60px;
+			  height: 28px;
+			  line-height: 28px;
+			  text-align: center;
+			  float: right;
+			  font-size: 0.9rem;
+			  margin-bottom: 10px;
+			}
+			/*暂无推荐*/
+			.no-product-all{
+			    text-align: center;
+			    padding-bottom: 15px;
+			 }
+			.no-product-all img{
+			  width: 220px; 
+			}
+			.no-product-all span{
+			  display: block;
+			}
+			
+			/*惊喜购*/
+			.jingxi-box img{
+			  max-width: 100%;
+			  display: block;
+			  height: auto;
+			}
+		</style>
+	</head>
+	<body id="all">
+		<div id="modelThree">
+		    <div class="jingxi-box">
+		      <img src="../../image/jingxi.jpg">
+		    </div>
+		
+			<div class="each-store" id="ssgGoodsList" style="display: none">
+				<div class="store-title">
+					<img src="../../image/logo-icon06.png" />
+					<div class="store-name">{memberName}</div>
+					<div class="clearfix"></div>
+				</div>
+				<div class="goods-all">
+					<div class="store-goods" onclick="toDetail('{glistBillbatch}','{memberCode}')" >
+						<div class="aui-col-xs-3 posi-re">
+							<img src="../../image/default/minGoods.jpg" class="goods-img" datasrc="{baseURL}/{dataPic2}"/>
+						</div>
+	
+						<div class="aui-col-xs-9 aui-padded-r-15">
+							<div class="goods-title">{goodsName}</div>
+							<div class="goods-price">¥{pricesetHangpriceStr}<span class="yuan-price">￥{pricesetAspriceStr}</span></div>
+							<div class="goods-number">{goodsOrdnum}件已售</div>
+							<div class="jingxi-btn">惊喜购</div>
+						</div>		
+						<div class="clearfix"></div>					
+					</div>																 																										 				
+				 </div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			loadData();
+		}
+		
+		function loadData() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCvstoreGoodsAjax!querySsgCvstoreGoodsByPageCache.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params["resourceGlistViewVo.memberCode"] = api.pageParam.memberCode;	// 油站编号
+			ajaxObject.params["resourceGlistViewVo.pricesetLprice"] = api.pageParam.oilInfo.price;	// 应付金额
+			ajaxObject.onSuccessFunction = function(data){
+				var list = data.resourceGlistViewVoList;
+				getWorkBookHtmlByList(list, "ssgGoodsList");
+				//图片缓存
+				imageCache($api.dom('.goods-img'));
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//查看单个商品详情
+		function toDetail(goodsCode,memberCode) {
+			if(goodsCode == "" || goodsCode == null || goodsCode == "undefined"){
+				api.toast({
+	                msg:'商品代码为空'
+	            });
+                return false;
+			}
+			api.openWin({
+			 	reload : true,
+				name : 'goods-detail-head',
+				url : '../cvstore/goods-detail-head.html',
+				pageParam : {
+					"goodsCode" : goodsCode,
+					"memberCode": memberCode,
+					"goodsPro" : 1      // 随手购商品
+				},
+			});
+		}
+	</script>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff ;
+			
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bolder;
+		}
+		.fix-box{
+		  position: relative;
+		  top:90px;
+		  margin-top: 0px;
+		}
+		.youquan-box{
+          padding-bottom: 20px;
+        }
+        .youquan-list{
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }
+        .youhui-middle{
+         padding-left: 10px;
+        }
+        .youquan-middle{
+        padding-left: 10px;
+        }
+        .youhui-all{
+          background: url("../../image/my-youquan-line.jpg") repeat-y left;        
+        }
+      
+        .youquan-left img{
+          width: 63px;
+          height: 45px;
+        }
+        .youquan-left h1{
+          font-size:0.875rem;
+          color:#FF7F00;
+        }
+        .youquan-right {
+          font-size: 0.875rem;
+          padding-top: 20px;
+          padding-right: 5px;
+        }
+       
+        .youquan-middle p{
+          font-size: 0.875rem;
+          padding-left: 5px;
+          margin-top: 4px;
+        }
+        .youquan-middle p img{
+          width:22px;
+          float:left;
+        }
+        .youhui-right {
+          padding-top: 5px;
+        }
+        .youhui-right p {
+          font-size: 0.75rem;        
+          padding-right: 5px;
+        }
+         .youhui-left{
+           padding-top: 20px;
+        }       
+        .youhui-list{
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+          overflow: hidden;
+          margin-bottom: 20px;
+        }    
+        .youhui-middle{
+          padding-top: 20px;
+        }  
+        .youhui-middle-none{
+          padding-top: 10px;
+        } 
+        
+        .form-box{
+          border:1px solid #FF7F00;
+          border-radius: 5px;
+        }
+        .form-title{
+          font-size: 0.875rem;
+          border-bottom:1px solid #FF7F00;
+          padding:5px;
+        }
+        .form-ul{
+          overflow: hidden;
+        }
+        .form-ul li{
+          font-size: 0.875rem; 
+          border-bottom:1px dashed #ff7f00;
+          overflow: hidden;
+          padding: 10px;
+        }
+         .form-ul li label{
+           padding-top: 5px;
+         }
+    </style>
+</head>
+<body>
+    <div class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span class="title-span">转增</span>
+               <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+        </div>
+     </div>
+
+    <div class="aui-content-padded fix-box" >
+      <div class="youquan-box">
+      <div onclick="zhuanzeng()" class="youquan-list">
+       <div class="aui-col-xs-3 youquan-left aui-text-center">
+        <img src="../../image/my-quan.jpg">
+        <h1>中石化预约券</h1>
+       </div>
+       <div class="aui-col-xs-9 youhui-all">
+         <div class="aui-col-xs-7 youquan-middle">
+          <p class="aui-font-size-18">92#/93# 汽油</p>
+          <p class="yellow"><img src="../../image/my-youquan-icon.jpg">可用5000.00元</p>
+          <p class="yellow">5000.00元</p>
+         </div>
+         <div class="aui-col-xs-5 youquan-right aui-text-right">
+          有效日期截止<br>2016.12.31
+         </div>
+       </div>
+      </div>      
+    </div>   
+    
+    <div class="form-box">
+     <h1 class="yellow form-title">请确认并认真填写如下信息</h1>
+     <ul class="form-ul">
+      <li>
+       <label class=" aui-col-xs-4">对方手机号：</label>
+       <span class="aui-col-xs-8">
+        <input type="text" placeholder="请输入对方手机号">
+       </span>       
+      </li>
+      <li>
+       <label class="aui-col-xs-4">备注信息：</label>
+       <span class="aui-col-xs-8">
+        <input type="text" placeholder="请输入备注信息">
+       </span>       
+      </li>
+     </ul>    
+    </div>
+    
+     <div class="btn-box aui-margin-t-15">
+          <div onclick="zhuanzengNext()" class="aui-btn aui-btn-block aui-btn-warning">下一步</div>
+        </div>
+    
+   </div>   
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+ }
+ 
+ function zhuanzengNext(){
+   api.openWin({
+	   name: 'my-zhuanzeng-next-page',
+	   url: 'my-zhuanzeng-next-page.html'
+   });
+ }
+
+</script>
+</html>

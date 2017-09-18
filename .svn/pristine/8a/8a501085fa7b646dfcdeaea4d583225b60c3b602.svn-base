@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html,body{
+        background: #F5F5F5;
+      }
+      .aui-list:before{
+		  height:0px;
+		}
+		.btn-box{
+		  width:100%;
+		  background: #fff;
+		  height: 50px;
+		  text-align: center;
+		  padding-top: 10px;
+		}
+		.btn-box .aui-btn{
+		  width: 95%;
+		  padding: 5px;
+		  font-size: 1rem;
+		}
+		.fix-box{
+		  position: fixed;
+		  bottom:0px;
+		}
+    /*列表*/     
+    .purple{
+       color: #bf6cef;   
+    }
+      .youquan-list-box{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+			background-size:16px;
+			font-size: 0.875rem;
+			height: 120px;	
+			border-radius: 5px;	
+			margin-bottom: 10px;
+      }     
+       .list-left-all{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .list-right-all{
+           width: 6rem;
+           border-left:1px dashed #ddd;
+           padding: 0px 5px 0px 5px;
+      }
+      .list-right-all span{
+        text-align: center;
+        display: block;
+        margin-top: 5px;
+      }
+      
+      .list-left-top{
+          height: 40px;
+          padding: 2px 0px 7px 10px;
+          color:#000;
+          border-bottom: 1px solid #ddd;
+      }
+      .list-left-top img{
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 5px;
+        
+      }
+      .list-left-bottom{
+        padding: 6px 0px 4px 10px; 
+        overflow: hidden;
+      }
+      .list-left-bottom img{
+        width: 100px;
+         float: left;
+      }
+      .card1 .use-btn{
+        border:1px solid #6612fb;
+        border-radius: 10px;
+        background: #bf6cef;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card1 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card1 .much-box b{
+        font-size: 1.5rem;
+        color: #bf6cef;
+      }     
+       /*列表*/
+      
+      /*详情*/
+     .content-all{
+			  overflow: hidden;
+			  padding-bottom: 50px;
+			}
+     .tel-img{
+			 width: 35px;
+			}
+			.word-box{
+			  background: #fff;
+			  margin-top:10px;
+			  padding: 10px;
+			}
+			.word-box h1{
+			  font-size: 0.875rem;
+			  padding-bottom: 5px;
+			  margin-bottom: 5px;
+			}
+			.word-box p{
+			   line-height: 18px;
+			}
+    </style>
+</head>
+<body>
+<div class="content-all">
+<div class="aui-content-padded">
+  <div class="youquan-list-box card1" >
+      <div class="list-left-all " onclick="youquanContent()">
+       <div class="list-left-top">
+         <img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台团购券
+       </div>
+       <div class="list-left-bottom">
+         <img src="../../image/card5.jpg">
+         <div class="much-box"> 
+                                                 剩余：<br>
+            <b>￥1000.00</b>                             
+         </div>
+       </div>
+      </div>
+      <div class="list-right-all">
+      <span class="aui-font-size-14 purple">92#汽油</span>
+      <span class="aui-font-size-14 purple">5000元</span>
+        <span class="aui-font-size-14">有效日期截止</span>
+        <span class="aui-font-size-14">2016.12.31</span>
+        <span onclick="zhifubox()" class="use-btn">去使用</span>
+      </div>
+   </div>
+</div>
+
+<ul class="aui-list aui-margin-t-15">
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title ">适用油站 （离我最近）</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">曲江庙坡头油站     30.00km<br><span style="color: #888">近西安唐城墙遗址公园</span></div>
+                <div class="aui-list-item-right"><img class="tel-img" src="../../image/tel-ico1.jpg"></div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-arrow aui-padded-t-10 aui-padded-b-10">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">全部门店信息</div>
+                <div class="aui-list-item-right aui-font-size-16">共24站</div>
+            </div>
+        </li>
+    </ul>
+    
+    <div class="word-box">
+     <h1 class="aui-border-b">团购细则</h1>
+     <p>1.有效期: 自购买日起12月内有效</p>
+<p>2.该团购券限延长加油合作站使用</p>
+<p>3.无需预约、不可退款、不设找零，可分次消费</p>
+<p>4.不允许散装买油</p>
+<p>5.团购券与优惠券不可叠加使用且优先使用团购券</p>
+<p>6.请根据可用油站选择购买</p>
+    </div>
+</div>    
+</div>    
+    <div class="btn-box fix-box">
+     <div class="aui-btn aui-btn-danger" onclick="zhuanzeng()">转赠朋友</div>
+    </div>
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+<script type="text/javascript" src="../../script/jquery.min.js" ></script>
+<script>
+  
+  //展开油站详情
+    $("#chakanList").click(function(){
+      $(".youzhan-content").toggleClass("displayNone")
+    })
+  
+  //打开转增
+  function zhuanzeng(){
+    api.openWin({
+	    name: 'my-zhuanzeng-head',
+	    url: 'my-zhuanzeng-head.html'
+    });    
+  }
+</script>
+</html>

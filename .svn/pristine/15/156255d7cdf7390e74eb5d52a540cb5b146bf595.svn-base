@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+    <style>
+    html,body{
+        background: #F5F5F5;
+      }
+    /*列表*/     
+    .purple{
+       color: #bf6cef;   
+    }
+      .youquan-list-box{
+             display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+			background-size:16px;
+			font-size: 0.875rem;
+			height: 120px;	
+			border-radius: 5px;	
+			margin-bottom: 10px;
+      }     
+       .list-left-all{
+            -webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+      }
+      .list-right-all{
+           width: 6rem;
+           border-left:1px dashed #ddd;
+           padding: 0px 5px 0px 5px;
+      }
+      .list-right-all span{
+        text-align: center;
+        display: block;
+        margin-top: 5px;
+      }
+      
+      .list-left-top{
+          height: 40px;
+          padding: 2px 0px 7px 10px;
+          color:#000;
+          border-bottom: 1px solid #ddd;
+      }
+      .list-left-top img{
+        width: 35px;
+        vertical-align: middle;
+        margin-right: 5px;
+        
+      }
+      .list-left-bottom{
+        padding: 6px 0px 4px 10px; 
+        overflow: hidden;
+      }
+      .list-left-bottom img{
+        width: 100px;
+         float: left;
+      }
+      .card1 .use-btn{
+        border:1px solid #6612fb;
+        border-radius: 10px;
+        background: #bf6cef;
+        color:#fff;
+        padding: 3px 0px 3px 0px;
+      }
+      .card1 .much-box{
+        float: left;
+        margin-left: 5px;
+        margin-top: 10px;
+      }
+      .card1 .much-box b{
+        font-size: 1.5rem;
+        color: #bf6cef;
+      }     
+       /*列表*/
+    </style>
+</head>
+<body>
+   <div class="aui-content-padded">
+   <div class="youquan-list-box card1" >
+      <div class="list-left-all " onclick="youquanContent()">
+       <div class="list-left-top">
+         <img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台团购券
+       </div>
+       <div class="list-left-bottom">
+         <img src="../../image/card5.jpg">
+         <div class="much-box"> 
+                                                 剩余：<br>
+            <b>￥1000.00</b>                             
+         </div>
+       </div>
+      </div>
+      <div class="list-right-all">
+      <span class="aui-font-size-14 purple">92#汽油</span>
+      <span class="aui-font-size-14 purple">5000元</span>
+        <span class="aui-font-size-14">有效日期截止</span>
+        <span class="aui-font-size-14">2016.12.31</span>
+        <span onclick="zhifubox()" class="use-btn">去使用</span>
+      </div>
+   </div>
+   
+   <div class="youquan-list-box card1" >
+      <div class="list-left-all">
+       <div class="list-left-top">
+         <img src="../../image/logo-icon01.png">延长<b class="red">e</b>加油平台团购券
+       </div>
+       <div class="list-left-bottom">
+         <img src="../../image/card5.jpg">
+         <div class="much-box"> 
+                                                 剩余：<br>
+            <b>1000升</b>                             
+         </div>
+       </div>
+      </div>
+      <div class="list-right-all">
+      <span class="aui-font-size-14 purple">92#汽油</span>
+      <span class="aui-font-size-14 purple">500升</span>
+        <span class="aui-font-size-14">有效日期截止</span>
+        <span class="aui-font-size-14">2016.12.31</span>
+        <span onclick="zhifubox()" class="use-btn">去使用</span>
+      </div>
+   </div>
+ </div>  
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+
+<script type="text/javascript">
+  function youquanContent(){
+    api.openWin({
+	    name: 'my-youquan-content-head',
+	    url: 'my-youquan-content-head.html'
+    });
+  }
+</script>
+</html>

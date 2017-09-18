@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+       .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+    </style>
+</head>
+<body>
+  <div class="aui-content">
+    <ul class="aui-list">
+      <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner">
+            <div class="aui-list-item-title">
+				发票抬头
+			</div>
+            <div class="aui-list-item-right">
+              <input type="text" placeholder="请输入发票抬头" id="invoiceCompanyname"/>
+            </div> 
+           </div>                                   
+        </li>      
+    </ul>
+    <div class="btn-box aui-margin-t-15">
+			<div onclick="addInvoice()" class="aui-btn aui-btn-block aui-btn-warning">
+				保存
+			</div>
+		</div>
+</div>  
+    
+</body>
+<script type="text/javascript" src="../../../../script/api.js"></script>
+<script type="text/javascript" src="../../../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../../../script/common.js"></script>
+<script>
+ apiready = function(){
+  	//沉浸式
+	var headbar = $api.byId('headbar');
+	$api.fixIos7Bar(headbar);
+	loadEditDate();
+ }
+
+	//编辑数据
+	function loadEditDate() {
+		if (api.pageParam.invoiceCode) {
+			$("#invoiceCompanyname").val(api.pageParam.invoiceCompanyname);
+		}
+	}
+
+	//添加发票信息
+	function addInvoice() {
+		var invoiceType = "3";
+		var invoiceIsdefault = "0";
+		var invoiceCode = api.pageParam.invoiceCode;
+		var invoiceCompanyname = $("#invoiceCompanyname").val();
+		if (Checkall()) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appInvoiceAjax!saveInvoice.htm";
+			ajaxObject.params = new Object();
+			if(invoiceCode && invoiceCode != ""){
+				ajaxObject.url = "/appInvoiceAjax!updateInvoice.htm";
+				ajaxObject.params["invoiceViewVo.invoiceCode"] = invoiceCode;
+			}
+			ajaxObject.params["invoiceViewVo.invoiceType"] = invoiceType;
+			ajaxObject.params["invoiceViewVo.invoiceIsdefault"] = invoiceIsdefault;
+			ajaxObject.params["invoiceViewVo.invoiceCompanyname"] = invoiceCompanyname;
+			ajaxObject.onSuccessFunction = function(ret) {
+				api.sendEvent({
+					name : "flushMyFrameEvent"
+				});
+				api.alert({
+					title : '提示',
+					msg : '新增发票成功',
+				}, function(ret, err) {
+					api.closeWin();
+				});
+				//关闭当前窗口并且刷新上一个页面
+				execScriptFrame("my-fapiao-head", "my-fapiao-page");
+			}
+			baseAjax(ajaxObject);
+		}
+	}
+
+	//校验下拉选择框
+	function Checkall() {
+		var invoiceCompanyname = $("#invoiceCompanyname").val();
+		if (!invoiceCompanyname || invoiceCompanyname == '') {
+			api.toast({
+				msg : '请输入发票抬头',
+				duration : 2000,
+				location : 'center'
+			});
+			return false;
+		}
+		return true;
+	}
+
+</script>
+</html>

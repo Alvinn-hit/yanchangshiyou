@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.aui-list{
+	     font-size: 0.875rem;
+	   }
+	   .aui-list-item-label img{
+	    width: 16px;
+	    height: 22px;
+	  }
+	  .aui-list .aui-list-item-label{
+	    width: 15%;
+	  }
+	  .aui-list .aui-list-item{
+	     min-height: 3.2rem;
+	  }
+	  .yzm-btn{
+	     position: absolute;
+		  right: 10px;
+		  top:4px;
+		  background: #7dc735;
+		  color:#fff;
+		  border-radius: 20px;
+		  font-size: 0.875rem;
+	}	
+	   .yzm-input{
+	     border: none!important;
+	   }
+	   .xieyi-p{
+	    padding: 0px 15px 10px 15px;
+	    line-height: 24px;
+	    font-size: 0.875rem;
+	  }	  
+	  .xieyi-p .aui-checkbox{
+	    margin-right: 10px;
+	    margin-top: 4px;
+	  }
+	  .aui-checkbox:checked{
+	     background: #F13D3E;
+	     border:1px solid #F13D3E;
+	  }
+	  .xieyi-btn{
+	   color:#F13D3E;
+	  }
+    </style>
+</head>
+<body>
+    <div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-form-list">        
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-label">
+                   <img src="image/lock.jpg">
+                </div>
+                <div class="aui-list-item-input">
+                   <input type="text" placeholder="请设置密码">
+                </div>
+            </div>
+        </li>  
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-label">
+                   <img src="image/lock.jpg">
+                </div>
+                <div class="aui-list-item-input">
+                   <input type="text" placeholder="请再次输入密码">
+                </div>
+            </div>
+        </li>  
+      </ul>
+     </div>   
+     <div class="btn-box aui-margin-t-15">
+          <div onclick="login()" class="aui-btn aui-btn-block aui-btn-warning">确认</div>
+        </div>
+    
+</body>
+<script type="text/javascript" src="script/api.js"></script>
+<script>
+ apiready = function(){
+ 
+ }
+ 
+
+</script>
+</html>

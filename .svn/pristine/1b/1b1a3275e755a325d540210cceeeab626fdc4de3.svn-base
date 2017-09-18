@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+				position: relative;
+			}
+			.each-store {
+				margin-bottom: 8px;
+				background-color: #fff;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			.store-title { 
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+				border-top: 1px solid #e0e0e0;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 8px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 0.75rem;
+				color: #ff000c;
+			}
+			.color-ff000c { color: #ff000c;}
+			.color-e6212a { color: #e6212a;}
+			.color-000 { color: #000;}
+			.font12 { font-size: 0.75rem;}
+			.font14 { font-size: 0.875rem;}
+			.marTop7 { margin-top: 7px;}
+			.posi-re { position: relative;}
+			.ver-align { vertical-align: middle}
+			.buy-amount {
+				position: absolute;
+				z-index: 99;
+				top: 32px;
+				right: 11px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.buy-all {
+				float: right;
+				padding-top: 15px;
+				padding-bottom: 11px;
+				padding-right: 11px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.pay-area {
+				/*position: relative;
+				top: 100%;
+				margin-top: -50px;*/
+				/*bottom: 0;*/
+				height: 50px;
+				width: 100%;
+				z-index: 9999;
+			}
+			.bg-fff {
+				background-color: #fff;
+			}
+			.bg-e6212a {
+				background-color: #e6212a;
+			}
+			.submit {
+				text-align: center;
+				color: #fff;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.submit-price {
+				padding-right: 12px;
+				text-align: right;
+				color: #e6212a;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.padBottom50 {
+				padding-bottom: 50px;
+			}
+			.aui-list .aui-list-item {
+				list-style: none;
+				margin: 0;
+				padding: 0;
+				padding-left: 0.75rem;
+				color: #212121;
+				background-color: #ffffff;
+				position: relative;
+				height: 50px;
+				min-height: 2.2rem;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-box-pack: justify;
+				-webkit-justify-content: space-between;
+				justify-content: space-between;
+			}
+			.aui-list-item-arrow:before {
+				content: '';
+				width: 0.4rem;
+				height: 0.4rem;
+				position: absolute;
+				top: 50%;
+				right: 0.75rem;
+				margin-top: -0.2rem;
+				background: transparent;
+				border: 1px solid #bfbfbf;
+				border-top: none;
+				border-right: none;
+				z-index: 2;
+				-webkit-border-radius: 0;
+				border-radius: 0;
+				-webkit-transform: rotate(-135deg);
+				transform: rotate(-135deg);
+			}
+			.aui-switch {
+				width: 52px;
+				height: 32px;
+				position: relative;
+				vertical-align: top;
+				border: 1px solid #dddddd;
+				background-color: #dddddd;
+				border-radius: 16px;
+				background-clip: content-box;
+				display: inline-block;
+				outline: none;
+				-webkit-appearance: none;
+				appearance: none;
+				-webkit-user-select: none;
+				user-select: none;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+				-webkit-background-clip: padding-box;
+				background-clip: padding-box;
+				-webkit-transition: all 0.2s linear;
+				transition: all 0.2s linear;
+			}
+			.aui-switch:checked {
+				border-color: #4cd964;
+				background-color: #4cd964;
+			}
+			.aui-switch:checked:before {
+				left: 20px;
+			}
+			.aui-switch:before {
+				width: 28px;
+				height: 28px;
+				position: absolute;
+				top: 1px;
+				left: 2px;
+				border-radius: 50%;
+				background-color: #fff;
+				content: '';
+				-webkit-transition: left 0.2s;
+				transition: left 0.2s;
+			}
+			.aui-list .aui-list-item-right, .aui-list-item-title-row em {
+				max-width: 50%;
+				position: relative;
+				font-size: 0.875rem;
+				color: #e6212a;
+				margin-left: 0.25rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="each-store">
+			<div class="store-title">
+				<img src="../../image/logo-icon02.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>				
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="buy-amount">×1</div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="buy-amount">×1</div>
+			</div>
+			<div class="buy-all">共2件商品</div>
+			<div class="clearfix"></div>			
+		</div>	
+		<div class="aui-content aui-margin-b-15">
+		    <ul class="aui-list aui-list-in">
+		        <li class="aui-list-item aui-list-item-middle">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">优惠券</div>
+						<div class="font12 color-000">无可用</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner aui-list-item-arrow">
+	                	<div class="aui-list-item-title">选择车辆</div>
+	                	<div class="font12 color-000">陕AR5321</div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-title">开具发票</div>
+		                <div class="aui-list-item-right">
+		                    <input type="checkbox" class="aui-switch" checked="checked">
+		                </div>
+		            </div>
+		        </li>
+		        <li class="aui-list-item">
+		            <div class="aui-list-item-inner">
+		                <div class="aui-list-item-label">
+							发票抬头 :
+		                </div>
+		                <div class="aui-list-item-input">
+		                    <input type="text" placeholder="请输入发票抬头，如：个人">
+		                </div>
+		            </div>
+		        </li>
+		    </ul>
+		    <div class="aui-content aui-margin-b-15 marTop7">
+			    <ul class="aui-list aui-list-in">
+			        <li class="aui-list-item">
+			            <div class="aui-list-item-inner">
+			                <div class="aui-list-item-title">商品金额</div>
+			                <div class="aui-list-item-right color-e6212a font14">¥41.00</div>
+			            </div>
+			        </li>
+		        </ul>
+	        </div>
+		</div>
+		<!--<div class="padBottom50"></div>-->
+		<!--<div class="pay-area">
+			<div class="aui-col-xs-8 bg-fff submit-price">
+				实付款:¥41.<span class="font14">00</span>
+			</div>
+			<div class="aui-col-xs-4 bg-e6212a submit">
+				提交订单
+			</div>
+		</div>-->	
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+		}
+		//打开钱券
+		function openContent() {
+			api.openWin({
+				name : 'preorder-detail-head',
+				url : 'preorder-detail-head.html'
+			});
+		}
+
+	</script>
+</html>

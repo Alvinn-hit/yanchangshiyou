@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff ;
+			
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bolder;
+		}
+		.fix-box{
+		  position: relative;
+		  top:90px;
+		  margin-top: 0px;
+		}
+		.logo-img{
+		  width: 100px;
+		  height: 100px;
+		  border: 1px solid #FF7F00;
+		  border-radius: 50%;
+		  margin: auto;
+		}
+		.logo-img img{
+		  width: 64px;
+		  padding-top: 22px;
+		}
+		
+		.next-ul{
+		  margin-top: 20px;
+		}
+		.next-ul li{
+		  border:1px solid #FF7F00;
+		  overflow: hidden;
+		  border-radius: 5px;
+          font-size: 0.875rem;
+          margin-top: 10px;
+		}
+    </style>
+</head>
+<body>
+    <div class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span class="title-span">转增</span>
+               <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+        </div>
+     </div>
+
+    <div class="aui-content-padded fix-box" >
+     <div class="logo-img aui-text-center">
+       <img src="../../image/logo.jpg">
+     </div>
+     
+     <ul class="next-ul">
+      <li>
+        <span class="aui-col-xs-6 aui-border-r aui-padded-l-10 aui-padded-t-15 aui-padded-b-15">爱加油的小朱佩琪</span>
+        <span class="aui-col-xs-6 aui-padded-l-10 aui-padded-t-15 aui-padded-b-15">158924514778</span>
+      </li>
+       <li>
+        <span class="aui-col-xs-12  aui-padded-l-10 aui-padded-t-15 aui-padded-b-15">确认是要赠送油券给朋友吗？</span>
+      </li>
+     </ul>
+    
+     <div class="btn-box mt-25">
+          <div onclick="okbtn()"  class="aui-btn aui-btn-block aui-btn-warning">确认赠与</div>
+        </div>
+    
+   </div>   
+       
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+ }
+ 
+function okbtn(){
+  api.openFrame({
+	  name: 'my-zhuanzeng-password',
+	  url: 'my-zhuanzeng-password.html',	 
+	  rect: {
+		  x:0,
+		  y:0,
+		  w:'auto',
+		  h:api.winHeight
+	  },
+	  
+  });
+}
+ 
+</script>
+</html>

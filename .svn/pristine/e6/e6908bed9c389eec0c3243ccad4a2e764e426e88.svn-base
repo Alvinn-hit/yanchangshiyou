@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: rgba(0,0,0,.1);
+			}
+			ul,
+			li {
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			.select-area {
+				height: 120px;
+				background-color: #f2f2f2;
+			}
+			.select-area li{
+				height: 40px;
+				line-height: 39px;
+				text-align: center;
+				border-bottom: 1px solid #ddd;
+			}	
+			.select-area li:active{
+				background-color: #f7f7f7;
+			}		
+			.active-word {
+				color: #e6212a;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<ul class="select-area">
+				<li class="active-word" onclick="closecurrent()">全部</li>
+				<li onclick="closecurrent()">支出</li>
+				<li onclick="closecurrent()">收入</li>
+			</ul>
+			<div class="flex-td2" onclick="closecurrent()"></div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script>
+		apiready = function() {
+			//存储当前win的名字
+			$api.setStorage("curWinName",api.winName);
+			
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+		}	
+		
+		function closecurrent(){
+			api.closeFrame({
+//			    name: 'my-record-select'
+			});
+		}	
+	</script>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.paycard-ul li{
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  height: 52px;
+		  font-size: 0.875rem;
+		  margin-bottom: 20px;
+		}
+		.paycard-left-img{
+		  height: 51px;
+		  border-right:1px solid #FF7F00;
+		}
+		.paycard-left-img img{
+		  width: 50px;
+		  height: 50px;
+		  border-radius: 5px;
+		}
+		.paycard-word-span{
+		  		 
+		}
+		.paycard-word-span i{
+		   font-style:normal;
+		   display: table-cell;
+		   height:50px;
+		   vertical-align: middle;
+		}
+    </style>
+</head>
+<body>
+<div class="aui-content-padded">
+    <ul class="paycard-ul">
+      <li>
+        <span class="paycard-left-img aui-pull-left">
+         <img src="../../image/paycard1.jpg">
+        </span>
+        <span class="aui-pull-left aui-padded-l-10 paycard-word-span">
+		    <i>浦发银行储蓄卡
+		   <br>
+		   52102****56214 
+		   </i>    
+        </span>
+       
+      </li>
+      <li>
+        <span class="paycard-left-img aui-pull-left">
+         <img src="../../image/paycard2.jpg">
+        </span>
+        <span class="aui-pull-left aui-padded-l-10 paycard-word-span">
+		    <i>浦发银行储蓄卡
+		   <br>
+		   52102****56214  
+		   </i>    
+        </span>
+       
+      </li>
+      <li>
+        <span class="paycard-left-img aui-pull-left">
+         <img src="../../image/paycard3.jpg">
+        </span>
+        <span class="aui-pull-left aui-padded-l-10 paycard-word-span">
+		    <i>浦发银行储蓄卡
+		   <br>
+		   52102****56214  
+		   </i>    
+        </span>
+       
+      </li>
+    </ul>
+    
+    <div class="btn-box aui-margin-t-15">
+          <div class="aui-btn aui-btn-block aui-btn-warning">添加银行卡</div>
+        </div>
+</div>     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+  
+ 
+
+</script>
+</html>

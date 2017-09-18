@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		 .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }	
+	   .content-car{
+	     width: 100%;
+	   }
+	   .content-car li{
+	     min-height: 40px!important;
+	     line-height: 40px;
+	   }
+	   .content-car .aui-list-item-title{
+	     color:#999;
+	   }
+
+    </style>
+</head>
+<body>
+    <div class="aui-content">
+    <ul class="aui-list">
+      <li onclick="safe()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">账户安全</div> 
+           </div>                                   
+        </li>          
+        <li onclick = "idea()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">意见反馈</div> 
+            </div>               
+        </li>
+        <li  onclick="xieyi()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+           <div class="aui-list-item-title">用户协议</div> 
+             </div>               
+        </li>
+         <li onclick="jieshao()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">延长E加油介绍</div>
+             </div>               
+        </li>
+        <li class="aui-list-item aui-list-item-middle" id="servicetel" style="display: ;">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+            <div class="aui-list-item-title">客服电话</div>   
+             <div class="aui-list-item-right">{valueValue}</div>
+             </div>             
+        </li>    
+    </ul>  
+</div>
+     
+    
+</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../script/system.js"></script>
+<script>
+ 	apiready = function() {
+		var headbar = $api.byId('headbar');
+		$api.fixIos7Bar(headbar);
+		queryServiceTel();
+	};
+	
+	function queryServiceTel(){
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appValueAjax!queryPlatValueVo.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.valueCode = "servicetel";
+		ajaxObject.onSuccessFunction = function(data) {
+			var data = data.valueVo;
+			getWorkBookHtmlByList(data,"servicetel");
+		}
+		
+		baseAjax(ajaxObject);	
+	}
+	
+	 function safe(){
+	   api.openWin({
+		   name: 'my-safe-head',
+		   url: 'accountSafe/my-safe-head.html',
+		   reload : true,
+		   pageParam : {
+		   	memberPhone : api.pageParam.memberPhone
+		   }
+	   });
+	 }
+
+	//意见
+	function idea() {
+		api.openWin({
+			name : 'my-idea',
+			url : 'my-idea.html'
+		});
+	}
+
+	//协议
+	function xieyi() {
+		api.openWin({
+			name : 'my-news-head',
+			url : 'my-news-head.html'
+		});
+	}
+	
+	//介绍
+	function jieshao() {
+		api.openWin({
+			name : 'my-introduce-head',
+			url : 'my-introduce-head.html'
+		});
+	}
+
+</script>
+</html>

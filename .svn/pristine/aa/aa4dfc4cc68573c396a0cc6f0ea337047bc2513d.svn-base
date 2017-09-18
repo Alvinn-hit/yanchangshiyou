@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			html, body {
+				background: #F5F5F5;
+			}
+			/*列表*/
+			.green {
+				color: #ee426a;
+			}
+			.youquan-list-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+				background-size: 16px;
+				font-size: 0.875rem;
+				min-height: 120px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+			  -webkit-align-items: center;
+				-moz-align-items: center;
+				-ms-align-items: center;
+				-o-align-items: center;
+				align-items: center;
+			}
+			.list-left-all {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+				border-right: 1px dashed #ddd;
+			}
+			.list-right-all {
+				width: 6rem;				
+				padding: 0px 5px 0px 5px;				
+			}
+			.list-right-all span {
+				text-align: center;
+				display: block;
+				margin-top: 5px;
+			}
+			.list-left-top {
+				height: 40px;
+				padding: 2px 0px 7px 10px;
+				color: #000;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-left-top img {
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.list-left-bottom {
+				padding: 6px 0px 4px 10px;
+				overflow: hidden;
+			}
+			.list-left-bottom img {
+				width: 115px;
+				height: 80px;
+				float: left;
+			}
+			.card1 .use-btn {
+				border: 1px solid #d21235;
+				border-radius: 10px;
+				background: #ee3e65;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card1 .much-box {
+				float: left;
+				width: 6rem;
+				margin-left: 5px;
+				word-wrap: break-word;
+			}
+			.card1 .much-box b {
+				font-size: 1.5rem;
+				color: #ee3e65;
+			}
+			/*列表*/
+		</style>
+	</head>
+	<body>
+		<div class="aui-content-padded" id="myCoupon" style="display:none">
+			<div class="youquan-list-box card1" onclick="youquanContent('{couponCode}')">
+				<div class="list-left-all">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">{couponGrantName}
+					</div>
+					<div class="list-left-bottom">
+						<img src="../../image/default/quan.jpg" datasrc="{baseURL}/{couponImgpath}" class="imgClass">
+						<div class="much-box">
+							<p>
+								<b>￥{couponMoney}</b>
+							</p>
+							<p>
+								<b class="aui-font-size-14">满{useMinMoney}元可用</b>
+							</p>
+							<p class="aui-font-size-12">
+								{couponRule8}
+							</p>
+							<p class="aui-font-size-12">
+								有效日期：{effectiveSdateStr}至{effectiveEdateStr}
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all aui-padded-t-15">
+					<span onclick="zhifubox('{couponCode}')" class="use-btn">去使用</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/system.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			//监听刷新本页面事件
+			api.addEventListener({
+				name : 'myTicket'
+			}, function(ret, err) {
+				queryMyPreVoucher(1);
+			});
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryMyCoupon();
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryMyCoupon(1);
+			});
+			queryMyCoupon();
+		}
+		
+		// 查询我的优惠券列表
+		function queryMyCoupon(isShow) {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCouponAjax!queryMyCouponInfoByPageCache.htm";
+			ajaxObject.params = new Object();
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.couponInfoViewVoList;
+				for(var i=0; i<data.length; i++){
+					if(data[i].couponGrantName.length > 12){
+						data[i].couponGrantName = data[i].couponGrantName.substring(0,12)+"...";
+					}
+				}
+				getWorkBookHtmlByList(data, 'myCoupon');
+				//列表图片缓存
+				$(".imgClass").each(function(index){
+					imageCache(this);
+				});
+				api.refreshHeaderLoadDone();
+			}
+			baseAjax(ajaxObject);
+		}
+
+		// 跳转到优惠券详情
+		function youquanContent(couponCode) {
+			api.openWin({
+				name : 'my-yhq-content-head',
+				url : 'my-yhq-content-head.html',
+				reload : true,
+				pageParam : {
+					"couponCode" : couponCode,
+				}
+			});
+		}
+
+		function zhifubox(couponCode) {
+			event.stopPropagation();
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCouponAjax!queryCouponGasStation.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.couponCode = couponCode;
+			ajaxObject.onSuccessFunction = function(data) {
+				var gasStationStr = data.gasStationStr;
+				api.openWin({
+					name : 'youzhan-head',
+					url : '../addoil/youzhan-head.html',
+					reload : true,
+					pageParam : {
+						gasStationStr : gasStationStr,
+					}
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+	</script>
+</html>

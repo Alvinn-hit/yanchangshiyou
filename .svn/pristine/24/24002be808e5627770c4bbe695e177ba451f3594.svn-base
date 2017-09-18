@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<security>
+	<!-- 支付宝支付 -->
+	<item name="aliPay_partner" value="2088421419982242"/>
+	<item name="aliPay_seller" value="yanchangdianshang@163.com"/>
+	<item name="aliPay_rsaPriKey" value="MIICeAIBADANBgkqhkiG9w0BAQEFAASCAmIwggJeAgEAAoGBAOa+VrBAM4xdx9mKhptZ/sZkj16AjtCN5loTeHeuJM+3FiTmJVWUyY696h3DrHWIrcGGZeY61NGPDR6D+fHsV5z6ktzNLU+yaKMsptvd9sc9wgxASdKiFj0xg+/gRHG+XNylkgTMylBVo+VT6RkfTbq2tiInHh4fbyvFUCwBQfUtAgMBAAECgYEAvnjysG1e4AjuFyqdsRHaGUUbgEQZIBlyxHp8IDc1le2pru34davrshQddVJ4Q1F/NVhPN3zq/s3aY41IPyb8rjxetnhzMWMiAjzKif2mNUjBmWbUWdELZCr8A2++qI2uQ6KQQTur0Vt/f7uPe67PHs0WpufP9Y9iRojJXxApwaECQQD46OoNK6soG8UnFtOvxzwRefPT7qNj4lMlI0jzpt+JPX7eHWbcEVEE5WlsijjVTOOjZommEDAysBu/1PGlQKxZAkEA7VDz+saJB/ydSvH6LpxUVBkHj5ZsFgRhMMVgddJAdaBMpl1eiSWfKvWPNdid6AID+h2BwAnxd60CmKO6/RSk9QJAHlSzgJtbpe2MXrEHZpoOlcqYjbC8tEU2AIaGMzqYbq7RsNtAV3y8tK4H5LQLLOLLsnOiPlwmo2aWWw/lyk9RMQJBAMawnnT5wET1lWPoEITx0hDPG+t2D2ynog/JUSeULu/MlCA90CaXXxoCmjKE+EAFX/sKtVVpfcerDJ9rheTaYfkCQQDE8CrARsMmrAb8RX3+SmTjfkKf2jvoW0Waxva21WqGU67q/ZoIUqI4y/34+t5bg2vo9ePt9tr0BfVr8ZRvWDjO"/>
+	<item name="aliPay_rsaPubKey" value="MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB"/>
+	<item name="aliPay_notifyURL" value="http://demo.gaodasoft.com:8125/admin/alipayAction!aliPayResult.htm"/>
+</security>

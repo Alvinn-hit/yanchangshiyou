@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.back{
+		  color:#fff;
+		  position: absolute;
+		  left:5px;
+		  top:10px;
+		  font-weight: bold;
+		}
+		.search{
+		 color:#fff;
+		  position: absolute;
+		  right:5px;
+		  top:10px;
+		}
+		.yz-flex{
+		  display: -webkit-box;
+		   display: -webkit-flex;
+		   display: flex;
+		  flex-flow: row;
+		  -webkit-flex-flow: row;	
+		  margin: 10px 5px 10px 5px;  
+		}
+		.yz-flex-td1{
+		-webkit-box-flex: 1;
+		-webkit-flex: 1;
+		 flex: 1;
+		 position: relative;
+		 }
+		.yz-flex-td2{
+		  width: 80px;	  
+		}
+		.search-btn-1{
+		  width: 35px;
+		  background: #FF7F00;
+		  border-radius: 5px;
+		  height: 35px;
+		  line-height:35px;
+		  color:#fff;
+		  font-size: 0.875rem;
+		  float:left;
+		  text-align: center;
+		  margin-left: 5px;
+		}
+		.input-box input{
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  height: 35px;
+		  padding-left: 50px;
+		}
+		.big{
+		  position: absolute;
+		  top:8px;
+		  left:10px;
+		}
+		.big:after{
+		  content:'';
+		  height: 20px;
+		  width: 1px;
+		  border-left:1px solid #FF7F00;
+		  position: absolute;
+		  right:-10px;
+		  top:0px;
+		}
+		.big img{
+		  width: 24px;
+		}
+		.check-box{
+		  padding-top: 10px;
+		}
+		.check-box input{
+		  border-radius: 2px;
+		  width: 1.5rem;
+		  height: 1.5rem;
+		  margin-right: 5px;
+		  border-color:#FF7F00;
+		}
+		.search-btn-2{
+		  width: 35px;		
+		  border:1px solid #FF7F00  ;
+		  border-radius: 5px;
+		  height: 35px;
+		  line-height:35px;
+		  color:#333;
+		  font-size: 0.875rem;
+		  float:left;
+		  text-align: center;
+		  margin-left: 5px;
+		  background: url("../../image/search-btn2.jpg") no-repeat ;
+		  background-size: 12px 12px;
+		  background-position: 20px 19px;
+		}
+    </style>
+</head>
+<body>
+    <div id="headtop" class="flex-fix">
+      <div id="headbar"></div>
+        <div class="head-bg1 aui-text-center">
+              <span onclick="api.closeWin()" class="iconfont icon-jiantou3 back"></span>
+              <span class="title-span">搜索</span>            
+        </div>
+        
+        <div class="search-box-all">
+         <div class="search-box-1 yz-flex">
+           <div class="yz-flex-td1 input-box">
+             <div class="big">
+              <img src="../../image/fadajing.jpg">
+             </div>
+             <input type="text" placeholder="请输入关键词"/>
+           </div>
+           <div class="yz-flex-td2">
+             <div class="search-btn-1">搜索</div>
+             <div class="search-btn-1">收藏</div>
+           </div>
+         </div>
+         
+         <div class="search-box-1 yz-flex">
+         <div class="yz-flex-td1 ">
+         <span class="aui-col-xs-3 check-box">
+             <input class="aui-checkbox" type="checkbox" name="demo1" >延
+            </span>
+            <span class="aui-col-xs-3 check-box">
+             <input class="aui-checkbox" type="checkbox" name="demo1" >团
+            </span>
+            <span class="aui-col-xs-3 check-box">
+             <input class="aui-checkbox" type="checkbox" name="demo1" >预
+            </span>
+            <span class="aui-col-xs-3 check-box">
+             <input class="aui-checkbox" type="checkbox" name="demo1" >惠
+            </span>
+            </div>
+            <div class="yz-flex-td2">
+              <div class="search-btn-2">分类</div>
+             <div class="search-btn-2">等级</div>
+            </div>
+        </div>
+        </div>
+     </div>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script>
+ apiready = function(){
+   $api.fixIos7Bar( $api.byId('headbar') );
+        api.setStatusBarStyle({
+            style: 'light',
+        });
+        
+        api.openFrame({
+	        name: 'youzhan-search-page',
+	        url: 'youzhan-search-page.html',
+	        rect: {
+		        x:0,
+		        y:$api.byId("headtop").offsetHeight ,
+		        w:'auto',
+		        h:'auto'
+	        }
+        });
+ }
+ 
+ function searchList(){
+   
+ }
+
+</script>
+</html>

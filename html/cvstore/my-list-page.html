@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.each-store {
+				margin-bottom: 8px;
+				padding-bottom: 8px;
+				background-color: #fff;
+			}
+			.store-title { 
+				padding-top: 8px;
+				position: relative;
+				margin-bottom: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.8rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.data-name {
+				float: right;
+				margin-right: 6px;
+				font-size: 0.8rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+				padding-left: 14px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+			}
+			.store-title:after{
+			    content: '';
+				width:100%;
+				height: 1px;
+				background: #e0e0e0;
+				position:absolute;
+				bottom:-6px;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.store-goods:after {
+				content: '';
+				display: block;
+				height: 1px;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 4px;
+				font-size: 0.8rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 1rem;
+				color: #ff000c;
+			}
+			.color-ff000c { color: #ff000c;}
+			.font14 { font-size: 0.875rem;}
+			.posi-re { position: relative;}
+			.ver-align { vertical-align: middle}
+			.buy-btn {
+				position: absolute;
+				top: 50%;
+				right: 12px;
+				width: 60px;
+				height: 24px;
+				margin-top: -12px;
+				line-height: 24px;
+				border-radius: 10px;
+				border: 1px solid #ff000c;
+				color: #fff;
+				background:#ff0000;
+				text-align: center;
+			}			
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 12px;
+				left: 33.33%;
+				/*width: 60px;*/
+			}
+			.aui-bar-btn-item.aui-active {
+				background-color: #fff;
+				border-color: #ff000c;
+				color: #424242
+			}
+			.aui-bar-btn-item {
+			
+				display: table-cell;
+				position: relative;
+				width: 42px;
+				line-height: 1.8rem;
+				text-align: center;
+				vertical-align: middle;
+				border-radius: 0;
+				position: relative;
+				border-width: 1px;
+				border-style: solid;
+				border-color: #ff000c;
+				border-left-width: 0;
+			}
+			.aui-bar-btn-item.aui-active input[type="number"] {
+				color: #424242;
+			}
+			.aui-bar-btn {
+				position: relative;
+				font-size: 0.7rem;
+				display: table;
+				white-space: nowrap;
+				margin-left: 0;
+				padding: 0;
+				border: none;
+				width: 100%;
+				min-height: 1.8rem;
+			}
+			.show-more {
+				margin: 0 auto;
+				width: 40px;
+				height: 24px;
+				line-height: 24px;
+				/*font-size: 0.75rem;*/
+				text-align: center;
+				color: #ff000c;
+				border: 1px solid #ff000c;
+				border-radius: 4px;
+			}
+			.goods-all{
+			   overflow: hidden;
+			}
+			.type-btn{
+			  border: 1px solid #ff0000;
+			  position: absolute;
+			  right:5px;
+			  top:50%;
+			  border-radius: 5px;
+			  font-size: 0.8rem;
+			  padding:4px 5px 4px 5px;
+			  margin-top: -20px;
+			  color:#ff0000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="each-store " id="all" style="display: none">
+			<div class="store-title">
+				<div class="store-name">单号：{mgpriceBatch}</div>
+				<div class="data-name">{mgpriceDateStr}</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="goods-all">
+			<div onclick="goods('{glistBillbatch}','{mgpriceBatch}')" class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/default/minGoods.jpg" class="goods-img" datasrc="{baseURL}/{mgpriceTechnicalDeviation}"/>
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">{mgpriceDescription}</div>
+					<div class="goods-price">{pricesetPrice}</div>
+				</div>		
+				<div class="clearfix"></div>	
+				<div class="type-btn">已发货</div>				
+			</div>						
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/aui-tab.js" ></script>
+	<script type="text/javascript" src="../../script/swiper.min.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script>
+		apiready = function() {
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 0 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryMyCvstoreOrderByPage(1);
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryMyCvstoreOrderByPage();
+			});
+			queryMyCvstoreOrderByPage(1);
+		}
+		
+		// 翻页获取我的订单信息列表
+		function queryMyCvstoreOrderByPage(isShow){
+			var ajaxObject = new Object();
+			if(!isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.url = "/appCvstoreOrderAjax!queryMyCvstoreOrderByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = ' dataBillstate in (1,10)';
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.resourceMgpriceViewVoList;
+				
+				getWorkBookHtmlByList(data, "all");
+				api.refreshHeaderLoadDone();
+				//列表图片缓存
+				$(".goods-img").each(function(index){
+					imageCache(this);
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//打开详情
+		function goods(glistBillbatch,mgpriceBatch) {
+			if(glistBillbatch == "" || mgpriceBatch == "" || glistBillbatch == null || mgpriceBatch == null ){
+				api.toast({
+	                msg:'商品编号或订单编号不能为空'
+                });
+                return false;
+			}
+			api.openWin({
+				reload : true,
+				name : 'my-list-content-head',
+				url : 'my-list-content-head.html',
+				pageParam : {
+					"glistBillbatch" : glistBillbatch,
+					"mgpriceBatch" : mgpriceBatch
+				},
+			});
+		}
+	</script>
+</html>

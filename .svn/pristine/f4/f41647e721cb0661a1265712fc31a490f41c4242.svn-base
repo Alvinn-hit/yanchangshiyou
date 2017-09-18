@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+	  .aui-list .aui-list-item{
+	    min-height: 3rem;
+	   
+	  }	
+	  .aui-list .aui-list-item-title{
+	      font-size: 0.875rem;
+	   }
+	   .aui-list .aui-list-item-right{
+	      font-size: 0.875rem;
+	      max-width: 100%;
+	   }
+	   .head-img img{
+	     width: 64px;
+	     margin: 10px 0px 10px 0px;
+	   }
+    </style>
+</head>
+<body>
+   <div class="aui-content ">
+    <ul class="aui-list">       
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">头像</div>
+                <div class="aui-list-item-right head-img"><img src="../../image/my1.jpg"></div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">用户名</div>
+                <div class="aui-list-item-right">杨宽容</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">性别</div>
+                <div class="aui-list-item-right">男</div>
+            </div>
+        </li>
+         <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">出生日期</div>
+                <div class="aui-list-item-right">1911-02-03</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">手机号</div>
+                <div class="aui-list-item-right">1366666666</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">我的等级</div>
+                <div class="aui-list-item-right">大众会员</div>
+            </div>
+        </li>
+        <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">实名认证</div>
+                <div class="aui-list-item-right">已认证</div>
+            </div>
+        </li>
+         <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">常住地址</div>
+                <div class="aui-list-item-right">陕西省西安市未央区</div>
+            </div>
+        </li>
+         <li class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">发票信息</div>
+                <div class="aui-list-item-right">西安市原力品牌策划设计有限公司</div>
+            </div>
+        </li>
+         <li onclick="mycar()" class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">我的爱车</div>
+                <div class="aui-list-item-right">陕AN2458</div>
+            </div>
+        </li>
+    </ul>
+</div>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+  function mycar(){
+    api.openWin({
+	    name: 'my-car-head',
+	    url: 'my-car-head.html'
+    });
+  }
+ 
+
+</script>
+</html>

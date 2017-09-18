@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+		<style>
+			.xiaofei-main {
+				background: #fff;
+			}
+			.aui-list-item-right {
+				width: 80% !important;
+				text-align: right;
+				padding-right: 10px;
+				font-size: 0.875 rem !important;
+			}
+			.aui-list-item-inner {
+				font-size: 0.875 rem !important;
+			}
+			.aui-list .aui-list-item-media {
+				width: 5rem;
+			}
+			.total-box {
+				overflow: hidden;
+				font-size: 0.8 rem;
+				padding: 5px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="xiaofei-main" style="display: none">
+			<div class="total-box" id="myRecordPrice" style="display:none ">
+				<span class="aui-pull-left">累计消费金额：{sfAmount}元 </span>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list aui-media-list" style="display: none;" id="cvstoreList">
+					<li onclick="mgpriceContent('{mgpriceBatch}')" class="aui-list-item aui-list-item-middle">
+						<div class="aui-media-list-item-inner">
+							<div class="aui-list-item-media" >
+								<img class="imgClass" src="../../../image/default/minGoods.jpg" datasrc="{baseURL}/{mgpriceTechnicalDeviation}">
+							</div>
+							<div class="aui-list-item-inner ">
+								{mgpriceDescription}&nbsp;|&nbsp;{mgpriceBusinessDeviation}
+								<br>
+								<b class="red">￥{dataParam}</b>
+							</div>
+							<div class="aui-list-item-right">
+								{mgpriceDate}
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../script/page.js"></script>
+	<script type="text/javascript" src="../../../script/aui-tab.js"></script>
+	<script type="text/javascript" src="../../../script/echarts.min.js"></script>
+	<script type="text/javascript">
+		apiready = function() {
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryMyCvStoreOrderByPage();
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				queryMyCvStoreOrderByPage();
+			});
+			queryMyCvStoreOrderByPage();
+		}
+		// 查询我的非加油记录
+		function queryMyCvStoreOrderByPage() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCvstoreOrderAjax!queryMyCvstoreOrderByPageCache.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = " dataBillstate in (1,10)";
+			// 1为已支付10为待到款确认
+			ajaxObject.onSuccessFunction = function(ret) {
+				var data = ret.resourceMgpriceViewVoMapList;
+				for (var i = 0; i < data.length; i++) {
+					data[i].mgpriceDate = formatDate(data[i].mgpriceDate, "yyyy-MM-dd");
+				}
+				getWorkBookHtmlByList(data, "cvstoreList");
+				
+				// 统计实付金额		
+				var data = ret.sumPriceMap;
+				data.sfAmount = toFixed(data.sfAmount);
+				getWorkBookHtmlByList(data, "myRecordPrice");
+				$(".xiaofei-main").show();
+				
+				api.refreshHeaderLoadDone();
+				
+				//列表图片缓存
+				$(".imgClass").each(function(index) {
+					imageCache(this);
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//打开消费详情
+		function mgpriceContent(batch) {
+			api.openWin({
+				name : 'my-cvstore-content-head',
+				url : 'my-cvstore-content-head.html',
+				pageParam : {
+					"batch" : batch
+				},
+			});
+		}
+	</script>
+</html>

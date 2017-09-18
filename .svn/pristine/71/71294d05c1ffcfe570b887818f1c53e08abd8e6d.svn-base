@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../../../layer/need/layer.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.aui-list .aui-list-item {
+				min-height: 3rem;
+			}
+			.aui-list .aui-list-item-title {
+				font-size: 0.875rem;
+			}
+			.aui-list .aui-list-item-right {
+				font-size: 0.875rem;
+				max-width: 100%;
+			}
+			.content-car {
+				width: 100%;
+			}
+			.content-car li {
+				min-height: 40px !important;
+				line-height: 40px;
+			}
+			.content-car .aui-list-item-title {
+				color: #999;
+			}
+			.aui-list-item-input{
+			  width: 70%!important;
+			  padding-right: 0px!important;
+			}
+
+			 /*重构的alert*/
+		  .layui-m-layercont{
+		     padding: 30px 0px 30px 0px!important;
+		     
+		  }
+		  .layui-m-layerbtn{
+		    height: 40px!important;
+		    line-height: 40px!important;
+		  }
+		  .layui-m-layer0 .layui-m-layerchild{
+		    width: 70%!important;
+		  }
+		</style>
+	</head>
+	<body>
+		<div class="aui-content">
+			<ul class="aui-list">
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							车辆名称
+						</div>
+						<div class="aui-list-item-input">
+							<input class="name-input aui-text-right" type="text" placeholder="请输入车名" id="carName" style="text-align: left;"/>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							车辆号牌
+						</div>
+						<div class="aui-list-item-input">
+							<input class="name-input aui-text-right" type="text" placeholder="请输入车牌" id="carNo" style="text-align: left;"/>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							车辆类型
+						</div>
+						<div class="aui-list-item-right">
+							<select class="dropList" style="display: none" id='carModel'>
+								<option value="-99">全部</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							车辆品牌
+						</div>
+						<div class="aui-list-item-right">
+							<select class="dropList" style="display: none" id='carBrand'>
+								<option value="-99">全部</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							车辆颜色
+						</div>
+						<div class="aui-list-item-right">
+							<select  class="dropList" style="display: none" id='carColor'>
+								<option value="-99">全部</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner aui-list-item-arrow">
+						<div class="aui-list-item-title">
+							油号
+						</div>
+						<div class="aui-list-item-right">
+							<select class="dropList" style="display: none;" id='carOilno'>
+								<option value="-99">全部</option>
+							</select>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							驾龄
+						</div>
+						<div class="aui-list-item-input">
+							<input class="name-input aui-text-right" type="text" placeholder="请输入驾龄" id="carStr1" style="text-align: left;text-indent: 100px;"/>
+						</div>
+					</div>
+				</li>
+				<li class="aui-list-item aui-list-item-middle">
+					<div class="aui-list-item-inner">
+						<div class="aui-list-item-title">
+							车辆属性
+						</div>
+						<div class="aui-list-item-input">
+							<input class="name-input aui-text-right" type="text" placeholder="请输入属性" id="carStr2" style="text-align: left;text-indent: 100px;"/>
+						</div>
+					</div>
+				</li>
+			</ul>
+			<div class="btn-box aui-margin-t-15">
+				<div class="aui-btn aui-btn-block aui-btn-danger"  onclick="addCar()">
+					保存
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../../layer/layer.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			loadData();
+			loadEditDate();
+		};
+		//编辑数据
+		function loadEditDate() {
+			if (api.pageParam.carCode) {
+				$("#carName").val(api.pageParam.carName);
+				$("#carNo").val(api.pageParam.carNo);
+				$("#carStr1").val(api.pageParam.carStr1);
+				$("#carStr2").val(api.pageParam.carStr2);
+			}
+		}
+
+		//加载爱车数据
+		function loadData() {
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appBfDdAjax!queryPlatDdByPage.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params.whereStr = " billtypeCode='CL000001' and billtypeTable='BasicCar'and ddColumn in('carBrand','carColor','carModel','carOilno')";
+			$api.setStorage("limit", "999");
+			ajaxObject.onSuccessFunction = function(ret) {
+				var ddVoList = ret.ddVoList;
+				if (ddVoList.length > 0) {
+					var carBrands = new Array();
+					var carColors = new Array();
+					var carModels = new Array();
+					var carOilnos = new Array();
+					for (var i = 0; i < ddVoList.length; i++) {
+						if (ddVoList[i].ddColumn == 'carBrand') {
+							carBrands.push(ddVoList[i]);
+						} else if (ddVoList[i].ddColumn == 'carColor') {
+							carColors.push(ddVoList[i]);
+						} else if (ddVoList[i].ddColumn == 'carModel') {
+							carModels.push(ddVoList[i]);
+						} else if (ddVoList[i].ddColumn == 'carOilno') {
+							carOilnos.push(ddVoList[i]);
+						}
+					}
+					if(api.pageParam.carBrand && api.pageParam.carBrand != null){
+						getDropDownList(carBrands, 'carBrand', api.pageParam.carBrand, 'ddName');
+					}else{
+						getDropDownList(carBrands, 'carBrand', "请选择",'ddName');
+					}
+					if(api.pageParam.carColor && api.pageParam.carColor != null){
+						getDropDownList(carColors, 'carColor', api.pageParam.carColor, 'ddName');
+					}else{
+						getDropDownList(carColors, 'carColor', "请选择",'ddName');
+					}
+					if(api.pageParam.carModel && api.pageParam.carModel != null){
+						getDropDownList(carModels, 'carModel', api.pageParam.carModel, 'ddName');
+					}else{
+						getDropDownList(carModels, 'carModel', "请选择",'ddName');
+					}
+					if(api.pageParam.carOilno && api.pageParam.carOilno!= null){
+						getDropDownList(carOilnos, 'carOilno', api.pageParam.carOilno, 'ddName');
+					}else{
+						getDropDownList(carOilnos, 'carOilno', "请选择",'ddName');
+					}
+					
+//					getDropDownList(carBrands, 'carBrand', api.pageParam.carBrand, 'ddName');
+//					getDropDownList(carColors, 'carColor', api.pageParam.carColor, 'ddName');
+//					getDropDownList(carModels, 'carModel', api.pageParam.carModel, 'ddName');
+//					getDropDownList(carOilnos, 'carOilno', api.pageParam.carOilno, 'ddName');
+				}
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//添加爱车信息
+		function addCar() {
+			var carName = $("#carName").val();
+			var carNo = $("#carNo").val();
+			var carStr1 = $("#carStr1").val();
+			var carStr2 = $("#carStr2").val();
+			
+			var carBrand = $("#carBrand").val();
+			var carColor = $("#carColor").val();
+			var carModel = $("#carModel").val();
+			var carOilno = $("#carOilno").val();
+			
+			if(carBrand == '-99') carBrand = "";
+			if(carColor == '-99') carColor = "";
+			if(carModel == '-99') carModel = "";
+			if(carOilno == '-99') carOilno = "";
+			
+			if (carNoCheck()) {
+				var ajaxObject = new Object();
+				ajaxObject.params = new Object();
+				ajaxObject.url = "/appBasicCarAjax!saveBasicCar.htm";
+				if(api.pageParam.carCode){
+					ajaxObject.url = "/appBasicCarAjax!updateBasicCar.htm";
+					ajaxObject.params["basicCarViewVo.carCode"] = api.pageParam.carCode;
+				}
+				ajaxObject.params["basicCarViewVo.carNo"] = carNo;
+				ajaxObject.params["basicCarViewVo.carBrand"] = carBrand;
+				ajaxObject.params["basicCarViewVo.carColor"] = carColor;
+				ajaxObject.params["basicCarViewVo.carModel"] = carModel;
+				ajaxObject.params["basicCarViewVo.carOilno"] = carOilno;
+				ajaxObject.params["basicCarViewVo.carName"] = carName;
+				ajaxObject.params["basicCarViewVo.carStr1"] = carStr1;
+				ajaxObject.params["basicCarViewVo.carStr2"] = carStr2;
+				ajaxObject.onSuccessFunction = function(ret) {
+					layer.open({
+					    content: '保存成功',
+					    btn: '我知道了',
+					    yes: function(index){
+					      api.closeWin();
+					    }
+				  	});
+					//关闭当前窗口并且刷新上一个页面
+					execScriptFrame("my-car-head", "my-car-page");
+				}
+				baseAjax(ajaxObject);
+			}
+		}
+
+		//验证车牌号
+		function carNoCheck() {
+			var carName = $("#carName").val();
+			var carNo = $("#carNo").val();
+			if (carName == '') {
+				api.toast({
+					msg : '请输入车辆名称',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+
+			if (carNo == '') {
+				api.toast({
+					msg : '请输入车牌号码',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (!/^[\u4E00-\u9FA5][\da-zA-Z]{6}$/.test(carNo)) {
+				api.toast({
+					msg : '您的车牌号码格式有误，如("粤J12350")',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			return true;
+		}
+
+		//校验下拉选择框
+		function Checkall() {
+			var carBrand = $("#carBrand").val();
+			var carColor = $("#carColor").val();
+			var carModel = $("#carModel").val();
+			var carOilno = $("#carOilno").val();
+			if (carModel == '' || carModel == '-99') {
+				api.toast({
+					msg : '请选择车型',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (carBrand == '' || carBrand == '-99') {
+				api.toast({
+					msg : '请选择品牌',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (carColor == '' || carColor == '-99') {
+				api.toast({
+					msg : '请选择颜色',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}else if (carOilno == '' || carOilno == '-99') {
+				api.toast({
+					msg : '请选择油号',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			return true;
+		}
+	</script>
+</html>

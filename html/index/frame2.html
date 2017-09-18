@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>开发</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #f2f2f2;
+			}
+			.flex-td2a {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.service-item {
+				margin-top: 12px;
+				margin-left: 20px;
+				font-size: 1rem;
+				color: #111;
+			}
+			.flex-td2a {
+				height: auto;
+			}	
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<img class="img-responsive" src="../../image/find-img.jpg" style=" border-bottom: 1px solid #e0e0e0;">
+			<div style=" margin-top: 10px; margin-bottom: 10px; padding-bottom: 10px; background-color: #fff; border-bottom: 1px solid #e0e0e0; border-top: 1px solid #e0e0e0;">
+				<div class="aui-col-xs-3 aui-text-center">
+					<a class="mt-10 find-btn"> <span class="new-menu-found1"></span> <i>车主福利</i> </a>
+				</div>
+				<div class="aui-col-xs-3 aui-text-center" onclick="tuijian();">
+					<a class="mt-10 find-btn"> <span class="new-menu-found2"></span> <i>推荐有奖</i> </a>
+				</div>
+				<div class="aui-col-xs-3 aui-text-center" onclick="messageList();">
+					<a class="mt-10 find-btn"> <span class="new-menu-found3"></span> <i>平台公告</i> </a>
+				</div>
+				<div class="aui-col-xs-3 aui-text-center">
+					<a class="mt-10 find-btn"> <span class="new-menu-found4"></span> <i>积分商城</i> </a>
+				</div>
+			</div>
+			<div class="flex-td2a" style=" background-color: #fff; border-top: 1px solid #e0e0e0;">
+				<div class="service-item">第三方服务</div>
+				<div style=" padding-bottom: 14px; border-bottom: 1px solid #e0e0e0;">
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find1"></span> <i>低价保险</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find2"></span> <i>养车特惠</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find3"></span> <i>洗车服务</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find4"></span> <i>车品商城</i> </a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div style=" padding-bottom: 14px; border-bottom: 1px solid #e0e0e0;">
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find5"></span> <i>违章查询</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find6"></span> <i>限号提醒</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find7"></span> <i>年检提醒</i> </a>
+					</div>
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find8"></span> <i>实时路况</i> </a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+				<div style=" padding-bottom: 14px;">
+					<div class="aui-col-xs-3 aui-text-center">
+						<a class="mt-10 find-btn"> <span class="new-menu-find9"></span> <i>敬请期待</i> </a>
+					</div>
+					<div class="clearfix"></div>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+		}
+		
+		//公告
+		function messageList() {
+			api.openWin({
+				name : 'my-platform-head',
+				url : '../find/my-platform-head.html'
+			});
+		}
+		
+		//推荐奖
+		function tuijian(){
+		 api.openWin({
+	         name: 'recommend-head',
+	         url: '../recommend/recommend-head.html'
+         });
+		}
+	</script>
+</html>

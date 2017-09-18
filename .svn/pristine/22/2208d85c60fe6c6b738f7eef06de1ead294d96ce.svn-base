@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		
+
+    </style>
+</head>
+<body>
+    <div class="aui-content-padded">
+      <p id="comProtocol" style="display: none;">
+			{doclistContent}
+      </p>
+    </div>
+     
+     
+    
+    
+</body>
+	<script type="text/javascript" src="../../../script/api.js"></script>
+	<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../../script/common.js"></script>
+	<script type="text/javascript" src="../../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../../script/system.js"></script>
+	<script>
+ 	apiready = function() {
+		var headbar = $api.byId('headbar');
+		$api.fixIos7Bar(headbar);
+		queryComProtocol(); 		// 协议
+	};
+	
+	function queryComProtocol(){
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appPortalDoclistAjax!queryPortalDoclistViewVoByMenu.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.menuComcode = "2001";	// 查询指定文档信息
+		ajaxObject.onSuccessFunction = function(data) {
+			var data = data.portalDoclistViewVo;
+			getWorkBookHtmlByList(data,"comProtocol");
+		}
+		baseAjax(ajaxObject);	
+	}
+	
+	</script>
+</html>

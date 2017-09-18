@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.back {
+				color: #fff;
+				font-weight: bold;
+				float: left;
+				margin-top: 4px;
+				margin-right: 4px;
+			}
+			.head-box1 {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				height: 45px;
+			}
+			.head-box1-td1 {
+				width: 80px;
+			}
+			.head-box1-td3 {
+				width: 80px;
+			}
+			.head-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.ditu-img {
+				color: #fff;
+				line-height: 45px;
+			}
+			.input-box {
+				text-align: center;
+				color: #fff;
+				line-height: 45px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #fff;
+				float: right;
+				margin-top: 18px;
+				/*margin-right: 10px;*/
+			}
+			.acrrow-div {
+				position: absolute;
+				width: 40px;
+				height: 40px;
+				top: 0;
+				right: 12px;
+			}
+			/*弹出层*/
+			.aui-list .aui-list-item:last-child:after {
+				height: 1px;
+			}
+			.aui-list {
+				font-size: 0.875 rem;
+			}
+			.aui-popup-top-left {
+				width: 95%;
+			}
+			.aui-list-item-inner {
+				justify-content: center !important;
+				-webkit-justify-content: center;
+				min-height: 3.0 rem !important;
+			}
+			.aui-popup-top-left {
+				top: 40px;
+			}
+			.aui-popup-arrow.aui-popup-arrow1 {
+				left: 2rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow2 {
+				left: 95%;
+			}
+			.aui-popup-arrow.aui-popup-arrow3 {
+				left: 16rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow4 {
+				left: 22rem;
+			}
+			.active-word {
+				color: #e6212a;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="headbar" class="head-bar">
+			<div class="head-box1">
+				<div class="head-box1-td1">
+					<div class="logo-img" onclick="api.closeWin()">
+						<span class="iconfont icon-jiantou3 back"></span>
+						<img src="../../image/logo2.jpg">
+					</div>
+				</div>
+				<div id="headTitle" class="head-box1-td2 input-box">
+					明细
+				</div>
+				<div class="head-box1-td3 ditu-img aui-text-center aui-font-size-18" style=" position: relative;">
+					<!--全部
+					<div class="acrrow-div" aui-popup-for="top-left1">
+					<span class="arrow-ico" ></span>
+					</div>-->
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script>
+		apiready = function() {
+			//存储当前win的名字
+			$api.setStorage("curWinName", api.winName);
+			$api.fixIos7Bar($api.byId('headbar'));
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+			api.openFrame({
+				name : 'my-record-page',
+				url : 'my-record-page.html',
+				reload : true,
+				rect : {
+					x : 0,
+					y : $api.byId("headbar").offsetHeight,
+					w : 'auto',
+					h : 'auto'
+				},
+			});
+		}
+		function sel() {
+			api.openFrame({
+				name : 'my-record-select',
+				url : 'my-record-select.html',
+				rect : {
+					x : 0,
+					y : $api.byId("headbar").offsetHeight,
+					w : 'auto',
+					h : 'auto',
+				},
+				//				bgColor: 'rgba(0,0,0,.2)'
+			});
+		}
+	</script>
+</html>

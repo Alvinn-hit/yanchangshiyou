@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.my-money-ul{
+		  padding: 10px;
+		}
+		.my-money-ul li{		  
+		  border:1px solid #FF7F00;
+		  border-radius: 5px;
+		  overflow: hidden;
+		  height: 35px;
+		  line-height: 35px;
+		  margin-top: 20px;
+		  position: relative;
+		  font-size: 0.875rem;
+		}
+		.img-span img{
+		  width: 40px;
+		}
+		.arrow-span{
+		  position: absolute;
+		  right: 2px;
+		  color:#FF7F00
+		}
+		.money-b{
+		  padding-right: 10px;
+		}
+    </style>
+</head>
+<body>
+    <ul class="my-money-ul">
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/money1.jpg"></span>
+       <span class="aui-padded-l-10">余额</span>
+       <span class="aui-pull-right"><b class="yellow money-b">200.00</b></span>
+      </li>
+      <li onclick="chongzhi()">
+       <span class="img-span aui-pull-left"><img src="../../image/money2.jpg"></span>
+       <span class="aui-padded-l-10">充值</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>   
+      <li onclick="paycard()">
+       <span class="img-span aui-pull-left"><img src="../../image/money4.jpg"></span>
+       <span class="aui-padded-l-10">银行卡管理</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>
+      <li>
+       <span class="img-span aui-pull-left"><img src="../../image/money5.jpg"></span>
+       <span class="aui-padded-l-10">我的明细</span>
+       <span class="iconfont icon-jiantou2 arrow-span"></span>
+      </li>
+    </ul>
+     
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script>
+
+//打开充值
+ function chongzhi(){
+   api.openWin({
+	   name: 'my-chongzhi-head',
+	   url: 'my-chongzhi-head.html'
+   });
+ }
+
+//打开银行卡管理
+function paycard(){
+  api.openWin({
+	   name: 'my-paycard-head',
+	   url: 'my-paycard-head.html'
+   });
+}
+
+
+
+
+</script>
+</html>

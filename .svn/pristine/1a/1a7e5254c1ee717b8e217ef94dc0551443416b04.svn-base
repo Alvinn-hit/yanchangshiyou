@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>开发</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #fff;
+			}
+			.flex-td2a {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="flex-box">
+			<img class="img-responsive" src="../../image/find-img.jpg">
+			<div class="flex-td2a">
+				<div class="aui-col-xs-4 aui-text-center" onclick="discount()">
+					<a class="mt-20 find-btn"> <span class="menu-span3 "></span> <i>优惠活动</i> </a>
+				</div>
+				<div onclick="tuijian()" class="aui-col-xs-4 aui-text-center">
+					<a class="mt-20 find-btn"> <span class="find-span2 "></span> <i>推荐有奖</i> </a>
+				</div>
+				<!--<div class="aui-col-xs-4 aui-text-center">
+					<a class="mt-20 find-btn"> <span class="find-span3 "></span> <i>抽奖</i> </a>
+				</div>-->
+				<div onclick="messageList()" class="aui-col-xs-4 aui-text-center">
+					<a class="mt-20 find-btn"> <span class="find-span4 "></span> <i>平台公告</i> </a>
+				</div>
+				<div class="aui-col-xs-4 aui-text-center">
+					<a class="mt-20 find-btn"> <span class="find-span5 "></span> <i>敬请期待</i> </a>
+				</div>
+				<!--<div class="aui-col-xs-4 aui-text-center">
+					<a class="mt-20 find-btn"> <span class="find-span6 "></span> <i>积分商城</i> </a>
+				</div>-->
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+			api.setStatusBarStyle({
+				style : 'light',
+			});
+		}
+		//优惠促销
+		function discount() {
+			api.openWin({
+				name : 'discount-list-head',
+				url : '../find/discount-list-head.html'
+			});
+		}
+		
+		//公告
+		function messageList() {
+			api.openWin({
+				name : 'my-platform-head',
+				url : '../find/my-platform-head.html'
+			});
+		}
+		
+		//推荐奖
+		function tuijian(){
+		 api.openWin({
+	         name: 'recommend-head',
+	         url: '../recommend/recommend-head.html'
+         });
+		}
+	</script>
+</html>

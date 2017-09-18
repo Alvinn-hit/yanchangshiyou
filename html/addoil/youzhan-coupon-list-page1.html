@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<style>
+			html, body {
+				background: #F5F5F5;
+			}
+			/*列表*/
+			.green {
+				color: #ee426a;
+			}
+			.youquan-list-box {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				background: #fff url("../../image/bg-ico.jpg") no-repeat right top;
+				background-size: 16px;
+				font-size: 0.875rem;
+				height: 180px;
+				border-radius: 5px;
+				margin-bottom: 10px;
+			}
+			.list-left-all {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.list-right-all {
+				width: 6rem;
+				border-left: 1px dashed #ddd;
+				padding: 0px 5px 0px 5px;
+			}
+			.list-right-all span {
+				text-align: center;
+				display: block;
+				margin-top: 5px;
+			}
+			.list-left-top {
+				height: 40px;
+				padding: 2px 0px 7px 10px;
+				color: #000;
+				border-bottom: 1px solid #ddd;
+			}
+			.list-left-top img {
+				width: 35px;
+				vertical-align: middle;
+				margin-right: 5px;
+			}
+			.list-left-bottom {
+				padding: 6px 0px 4px 10px;
+				overflow: hidden;
+			}
+			.list-left-bottom img {
+				width: 100px;
+				float: left;
+			}
+			.card1 .use-btn {
+				border: 1px solid #d21235;
+				border-radius: 10px;
+				background: #ee3e65;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card1 .much-box {
+				float: left;
+				margin-left: 5px;
+			}
+			.card1 .much-box b {
+				font-size: 1.5rem;
+				color: #ee3e65;
+			}
+			.card2 .use-btn {
+				border: 1px solid #444;
+				border-radius: 10px;
+				background: #666;
+				color: #fff;
+				padding: 3px 0px 3px 0px;
+			}
+			.card2 .much-box {
+				float: left;
+				margin-left: 5px;
+			}
+			.card2 .much-box b {
+				font-size: 1.5rem;
+				color: #666;
+			}
+			.card2 img {
+				-webkit-filter: grayscale(100%); 
+				-moz-filter: grayscale(100%); 
+				-ms-filter: grayscale(100%); 
+				-o-filter: grayscale(100%); 
+				filter: grayscale(100%); 
+				filter: gray;
+			}
+			/*列表*/
+			.overdue {
+				position: absolute;
+				top: 60px;
+				left: 200px;
+				z-index: 9;
+				width: 60px;
+				height: 60px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="aui-content-padded" id="bonusList" style="display: none;">
+		<!--<div class="aui-content-padded" id="bonusList">-->
+			<div class="youquan-list-box {couponRule10}" style="position: relative;"  onclick="choose('{couponCode}','{couponMoney}','{couponRule10}')">
+				{couponRule9}
+				<div class="list-left-all">
+					<div class="list-left-top">
+						<img src="../../image/logo-icon01.png">{couponGrantName}
+					</div>
+					<div class="list-left-bottom">
+						<img class="imgClass" src="../../image/default/quan.jpg" datasrc="{baseURL}/{couponImgpath}">
+						<div class="much-box">
+							<p>
+								<b>￥{couponMoney}</b>
+								<!--<b>￥10</b>-->
+							</p>
+							<p>
+								<b class="aui-font-size-14">{couponRule15}</b>
+								<!--<b class="aui-font-size-14">满10元可用</b>-->
+							</p>
+							<p class="aui-font-size-12">
+								{conponRemark}
+							</p>
+							<p class="aui-font-size-12" style=" width: 140px;">
+								有效日期：{effectiveSdateStr}-{effectiveEdateStr}
+								<!--有效日期：2016.11.29 20:52:00-2016.11.31 20:52:00-->
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="list-right-all aui-padded-t-15">
+					<!--<span class="aui-font-size-18 green"><b>{couponRule2}{couponRule1}</b></span>
+					<span class="aui-font-size-18 green"><b>{couponRule1}专享</b></span>-->
+					<span class="use-btn">去使用</span>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript">
+		var oilInfo;
+		apiready = function() {
+			oilInfo = api.pageParam.oilInfo;
+			
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				queryMyCouponInfoByPage(1);
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();  
+				queryMyCouponInfoByPage(1);
+			});
+			
+			queryMyCouponInfoByPage();
+		}
+		//查询此加油站对应优惠券
+		function queryMyCouponInfoByPage(isShow) {
+			var price = parseFloat(api.pageParam.oilInfo.payPrice) + parseFloat(api.pageParam.oilInfo.favPrice);
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appCouponAjax!queryStationMyCouponInfoByPageCache.htm";
+			ajaxObject.params = new Object();
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.params.memberCode = api.pageParam.memberCode;
+			ajaxObject.params.memberPcode = oilInfo.memberPcode;
+			ajaxObject.params.couponRule2 = oilInfo.oilNo;
+			ajaxObject.onSuccessFunction = function(data) {
+				var bonusList = data.couponInfoViewVoList;
+				for(var i = 0 ; i < bonusList.length; i++){
+					if(bonusList[i].couponSubType == 1){
+						bonusList[i].couponRule15 = "满"+ bonusList[i].useMinMoney +"元可用";
+					}else{
+						bonusList[i].couponRule15 = "每满"+ bonusList[i].useMinMoney +"元可用";
+					}
+					if(bonusList[i].couponRule1 == ""){
+						bonusList[i].couponRule1 = "汽油柴油";
+					}
+					if(bonusList[i].couponRule2 == ""){
+						bonusList[i].couponRule2 = "全号";
+					}
+					if(bonusList[i].useMinMoney <= price && bonusList[i].couponMoney <= price){
+						bonusList[i].couponRule10 = "card1";
+					}else{
+						bonusList[i].couponRule10 = "card2";
+					}
+					if(bonusList[i].couponRule10 == "card2"){
+						bonusList[i].couponRule9 = '<img src="../../image/limited.png" class="overdue" />';
+					}
+				}
+				
+				getWorkBookHtmlByList(bonusList,'bonusList');
+				
+				api.refreshHeaderLoadDone();
+				
+				//列表图片缓存
+				$(".imgClass").each(function(index){
+					imageCache(this);
+				});
+			}
+			baseAjax(ajaxObject);
+		}
+		//查询此加油站对应优惠券
+//		function queryMyCouponInfoByPage(isShow) {
+//			var price = parseFloat(api.pageParam.oilInfo.payPrice) + parseFloat(api.pageParam.oilInfo.favPrice);
+//			var ajaxObject = new Object();
+//			ajaxObject.url = "/appCouponAjax!queryStationMyCouponInfoByPageCache.htm";
+//			ajaxObject.params = new Object();
+//			if(isShow){
+//				ajaxObject.isShowProgress = '1';
+//			}
+//			ajaxObject.params.memberCode = api.pageParam.memberCode;
+//			ajaxObject.params.memberPcode = oilInfo.memberPcode;
+//			ajaxObject.params.couponRule2 = oilInfo.oilNo;
+//			ajaxObject.params.whereStr = " couponType = 1 and usePlatform in (0,2) and dataBillstate = 2 and useMinMoney <= "+ price +" and couponMoney <= "+ price + " ";
+//			ajaxObject.params.orderBy = " couponMoney desc ";
+//			ajaxObject.onSuccessFunction = function(data) {
+//				var bonusList = data.couponModeliewVoList;
+//				for(var i = 0 ; i < bonusList.length; i++){
+//					if(bonusList[i].couponSubType == 1){
+//						bonusList[i].couponRule15 = "满"+ bonusList[i].useMinMoney +"元可用";
+//					}else{
+//						bonusList[i].couponRule15 = "每满"+ bonusList[i].useMinMoney +"元可用";
+//					}
+//					if(bonusList[i].couponRule1 == ""){
+//						bonusList[i].couponRule1 = "汽油柴油";
+//					}
+//					if(bonusList[i].couponRule2 == ""){
+//						bonusList[i].couponRule2 = "全号";
+//					}
+//				}
+//				getWorkBookHtmlByList(bonusList,'bonusList');
+//				
+//				api.refreshHeaderLoadDone();
+//				
+//				//列表图片缓存
+//				$(".imgClass").each(function(index){
+//					imageCache(this);
+//				});
+//			}
+//			baseAjax(ajaxObject);
+//		}
+
+		function choose(couponCode,couponMoney,couponRule10) {
+			if(couponRule10 == 'card2')return;
+			api.sendEvent({
+				name : 'favorCouponEvent',
+				extra : {
+					couponMoney : couponMoney,
+					accountCode : couponCode,
+					favorType : '1'
+				}
+			});
+			api.closeWin();
+		}
+	</script>
+</html>

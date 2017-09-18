@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+     <link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+    <style>
+	    .display-none{
+	     display: none!important;
+	    }
+       /*列表*/
+      .list-box-flex{
+		    display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-flex-flow: row;
+			flex-flow: row;
+			position: relative;
+			padding: 10px 10px 0px 10px;
+			background: url("../../image/zhifu2.jpg") repeat-x #fff bottom;
+			background-size: 8%;
+		}
+		.list-box-flex:after{
+		  content:"";
+		  width: 100%;
+		  height: 1px;
+		  background: #ddd;
+		  position: absolute;
+		  bottom:0px;
+		  left:0px;
+		}
+		.list-box1-td1 {
+	       width: 98px;		
+		}
+		.td-img img{
+		  width: 90px;
+		}
+		.list-box1-td2 {
+		  -webkit-box-flex: 1;
+		  -webkit-flex: 1;
+		  flex: 1;
+		}
+		.td-img1 img{
+		  width: 40px;
+		}
+		.list-box1-td3 {
+		  width: 50px;
+		}
+		 .star-span img{
+		   width: 12px;
+		   height: 12px;
+		   float: left;
+		 }
+		 .list-line{
+		   margin-top: 5px;
+		 }
+		 .list-line-td{
+		   display: table-cell;
+		   padding: 0px 2px 0px 2px;
+		 }
+		 .list-line-td span{
+		   display: block;
+		 }
+		 .ico-span{
+		   border:1px solid #ff0000;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#FF0000;
+		 }
+		 .ico-span1{
+		   border:1px solid #c88bf5;
+		   border-radius: 5px;
+		   font-size: 12px;
+		   padding: 2px;
+		   color:#c88bf5;
+		 }
+		 .ico-span img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .ico-span1 img{
+		   width: 14px;
+		   float: left;
+		   margin-right: 5px;
+		   margin-top: 2px;
+		 }
+		 .list-dizhi img{
+		   width: 11px;
+		   float: left;
+		   margin-top: 2px;
+		   margin-right: 5px;
+		 }
+		 .list-dizhi{
+		   font-size: 0.875rem;
+		 }
+		 .list-title{
+		   font-size: 1rem;
+		   font-weight: 800;
+		 }
+		 .goto{
+		   color:#FF0000;
+		 }
+		.aui-list-item-title{
+		  font-size: 0.875rem!important;
+		}
+		.aui-list .aui-list-item-inner{
+		  min-height: 3rem;
+		}
+		.aui-list-item-right{
+		  font-size: 0.875rem!important;
+		}
+		.jiesuan-box{
+		  position: fixed;
+		  bottom: 0px;
+		  width: 100%;
+		  height: 50px;
+		}
+		 .tijiao{
+		   background: #FF0000;
+		   color:#fff;
+		   height: 50px;
+		   line-height: 50px;
+		 }
+		 .prize-all{
+		    height: 50px;
+		   line-height: 50px;
+		   color:#FF0000;
+		   padding-right: 5px;
+		 }
+		 .aui-switch{
+		    width: 2.8rem;
+		    height: 1.5rem;
+		 }
+		 .aui-switch:before{
+		   width: 1.4rem;
+		   height: 1.4rem;
+		   border-radius: 0.7rem;
+		  }
+		  .aui-switch:checked:before{
+		    left:1.4rem;
+		  }
+		  .aui-switch:checked{
+		    background: #4cd964;
+		    border-color: #4cd964;
+		  }
+		/*弹出*/
+		 .list-ul{
+		   margin: -50px -30px -50px -30px;
+		 }
+		 .list-ul li{
+		   border-bottom: 1px solid #ddd;
+		   padding: 8px;
+		 }
+		
+    </style>
+</head>
+<body>
+   <div class="list-box-flex">
+    <div class="list-box1-td1 td-img">
+      <img src="../../image/yz-img.jpg"></img>
+    </div>
+    <div class="list-box1-td2" onclick="openContent()">
+      <h1 class="list-title">曲江庙坡头路延长油站</h1>
+    
+      <div class="list-line">
+        <span class="list-dizhi">
+                         车牌号：陕A59723
+        </span>
+      </div>
+       <div class="list-line">
+        <span class="list-dizhi">
+                           油号：97# 汽油 &nbsp; 油枪：2#油枪
+        </span>
+      </div>      
+      <div class="list-line aui-padded-b-5">
+        <span class="list-dizhi red">
+                           金额结算：￥200.00
+        </span>
+      </div>
+    </div> 
+  </div>  
+  
+  <div class="aui-content aui-margin-t-15">
+    <ul class="aui-list ">
+     <li onclick="youhuicard()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">优惠卡</div>
+                <div class="aui-list-item-right">无用</div>
+        </li>
+        <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">优惠券</div>
+                <div class="aui-list-item-right">无用</div>
+        </li>
+        <li  class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">开具发票</div>
+                <div class="aui-list-item-right">
+                <input class="aui-switch" type="checkbox" name="demo2" >
+                </div>
+            </div>
+        </li>
+        <li onclick="fapiao()" id="fapiao"  class="aui-list-item display-none">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">发票抬头</div>
+                <div class="aui-list-item-right chepai-box">选中的内容</div>
+            </div>
+        </li>
+    </ul>
+</div>   
+
+<div class="aui-content aui-margin-t-15">
+    <ul class="aui-list ">
+        <li  class="aui-list-item aui-list-item-middle">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">商品金额</div>
+                <div class="aui-list-item-right"><b class="red">￥200.00</b></div>
+        </li>
+        <li  class="aui-list-item">
+            <div class="aui-list-item-inner aui-list-item-arrow">
+                <div class="aui-list-item-title">优惠金额</div>
+                 <div class="aui-list-item-right"><b class="red">￥0.00</b></div>
+            </div>
+        </li>       
+    </ul>
+</div>  
+ 
+<div class="jiesuan-box aui-border-t">
+ <div class="aui-col-xs-8 aui-text-right prize-all"> 实付款:￥200.00</div>
+ <div onclick="tijiao()" class="aui-col-xs-4 aui-text-center tijiao"> 提交订单</div>
+</div>  
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../layer/layer.js"></script>
+<script>
+ apiready = function(){
+  
+ }
+ 
+ //选择是否开具发票
+ $(".aui-switch").click(function(){
+   $("#fapiao").toggleClass("display-none")
+ })
+
+//选择发票
+//选择车牌
+ function fapiao(){
+    layer.open({
+    title: [
+      '选择发票抬头',
+      'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'
+    ],
+    content: '<ul class="list-ul">'+
+    '<li>沪213123123</li>'+
+    '<li>沪44444</li>'+
+    '<li>沪21313</li>'+
+    '<li>沪6666</li>'+
+    '<li>沪7777</li>'+
+    '</ul>'
+  });  
+  
+   $(".list-ul>li").click(function(){
+   layer.closeAll()
+ })
+ }
+
+function tijiao(){
+  api.openWin({
+	  name: 'youzhan-xiadan-head',
+	  url: 'youzhan-xiadan-head.html'
+  });
+}
+
+</script>
+</html>

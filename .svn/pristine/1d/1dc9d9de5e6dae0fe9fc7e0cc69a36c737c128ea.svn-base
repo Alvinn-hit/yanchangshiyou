@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../../css/iconfont.css" />
+    <style>		
+		 .xiaofei-main{
+		  background: #fff;
+		 }
+		 .aui-list-item-right{
+		   width: 120px;
+		   text-align: right;
+		   padding-right: 10px;
+		   font-size: 0.875rem!important;
+		 }
+		 .aui-list-item-inner{
+		   font-size: 0.875rem!important;
+		 }
+		 .aui-list .aui-list-item-media{
+		   width: 5rem;
+		 }
+    </style>
+</head>
+<body>  
+     <div class="xiaofei-main">
+      <div id="main" style="height: 150px;"></div>
+      
+      <div class="aui-content aui-margin-t-15">
+    <ul class="aui-list aui-media-list">           
+        <li onclick="xiaofeiContent()" class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" >
+                    <img src="../../../image/yz-img.jpg" >
+                </div>
+                <div class="aui-list-item-inner ">
+                    93#(92#）汽油
+                    <br><b class="red">￥200.00</b>                  
+                </div>
+               <div class="aui-list-item-right">2015-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" >
+                    <img src="../../../image/yz-img.jpg" >
+                </div>
+                <div class="aui-list-item-inner ">
+                    93#(92#）汽油
+                    <br><b class="red">￥200.00</b>                  
+                </div>
+               <div class="aui-list-item-right">2015-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" >
+                    <img src="../../../image/yz-img.jpg" >
+                </div>
+                <div class="aui-list-item-inner ">
+                    93#(92#）汽油
+                    <br><b class="red">￥200.00</b>                  
+                </div>
+               <div class="aui-list-item-right">2015-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-list-item-middle">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media" >
+                    <img src="../../../image/yz-img.jpg" >
+                </div>
+                <div class="aui-list-item-inner ">
+                    93#(92#）汽油
+                    <br><b class="red">￥200.00</b>                  
+                </div>
+               <div class="aui-list-item-right">2015-05-05</div>
+            </div>
+        </li>
+    </ul>
+</div>
+     </div>
+    
+</body>
+<script type="text/javascript" src="../../../script/api.js"></script>
+<script type="text/javascript" src="../../../script/aui-tab.js"></script>
+<script type="text/javascript" src="../../../script/jquery.min.js"></script>
+<script type="text/javascript" src="../../../script/echarts.min.js"></script>
+<script>
+ apiready = function(){
+     
+ }
+     
+    
+//图表
+ // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'));
+        // 指定图表的配置项和数据
+        var option = {                 
+            xAxis: {
+                data: ["1月","2月","3月","4月","5月","6月"]
+            },
+            yAxis: {
+              max:'2000'
+            },
+            grid: {
+		        left: '3%',
+		        right: '4%',
+		        bottom: '3%',
+		        top:'6%',
+		        containLabel: true
+		    },
+            series: [{
+                name: '费用',
+                type: 'line',
+                 label: {
+                normal: {
+                    show: true,
+                    position: 'top'
+                }
+            },
+                data: [200, 500, 600, 1000, 1500, 1700]
+            }]
+        };
+        // 使用刚指定的配置项和数据显示图表。
+        myChart.setOption(option);
+
+//打开消费详情
+function xiaofeiContent(){
+  api.openWin({
+	  name: 'my-xiaofei-content-head',
+	  url: 'my-xiaofei-content-head.html'
+  });
+}
+
+
+</script>
+</html>

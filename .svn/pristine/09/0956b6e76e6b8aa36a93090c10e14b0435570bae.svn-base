@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>端API</title>
+    <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+   	<style type="text/css">
+		body{
+			background-color: #ffffff;
+		}
+		.info {
+			background: rgba(0,0,0,.5);
+			color: #fff;
+			font-size: 12px;
+			height: 30px;
+			line-height: 30px;
+			text-align: center;
+			position: fixed;
+			z-index: 999;
+			top: 0px;
+			width: 100%;
+		}
+		
+		.flex-box {
+			display: -webkit-box;
+			display: -webkit-flex;
+			display: flex;
+			-webkit-box-orient: vertical;
+			-webkit-flex-flow: column;
+			flex-flow: column;
+			height: 100%;
+		}
+		.flex-box-td1 {
+			-webkit-box-flex: 1;
+			-webkit-flex: 1;
+			flex: 1;
+		}
+		.flex-box-td2 {
+			height: 100px;
+			background: #fff;
+		}
+	</style>
+</head>
+<body>
+    <div class="flex-box">
+      <div class="flex-box-td1"></div>
+      <div class="flex-box-td2">
+       <div class="box-top">
+        <div class="aui-col-xs-4">1</div>
+        <div class="aui-col-xs-4">2</div>
+        <div class="aui-col-xs-4">3</div>
+       </div> 
+      </div>
+    </div>
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript">
+	var map, lat = 39.9994480000, lon = 116.4021310000, city, address, endLat = 0, endLon = 0, aMapNavigation, interGetLocation;
+	var inter = new Object(), memberCode;
+	var aMapLBS;
+	var annotationIds = new Array();
+	
+	apiready = function() {
+		api.parseTapmode();
+		map = api.require('aMap');//高德地图
+		//aMapLBS = api.require('aMapLBS');//定位
+		aMapNavigation = api.require('aMapNavigation');//高德导航
+		
+		openOtherFrame();
+		//打开地图
+		open();
+		//监听单击事件
+		map.addEventListener({
+		    name: 'click'
+		}, function(ret) {
+		    if (ret.status) {
+		    	//去除或弹出气泡
+		    	closeBubble();
+		    }
+		});
+		
+	}
+	
+	function open() {
+		var y = api.pageParam.height;
+		map.open({
+			rect : {
+				x : 0,
+				y : 0,
+				w : api.winWidth,
+				h : api.frameHeight
+			},
+			zoomLevel : 14,
+			center: {
+		        lon: lon,
+		        lat: lat
+		    },
+			showUserLocation : true,
+			fixedOn : 'frame1',
+			fixed : true
+		}, function(ret) {
+			if (ret.status) {
+				//显示比例尺
+				var x = api.frameWidth * 18 / 100;
+				var y = api.frameHeight * 91 / 100;
+				map.setScaleBar({
+				    show: true,
+				    position: {
+				        x: x,
+				        y: y
+				    }
+				});
+				//获取位置坐标
+				getLocation();
+			}
+		});
+	}
+	//定位当前用户
+	function getLocation() {
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			if (ret.status) {
+				lat = ret.lat;
+				lon = ret.lon;
+				//设置地图中心
+				map.setCenter({
+					coords : {
+						lon : lon,
+						lat : lat
+					},
+					animation : false
+				});
+				yanchangOil();
+				//getNameFromCoords();
+			}
+		});
+	}
+
+	//根据经纬度获得名字
+	function getNameFromCoords() {
+		map.getNameFromCoords({
+			lon : lon,
+			lat : lat
+		}, function(ret, err) {
+			if (ret.status) {
+				city = ret.city;
+				if(!city || city == ""){
+					city = ret.state;
+				}
+			}
+			yanchangOil();
+		});
+	}
+	
+	//查询延长石油列表
+	var annotations = new Array();
+	//查询延长石油列表
+	function yanchangOil(){
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appPortalShopsAjax!queryPortalShopsByPage.htm";
+		ajaxObject.params = new Object();
+		ajaxObject.params.lat = lat;
+		ajaxObject.params.lon = lon;
+		ajaxObject.isShowProgress = '1';//不显示加载
+		ajaxObject.isHideProgress = '1';//不显示加载
+		ajaxObject.onSuccessFunction = function(ret) {	
+			
+			var counts = ret.portalTginfoViewVoList.length;
+			var results = ret.portalTginfoViewVoList;
+			annotations = new Array();
+			for (var i = 1; i <= counts; i++) {
+				//把有经纬度的油站保存并显示
+				var tempLon = results[i -1].tginfoStatUser;
+				var tempLat = results[i -1].tginfoStatPswd;
+				
+			   	var annotation = new Object();
+				annotation.id = i;
+			    annotation.lon = tempLon;
+				annotation.lat = tempLat;
+				if(results[i -1].memberContactQq == 1){
+					annotation.icons = ['widget://image/bmap/youzhan.png'];
+				}else{
+					annotation.icons = ['widget://image/bmap/youzhan_red.png'];
+				}
+				annotations.push(annotation);
+				annotationIds.push(i);
+			}
+			map.addAnnotations({
+				annotations : annotations,
+				draggable : false
+			}, function(ret) {
+				if (ret) {
+					var id = ret.id;
+					if(ret.eventType == 'click'){
+					}
+				}
+			});
+			
+			for (var i = 1; i <= counts; i++) {
+				//设置气泡
+				map.setBubble({
+					id : i,
+					bgImg: 'widget://image/bmap/paopao.png',
+					content : {
+						title : results[i - 1].tginfoName,
+						subTitle : results[i - 1].tginfoEtmurl,
+						illus : 'widget://image/bmap/goto.png'
+					},
+					styles : {
+						titleColor : '#000',
+						titleSize : 16,
+						subTitleColor : '#999',
+						subTitleSize : 12,
+						illusAlign : 'left'
+					}
+				}, function(ret) {
+					if (ret) {
+						id = ret.id;
+						if (ret.eventType == 'clickIllus') {
+							for(var i = 0; i < annotations.length; i++){
+								if(id == annotations[i].id){
+									endLat = annotations[i].lat;
+									endLon = annotations[i].lon;
+									memberCode = results[id - 1].memberCode;
+									navigation(endLat, endLon);
+									inter = setInterval("getDistance()",10000);
+								}
+							}
+						}
+						if (ret.eventType == 'clickContent') {
+							for(var i = 0; i < annotations.length; i++){
+								if(id == annotations[i].id){
+									memberCode = results[id - 1].memberCode;
+									api.openWin({
+										name : 'youzhan-content-head',
+										url : '../addoil/youzhan-content-head.html',
+										pageParam : {
+											"memberCode" : memberCode
+										}
+									});
+								}
+							}
+						}
+					}
+				});
+			}
+	        api.hideProgress();
+		}
+		baseAjax(ajaxObject);
+	}
+	
+	//放大地图
+	function magnifyMap() {
+		//先获取地图比例尺级别（3-20）
+		map.getZoomLevel(function(ret) {
+			var level = ret.level;
+			if(level == 20){
+				level = 20;
+			}else {
+				level = level + 1;
+			}
+			map.setZoomLevel({
+			    level: level,
+		      	animation : false
+			});
+			api.sendEvent({
+				name : 'zoomLevelEvent',
+				extra : {
+					level : level,
+				}
+			});
+		});
+	}
+	//缩小地图
+	function shrinkMap() {
+		//先获取地图比例尺级别（3-20）
+		map.getZoomLevel(function(ret) {
+			var level = ret.level;
+			if(level == 3){
+				level = 3;
+			}else {
+				level = level - 1;
+			}
+			map.setZoomLevel({
+			    level: level,
+		      	animation : false
+			});
+			api.sendEvent({
+				name : 'zoomLevelEvent',
+				extra : {
+					level : level,
+				}
+			});
+		});
+	}
+	//获取地图比例级别
+	function getZoomLevel(){
+		map.getZoomLevel(function(ret) {
+			var level = ret.level;
+			api.sendEvent({
+				name : 'zoomLevelEvent',
+				extra : {
+					level : level,
+				}
+			});
+		});
+	}
+	
+	//设置定位
+	function showUser(){
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			if (ret.status) {
+				lat = ret.lat;
+				lon = ret.lon;
+				//设置地图中心
+				map.setCenter({
+					coords : {
+						lon : lon,
+						lat : lat
+					},
+					animation : true
+				});
+			}
+			map.setTrackingMode({
+			    animation: false,
+			    trackingMode: 'follow'
+			});
+		});
+	}
+	
+	//高德导航
+	function navigation(){
+		aMapNavigation.start({
+		    start: {
+		        lon: lon,
+		        lat: lat
+		    },
+		    end: {
+		        lon: endLon,
+		        lat: endLat
+		    },
+		    type: 'drive',
+		    strategy: 'fast',
+		    mode: 'GPS',
+		    styles: {
+//		        image: {
+//		            start: 'fs://nav/start.png',
+//		            end: 'fs://nav/end.png',
+//		            way: 'fs://nav/way.png',
+//		            camera: 'fs://nav/camera.png'
+//		        },
+		        preference: {
+		            night: false,
+		            compass: false,
+		            crossImg: false,
+		            degree: 30,
+		            yawReCal: false,
+		            jamReCal: false,
+		            alwaysBright: false
+		        }
+		    }
+		}, function(ret, err) {
+			var msg;
+			if(ret){
+			    if (ret.eventType == 'calculateSuc') {
+			    	msg = '路径规划成功';
+			    }else if(ret.eventType == 'calculateFai'){
+			    	msg = '路径规划失败';
+			    }else if(ret.eventType == 'naviFai'){
+			    	msg = '退出导航';
+			    }else if(ret.eventType == 'naviStart'){
+			    	msg = '开始导航';
+			    }else if(ret.eventType == 'naviEnd'){
+			    	msg = '达到目的地导航结束';
+			    }else if(ret.eventType == 'naviClose'){
+			    	msg = '用户关闭导航页面';
+			    }
+			}
+		    if (err){
+			    if (err.code == '2'){
+			        msg = '网络超时或网络失败';
+			    }else if (err.code == '3'){
+			        msg = '起点错误';
+			    }else if (err.code == '4'){
+			        msg = '协议解析错误';
+			    }else if (err.code == '6'){
+			        msg = '终点错误';
+			    }else if (err.code == '10'){
+			        msg = '起点没有找到道路';
+			    }else if (err.code == '11'){
+			        msg = '没有找到通向终点的道路';
+			    }else if (err.code == '12'){
+			        msg = '没有找到通向途经点的道路';
+			    }else if (err.code == '13'){
+			        msg = '路径长度超过限制';
+			    }else if (err.code == '14'){
+			        msg = '其他错误';
+			    }
+		    }
+	       	//api.toast({msg: msg,duration: 2000,location: 'bottom'});
+		});
+	}
+	
+	function getDistance(){
+		//实时计算到油站的距离，小于指定距离则弹出下单页面
+		map.getLocation({
+			autoStop : true
+		}, function(ret, err) {
+			if (ret.status) {
+				lat = ret.lat;
+				lon = ret.lon;
+				var distance = getGreatCircleDistance(lat,lon,endLat,endLon);
+				var param = $api.getStorage("navigationParam");
+				if(Number(distance) < Number(param)){
+					aMapNavigation.close();
+					clearInterval(inter);
+					api.openWin({
+						name : 'youzhan-zhifu-head',
+						url : '../addoil/youzhan-zhifu-head.html',
+						reload : true,
+						pageParam : {
+							"memberCode" : memberCode
+						},
+					});
+				}
+			}
+		});
+	}
+	
+	function openOtherFrame(){
+        var x = api.frameWidth * 6 / 100;
+		var y = api.frameHeight * 96 / 100;
+		//打开定位按钮显示页面
+		api.openFrame({
+			name : 'bmap_location_frm1',
+			url : 'bmap_location_frm1.html',
+			rect : {
+				x : x,
+				y : y,
+				w : 34,
+				h : 34
+			},
+			bounces : false,
+			vScrollBarEnabled : false,
+			hScrollBarEnabled : false
+		});
+		x = api.frameWidth * 84 / 100;
+		y = api.frameHeight * 89 / 100;
+		//打开放大缩小显示页面
+		api.openFrame({
+			name : 'bmap_do_frm1',
+			url : 'bmap_do_frm1.html',
+			rect : {
+				x : x,
+				y : y,
+				w : 42,
+				h : 84
+			},
+			bounces : false,
+			vScrollBarEnabled : false,
+			hScrollBarEnabled : false
+		})
+	}
+	function closeBubble(){
+		//关闭气泡
+		for(var i = 0 ; i < annotationIds.length; i++){
+			map.closeBubble({
+			    id: annotationIds[i]
+			});
+		}
+	}
+</script>
+</html>

@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<link rel="stylesheet" type="text/css" href="../../layer/need/layer.css" />
+		<style>
+			.display-none {
+				display: none !important;
+			}
+			/*列表*/
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+				background: url("../../image/zhifu2.jpg") repeat-x #fff bottom;
+				background-size: 8%;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.aui-list-item-title {
+				font-size: 0.875rem !important;
+			}
+			.aui-list .aui-list-item-inner {
+				min-height: 3rem;
+			}
+			.aui-list-item-right {
+				font-size: 0.875rem !important;
+			}
+			.jiesuan-box {
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				height: 50px;
+			}
+			.tijiao {
+				background: #FF0000;
+				color: #fff;
+				height: 50px;
+				line-height: 50px;
+			}
+			.prize-all {
+				height: 50px;
+				line-height: 50px;
+				color: #FF0000;
+				padding-right: 5px;
+			}
+			.aui-switch {
+				width: 2.8rem;
+				height: 1.5rem;
+			}
+			.aui-switch:before {
+				width: 1.4rem;
+				height: 1.4rem;
+				border-radius: 0.7rem;
+			}
+			.aui-switch:checked:before {
+				left: 1.4rem;
+			}
+			.aui-switch:checked {
+				background: #4cd964;
+				border-color: #4cd964;
+			}
+			/*弹出*/
+			.list-ul {
+				margin: -50px -30px -50px -30px;
+			}
+			.list-ul li {
+				border-bottom: 1px solid #ddd;
+				padding: 8px;
+			}
+			
+			.head-box{
+			  background: #e6212a;
+			  height: 40px;
+			  line-height: 40px;
+			  position: relative;
+			  border-radius: 5px 5px 0px 0px;
+			  
+			}	
+			.head-box h1{
+			  font-size: 1rem;
+			}
+			.close-div{                                  
+			  position: absolute;
+			  top:0px;
+			  right:0px;
+			  height: 40px;
+			  width: 40px;
+			  font-size: 12px;
+			}
+			.word-box{
+			  padding: 15px 25px 15px 25px; 
+			}
+			.nochepai{
+			  margin: -50px -30px -50px -30px;
+			}
+			.chepai-input{
+			  border:1px solid #ddd!important;
+			  border-radius: 5px!important;
+			  margin-top: 10px!important;
+			  margin-bottom: 10px!important;
+			  padding-left: 10px!important;
+			}
+			.save-chepai{
+			  padding: 4px 25px 4px 25px;
+			  font-size: 0.8rem;
+			}
+				/*无发票选择新增发票*/
+			.add-fapiao-input input{
+			  border:1px solid #ddd;
+			  border-radius: 5px;
+			  margin-bottom: 20px;
+			  padding: 5px;
+			}
+			.add-fapiao-box .layui-m-layercont{
+			  padding: 20px 10px 20px 10px;
+			}
+		    .add-fapiao-btn{
+		      background: #FF0000;
+		      border-radius: 5px;
+		      color:#fff;
+		      width: 60%;
+		      margin: auto;
+		      padding: 5px 0px 5px 0px;
+		    }
+		</style>
+	</head>
+	<body>
+		<div id="dataDetail" style="display: none;">
+			<div class="list-box-flex" id="gasDetail" style="display: ;">
+				<div class="list-box1-td1 td-img">
+					<img class="imgClass" src="../../image/default/minGoods.jpg" datasrc="{baseURL}/{dataPic2}"></img>
+				</div>
+				<div class="list-box1-td2">
+					<h1 class="list-title">{goodsName}</h1>
+					<div class="list-line aui-padded-b-5">
+						<span class="list-dizhi red" > 支付金额：￥{pricesetPrice}
+					</div>
+				</div>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li  class="aui-list-item">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								开具发票
+							</div>
+							<div class="aui-list-item-right">
+								<input class="aui-switch" type="checkbox" id="isInvoice" onclick="isInvoice();">
+							</div>
+						</div>
+					</li>
+					<li onclick="fapiao()" id="fapiao"  class="aui-list-item display-none">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								发票抬头
+							</div>
+							<div class="aui-list-item-right chepai-box" id="invoice">
+								请选择
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="aui-content aui-margin-t-15">
+				<ul class="aui-list ">
+					<li  class="aui-list-item aui-list-item-middle">
+						<div class="aui-list-item-inner ">
+							<div class="aui-list-item-title">
+								商品金额
+							</div>
+							<div class="aui-list-item-right">
+								<b class="red" >￥{pricesetPrice}</b>
+							</div>
+						</div>
+					</li>
+					<li  class="aui-list-item" id="chePai">
+						<div class="aui-list-item-inner aui-list-item-arrow">
+							<div class="aui-list-item-title">
+								请选择车牌号
+							</div>
+							<div class="aui-list-item-right chepai-box" id="carNo">
+								选中的内容
+							</div>
+						</div>
+					</li>
+				</ul>
+			</div>
+			<div class="jiesuan-box aui-border-t">
+				<div class="aui-col-xs-8 aui-text-right prize-all" >
+					实付款:￥{pricesetPrice}<span id="payPrice"></span>
+				</div>
+				<div onclick="tijiao()" class="aui-col-xs-4 aui-text-center tijiao">
+					提交订单
+				</div>
+			</div>
+		</div>
+		<div id="layerInvoice" style="display: none;">
+			<ul class="list-ul" id="invoiceList">
+				<li>{invoiceCompanyname}</li>
+			</ul>
+		</div>
+		<input type="hidden" id="tempInvoice">
+		<div id="layerChepai" style="display: none">
+			<ul class="list-ul" id="carViewVoList">
+				<li>
+					{carNo}
+				</li>
+			</ul>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/md5.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script>
+		var goodsObject;
+		apiready = function() {
+			loadData();
+			
+		}
+		function loadData() {
+			//页面数据展示
+			goodsObject = api.pageParam.goodsObject;
+			var ajaxObject = new Object();
+			ajaxObject.isShowProgress = '1';//不显示加载
+			ajaxObject.params = new Object();
+
+			getWorkBookHtmlByList(goodsObject, 'dataDetail');
+			//图片缓存
+			imageCache($api.dom('.imgClass'))
+			queryCarNoList();	// 查询车牌号
+			
+		}
+		//查询车牌号列表
+		function queryCarNoList() {
+			if(!isEmpty($api.getStorage("basicCarList"))){
+				dealBasicCarList($api.getStorage("basicCarList"));
+			}else{
+				//查询车牌号码
+				var ajaxObject = new Object();
+				ajaxObject.url = "/appBasicCarAjax!queryBasicCarByPage.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.onSuccessFunction = function(ret) {
+					$api.setStorage("basicCarList", ret.basicCarViewVoList);
+					dealBasicCarList(ret.basicCarViewVoList);
+				}
+				baseAjax(ajaxObject);
+			}
+		
+		}
+		
+		function dealBasicCarList(basicCarList){
+			if(basicCarList.length == 0){
+				$("#chePai").attr("onclick","nochepai()");
+				carNo = -1;
+			}else{
+				for(var i = 0; i < basicCarList.length; i++){
+					if(basicCarList[i].carIsdefault == '1'){
+						$("#carNo").html(basicCarList[i].carNo);
+						carNo = basicCarList[i].carNo;
+						break;
+					}else{
+						carNo = basicCarList[0].carNo;
+					}
+					
+				}
+				$("#carNo").html(carNo);
+					// 设置过车牌时，点击选择
+				$("#chePai").attr("onclick","chepai()");
+			}
+			
+			getWorkBookHtmlByList(basicCarList, 'carViewVoList');
+			queryInvoice();				// 查询我的发票信息
+		}
+		// 查询我的发票信息列表
+		function queryInvoice(){
+			if(!isEmpty($api.getStorage("invoiceList"))){
+				dealInvoiceList($api.getStorage("invoiceList"));
+			}else{
+				var ajaxObject = new Object();
+				ajaxObject.url = "/appInvoiceAjax!queryInvoiceByPage.htm";
+				ajaxObject.params = new Object();
+				ajaxObject.params.invoiceType = 3;
+				ajaxObject.isShowProgress = '1';//不显示加载
+				ajaxObject.isHideProgress = '1';
+				ajaxObject.onSuccessFunction = function(data) {
+					$api.setStorage("invoiceList", data.invoiceViewVoList);
+					dealInvoiceList(data.invoiceViewVoList);
+				}
+				baseAjax(ajaxObject);
+			}
+		}
+		
+		function dealInvoiceList(data){
+			if(data != "" && data != null && data.length > 0){
+				for(var i=0; i<data.length; i++){
+					if(data[i].invoiceIsdefault == '1'){
+						$("#tempInvoice").val(data[i].invoiceCompanyname);
+						break; 
+					}
+				}
+				$("#fapiao").attr("onclick","fapiao()");
+			}else{
+				// 没有设置过发票时，点击设置发票
+				$("#fapiao").attr("onclick","addfapiao()");
+			}
+			getWorkBookHtmlByList(data, 'invoiceList');
+			$("#dataDetail").show();
+		}
+		
+		//选择是否开具发票
+		function isInvoice() {
+			//清空开票信息
+			var isInvoice = $("#isInvoice").attr("checked");
+			if(isInvoice != "checked"){
+				$("#invoice").html("请选择");
+			}else{
+				if(!isEmpty($("#tempInvoice").val())){
+					$("#invoice").html($("#tempInvoice").val());	// 展示默认的发票信息
+				}
+			}
+			$("#fapiao").toggleClass("display-none");
+		}
+		
+		//选择发票
+		function fapiao() {
+			var layerHtml = $api.html($api.byId("layerInvoice"));
+			layer.open({
+				title : ['选择发票抬头', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : 
+				'<div class="close-div iconfont icon-shanchu2"></div>'+
+				layerHtml,
+			});
+			$("#invoiceList>li").click(function() {
+				var invoice = $api.trimAll($(this).html());
+				$("#invoice").html(invoice);
+				layer.closeAll();
+			})
+		  $(".close-div").click(function(){
+		    layer.closeAll();
+		  })
+		}
+		
+		//选择车牌
+		function chepai() {
+			var layerHtml = $api.html($api.byId("layerChepai"));
+			
+			layer.open({
+				title : ['选择车牌', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				content : layerHtml,
+			});
+			$("#carViewVoList>li").click(function() {
+				var chepai = $(this).html();
+				$("#carNo").html(chepai);
+				carNo = chepai;
+				layer.closeAll();
+			})
+		}
+		
+		// 没有设置车牌号时 ，弹出设置车牌号弹出框
+		function nochepai() {
+		   layer.open({
+		    content:'<div class="nochepai"><div class="head-box">'+
+		         '<h1>编辑车牌</h1>'+
+		         '<div class="close-div iconfont icon-shanchu2"></div>'+
+		    '</div>'+
+		    '<div class="word-box"><input class="chepai-input" type="text" id="carNumber" placeholder="请输入车牌号"><div class="aui-btn aui-btn-warning save-chepai" onclick="addCar()">保存</div></div></div>'
+		  });
+		  
+		  $(".close-div").click(function(){
+		    layer.closeAll();
+		  })
+		}	
+		
+		//添加爱车信息
+		function addCar() {
+			var carNumber = $("#carNumber").val();
+			if (carNumber == '') {
+				api.toast({
+					msg : '请输入车牌号码',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} else if (!/^[\u4E00-\u9FA5][\da-zA-Z]{6}$/.test(carNumber)) {
+				api.toast({
+					msg : '您的车牌号码格式有误，如("粤J12350")',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			}
+			var ajaxObject = new Object();
+			ajaxObject.params = new Object();
+			ajaxObject.url = "/appBasicCarAjax!saveBasicCar.htm";
+			ajaxObject.params["basicCarViewVo.carNo"] = carNumber;
+			ajaxObject.params["basicCarViewVo.carName"] = carNumber;
+			ajaxObject.onSuccessFunction = function(ret) {
+				$api.rmStorage("basicCarList");
+				layer.open({
+				    content: '保存成功',
+				    btn: '我知道了',
+				    yes: function(index){
+				      queryCarNoList();		// 更新车牌号列表和onclick触发事件
+				      layer.close(index);
+				    }
+			  	});
+				
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		//输入发票
+		function addfapiao() {
+			var layerHtml = $api.html($api.byId("layerInvoice"));
+			layer.open({
+				title : ['新增发票抬头', 'background-color: #ff0000; color:#fff; height:35px; line-height:35px; font-size:12px;'],
+				className:'add-fapiao-box', 
+				content : 
+				'<div class="close-div iconfont icon-shanchu2"></div>'+
+				'<div class="add-fapiao-input"><input type="text" placeholder="请输入发票抬头" id="invoiceCompanyname"></div>'+
+				'<div class="add-fapiao-btn" onclick="addInvoice()">保存</div>'
+			});		
+		  $(".close-div").click(function(){
+		    layer.closeAll();
+		  })
+		}
+		
+		//添加发票信息
+		function addInvoice() {
+			var invoiceCompanyname = $("#invoiceCompanyname").val();
+			if (isEmpty(invoiceCompanyname)) {
+				api.toast({
+					msg : '请输入开票抬头',
+					duration : 2000,
+					location : 'center'
+				});
+				return false;
+			} 
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appInvoiceAjax!saveInvoice.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.params["invoiceViewVo.invoiceType"] = "3";
+			ajaxObject.params["invoiceViewVo.invoiceIsdefault"] = "1";
+			ajaxObject.params["invoiceViewVo.invoiceCompanyname"] = invoiceCompanyname;
+			ajaxObject.onSuccessFunction = function(ret) {
+				$api.rmStorage("invoiceList");
+		        queryInvoiceList();		// 更新车牌号列表和onclick触发事件
+				layer.open({
+				    content: '保存成功',
+				    btn: '我知道了',
+				    yes: function(index){
+				      	layer.close(index);
+				    }
+			  	});
+				
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function queryInvoiceList(){
+			//查询开票
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appInvoiceAjax!queryInvoiceByPage.htm";
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.params = new Object();
+			ajaxObject.params.invoiceType = 3;
+			ajaxObject.params.limit = 99;
+			ajaxObject.onSuccessFunction = function(ret) {
+				var data = ret.invoiceViewVoList;
+				$api.setStorage("invoiceList", data);
+				if(data != "" && data != null && data.length > 0){
+					for(var i=0; i<data.length; i++){
+						if(data[i].invoiceIsdefault == '1'){
+							$("#tempInvoice").val(data[i].invoiceCompanyname);
+							$("#invoice").html(data[i].invoiceCompanyname);
+							break; 
+						}
+					}
+					$("#fapiao").attr("onclick","fapiao()");
+				}
+				getWorkBookHtmlByList(data, 'invoiceList');
+			}
+			baseAjax(ajaxObject);
+		}
+			
+		//提交
+		function tijiao() {
+			var isInvoice = $("#isInvoice").attr("checked");
+			var carNo = "";
+			if(isInvoice == "checked"){
+				if($("#invoice").text().match("请选择") == "请选择"){
+					api.toast({
+					    msg: '请选择开票抬头',
+					    duration: 2000,
+					    location: 'bottom'
+					});
+					return;
+				}
+				goodsObject.dataStr3 = "1";								// 需要开具发票标识
+				goodsObject.dataStr4 = $.trim($("#invoice").text());			// 发票抬头
+				if(isEmpty(goodsObject.dataStr4)){
+					api.toast({
+	                    msg: '请先设置发票抬头'
+                    });
+                    return ;
+                    
+				}
+			}else{
+				goodsObject.dataStr3 = "0";								// 需要开具发票标识(0,不需要)
+				goodsObject.dataStr4 = "";								// 发票抬头
+			
+			}
+			
+			carNo = $("#carNo").text();
+			if(carNo.match("选中的内容") == "选中的内容" ){
+				api.toast({
+	                msg:'请选择车牌号'
+                });
+                
+                return;
+			} 
+			
+			goodsObject.mgpriceContactname = carNo;		// 车牌号
+			
+			api.openWin({
+				name : 'buy_goods_head2',
+				url : 'buy_goods_head2.html',
+				pageParam : {
+					"goodsObject" : goodsObject
+				},
+				reload : true
+			});
+		}
+		
+	
+	</script>
+</html>

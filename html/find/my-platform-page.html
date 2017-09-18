@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.order-content {
+				/*height: 98px;*/
+				margin-left: 12px;
+				margin-right: 12px;
+				padding: 15px 13px;
+				background-color: #fff;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.order-list {
+				margin-top: 7px;
+				margin-bottom: 18px;
+			}
+			.title-pre {
+				margin-bottom: 11px;
+				font-size: 0.875rem;
+				color: #666;
+			}
+			.title-content {
+				margin-top: 10px;
+				margin-bottom: 10px;
+				font-size: 0.75rem;
+				color: #666;
+			}
+			.title-more {
+				position: relative;
+				padding-top: 10px;
+				font-size: 0.75rem;
+				color: #666;
+			}
+			.order-content img {
+				display: block;
+				margin: 0;
+				width: 100%;
+				height: auto;
+			}
+			.r-align {
+				text-align: right;
+			}
+			.c-align {
+				text-align: center;
+			}
+			.logo-area img {
+				width: 60px;
+				height: 60px;
+			}
+			.prime-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.875rem;
+				color: #ff7f00;
+				line-height: 40px;
+			}
+			.acount-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.75rem;
+				color: #ff7f00;
+			}
+			.acount-price02 {
+				background-color: #00803d;
+			}
+			.acount-price03 {
+				background-color: #808080;
+			}
+			.acount-price img {
+				width: 14px;
+				height: 14px;
+			}
+			.cancel-price {
+				font-size: 0.75rem;
+				color: #666;
+				text-decoration: line-through;
+				line-height: 40px;
+			}
+			.acount {
+				font-size: 0.75rem;
+				color: #666;
+				margin-left: 8px;
+				margin-right: 8px;
+			}
+			.ver-align {
+				vertical-align: top;
+			}
+			.clearfix {
+				clear: both;
+			}
+			.marTop8 { margin-top: 8px;}
+			.marTop10 { margin-top: 10px;}
+			.marTop22 { margin-top: 22px;}
+			.marTop28 { margin-top: 28px;}
+						
+			.order-list:before,
+			.order-list:after {
+				content: '';
+				display: block;
+				height: 1px;
+				width: 100%;
+				background: #c3c3c3;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.title-more:before {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 1px;
+				width: 100%;
+				top: 0;
+				left: 0;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}			
+			.explain:after {
+				content: '';
+				display: block;
+				position: absolute;
+				height: 1px;
+				width: 100%;
+				bottom: 0;
+				left: 0;
+				background: #e0e0e0;
+				-webkit-transform-origin: 50% 100%; 
+				transform-origin: 50% 100%; 
+				pointer-events: none;
+				-webkit-transform: scaleY(.5);
+				-ms-transform: scaleY(.5);
+				-o-transform: scaleY(.5);
+				transform: scaleY(.5);
+			}
+			.timeline {
+				margin: 14px auto;
+				width: 140px;
+				height: 14px;
+				font-size: 0.75rem;
+				text-align: center;
+				line-height: 14px;
+				color: #fff;
+				background-color: #666;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="YH_DocList" style="display: none;">
+		<div class="order-list marTop8" onclick="openContent({doclistId})">
+			<div class="order-content">
+				<div class="title-pre">{doclistTitle}</div>
+				<div class="title-content">{doclistInfotxt}</div>
+				<div id="img{doclistId}">
+					<img src="{doclistInfopic}" />
+				</div>
+				<div class="title-more">查看全文</div>
+			</div>
+		</div>
+		<div id="timeline{doclistId}" class="timeline">{doclistAuditDateStr}</div>
+		</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/aui-popup.js" ></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/page.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script>
+		apiready = function() {
+			//沉浸式
+			var headbar = $api.byId('headbar');
+			$api.fixIos7Bar(headbar);
+			api.addEventListener({
+				name : 'scrolltobottom',
+				extra : {
+					threshold : 0 //设置距离底部多少距离时触发，默认值为0，数字类型
+				}
+			}, function(ret, err) {
+				nextPage(0);
+				findDocList(1);
+			});
+			api.addEventListener({
+				name : 'flushWaybillViewEvent',
+			}, function(ret, err) {
+				prevPage();
+				findDocList();
+			});
+			api.setRefreshHeaderInfo({
+				visible : true,
+				bgColor : '#FFFFFF',
+				textColor : '#ccc',
+				textDown : '下拉刷新',
+				textUp : '松开刷新',
+				textLoading : '加载中',
+				showTime : true
+			}, function(ret, err) {
+				prevPage();
+				findDocList();
+			});
+			findDocList();
+		};
+		// 查询平台公告新闻列表
+		function findDocList(isShow) {
+			var ajaxObject = new Object();
+			if(isShow){
+				ajaxObject.isShowProgress = '1';
+			}
+			ajaxObject.url = "/appPortalDoclistAjax!queryPortalDoclistByPageCache.htm";
+			ajaxObject.params = new Object();
+			// 平台公告列表已发布状态
+			ajaxObject.onSuccessFunction = function(data) {
+				var pdvv = data.portalDoclistViewVoList;
+
+				getWorkBookHtmlByList(pdvv, "YH_DocList");
+				//隐藏未显示选项
+				for(var i=0; i<pdvv.length;i++){
+					if(!pdvv[i].doclistInfopic || pdvv[i].doclistInfopic ==""){
+						$("#img"+pdvv[i].doclistId+"").css("display","none");
+					}
+					if(!pdvv[i].doclistOpdate || pdvv[i].doclistOpdate ==""){
+						$("#timeline"+pdvv[i].doclistId+"").css("display","none");
+					}
+				}
+				api.refreshHeaderLoadDone();
+			}
+			baseAjax(ajaxObject);
+		}
+
+		//打开平台公告文档详情
+		function openContent(doclistId) {
+			api.openWin({
+				name : 'platform-detail-head',
+				url : 'platform-detail-head.html',
+				pageParam : {
+					'doclistId' : doclistId
+				}
+			});
+		};
+	</script>
+</html>

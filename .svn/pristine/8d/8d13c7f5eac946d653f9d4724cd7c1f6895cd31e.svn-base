@@ -1,0 +1,39 @@
+function aliPay(obj) {
+	var onSuccessFunction = obj.payFunction;
+	var onFailFunction = obj.failFunction;
+	var mgpriceBatch = obj.mgpriceBatch + "_" + new Date().getTime() + "_" + obj.flag;
+	
+	var aliPay = api.require('aliPay');
+	aliPay.pay({
+		subject : '消费订单支付',
+		body : '消费订单支付',
+		amount : '0.03',
+		tradeNO : mgpriceBatch
+	}, function(ret, err) {
+		if(ret.code == "9000"){
+			onSuccessFunction();
+		}else{
+			onFailFunction();
+		}
+	});
+}
+
+function aliPayByBalance(obj) {
+	var onSuccessFunction = obj.payFunction;
+	var onFailFunction = obj.failFunction;
+	var poinfoBillno = obj.poinfoBillno + "_" + new Date().getTime() + "_" + obj.flag;
+	
+	var aliPay = api.require('aliPay');
+	aliPay.pay({
+		subject : '余额充值',
+		body : '余额充值',
+		amount : '0.04',
+		tradeNO : poinfoBillno
+	}, function(ret, err) {
+		if(ret.code == "9000"){
+			onSuccessFunction();
+		}else{
+			onFailFunction();
+		}
+	});
+}

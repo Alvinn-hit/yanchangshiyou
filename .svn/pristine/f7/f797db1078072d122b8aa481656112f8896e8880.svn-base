@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<title>title</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<style>
+			body, html {
+				background: rgba(255,255,255,0);
+				padding: 0;
+				margin: 0;
+			}
+			li {
+				color: gray;
+				height: 35px;
+				line-height: 35px;
+			}
+			.first-line-a:after {
+				content: "";
+				height: 1px;
+				background: #ddd;
+				width: 26px;
+				position: absolute;
+				bottom: 0px;
+				left: 50%;
+				margin-left: -13px;
+			}
+			ul {
+				background: #fff;
+				width: 34px;
+				height: 70px;
+				text-align: center;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+			}
+			.first-line-a:active {
+				background-color: #ddd;
+				border-radius: 4px 4px 0px 0px;
+			}
+			.last-line-a:active {
+				background-color: #ddd;
+				border-radius: 0px 0px 4px 4px;
+			}
+			a {
+				display: block;
+				position: relative;
+			}
+			.change li{
+				color: #ddd;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div>
+			<ul>
+				<a class="first-line-a" onclick="magnify()" id="plus">
+					<li  style="font-size:24px">+</li>
+				</a>
+				<a class="last-line-a" onclick="shrink()"  id="minus">
+					<li style="font-size:40px">-</li>
+				</a>
+			</ul>
+		</div>
+	</body>
+</html>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/jquery.min.js"></script>
+<script type="text/javascript">
+	var level;
+	apiready = function() {
+		
+		api.addEventListener({
+			name : 'zoomLevelEvent'
+		}, function(ret, err) {
+			level = ret.value.level;
+			if(level >= 20){
+				$api.addCls($api.byId("plus"), "change");
+			}else if(level <= 3){
+				$api.addCls($api.byId("minus"), "change");
+			}else {
+				$api.removeCls($api.byId("plus"), "change");
+				$api.removeCls($api.byId("minus"), "change");
+			}
+		});
+	}
+	//放大地图 ,地图比例尺级别（3-18）
+	function magnify() {
+		api.execScript({
+            frameName:'frame1',
+            script:'magnifyMap()'
+        })
+	}
+
+	//缩小地图 ,地图比例尺级别（3-18）
+	function shrink() {
+		api.execScript({
+            frameName:'frame1',
+            script:'shrinkMap()'
+        })
+	}
+</script>

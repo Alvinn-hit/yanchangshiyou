@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 0px 10px;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 1px;
+				background: #ddd;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.order-list {
+				margin-bottom: 18px;
+			}
+			.title-pre {
+				height: 23px;
+				background-color: #ff7f00;
+				border-top: 1px solid #e0e0e0;
+				padding-left: 9px;
+				padding-right: 9px;
+			}
+			.r-align {
+				text-align: right;
+			}
+			.c-align {
+				text-align: center;
+			}
+			.title-pre-content {
+				height: 23px;
+				line-height: 23px;
+				font-size: 0.75rem;
+				color: #fff;
+			}
+			.order-content {
+				height: 98px;
+				background-color: #fff;
+			}
+			.logo-area img {
+				width: 60px;
+				height: 60px;
+			}
+			.prime-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.875rem;
+				color: #ff7f00;
+				line-height: 40px;
+			}
+			.acount-price {
+				margin-right: 8px;
+				margin-left: 8px;
+				font-size: 0.75rem;
+				color: #ff7f00;
+			}
+			.acount-price img {
+				width: 14px;
+				height: 14px;
+			}
+			.cancel-price {
+				font-size: 0.75rem;
+				color: #666;
+				text-decoration: line-through;
+			}
+			.acount {
+				font-size: 0.75rem;
+				color: #666;
+				margin-right: 12px;
+			}			
+			.ver-align { vertical-align: top;}
+			.deadline {
+				font-size: 0.75rem;
+				color: #666;
+				margin-right: 12px;
+			}
+			.clearfix { clear: both;}
+			.data-group {
+				border-bottom: 1px solid #d8d8d8;
+				background-color: #fff;
+			}
+			.word-dec {
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 0.75rem;
+				line-height: 32px;
+				color: #ff7f00;
+			}
+			.word-dec-title {
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 0.75rem;
+				line-height: 32px;
+				color: #666;
+			}
+			.word-dec-pay {
+				margin-left: 10px;
+				margin-right: 10px;
+				font-size: 0.75rem;
+				line-height: 32px;
+				color: #ff7f00;
+			}
+			.data-dec {
+				margin-left: 14px;
+				margin-right: 14px;
+				font-size: 0.875rem;
+				line-height: 32px;
+				color: #ff7f00;
+			}
+			.img-dec {
+				margin-right: 10px;
+				width: 32px;
+				height: 32px;
+			}
+			.marTop5 { margin-top: 5px;}
+			.marTop6 { margin-top: 6px;}
+			.marTop8 { margin-top: 8px;}
+			.marTop14 { margin-top: 14px;}
+			.borderTop { border-top: 1px solid #d8d8d8;}
+			.explain {
+				margin-top: 14px;
+				border-top: 1px solid #d8d8d8;
+				border-bottom: 1px solid #d8d8d8;
+				padding-top: 14px;
+				padding-right: 10px;
+				padding-bottom: 18px;
+				padding-left: 10px; 
+				background-color: #fff;
+			}
+			.explain-title {
+				font-size: 0.75rem;
+				color: #ff7f00;
+			}
+			.explain-content {
+				font-size: 0.75rem;
+				color: #666;
+			}
+			.marTop28 { margin-top: 28px;}
+			.marTop22 { margin-top: 22px;}
+			.order-num {
+				padding-left: 12px;
+				font-size: 0.75rem;
+				color: #ff7f00;
+				background-color: #fff;
+				border-top: 1px solid #e0e0e0;
+				line-height: 22px;
+			}
+			.img-table {
+				text-align: center; 
+				width: 146px; 
+				margin-left: auto; 
+				margin-right: auto;
+				margin-top: 14px;
+			}
+			/*弹出层*/
+			.aui-list .aui-list-item:last-child:after {
+				height: 1px;
+			}
+			.aui-list {
+				font-size: 0.875rem;
+			}
+			.aui-popup-top-left {
+				width: 95%;
+			}
+			.aui-list-item-inner {
+				justify-content: center !important;
+				-webkit-justify-content: center;
+				min-height: 3.0 rem !important;
+			}
+			.aui-popup-top-left {
+				top: 40px;
+			}
+			.aui-popup-arrow.aui-popup-arrow1 {
+				left: 2rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow2 {
+				left: 10rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow3 {
+				left: 16rem;
+			}
+			.aui-popup-arrow.aui-popup-arrow4 {
+				left: 22rem;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="order-list marTop8">
+			<div class="title-pre">
+				<div class="title-pre-content aui-col-xs-4">
+					平台团购券
+				</div>
+				<div class="title-pre-content c-align aui-col-xs-4">
+					93#(92#) 汽油
+				</div>
+				<div class="title-pre-content r-align aui-col-xs-4">
+					最低购买量:1,000元
+				</div>
+			</div>
+			<div class="order-content">
+				<div class="aui-col-xs-5 logo-area">
+					<table class="img-table">
+						<tr height="73">
+							<td width="73"><img src="../../image/logo-icon03.png" /></td>
+							<td width="73"><img src="../../image/logo-icon02.png" /></td>
+						</tr>
+					</table>
+				</div>
+				<div class="aui-col-xs-7">
+					<div class="marTop8">
+						<div class="acount fl">
+							单价:6.5元/升
+						</div>
+						<div class="acount fr">
+							已售:2,000元
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="marTop8">
+						<div class="acount fr">
+							成团:3,000元
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="marTop8">
+						<div class="acount fr">
+							剩余:4,000元
+						</div>
+						<div class="clearfix"></div>
+					</div>
+					<div class="marTop8">
+						<div class="acount-price fl">
+								<img src="../../image/acount.png" />
+								<span class="ver-align">优惠券</span>							
+							</div>
+						<div class="deadline fr">
+							有效日期截止:2016.12.31
+						</div>
+						<div class="clearfix"></div>
+					</div>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>		
+		<div class="data-group borderTop">
+			<div class="word-dec-title fl">应付金额</div>
+			<div class="word-dec-title fr">5,000元</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="data-group">
+			<div class="word-dec-title fl">优惠金额</div>
+			<div class="word-dec fr">110元</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="data-group">
+			<div class="word-dec-title fl">实付金额</div>
+			<div class="word-dec fr">4,890元</div>
+			<div class="clearfix"></div>
+		</div>	
+		<div class="data-group">
+			<div class="word-dec-title fl">您的手机号</div>
+			<div class="word-dec-title fr">13162010179</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="data-group borderTop marTop14">
+			<div class="word-dec fl">下单</div>
+			<img class="img-dec fr" src="../../image/right.png" />
+			<div class="data-dec fr">1,000元</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="data-group">
+			<div class="data-dec fl">¥900.00元</div>
+			<div class="word-dec fr">立即抢购</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="data-group">
+			<div class="word-dec fl">查看可用油站</div>
+			<img class="img-dec fr" src="../../image/right.png" />
+			<div class="clearfix"></div>
+		</div>	
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+		}
+		//打开详情
+		function openContent() {
+			api.openWin({
+				name : 'youzhan-content-head',
+				url : 'youzhan-content-head.html'
+			});
+		}
+
+	</script>
+</html>

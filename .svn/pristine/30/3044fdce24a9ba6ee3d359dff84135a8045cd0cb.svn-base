@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+		    .recommend-img{
+		      text-align: center;
+		    }
+			.recommend-img img{
+			  width:240px;
+			}
+			.recommend-img p{
+			  font-size: 0.875rem;
+			  margin-top: 12px;
+			  color:#ff7f00;
+			}
+			.aui-btn{
+			  width: 100%;
+			  padding: 8px 0px 8px 0px;
+			  font-size: 1rem;
+			  margin-top: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="recommend-img">
+		  <img src="../../image/tuijian.png">
+		  <p>推荐好友成功注册发放优惠券！</p>
+          <p>   好事大家一起分享！</p>
+		</div>
+		<div class="aui-btn aui-btn-danger" onclick="recommend()" id="memberCode" style="display: none">推荐获取优惠券</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script type="text/javascript" src="../../script/jquery.min.js"></script>
+	<script type="text/javascript" src="../../layer/layer.js"></script>
+	<script type="text/javascript" src="../../script/common.js"></script>
+	<script type="text/javascript" src="../../script/my_ajax.js"></script>
+	<script type="text/javascript">
+		memberObj = new Object();
+		apiready = function() {
+			queryMyUserInfo();
+		}
+		
+		function queryMyUserInfo(){
+			var ajaxObject = new Object();
+			ajaxObject.url = "/appMemberAjax!queryMyUserInfo.htm";
+			ajaxObject.params = new Object();
+			ajaxObject.isShowProgress = '1';
+			ajaxObject.onSuccessFunction = function(data) {
+				var data = data.memberViewVo;
+				memberObj.memberName = data.memberName;
+				memberObj.memberCode = data.memberCode;
+				$("#memberCode").show();
+			}
+			baseAjax(ajaxObject);
+		}
+		
+		function recommend(code){
+			var obj = api.require('qq');
+			obj.installed(function (ret, err){
+				if(ret.status){
+					obj.shareNews({
+						url : "http://demo.gaodasoft.com:8125/web/share.html?memberCode="+ memberObj.memberCode +"&memberName="+ memberObj.memberName +"",
+						title : memberObj.memberName+'推荐分享',
+						description : '注册有奖',
+						imgUrl : 'http://demo.gaodasoft.com:8125//etmwebdocs/bootstrap/img/logo.png',
+						type : 'QZone',
+					},function (ret,err){
+						if(!ret.status){
+							api.toast({
+								msg : '取消成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}else{
+							api.toast({
+								msg : '分享成功!',
+								duration : 2000,
+								location : 'center'
+							});
+						}
+					});
+				}else{
+					api.toast({
+							msg : "对不起,没有安装QQ应用!",
+							duration : 2000,
+							location : 'center'
+						});
+				}
+			})
+		}
+	</script>
+</html>

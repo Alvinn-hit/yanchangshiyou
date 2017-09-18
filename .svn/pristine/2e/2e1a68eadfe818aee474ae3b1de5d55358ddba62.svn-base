@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+		<meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+		<title>文档</title>
+		<link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+		<link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+		<style>
+			html, body {
+				height: 100%;
+				background: #eaeaea;
+			}
+			.change-box-all {
+				height: 40px;
+				background: #fafafa;
+				line-height: 40px;
+				font-size: 0.875rem;
+			}
+			.change-box:after {
+				content: "";
+				height: 16px;
+				width: 1px;
+				background: #ddd;
+				position: absolute;
+				top: 13px;
+				right: 0px;
+			}
+			.arrow-ico {
+				width: 0;
+				height: 0;
+				border-left: 5px solid transparent;
+				border-right: 5px solid transparent;
+				border-top: 5px solid #c4c4c4;
+				float: right;
+				margin-top: 18px;
+				margin-right: 10px;
+			}
+			.list-box-flex {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-flow: row;
+				flex-flow: row;
+				position: relative;
+				padding: 10px 10px 15px 10px;
+				background-color: #fff;
+			}
+			.list-box-flex:after {
+				content: "";
+				width: 100%;
+				height: 4px;
+				background-image: url(../../image/border.png);
+				background-repeat: repeat-x;
+				background-size: 375px 4px;
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
+			}
+			.list-box1-td1 {
+				width: 98px;
+			}
+			.td-img img {
+				width: 90px;
+			}
+			.list-box1-td2 {
+				-webkit-box-flex: 1;
+				-webkit-flex: 1;
+				flex: 1;
+			}
+			.td-img1 img {
+				width: 40px;
+			}
+			.list-box1-td3 {
+				width: 50px;
+			}
+			.star-span img {
+				width: 12px;
+				height: 12px;
+				float: left;
+			}
+			.list-line {
+				margin-top: 5px;
+			}
+			.list-line-td {
+				display: table-cell;
+				padding: 0px 2px 0px 2px;
+			}
+			.list-line-td span {
+				display: block;
+			}
+			.ico-span {
+				border: 1px solid #ff0000;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #FF0000;
+			}
+			.ico-span1 {
+				border: 1px solid #c88bf5;
+				border-radius: 5px;
+				font-size: 12px;
+				padding: 2px;
+				color: #c88bf5;
+			}
+			.ico-span img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.ico-span1 img {
+				width: 14px;
+				float: left;
+				margin-right: 5px;
+				margin-top: 2px;
+			}
+			.list-dizhi img {
+				width: 11px;
+				float: left;
+				margin-top: 2px;
+				margin-right: 5px;
+			}
+			.list-dizhi {
+				font-size: 0.875rem;
+			}
+			.list-title {
+				font-size: 1rem;
+				font-weight: 800;
+			}
+			.goto {
+				color: #FF0000;
+			}
+			.each-store {
+				margin-top: 6px;
+				background-color: #fff;
+			}
+			.store-title { 
+				padding-top: 8px;
+			}
+			.store-title img {
+				float: left;
+				margin-left: 14px;
+				width: 18px;
+				height: 17px;
+			}
+			.store-name {
+				float: left;
+				margin-left: 6px;
+				font-size: 0.875rem;
+				color: #000;
+				line-height: 18px;
+			}
+			.store-detail {
+				float: right;
+				margin-right: 8px;
+				font-size: 0.75rem;
+				color: #818181;
+				line-height: 18px;
+			}
+			.store-detail span {
+				color: #808080;
+				font-size: 0.75rem;
+			} 
+			.store-goods {
+				position: relative;
+				margin-top: 3px;
+				height: 105px;
+				border-top: 1px solid #e0e0e0;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			.goods-img {
+				position: relative;
+				left: 50%;
+				margin-left: -36px;
+				margin-top: 17px;
+				width: 72px;
+				height: 72px;
+			}
+			.goods-title {
+				margin-top: 8px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.goods-price {
+				margin-top: 7px;
+				font-size: 0.75rem;
+				color: #ff000c;
+			}
+			.color-ff000c { color: #ff000c;}
+			.font14 { font-size: 0.875rem;}
+			.posi-re { position: relative;}
+			.pay-area {
+				position: fixed;
+				bottom: 0;
+				height: 50px;
+				width: 100%;
+				z-index: 9999;
+			}
+			.bg-fff { background-color: #fff;}
+			.bg-e6212a { background-color: #e6212a;}
+			.submit { 
+				text-align: center;
+				color: #fff;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.submit-price {
+				padding-right: 12px;
+				text-align: right;
+				color: #e6212a;
+				line-height: 50px;
+				font-size: 1rem;
+			}
+			.padBottom50 { padding-bottom: 50px;}
+			.amount {
+				position: absolute;
+				z-index: 99;
+				bottom: 16px;
+				right: 10px;
+			}
+			.amount img {
+				width: 21px;
+				height: 21px;
+			}
+			.amount li {
+				float: left;
+				margin-left: 7px;
+				margin-right: 7px;
+				font-size: 1rem;
+				line-height: 21px;
+				height: 21px;
+			}
+			.buy-amount {
+				position: absolute;
+				z-index: 99;
+				top: 32px;
+				right: 11px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.buy-all {
+				float: left;
+				margin-left: 13px;
+				line-height: 32px;
+				font-size: 0.75rem;
+				color: #000;
+			}
+			.state {
+				float: right;
+				margin-top: 5px;
+				margin-right: 15px;
+				width: 60px;
+				height: 22px;
+				font-size: 0.875rem;
+				color: #fff;
+				text-align: center;
+				line-height: 22px;
+				color: #fff;
+				background-color: #909090;
+				border-radius: 4px;
+			}
+			.buy-last {
+				margin-top: 3px;
+				height: 32px;
+				border-bottom: 1px solid #e0e0e0;
+				border-top: 1px solid #e0e0e0;
+			}
+			/*.clearfix { clear: both;}*/
+			.state-last {
+				padding-bottom: 6px;
+				padding-top: 6px;
+				padding-left: 13px;
+				font-size: 0.75rem;
+				color: #909090;
+				background-color: #fff;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="list-box-flex">
+			<div class="list-box1-td1 td-img">
+				<img src="../../image/yz-img.jpg"></img>
+			</div>
+			<div class="list-box1-td2">
+				<h1 class="list-title">曲江庙坡头路延长油站</h1>
+				<div class="star-all">
+					<span class="star-span"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> <img src="../../image/star/img/star-on-big.png"> </span>
+					<span>100000单</span>
+				</div>
+				<div class="list-line">
+					<div class="list-line-td">
+						<span class="ico-span"> <img src="../../image/yz-ico2.jpg">预购 </span>
+					</div>
+					<div class="list-line-td">
+						<span class="ico-span1"> <img src="../../image/yz-ico3.jpg">团购 </span>
+					</div>
+					<div class="list-line-td">
+						<span> 5.82元/升 </span>
+					</div>
+				</div>
+				<div class="list-line">
+					<span class="list-dizhi"> <img src="../../image/yz-ico4.jpg"> 近西安唐城墙遗址公园 </span>
+				</div>
+			</div>
+			<div class="list-box1-td3 td-img1 aui-margin-t-15">
+				<img src="../../image/yz-ico1.jpg"></img>
+				<span class="goto">到这去</span>
+				<span>3.6km</span>
+			</div>
+		</div>
+		<div class="each-store">
+			<div class="store-title">
+				<img src="../../image/logo-icon02.png" />
+				<div class="store-name">曲江庙坡头路延长油站</div>
+				<div class="clearfix"></div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">和路雪冰淇淋可爱多香草口味67g</div>
+					<div class="goods-price">¥<span class="font14">4</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="buy-amount">×1</div>
+			</div>
+			<div class="store-goods">
+				<div class="aui-col-xs-4 posi-re">
+					<img src="../../image/goods02.png" class="goods-img" />
+				</div>
+				<div class="aui-col-xs-6 ">
+					<div class="goods-title">百岁山矿泉水348ml*24瓶/箱 饮用水纯净水天然 健康</div>
+					<div class="goods-price">¥<span class="font14">36</span>.5</div>
+				</div>
+				<div class="clearfix"></div>
+				<div class="buy-amount">×1</div>
+			</div>
+			<div class="buy-last">
+				<div class="buy-all">共2件商品 合计 ¥<span class="font14">41.00</span></div>
+				<div class="state">已完成</div>
+				<div class="clearfix"></div>
+			</div>			
+		</div>
+		<div class="state-last">订单编号：YC1967414551651635</div>	
+		<div class="state-last">支付方式：支付宝支付</div>
+		<div class="state-last">订单时间：2016.10.17 20:30</div>
+	</body>
+	<script type="text/javascript" src="../../script/api.js"></script>
+	<script>
+		apiready = function() {
+		}
+		//打开详情
+		function openContent() {
+			api.openWin({
+				name : 'youzhan-content-head',
+				url : 'youzhan-content-head.html'
+			});
+		}
+		
+	</script>
+</html>

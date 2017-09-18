@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>文档</title>
+     <link rel="stylesheet" type="text/css" href="../../css/api.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/aui.2.0.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/style.css"/>
+     <link rel="stylesheet" type="text/css" href="../../css/swiper.min.css" />
+     <link rel="stylesheet" type="text/css" href="../../css/iconfont.css" />
+    <style>
+       html, body {
+			height: 100%;
+			background: #fff;
+		}
+		.aui-list-item-media img{
+		  width: 30px!important;
+		  margin-left: 15px;
+		}
+		.roll-red{
+		  width: 8px;
+		  height: 8px;
+		  background: #D8515E;
+		  border-radius: 50%;
+		  position: absolute;
+		}
+    </style>
+</head>
+<body>
+    <!--<div class="aui-content ">
+    <ul class="aui-list">     
+        <li onclick="messageContent()" class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+            <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+             <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+        <li class="aui-list-item aui-padded-t-10 aui-padded-b-10 aui-list-item-arrow">
+           <div class="aui-list-item-inner">
+                <div class="aui-list-item-title">
+                                                   我是一条消息标题
+                  <div class="aui-list-item-text">我是一条消息标题</div>
+                </div>               
+                <div class="aui-list-item-right">2011-05-05</div>
+            </div>
+        </li>
+        
+    </ul>
+</div>-->
+<div class="aui-content aui-margin-b-15">
+    <ul class="aui-list aui-media-list" id="imMessage" style="display: none;">
+        <li class="aui-list-item">
+            <div class="aui-media-list-item-inner">
+                <div class="aui-list-item-media">
+                    <img src="../../image/message.jpg">
+                </div>
+                <div class="aui-list-item-inner">
+                    <div class="aui-list-item-text">
+                    </div>
+                    <div class="aui-list-item-text">
+                        {content}
+                    </div>
+                </div>
+            </div>
+            <div class="aui-info" style="padding-top:0">
+                <div class="aui-info-item">
+     
+                    </div>
+                <div class="aui-info-item">{sendtime}</div>
+            </div>
+        </li>
+        
+        
+     </ul>
+    </div> 
+    
+</body>
+<script type="text/javascript" src="../../script/api.js"></script>
+<script type="text/javascript" src="../../script/my_ajax.js"></script>
+<script type="text/javascript" src="../../script/common.js"></script>
+<script type="text/javascript" src="../../script/page.js"></script>
+<script>
+  //打开消息详情
+// function messageContent(){
+//   api.openWin({
+// 	     name: 'my-message-content-page',
+// 	     url: 'my-message-content-page.html'
+//   });
+// }
+	apiready = function() {
+		//上拉刷新
+		api.addEventListener({
+			name : 'scrolltobottom',
+			extra : {
+				threshold : 10 //设置距离底部多少距离时触发，默认值为0，数字类型
+			}
+		}, function(ret, err) {
+			nextPage(0);
+			findMessageList();
+		});
+		//下拉刷新
+		api.setRefreshHeaderInfo({
+			visible : true,
+			bgColor : '#FFFFFF',
+			textColor : '#ccc',
+			textDown : '下拉刷新',
+			textUp : '松开刷新',
+			textLoading : '加载中',
+			showTime : true
+		}, function(ret, err) {
+			prevPage();
+			findMessageList(1);
+		});
+		findMessageList();
+	}
+	
+	//加载页面数据
+	function findMessageList(isShow) {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appImMessageAjax!queryImMessageByPage.htm";
+		
+		if(isShow){
+			ajaxObject.isShowProgress = '1';
+		}
+		ajaxObject.isHideProgress = '1';
+		ajaxObject.onSuccessFunction = function(data) {
+			var imMessageViewVoList = data.imMessageViewVoList;
+			for (var i = 0; i < imMessageViewVoList.length; i++) {
+				var date = formatDate(imMessageViewVoList[i].sendtime, "yyyy-MM-dd HH:mm:ss");
+				imMessageViewVoList[i].sendtime = date;
+			}
+			getWorkBookHtmlByList(imMessageViewVoList, "imMessage");
+			updateImMessage();
+			api.refreshHeaderLoadDone();
+		}
+		baseAjax(ajaxObject);
+	}
+	
+	function updateImMessage() {
+		var ajaxObject = new Object();
+		ajaxObject.url = "/appImMessageAjax!updateImMessage.htm";
+		
+		ajaxObject.params = new Object();
+		ajaxObject.params.unread = "1";
+		ajaxObject.isShowProgress = '1';
+		
+		ajaxObject.onSuccessFunction = function(data) {
+			api.sendEvent({
+	            name:'flushMyEvent'
+            });
+            
+		}
+		baseAjax(ajaxObject);
+	}
+	
+</script>
+</html>
